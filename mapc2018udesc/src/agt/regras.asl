@@ -16,4 +16,3 @@ mycorner(LATME, LONME, CLAT,CLON):-
 			  math.sqrt((CLAT-LATME)*(CLAT-LATME)+(CLON-LONME)*(CLON-LONME)) >
 			  math.sqrt((OLAT-LATME)*(OLAT-LATME)+(OLON-LONME)*(OLON-LONME))
 			).
-			
