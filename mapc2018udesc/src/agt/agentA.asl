@@ -7,8 +7,10 @@
 	.
 +resourceNode(A,B,C,D)[source(percept)]:true
 	<-true.
-	
-{ include("cantomaisproximo.asl") }	
+
+{ include("charging.asl") }	
+{ include("gathering.asl") }
+{ include("posicaoinicial.asl") }		
 { include("regras.asl") }
 { include("$jacamoJar/templates/common-cartago.asl") }
 { include("$jacamoJar/templates/common-moise.asl") }
