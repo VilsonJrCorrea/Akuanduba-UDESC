@@ -1,0 +1,353 @@
+mas mapc2018udesc {
+agent agentA1: agentA.asl{ 
+ join: env
+focus: env.art1
+}
+agent agentA2: agentA.asl{ 
+ join: env
+focus: env.art2
+}
+agent agentA3: agentA.asl{ 
+ join: env
+focus: env.art3
+}
+agent agentA4: agentA.asl{ 
+ join: env
+focus: env.art4
+}
+agent agentA5: agentA.asl{ 
+ join: env
+focus: env.art5
+}
+agent agentA6: agentA.asl{ 
+ join: env
+focus: env.art6
+}
+agent agentA7: agentA.asl{ 
+ join: env
+focus: env.art7
+}
+agent agentA8: agentA.asl{ 
+ join: env
+focus: env.art8
+}
+agent agentA9: agentA.asl{ 
+ join: env
+focus: env.art9
+}
+agent agentA10: agentA.asl{ 
+ join: env
+focus: env.art10
+}
+agent agentA11: agentA.asl{ 
+ join: env
+focus: env.art11
+}
+agent agentA12: agentA.asl{ 
+ join: env
+focus: env.art12
+}
+agent agentA13: agentA.asl{ 
+ join: env
+focus: env.art13
+}
+agent agentA14: agentA.asl{ 
+ join: env
+focus: env.art14
+}
+agent agentA15: agentA.asl{ 
+ join: env
+focus: env.art15
+}
+agent agentA16: agentA.asl{ 
+ join: env
+focus: env.art16
+}
+agent agentA17: agentA.asl{ 
+ join: env
+focus: env.art17
+}
+agent agentA18: agentA.asl{ 
+ join: env
+focus: env.art18
+}
+agent agentA19: agentA.asl{ 
+ join: env
+focus: env.art19
+}
+agent agentA20: agentA.asl{ 
+ join: env
+focus: env.art20
+}
+agent agentA21: agentA.asl{ 
+ join: env
+focus: env.art21
+}
+agent agentA22: agentA.asl{ 
+ join: env
+focus: env.art22
+}
+agent agentA23: agentA.asl{ 
+ join: env
+focus: env.art23
+}
+agent agentA24: agentA.asl{ 
+ join: env
+focus: env.art24
+}
+agent agentA25: agentA.asl{ 
+ join: env
+focus: env.art25
+}
+agent agentA26: agentA.asl{ 
+ join: env
+focus: env.art26
+}
+agent agentA27: agentA.asl{ 
+ join: env
+focus: env.art27
+}
+agent agentA28: agentA.asl{ 
+ join: env
+focus: env.art28
+}
+agent agentA29: agentA.asl{ 
+ join: env
+focus: env.art29
+}
+agent agentA30: agentA.asl{ 
+ join: env
+focus: env.art30
+}
+agent agentA31: agentA.asl{ 
+ join: env
+focus: env.art31
+}
+agent agentA32: agentA.asl{ 
+ join: env
+focus: env.art32
+}
+agent agentA33: agentA.asl{ 
+ join: env
+focus: env.art33
+}
+agent agentA34: agentA.asl{ 
+ join: env
+focus: env.art34
+}
+//time b
+agent agentB1: agentB.asl{ 
+ join: envb
+focus: envb.artb1
+}
+agent agentB2: agentB.asl{ 
+ join: envb
+focus: envb.artb2
+}
+agent agentB3: agentB.asl{ 
+ join: envb
+focus: envb.artb3
+}
+agent agentB4: agentB.asl{ 
+ join: envb
+focus: envb.artb4
+}
+agent agentB5: agentB.asl{ 
+ join: envb
+focus: envb.artb5
+}
+agent agentB6: agentB.asl{ 
+ join: envb
+focus: envb.artb6
+}
+agent agentB7: agentB.asl{ 
+ join: envb
+focus: envb.artb7
+}
+agent agentB8: agentB.asl{ 
+ join: envb
+focus: envb.artb8
+}
+agent agentB9: agentB.asl{ 
+ join: envb
+focus: envb.artb9
+}
+agent agentB10: agentB.asl{ 
+ join: envb
+focus: envb.artb10
+}
+agent agentB11: agentB.asl{ 
+ join: envb
+focus: envb.artb11
+}
+agent agentB12: agentB.asl{ 
+ join: envb
+focus: envb.artb12
+}
+agent agentB13: agentB.asl{ 
+ join: envb
+focus: envb.artb13
+}
+agent agentB14: agentB.asl{ 
+ join: envb
+focus: envb.artb14
+}
+agent agentB15: agentB.asl{ 
+ join: envb
+focus: envb.artb15
+}
+agent agentB16: agentB.asl{ 
+ join: envb
+focus: envb.artb16
+}
+agent agentB17: agentB.asl{ 
+ join: envb
+focus: envb.artb17
+}
+agent agentB18: agentB.asl{ 
+ join: envb
+focus: envb.artb18
+}
+agent agentB19: agentB.asl{ 
+ join: envb
+focus: envb.artb19
+}
+agent agentB20: agentB.asl{ 
+ join: envb
+focus: envb.artb20
+}
+agent agentB21: agentB.asl{ 
+ join: envb
+focus: envb.artb21
+}
+agent agentB22: agentB.asl{ 
+ join: envb
+focus: envb.artb22
+}
+agent agentB23: agentB.asl{ 
+ join: envb
+focus: envb.artb23
+}
+agent agentB24: agentB.asl{ 
+ join: envb
+focus: envb.artb24
+}
+agent agentB25: agentB.asl{ 
+ join: envb
+focus: envb.artb25
+}
+agent agentB26: agentB.asl{ 
+ join: envb
+focus: envb.artb26
+}
+agent agentB27: agentB.asl{ 
+ join: envb
+focus: envb.artb27
+}
+agent agentB28: agentB.asl{ 
+ join: envb
+focus: envb.artb28
+}
+agent agentB29: agentB.asl{ 
+ join: envb
+focus: envb.artb29
+}
+agent agentB30: agentB.asl{ 
+ join: envb
+focus: envb.artb30
+}
+agent agentB31: agentB.asl{ 
+ join: envb
+focus: envb.artb31
+}
+agent agentB32: agentB.asl{ 
+ join: envb
+focus: envb.artb32
+}
+agent agentB33: agentB.asl{ 
+ join: envb
+focus: envb.artb33
+}
+agent agentB34: agentB.asl{ 
+ join: envb
+focus: envb.artb34
+}
+
+
+workspace env {
+artifact art1: EISAccess("conf/eis0.json")
+artifact art2: EISAccess("conf/eis1.json")
+artifact art3: EISAccess("conf/eis2.json")
+artifact art4: EISAccess("conf/eis3.json")
+artifact art5: EISAccess("conf/eis4.json")
+artifact art6: EISAccess("conf/eis5.json")
+artifact art7: EISAccess("conf/eis6.json")
+artifact art8: EISAccess("conf/eis7.json")
+artifact art9: EISAccess("conf/eis8.json")
+artifact art10: EISAccess("conf/eis9.json")
+artifact art11: EISAccess("conf/eis10.json")
+artifact art12: EISAccess("conf/eis11.json")
+artifact art13: EISAccess("conf/eis12.json")
+artifact art14: EISAccess("conf/eis13.json")
+artifact art15: EISAccess("conf/eis14.json")
+artifact art16: EISAccess("conf/eis15.json")
+artifact art17: EISAccess("conf/eis16.json")
+artifact art18: EISAccess("conf/eis17.json")
+artifact art19: EISAccess("conf/eis18.json")
+artifact art20: EISAccess("conf/eis19.json")
+artifact art21: EISAccess("conf/eis20.json")
+artifact art22: EISAccess("conf/eis21.json")
+artifact art23: EISAccess("conf/eis22.json")
+artifact art24: EISAccess("conf/eis23.json")
+artifact art25: EISAccess("conf/eis24.json")
+artifact art26: EISAccess("conf/eis25.json")
+artifact art27: EISAccess("conf/eis26.json")
+artifact art28: EISAccess("conf/eis27.json")
+artifact art29: EISAccess("conf/eis28.json")
+artifact art30: EISAccess("conf/eis29.json")
+artifact art31: EISAccess("conf/eis30.json")
+artifact art32: EISAccess("conf/eis31.json")
+artifact art33: EISAccess("conf/eis32.json")
+artifact art34: EISAccess("conf/eis33.json")
+}
+
+workspace envb {
+artifact artb1: EISAccess("conf/eisb0.json")
+artifact artb2: EISAccess("conf/eisb1.json")
+artifact artb3: EISAccess("conf/eisb2.json")
+artifact artb4: EISAccess("conf/eisb3.json")
+artifact artb5: EISAccess("conf/eisb4.json")
+artifact artb6: EISAccess("conf/eisb5.json")
+artifact artb7: EISAccess("conf/eisb6.json")
+artifact artb8: EISAccess("conf/eisb7.json")
+artifact artb9: EISAccess("conf/eisb8.json")
+artifact artb10: EISAccess("conf/eisb9.json")
+artifact artb11: EISAccess("conf/eisb10.json")
+artifact artb12: EISAccess("conf/eisb11.json")
+artifact artb13: EISAccess("conf/eisb12.json")
+artifact artb14: EISAccess("conf/eisb13.json")
+artifact artb15: EISAccess("conf/eisb14.json")
+artifact artb16: EISAccess("conf/eisb15.json")
+artifact artb17: EISAccess("conf/eisb16.json")
+artifact artb18: EISAccess("conf/eisb17.json")
+artifact artb19: EISAccess("conf/eisb18.json")
+artifact artb20: EISAccess("conf/eisb19.json")
+artifact artb21: EISAccess("conf/eisb20.json")
+artifact artb22: EISAccess("conf/eisb21.json")
+artifact artb23: EISAccess("conf/eisb22.json")
+artifact artb24: EISAccess("conf/eisb23.json")
+artifact artb25: EISAccess("conf/eisb24.json")
+artifact artb26: EISAccess("conf/eisb25.json")
+artifact artb27: EISAccess("conf/eisb26.json")
+artifact artb28: EISAccess("conf/eisb27.json")
+artifact artb29: EISAccess("conf/eisb28.json")
+artifact artb30: EISAccess("conf/eisb29.json")
+artifact artb31: EISAccess("conf/eisb30.json")
+artifact artb32: EISAccess("conf/eisb31.json")
+artifact artb33: EISAccess("conf/eisb32.json")
+artifact artb34: EISAccess("conf/eisb33.json")
+}
+
+ asl-path: src/agt
+src/agt/inc
+ }
