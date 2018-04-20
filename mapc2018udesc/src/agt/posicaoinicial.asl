@@ -1,97 +1,107 @@
 visionrange(1000).
-upperdirection(false).
 rightdirection(true).
 last(lat).
-firstexplotation.
-dislon(SIZE):- 	minLon(MLON) 	  & centerLon(CLON) & 
+
+dislon(SIZE):- 	minLon(MLON) 	& centerLon(CLON) & 
  				visionrange(VR) & SIZE=(CLON-MLON-(VR/111320)).
 
-nextlat(RLAT):- visionrange(VR) & lat(LAT) & upperdirection(DLAT) &	  
-				((DLAT==false   & RLAT=(LAT-(VR/110570))) |
-				(DLAT==true     & RLAT=(LAT+(VR/110570)))).
+nextlat(CLAT,RLAT):- visionrange(VR) & RLAT=(CLAT-(VR/110570)).
 
-nextlon(RLON):- lon(LON) 	 & rightdirection(DLON) &
-				dislon(SIZE) & ((DLON==true  & RLON=LON+SIZE) |
-				  			 	(DLON==false & RLON=LON-SIZE)).
+nextlon(FLON,RLON):- rightdirection(DLON) &
+					 dislon(SIZE) & 
+					 	((DLON==true  & RLON=FLON+SIZE) |
+				  		 (DLON==false & RLON=FLON-SIZE)).
 
-+step(0): role(drone,_,_,_,_,_,_,_,_,_,_)
+invert(I,O):- (I=true & O=false)|(I=false & O=true).
+
++simStart: not started & role(drone,_,_,_,_,_,_,_,_,_,_)
 	<-
-	?lat(LAT);
-	?lon(LON);
-	?name(N);
-	.send(agentA1,tell,dronepos(N,LAT,LON));
-	action( noAction );
+		.wait (lat(LAT));
+		.wait (lon(LON));
+		.wait (name(N));
+		.send(agentA1,tell,dronepos(N,LAT,LON));
+		+started;
 	.
+
++myc(CLAT,CLON,F):true
+	<-
+		+doing(exploration);
+		+explorationsteps([goto(CLAT,CLON)]);
+		!buildexplorationsteps(CLAT,CLON,F);		
+	.
+
++explorationsteps([]):true
+	<-
+		-+doing(nothing);
+		-explorationsteps([]);
+	.
+
+-doing(exploration): explorationsteps(ACTS) & lat(LAT) & lon(LON)
+	<-
+		-+explorationsteps([goto(LAT,LON)|ACTS]);
+	.
+
 +dronepos(_,_,_): .count(dronepos(_,_,_),QTD) & QTD == 4
 	<-
-	?visionrange(VR);
-	?maxLat( MAXLAT );
-	?minLat( MINLAT );
-	?minLon( MINLON );
-	?centerLat( CNTLAT );
-	?centerLon( CNTLON );
-	
-	+corner (MAXLAT -(VR/221140),MINLON + (VR/222640),CNTLAT);
-	+corner (MAXLAT -(VR/221140),CNTLON,CNTLAT);
-	+corner (CNTLAT,MINLON + (VR/222640),MINLAT);
-	+corner (CNTLAT,CNTLON,MINLAT);
-	for (corner(LAT,LON,F)[source(_)]) {
-		?finddrone(LAT, LON, AG);
-		.send(AG,tell,myc(LAT,LON,F));
-		-dronepos(AG,_,_)[source(_)];
-	} 
-.
-+step( _ ): not route([])
-	<-
-	action( continue );
-	.
-+step( _ ): role(drone,_,_,_,_,_,_,_,_,_,_) & 
-			myc(CLAT,CLON,F) &
-			route([]) & firstexplotation  
-	<-
-		-firstexplotation;
-		.print(CLAT," , ",CLON,"/parada ",F);
-		action( goto( CLAT, CLON) );
+		?visionrange(VR);
+		?maxLat( MAXLAT );
+		?minLat( MINLAT );
+		?minLon( MINLON );
+		?centerLat( CNTLAT );
+		?centerLon( CNTLON );
+		
+		+corner (MAXLAT -(VR/221140),MINLON + (VR/222640),CNTLAT);
+		+corner (MAXLAT -(VR/221140),CNTLON,CNTLAT);
+		+corner (CNTLAT,MINLON + (VR/222640),MINLAT);
+		+corner (CNTLAT,CNTLON,MINLAT);
+		for (corner(LAT,LON,F)[source(_)]) {
+			?finddrone(LAT, LON, AG);
+			.send(AG,tell,myc(LAT,LON,F));
+			-dronepos(AG,_,_)[source(_)];
+		} 
 	.
 
-+step( _ ): role(drone,_,_,_,_,_,_,_,_,_,_) & lat(LAT) & 
-			myc(CLAT,CLON,F) & (F>LAT | (lastActionResult(X) &	
-				X\==successful))   & not explotationended   
-	<-
-		action( noAction );
-		+explotationended;
-	.
++!buildexplorationsteps(CLAT, CLON,F): F>CLAT   
+	<- true	.
 
-
-+step( _ ): role(drone,_,_,_,_,_,_,_,_,_,_) & lat(LAT) &
-			route([])  & not firstexplotation & last(lat) &
-			rightdirection(false) & not explotationended
++!buildexplorationsteps(CLAT, CLON,F): last(lat) 
 	<-
-		?nextlon(RLON);
+		?nextlon(CLON,RLON);
 		-+last(lon);
-		-+rightdirection(true);
-		action( goto( LAT, RLON) );
+		?rightdirection(I);
+		?invert(I,O);
+		-+rightdirection(O);
+		?explorationsteps(EM);
+		.concat (EM,[goto( CLAT, RLON)],NEM );
+		-+explorationsteps(NEM);
+		!!buildexplorationsteps(CLAT, RLON,F)
 	.
 
-+step( _ ): role(drone,_,_,_,_,_,_,_,_,_,_) & lat(LAT) &
-			route([])  & not firstexplotation & last(lat) &
-			rightdirection(true) & not explotationended
-	<-
-		?nextlon(RLON);
-		-+last(lon);
-		-+rightdirection(false);
-		action( goto( LAT, RLON) );
-	.
-
-+step( _ ): role(drone,_,_,_,_,_,_,_,_,_,_) & lon(LON) &
-			route([])  & not firstexplotation & last(lon) & not explotationended
-	<-
-		?nextlat(RLAT);
++!buildexplorationsteps(CLAT, CLON,F): last(lon)
+	<-	
+		?nextlat(CLAT,RLAT);
 		-+last(lat);		
-		action( goto( RLAT, LON) );
+		?explorationsteps(EM);
+		.concat (EM,[goto( RLAT, CLON)],NEM );
+		-+explorationsteps(NEM);
+		!!buildexplorationsteps(RLAT, CLON,F)
+	.
+
++step( _ ): not route([]) 
+	<-
+		action( continue );
 	.
 	
-+step( _ ): true
++step( _ ): route([]) & doing(exploration) &
+			explorationsteps([ACT|T])			
 	<-
-	action( noAction );
+		action( ACT );
+		-+explorationsteps(T);
+	.
+	
++step( _ ): route([]) & doing(recharge) &
+			rechargesteps([ACT|T])			
+	<-
+		action( ACT );
+		-+rechargesteps(T);
 	.

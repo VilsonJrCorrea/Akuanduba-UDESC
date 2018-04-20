@@ -1,7 +1,7 @@
 mas mapc2018udesc {
 agent agentA1: agentA.asl{ 
  join: env
-focus: env.art1
+focus: env.art1,env.artpolygon
 }
 agent agentA2: agentA.asl{ 
  join: env
@@ -309,6 +309,7 @@ artifact art31: EISAccess("conf/eis30.json")
 artifact art32: EISAccess("conf/eis31.json")
 artifact art33: EISAccess("conf/eis32.json")
 artifact art34: EISAccess("conf/eis33.json")
+artifact artpolygon: calculos.ARTGreyZone
 }
 
 workspace envb {
