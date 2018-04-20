@@ -1,6 +1,7 @@
 package calculos;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Calculos {
@@ -21,13 +22,14 @@ public class Calculos {
 	public List<Reta> construirPoligono() {
 		acharExtremos();
 		calcularPontoMedio();
+		ordenarPontos();
 		
 		int contadorInteracoes;
 		double deterPontoMedio, deter;
 		Ponto maisDistante;
 		
 		while( !pontosNaoCalculados.isEmpty() ) {
-			maisDistante = acharPontoMaisDistante();
+			maisDistante = pontosNaoCalculados.get( 0 );
 			contadorInteracoes = 0;
 			for( Reta r : retasPoligono) {
 				deterPontoMedio = testarAlinhamento( pontoMedio, r);
@@ -44,15 +46,6 @@ public class Calculos {
 			}
 		}
 		
-//		List< Reta > retasParaRetirar = new ArrayList<>();
-//		for( Reta r : retasPoligono ) {
-//			if( r.getOrigem().equals( r.getDestino() ) ) {
-//				retasParaRetirar.add( r );
-//			}
-//		}
-//		for( Reta r : retasParaRetirar ) {
-//			retasPoligono.remove( r );
-//		}
 		return retasPoligono;
 	}
 	
@@ -72,7 +65,7 @@ public class Calculos {
 		System.out.println( "Baixo: " + maisAbaixo );
 		System.out.println( "Esquerda: " + maisEsquerda );
 		System.out.println( "Direita: " + maisDireita );
-		System.out.println( "Ponto M�dio: " + pontoMedio );
+		System.out.println( "Ponto Medio: " + pontoMedio );
 		System.out.println( "Poligono: " + retasPoligono );
 	}
 	
@@ -84,25 +77,32 @@ public class Calculos {
 			maisEsquerda = p;
 			maisDireita = p;
 		}
-		for( Ponto p : pontosNaoCalculados ) 
+		for( Ponto p : pontosNaoCalculados ) {
 			if( maisAcima.getY() > p.getY() ) {
 				maisAcima = p;
 			}
+		}
 		pontosNaoCalculados.remove( maisAcima );
-		for( Ponto p : pontosNaoCalculados )
+		
+		for( Ponto p : pontosNaoCalculados ) {
 			if( maisAbaixo.getY() < p.getY() ) {
 				maisAbaixo = p;
 			}
+		}
 		pontosNaoCalculados.remove( maisAbaixo );
-		for( Ponto p : pontosNaoCalculados )
+		
+		for( Ponto p : pontosNaoCalculados ) {
 			if( maisEsquerda.getX() < p.getX() ) {
 				maisEsquerda = p;
 			}
+		}
 		pontosNaoCalculados.remove( maisEsquerda );
-		for( Ponto p : pontosNaoCalculados )
+		
+		for( Ponto p : pontosNaoCalculados ) {
 			if( maisDireita.getX() > p.getX() ) {
 				maisDireita = p;
 			}
+		}
 		pontosNaoCalculados.remove( maisDireita );
 		
 		retasPoligono.add( new Reta( maisAbaixo, maisDireita ) );
@@ -141,22 +141,55 @@ public class Calculos {
 		retasPoligono.add( novaReta );
 	}
 	
-	private Ponto acharPontoMaisDistante() {
-		double aux;
-		Ponto pontoMaisDistante = pontosNaoCalculados.get( 0 );
-		double distanciaAtual = calcularDistancia( pontoMaisDistante, pontoMedio );
+	private void ordenarPontos() {
+		List<PontoComDistancia> lista = new ArrayList<>();
+		PontoComDistancia pd;
 		for( Ponto p : pontosNaoCalculados ) {
-			aux = calcularDistancia( p, pontoMedio );
-			if(  aux > distanciaAtual ) {
-				distanciaAtual = aux;
-				pontoMaisDistante = p;
+			pd = new PontoComDistancia( p, calcularDistancia( p, pontoMedio ) );
+			if( lista.isEmpty() || lista.get( lista.size() - 1 ).getDistancia() > pd.getDistancia()) {
+				lista.add( pd );
+			}else {
+				for( int i = 0; i < lista.size(); i++ ) {
+					if( lista.get( i ).getDistancia() < pd.getDistancia() ) {
+						lista.add( i, pd );
+						break;
+					}
+				}
 			}
+			System.out.println("Pontos:");
+			for( PontoComDistancia p1 : lista ) {
+				System.out.println( p1.toString() );
+			}
+			System.out.println("");
 		}
-		return pontoMaisDistante;
+		
+		pontosNaoCalculados = new ArrayList<>();
+		for( PontoComDistancia p : lista ) {
+			pontosNaoCalculados.add( p.getPonto() );
+		}
+		System.out.println( "\n\n\n" + pontosNaoCalculados );
 	}
 	
-	private void ordenarPontos() {
+	private class PontoComDistancia {
+		private Ponto ponto;
+		private double distancia;
 		
+		private PontoComDistancia( Ponto ponto, double distancia ) {
+			this.ponto = ponto;
+			this.distancia = distancia;
+		}
+		
+		public Ponto getPonto() {
+			return ponto;
+		}
+		
+		public double getDistancia() {
+			return distancia;
+		}
+		
+		public String toString() {
+			return "Ponto: " + ponto + ", Distancia: " + distancia;
+		}
 	}
 	
 }
