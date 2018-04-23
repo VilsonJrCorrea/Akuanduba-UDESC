@@ -59,7 +59,12 @@ public class Ponto {
 
 	@Override
 	public String toString() {
-		return "Ponto [nome=" + nome + ", x=" + x + ", y=" + y + "]";
+		String s = "Ponto [";
+		if( !nome.isEmpty() ) {
+			s += "nome=" + nome + ", " ;
+		}
+		s += "x=" + x + ", y=" + y + "]";
+		return s;
 	}
 
 }
