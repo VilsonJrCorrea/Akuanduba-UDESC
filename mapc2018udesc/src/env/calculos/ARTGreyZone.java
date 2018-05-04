@@ -42,7 +42,7 @@ public class ARTGreyZone extends Artifact {
 	}
 	
 	@OPERATION 
-	void getPoint( int x, int y, OpFeedbackParam<Literal> retorno) {
+	void getPoint( double x, double y, OpFeedbackParam<Literal> retorno) {
 		Ponto p = cal.calcularPonto(x, y);
 		try {
 			retorno.set( ASSyntax.parseLiteral( "point(" + p.getX() + "," + p.getY() + ")" ) );

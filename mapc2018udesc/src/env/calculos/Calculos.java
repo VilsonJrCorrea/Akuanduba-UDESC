@@ -192,7 +192,7 @@ public class Calculos {
 		}
 	}
 
-	public Ponto calcularPonto(int x, int y) {
+	public Ponto calcularPonto(double x, double y) {
 		Ponto vertice = new Ponto( "", x, y );
 		Reta retaMaisProxima = null;
 		double distanciaMaisProximo = Double.MAX_VALUE;

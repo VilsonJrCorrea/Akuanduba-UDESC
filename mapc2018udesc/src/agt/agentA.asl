@@ -6,15 +6,30 @@
 		.broadcast(tell,resourceNode(A,B,C,D));
 	.
 
-+step(_): name(agentA1)
++step( 0 ): name(agentA1)
 	<-
-		.wait(100);
+		//.wait(100);
 		for(chargingStation(_,X,Y,_)) {
+			addPoint(X,Y);
+		}
+		for(dump(_,X,Y)) {
+			addPoint(X,Y);
+		}
+		for(shop(_,X,Y)) {
+			addPoint(X,Y);
+		}
+		for(workshop(_,X,Y)) {
+			addPoint(X,Y);
+		}
+		for(chargingStation(_,X,Y,_)) {
+			addPoint(X,Y);
+		}
+		for(storage(_,X,Y,_,_,_)) {
 			addPoint(X,Y);
 		}
 		buildPolygon;
 		getPolygon(X);
-		.print(X);
+		.println("Poligono pronto !!");
 		+X;
 	.
 
@@ -27,25 +42,25 @@
 //	<-
 //	.print(X," - ",Y)
 //.
-+step(10):true
-	<-
-	-doing(_);
-	action(goto(shop1));
-	.
+//+step(10):true
+//	<-
+//	-doing(_);
+//	action(goto(shop1));
+//	.
 
-+step(30):true
-	<-
-	+doing(exploration);
-	.
+//+step(30):true
+//	<-
+//	+doing(exploration);
+//	.s
 
-
-{ include("charging.asl") }	
-{ include("gathering.asl") }
-{ include("posicaoinicial.asl") }		
-{ include("regras.asl") }
+//{ include("construcao_pocos.asl")}
+//{ include("charging.asl") }	
+//{ include("gathering.asl") }
+//{ include("posicaoinicial.asl") }		
+//{ include("regras.asl") }
 
 	
-+step( _ ): true
++step( _ ): not name( agentA2 )
 	<-
 	action( noAction );
 	.
