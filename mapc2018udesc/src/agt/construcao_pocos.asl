@@ -1,15 +1,18 @@
-// Agent construcao_pocos in project mapc2018udesc
-
-/* Initial beliefs and rules */
-
-/* Initial goals */
-
-
-
-/* Plans */
++!validar( R )
+	: 	true
+	<-	?well( _,_,_,WELL,_,MV);
+	//	well(well9732,48.89009,2.40846,wellType0,A,72)
+		?wellType( WELL,_,_,_, V);
+	//	wellType(wellType0,600,4,36,73)
+		if( V == MV ){
+			R = true;
+		}else{
+			R = false;
+		}
+	.
 
 +step( X )
-	: 	X = 2
+	: 	X = 1
 	&	maxLat( LAT )
 	&	maxLon( LON )
 	&	name( agentA1 )
@@ -18,7 +21,7 @@
 	.
 
 +step( X )
-	: 	X = 2
+	: 	X = 1
 	&	minLat( LAT )
 	&	maxLon( LON )
 	&	name( agentA2 )
@@ -27,7 +30,7 @@
 	.
 
 +step( X )
-	: 	X = 2
+	: 	X = 1
 	&	minLat( LAT )
 	&	minLon( LON )
 	&	name( agentA3 )
@@ -36,7 +39,7 @@
 	.
 
 +step( X )
-	: 	X = 2
+	: 	X = 1
 	&	maxLat( LAT )
 	&	minLon( LON )
 	&	name( agentA4 )
@@ -45,7 +48,7 @@
 	.
 
 +step( X )
-	:	X < 2
+	:	X < 1
 	<-	true
 	.
 
@@ -59,8 +62,7 @@
 	:	route( [] )
 	&	indo_poco
 	&	role(drone,_,_,_,_,_,_,_,_,_,_)
-	<-	
-		action( build( wellType0 ) );
+	<-	action( build( wellType0 ) );
 		-point( _, _ );
 		-indo_poco;
 		+construindo_poco;
@@ -68,38 +70,47 @@
 	.
 
 +step( _ )
-	:	poco_foi_construido
-	<-	-construindo_poco;
-		action( noAction );
+	:	role(drone,_,_,_,_,_,_,_,_,_,_)
+	&	construindo_poco
+	&	not indo_poco
+	//poco_foi_construido
+	<-	!validar( R );
+		if( R == true ){
+			-construindo_poco;
+//			action( noAction );
+//			.print( "noAction" );
+			?centerLat( CLAT );
+			?centerLon( CLON );
+			action( goto( CLAT, CLON ) );
+			.print( "indo para o centro");
+		}else{
+			action( build );
+			.print( "build" );
+		}
+		/*validar */
 	.
 
-+step( _ )
-	:	construindo_poco
-	&	role(drone,_,_,_,_,_,_,_,_,_,_)
-	<-	
-		action( build );
-		.print( "build" );
-	.
+//+step( _ )
+//	:	role(drone,_,_,_,_,_,_,_,_,_,_)
+//	&	construindo_poco
+//	<-
+//		action( build );
+//		.print( "build" );
+//		!!mostrar;
+//	.
 
 +step( _ )
 	: 	role(drone,_,_,_,_,_,_,_,_,_,_)
 	<-	action( continue );
 		.print( "continue" );
+		//!!mostrar;
 	.
 
-//+!poco_foi_construido( B )
-//	:	well( _,_,_,WELL,_,MV)
-//	&	wellType( WELL,_,_,_, V)
-//	<-	.print( WELL );
-//		.print( V );
-//		.print( MV );
-//		B = (V == MV);
-//		.print( B );
-//	.
 poco_foi_construido
 	:-	well( _,_,_,WELL,_,MV)
+	//	well(well9732,48.89009,2.40846,wellType0,A,72)
 	&	wellType( WELL,_,_,_, V)
-	//well(well9732,48.89009,2.40846,wellType0,A,72)
+	//	wellType(wellType0,600,4,36,73)
 	&	V == MV
 	.
 

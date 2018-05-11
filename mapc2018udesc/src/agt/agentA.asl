@@ -1,3 +1,5 @@
+
+
 +resourceNode(A,B,C,D)[source(percept)]:
 			not (resourceNode(A,B,C,D)[source(SCR)] &
 			SCR\==percept)
@@ -53,14 +55,14 @@
 //	+doing(exploration);
 //	.s
 
-//{ include("construcao_pocos.asl")}
+{ include("construcao_pocos.asl")}
 //{ include("charging.asl") }	
 //{ include("gathering.asl") }
 //{ include("posicaoinicial.asl") }		
 //{ include("regras.asl") }
 
 	
-+step( _ ): not name( agentA2 )
++step( _ ): entity(_,b,_,_,_)
 	<-
 	action( noAction );
 	.
