@@ -61,10 +61,9 @@
 //{ include("posicaoinicial.asl") }		
 //{ include("regras.asl") }
 
-	
-+step( _ ): entity(_,b,_,_,_)
-	<-
-	action( noAction );
++step( _ )
+	:	entity(_,b,_,_,_)
+	<-	action( noAction );
 	.
 
 { include("$jacamoJar/templates/common-cartago.asl") }
