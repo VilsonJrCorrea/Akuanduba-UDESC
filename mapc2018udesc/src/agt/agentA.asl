@@ -34,6 +34,25 @@
 { include("posicaoinicial.asl") }		
 { include("regras.asl") }
 
++step( _ ): not route([]) 
+	<-
+		action( continue );
+	.
+	
++step( _ ): route([]) & doing(exploration) &
+			explorationsteps([ACT|T])			
+	<-
+		action( ACT );
+		-+explorationsteps(T);
+	.
+	
++step( _ ): route([]) & doing(recharge) &
+			rechargesteps([ACT|T])			
+	<-
+		action( ACT );
+		-+rechargesteps(T);
+	.
+
 +step( _ ): priotodo(ACTION)
 	<-
 		-+doing(ACTION);
