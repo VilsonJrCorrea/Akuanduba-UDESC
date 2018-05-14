@@ -25,14 +25,14 @@ invert(I,O):- (I=true & O=false)|(I=false & O=true).
 
 +myc(CLAT,CLON,F):true
 	<-
-		+doing(exploration);
+		+todo(exploration,6);
 		+explorationsteps([goto(CLAT,CLON)]);
 		!buildexplorationsteps(CLAT,CLON,F);		
 	.
 
 +explorationsteps([]):true
 	<-
-		-+doing(nothing);
+		-doing(_);
 		-explorationsteps([]);
 	.
 
@@ -85,23 +85,4 @@ invert(I,O):- (I=true & O=false)|(I=false & O=true).
 		.concat (EM,[goto( RLAT, CLON)],NEM );
 		-+explorationsteps(NEM);
 		!!buildexplorationsteps(RLAT, CLON,F)
-	.
-
-+step( _ ): not route([]) 
-	<-
-		action( continue );
-	.
-	
-+step( _ ): route([]) & doing(exploration) &
-			explorationsteps([ACT|T])			
-	<-
-		action( ACT );
-		-+explorationsteps(T);
-	.
-	
-+step( _ ): route([]) & doing(recharge) &
-			rechargesteps([ACT|T])			
-	<-
-		action( ACT );
-		-+rechargesteps(T);
 	.
