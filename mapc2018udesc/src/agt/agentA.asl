@@ -18,33 +18,26 @@
 		+X;
 	.
 
-//^!join_workspace(_,_,_) :true
-//	<-
-//	true;
-//	.
-//
-//^!X[state(Y)] :true
-//	<-
-//	.print(X," - ",Y)
-//.
-+step(10):true
++todo(ACTION,PRIORITY): true
 	<-
-	-doing(_);
-	action(goto(shop1));
+	?priotodo(ACTION);
+	-+doing(ACTION);
 	.
 
 +step(30):true
 	<-
-	+doing(exploration);
+	+todo(exploration,6);	
 	.
-
 
 { include("charging.asl") }	
 { include("gathering.asl") }
 { include("posicaoinicial.asl") }		
 { include("regras.asl") }
 
-	
++step( _ ): priotodo(ACTION)
+	<-
+		-+doing(ACTION);
+	.
 +step( _ ): true
 	<-
 	action( noAction );
