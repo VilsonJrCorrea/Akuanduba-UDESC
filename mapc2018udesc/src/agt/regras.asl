@@ -1,3 +1,7 @@
+priotodo(ACTION):- 	todo(ACT1,PRIO1) & not (todo(ACT2,PRIO2)
+					& PRIO2 > PRIO1).
+
+
 nearshop(Facility):- 	
 					lat(X0) & lon(Y0) 
 					& shop(Facility, X1,Y1) & not (shop(_, X2,Y2) 
