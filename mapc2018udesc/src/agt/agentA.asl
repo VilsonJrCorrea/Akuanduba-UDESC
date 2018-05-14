@@ -35,21 +35,6 @@
 		+X;
 	.
 
-//^!join_workspace(_,_,_) :true
-//	<-
-//	true;
-//	.
-//
-//^!X[state(Y)] :true
-//	<-
-//	.print(X," - ",Y)
-//.
-//+step(10):true
-//	<-
-//	-doing(_);
-//	action(goto(shop1));
-//	.
-
 //+step(30):true
 //	<-
 //	+doing(exploration);
@@ -64,6 +49,50 @@
 +step( _ )
 	:	entity(_,b,_,_,_)
 	<-	action( noAction );
+	.
+
++todo(ACTION,PRIORITY): true
+	<-
+	?priotodo(ACTION);
+	-+doing(ACTION);
+	.
+
++step(30):true
+	<-
+	+todo(exploration,6);	
+	.
+
+{ include("charging.asl") }	
+{ include("gathering.asl") }
+{ include("posicaoinicial.asl") }		
+{ include("regras.asl") }
+
++step( _ ): not route([]) 
+	<-
+		action( continue );
+	.
+	
++step( _ ): route([]) & doing(exploration) &
+			explorationsteps([ACT|T])			
+	<-
+		action( ACT );
+		-+explorationsteps(T);
+	.
+	
++step( _ ): route([]) & doing(recharge) &
+			rechargesteps([ACT|T])			
+	<-
+		action( ACT );
+		-+rechargesteps(T);
+	.
+
++step( _ ): priotodo(ACTION)
+	<-
+		-+doing(ACTION);
+	.
++step( _ ): true
+	<-
+	action( noAction );
 	.
 
 { include("$jacamoJar/templates/common-cartago.asl") }
