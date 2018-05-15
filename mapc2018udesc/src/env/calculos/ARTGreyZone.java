@@ -37,7 +37,17 @@ public class ARTGreyZone extends Artifact {
 		try {
 			retorno.set(ASSyntax.parseLiteral( cal.toString() ) );
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@OPERATION
+	void getPoint( double lat, double lon, OpFeedbackParam<Literal> retorno ) {
+		Ponto p = cal.calcularPonto(lat, lon);
+		System.out.println( p.toString() );
+		try {
+			retorno.set( ASSyntax.parseLiteral( "point(" + p.getX() + "," + p.getY() + ")" ));
+		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 	}

@@ -44,15 +44,22 @@
 //{ include("posicaoinicial.asl") }		
 //{ include("regras.asl") }
 
++simStart
+	:	name( agentA2 )
+	<-	!!buildWell( weelType0, agentA2 );
+	.
+
 +step( _ )
 	:	entity(_,b,_,_,_)
 	<-	action( noAction );
 	.
 
-+todo(ACTION,PRIORITY): true
++todo(ACTION,PRIORITY)
+	: true
 	<-
 	?priotodo(ACTION);
 	-+doing(ACTION);
+	-+todo(ACTION,PRIORITY);
 	.
 
 +step(30):true
@@ -82,6 +89,14 @@
 	<-
 		action( ACT );
 		-+rechargesteps(T);
+	.
+
++step( _ )
+	:	route( [] )
+	&	doing( buildWell )
+	&	stepsBuildWell( H | T )
+	<-	action( H );
+		-+stepsBuildWell( T );
 	.
 
 +step( _ ): priotodo(ACTION)
