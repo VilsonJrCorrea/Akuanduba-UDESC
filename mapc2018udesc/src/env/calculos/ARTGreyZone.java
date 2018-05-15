@@ -35,18 +35,9 @@ public class ARTGreyZone extends Artifact {
 	@OPERATION
 	void getPolygon( OpFeedbackParam<Literal> retorno ) {
 		try {
-			retorno.set(ASSyntax.parseLiteral( cal.toBelief() ) );
+			retorno.set(ASSyntax.parseLiteral( cal.toString() ) );
 		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	@OPERATION 
-	void getPoint( double x, double y, OpFeedbackParam<Literal> retorno) {
-		Ponto p = cal.calcularPonto(x, y);
-		try {
-			retorno.set( ASSyntax.parseLiteral( "point(" + p.getX() + "," + p.getY() + ")" ) );
-		} catch (ParseException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

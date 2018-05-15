@@ -1,3 +1,4 @@
+
 // CArtAgO artifact code for project mapc2018udesc
 
 import java.util.Collection;
@@ -160,4 +161,3 @@ public class EISAccess extends Artifact implements AgentListener {
 	
 	
 }
-

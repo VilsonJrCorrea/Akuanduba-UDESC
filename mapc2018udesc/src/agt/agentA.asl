@@ -1,5 +1,3 @@
-
-
 +resourceNode(A,B,C,D)[source(percept)]:
 			not (resourceNode(A,B,C,D)[source(SCR)] &
 			SCR\==percept)
