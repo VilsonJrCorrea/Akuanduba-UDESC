@@ -1,4 +1,4 @@
-priotodo(ACTION):- 	todo(ACT1,PRIO1) & not (todo(ACT2,PRIO2)
+priotodo(ACTION):- 	todo(ACTION,PRIO1) & not (todo(ACT2,PRIO2)
 					& PRIO2 > PRIO1).
 
 
@@ -7,13 +7,19 @@ nearshop(Facility):-
 					& shop(Facility, X1,Y1) & not (shop(_, X2,Y2) 
 					& math.sqrt((X1-X0)*(X1-X0)+(Y1-Y0)*(Y1-Y0)) > 
 					 math.sqrt((X2-X0)*(X2-X0)+(Y2-Y0)*(Y2-Y0))).
-							  
-nearchargingstation(Facility):- 	
+						
+nearworkshop(Facility):- 	
+					lat(X0) & lon(Y0) 
+					& shop(Facility, X1,Y1) & not (shop(_, X2,Y2) 
+					& math.sqrt((X1-X0)*(X1-X0)+(Y1-Y0)*(Y1-Y0)) > 
+					 math.sqrt((X2-X0)*(X2-X0)+(Y2-Y0)*(Y2-Y0))).	
+					 							  
+calculatenearchargingstation(Facility,X1,Y1):- 	
 					lat(X0) & lon(Y0)
 					&    chargingStation(Facility, X1,Y1,_) & 
 					not (chargingStation(_, X2,Y2,_) & 
 						 math.sqrt((X1-X0)*(X1-X0)+(Y1-Y0)*(Y1-Y0)) > 
-					  	 math.sqrt((X2-X0)*(X2-X0)+(Y2-Y0)*(Y2-Y0))).							  
+					  	 math.sqrt((X2-X0)*(X2-X0)+(Y2-Y0)*(Y2-Y0))).								  
 					  
 mycorner(LATME, LONME, CLAT,CLON):- 
 			corner(CLAT,CLON) &
@@ -28,7 +34,15 @@ finddrone(LATC, LONC, AG):-
 			  math.sqrt((CLAT-LATC)*(CLAT-LATC)+(CLON-LONC)*(CLON-LONC)) >
 			  math.sqrt((OLAT-LATC)*(OLAT-LATC)+(OLON-LONC)*(OLON-LONC))
 			).
+			
++!calculatedistance( XA, YA, XB, YB, DISTANCIA )
+	<- DISTANCIA =  math.sqrt((XA-XB)*(XA-XB)+(YA-YB)*(YA-YB)).
+	
+	
 
+possoContinuar(STEPS,BAT,TESTE):-
+	TESTE=(BAT>STEPS)
+.	
 /*
 finddrones(LATC1, LONC1, AG1,LATC2, LONC2, AG2,
 	      LATC3, LONC3, AG3,LATC4, LONC4, AG4):- 

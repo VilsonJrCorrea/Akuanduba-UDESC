@@ -1,18 +1,26 @@
 
 +!buildWell( WELLTYPE, AGENT )
-	:	maxLat( MLAT )
+	:	minLat( MLAT )
 	&	maxLon( MLON )
-	<-	.wait( 500 );
-		getPoint( MLAT, MLON, P );
+	<-	getPoint( MLAT, MLON, P );
 		!getCoordenadasPonto( P, PLAT, PLON );
 		!qtdStep( WELLTYPE, AGENT, QTD );
 		!buildWellSteps( [goto(PLAT, PLON), build(WELLTYPE)], QTD, R );
-		+todo(buildWell);
-		+stepsBuildWell( T );
-		.print( "pronto" );
+		!voltarCentro( R, NR );
+		.print( NR );
+		.print( "QTD: ", QTD );
+		+stepsBuildWell( NR );
+		+todo(buildWell, 9);
+		.print( "buildWell pronto!!" );
 	.
 
-+!getCoordenadasPonto( point( PLAT, PLON ), LAN, LON )
++!voltarCentro( R, NR )
+	:	centerLat( LAT )
+	&	centerLon( LON )
+	<-	.concat( R, [goto( LAT, LON )], NR );
+	.
+
++!getCoordenadasPonto( point( PLAT, PLON ), LAT, LON )
 	:	true
 	<-	LAT = PLAT;
 		LON = PLON;
@@ -30,14 +38,8 @@
 	.
 
 +!qtdStep( WELLTYPE, AGENT, QTD )
-	:	true
-	<-	QTD = 3;
+	:	wellType(WELLTYPE,_,_,MIN,MAX)
+	<-	QTD = 5 + math.round( ( MAX-MIN-5 )/7 ) + 1;
+		.print("WellType: ", WELLTYPE, ", MIN: ", MIN, ", MAX: ", MAX, ", QTD:", QTD);
 	.
 
-+todo( buildWell )
-	:	true
-	<-	true
-	.
-
-{ include("$jacamoJar/templates/common-cartago.asl") }
-{ include("$jacamoJar/templates/common-moise.asl") }

@@ -1,6 +1,5 @@
 visionrange(1000).
 rightdirection(true).
-last(lat).
 
 dislon(SIZE):- 	minLon(MLON) 	& centerLon(CLON) & 
  				visionrange(VR) & SIZE=(CLON-MLON-(VR/111320)).
@@ -14,31 +13,34 @@ nextlon(FLON,RLON):- rightdirection(DLON) &
 
 invert(I,O):- (I=true & O=false)|(I=false & O=true).
 
-+simStart: not started & role(drone,_,_,_,_,_,_,_,_,_,_)
++simStart: not sended(dronepos) & role(drone,_,_,_,_,_,_,_,_,_,_) 
 	<-
+		+sended(dronepos);
 		.wait (lat(LAT));
 		.wait (lon(LON));
 		.wait (name(N));
 		.send(agentA1,tell,dronepos(N,LAT,LON));
-		+started;
 	.
 
 +myc(CLAT,CLON,F):true
 	<-
-		+todo(exploration,6);
-		+explorationsteps([goto(CLAT,CLON)]);
-		!buildexplorationsteps(CLAT,CLON,F);		
+		!buildexplorationsteps(CLAT, CLON,lat, F, [goto(CLAT, CLON)], R);
+		.print(R);
+		+explorationsteps(R);
+		+todo(exploration,6);		
 	.
 
 +explorationsteps([]):true
 	<-
-		-doing(_);
+		-todo(exploration,_);
+//		-doing(_);
 		-explorationsteps([]);
 	.
 
 -doing(exploration): explorationsteps(ACTS) & lat(LAT) & lon(LON)
 	<-
 		-+explorationsteps([goto(LAT,LON)|ACTS]);
+		.print("Removi a exploracao");
 	.
 
 +dronepos(_,_,_): .count(dronepos(_,_,_),QTD) & QTD == 4
@@ -57,32 +59,27 @@ invert(I,O):- (I=true & O=false)|(I=false & O=true).
 		for (corner(LAT,LON,F)[source(_)]) {
 			?finddrone(LAT, LON, AG);
 			.send(AG,tell,myc(LAT,LON,F));
-			-dronepos(AG,_,_)[source(_)];
+			.abolish (dronepos(AG,_,_));
 		} 
 	.
 
-+!buildexplorationsteps(CLAT, CLON,F): F>CLAT   
-	<- true	.
++!buildexplorationsteps(CLAT, CLON, LAST, F, LS, R): F>CLAT   
+	<-
+	 R=LS.
 
-+!buildexplorationsteps(CLAT, CLON,F): last(lat) 
++!buildexplorationsteps(CLAT, CLON,lat, F, LS, R): true 
 	<-
 		?nextlon(CLON,RLON);
-		-+last(lon);
 		?rightdirection(I);
 		?invert(I,O);
 		-+rightdirection(O);
-		?explorationsteps(EM);
-		.concat (EM,[goto( CLAT, RLON)],NEM );
-		-+explorationsteps(NEM);
-		!!buildexplorationsteps(CLAT, RLON,F)
+		.concat (LS,[goto( CLAT, RLON)],NLS );
+		!buildexplorationsteps(CLAT, RLON,lon, F, NLS, R)
 	.
 
-+!buildexplorationsteps(CLAT, CLON,F): last(lon)
++!buildexplorationsteps(CLAT, CLON,lon, F, LS, R): true
 	<-	
-		?nextlat(CLAT,RLAT);
-		-+last(lat);		
-		?explorationsteps(EM);
-		.concat (EM,[goto( RLAT, CLON)],NEM );
-		-+explorationsteps(NEM);
-		!!buildexplorationsteps(RLAT, CLON,F)
+		?nextlat(CLAT,RLAT);		
+		.concat (LS,[goto( RLAT, CLON)],NLS );
+		!buildexplorationsteps(RLAT, CLON,lat, F, NLS, R);
 	.

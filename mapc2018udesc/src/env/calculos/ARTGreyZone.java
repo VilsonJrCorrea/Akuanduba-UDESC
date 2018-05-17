@@ -24,6 +24,7 @@ public class ARTGreyZone extends Artifact {
 	void buildPolygon() {
 		cal = new Calculos( points );
 		cal.construirPoligono();
+		System.out.println("INTERNO: construindo o poligono !" );
 	}
 	
 	@OPERATION
@@ -35,7 +36,7 @@ public class ARTGreyZone extends Artifact {
 	@OPERATION
 	void getPolygon( OpFeedbackParam<Literal> retorno ) {
 		try {
-			retorno.set(ASSyntax.parseLiteral( cal.toString() ) );
+			retorno.set(ASSyntax.parseLiteral( cal.toBelief() ) );
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -44,12 +45,13 @@ public class ARTGreyZone extends Artifact {
 	@OPERATION
 	void getPoint( double lat, double lon, OpFeedbackParam<Literal> retorno ) {
 		Ponto p = cal.calcularPonto(lat, lon);
-		System.out.println( p.toString() );
 		try {
 			retorno.set( ASSyntax.parseLiteral( "point(" + p.getX() + "," + p.getY() + ")" ));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
+		System.out.println("INTERNO: getpoint" );
 	}
+
 }
 

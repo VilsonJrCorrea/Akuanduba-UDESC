@@ -192,7 +192,7 @@ public class Calculos {
 		}
 	}
 
-	public Ponto calcularPonto(double x, double y) {
+	public synchronized Ponto calcularPonto(double x, double y) {
 		Ponto vertice = new Ponto( "", x, y );
 		Reta retaMaisProxima = null;
 		double distanciaMaisProximo = Double.MAX_VALUE;
@@ -209,5 +209,6 @@ public class Calculos {
 		pontoMedioReta = calcularPontoMedio( retaMaisProxima );
 		return calcularPontoMedio( vertice, pontoMedioReta );
 	}
+	
 	
 }

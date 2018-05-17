@@ -1,3 +1,6 @@
+{ include("$jacamoJar/templates/common-cartago.asl") }
+{ include("$jacamoJar/templates/common-moise.asl") }
+
 +resourceNode(A,B,C,D)[source(percept)]:
 			not (resourceNode(A,B,C,D)[source(SCR)] &
 			SCR\==percept)
@@ -6,9 +9,9 @@
 		.broadcast(tell,resourceNode(A,B,C,D));
 	.
 
-+step( 0 ): name(agentA1)
++!buildPoligon: true
 	<-
-		//.wait(100);
+		.wait(100);
 		for(chargingStation(_,X,Y,_)) {
 			addPoint(X,Y);
 		}
@@ -28,9 +31,8 @@
 			addPoint(X,Y);
 		}
 		buildPolygon;
-		getPolygon(X);
 		.println("Poligono pronto !!");
-		+X;
+
 	.
 
 //+step(30):true
@@ -45,27 +47,41 @@
 //{ include("regras.asl") }
 
 +simStart
-	:	name( agentA2 )
-	<-	!!buildWell( weelType0, agentA2 );
+	:	not started
+	<-	!preparar;
+		
 	.
 
-+step( _ )
-	:	entity(_,b,_,_,_)
-	<-	action( noAction );
++!preparar
+	:	entity( AGENT,_,_,_,_)
+	&	AGENT == agentA1
+	<-	+started;
+		.print( "comecou" );
+		!buildPoligon;
+		!buildWell( wellType0, AGENT );
+	.
++!preparar
+	:	true
+	<-	true
 	.
 
-+todo(ACTION,PRIORITY)
-	: true
++todo(ACTION,PRIORITY): true
 	<-
-	?priotodo(ACTION);
-	-+doing(ACTION);
-	-+todo(ACTION,PRIORITY);
+		?priotodo(ACTION);
+		for(todo(ACT,PRI)){
+			.print(">< ",ACT," >< ",PRI," ><");
+		}
+		for(doing(ACT)){
+			.print(">doing< ",ACT," >< ");
+		}
+		.print("TO INDO FAZER ",ACTION);
+		-+doing(ACTION);
 	.
 
-+step(30):true
-	<-
-	+todo(exploration,6);	
-	.
+-todo(ACTION,_):true
+<-
+	-doing(ACTION);
+.
 
 { include("charging.asl") }	
 { include("gathering.asl") }
@@ -76,27 +92,38 @@
 	<-
 		action( continue );
 	.
+
++step( _ )
+	:	doing( buildWell )
+	&	stepsBuildWell( [H|T] )
+	<-	action( H );
+		-+stepsBuildWell( T );
+		
+		//well(well8126,48.8296,2.39843,wellType1,a,65)
+		?well(WELLNAME,_,_,WELLTYPE,a,INTG);
+		.print( "WellName: ", WELLNAME, ", WellType: ", WELLTYPE, ", INTG: ", INTG );
+		
+		//role(car,3,5,50,150,8,12,400,800,40,80)
+		?role(_,_,_,_,_,MINSKILL,MAXSKILL,_,_,_,_);
+		.print( "MINSKILL: ", MINSKILL, ", MAXSKILL: ", MAXSKILL );
+	.
 	
-+step( _ ): route([]) & doing(exploration) &
++step( _ ): doing(exploration) &
 			explorationsteps([ACT|T])			
 	<-
+		.print("estou no exploration steps");
 		action( ACT );
 		-+explorationsteps(T);
 	.
 	
-+step( _ ): route([]) & doing(recharge) &
++step( _ ): doing(recharge) &
 			rechargesteps([ACT|T])			
 	<-
+		?route(ROTA);
+		.print("MINHA ROTA AGORA É !!!!!",ROTA);
+		.print("estou no recharge steps");
 		action( ACT );
 		-+rechargesteps(T);
-	.
-
-+step( _ )
-	:	route( [] )
-	&	doing( buildWell )
-	&	stepsBuildWell( H | T )
-	<-	action( H );
-		-+stepsBuildWell( T );
 	.
 
 +step( _ ): priotodo(ACTION)
@@ -108,5 +135,3 @@
 	action( noAction );
 	.
 
-{ include("$jacamoJar/templates/common-cartago.asl") }
-{ include("$jacamoJar/templates/common-moise.asl") }

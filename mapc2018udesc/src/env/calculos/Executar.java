@@ -36,6 +36,8 @@ public class Executar {
 		Calculos cal = new Calculos( lista );
 		cal.construirPoligono();
 		cal.mostrarInformacoes();
+		
+		cal.calcularPonto(0, 0);
 	}
 
 }
