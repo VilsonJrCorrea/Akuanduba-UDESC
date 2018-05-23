@@ -24,21 +24,12 @@
 		for(workshop(_,X,Y)) {
 			addPoint(X,Y);
 		}
-		for(chargingStation(_,X,Y,_)) {
-			addPoint(X,Y);
-		}
 		for(storage(_,X,Y,_,_,_)) {
 			addPoint(X,Y);
 		}
 		buildPolygon;
-		.println("Poligono pronto !!");
-
+		.print("Poligono pronto !!");
 	.
-
-//+step(30):true
-//	<-
-//	+doing(exploration);
-//	.s
 
 { include("construcao_pocos.asl")}
 //{ include("charging.asl") }	
@@ -48,34 +39,32 @@
 
 +simStart
 	:	not started
-	<-	!preparar;
-		
-	.
-
-+!preparar
-	:	entity( AGENT,_,_,_,_)
-	&	AGENT == agentA1
+	&	entity( AGENT,_,_,_,_)
+//	&	name( AGENT )
+	&	AGENT == agentA10
 	<-	+started;
-		.print( "comecou" );
 		!buildPoligon;
-		!buildWell( wellType0, AGENT );
-	.
-+!preparar
-	:	true
-	<-	true
+//		!buildWell( wellType0, AGENT, 1, 9 );
+		!buildWell( wellType1, AGENT, 2, 9 );
+		//!voltarCentro;
 	.
 
 +todo(ACTION,PRIORITY): true
 	<-
-		?priotodo(ACTION);
-		for(todo(ACT,PRI)){
-			.print(">< ",ACT," >< ",PRI," ><");
+		!buscarTarefa;
+	.
+
++!buscarTarefa
+	:	true
+	<-	for(todo(ACT,PRI)){
+			.print("ACT: ",ACT,", PRI: ",PRI);
 		}
+		?priotodo(ACTION2);
 		for(doing(ACT)){
-			.print(">doing< ",ACT," >< ");
+			.print("ACT: ",ACT);
 		}
-		.print("TO INDO FAZER ",ACTION);
-		-+doing(ACTION);
+		.print("Prioridade: ",ACTION2);
+		-+doing(ACTION2);
 	.
 
 -todo(ACTION,_):true
@@ -95,17 +84,25 @@
 
 +step( _ )
 	:	doing( buildWell )
+	&	stepsBuildWell( [] )
+	<-	-todo( buildWell, _ );
+		!buscarTarefa;
+	.
+
++step( _ )
+	:	doing( buildWell )
 	&	stepsBuildWell( [H|T] )
+	&	todo( buildWell, _ )
 	<-	action( H );
 		-+stepsBuildWell( T );
 		
-		//well(well8126,48.8296,2.39843,wellType1,a,65)
-		?well(WELLNAME,_,_,WELLTYPE,a,INTG);
-		.print( "WellName: ", WELLNAME, ", WellType: ", WELLTYPE, ", INTG: ", INTG );
+//		well(well8126,48.8296,2.39843,wellType1,a,65)
+//		?well(WELLNAME,_,_,WELLTYPE,a,INTG);
+//		.print( "WellName: ", WELLNAME, ", WellType: ", WELLTYPE, ", INTG: ", INTG );
 		
-		//role(car,3,5,50,150,8,12,400,800,40,80)
-		?role(_,_,_,_,_,MINSKILL,MAXSKILL,_,_,_,_);
-		.print( "MINSKILL: ", MINSKILL, ", MAXSKILL: ", MAXSKILL );
+//		role(car,3,5,50,150,8,12,400,800,40,80)
+//		?role(_,_,_,_,_,MINSKILL,MAXSKILL,_,_,_,_);
+//		.print( "MINSKILL: ", MINSKILL, ", MAXSKILL: ", MAXSKILL );
 	.
 	
 +step( _ ): doing(exploration) &
@@ -126,6 +123,21 @@
 		-+rechargesteps(T);
 	.
 
++step( _ )
+	:	doing( voltarCentro )
+	&	stepsVoltarCentro( [] )
+	<-	-todo( voltarCentro, _ );
+		!buscarTarefa;
+	.
+
++step( _ )
+	:	doing( voltarCentro )
+	&	stepsVoltarCentro( [H|T] )
+	<-	action( H );
+		-+stepsVoltarCentro( T );
+		.print("voltando ao centro");
+	.
+
 +step( _ ): priotodo(ACTION)
 	<-
 		-+doing(ACTION);
@@ -134,4 +146,3 @@
 	<-
 	action( noAction );
 	.
-

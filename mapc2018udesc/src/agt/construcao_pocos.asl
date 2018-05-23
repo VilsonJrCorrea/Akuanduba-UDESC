@@ -1,29 +1,52 @@
 
-+!buildWell( WELLTYPE, AGENT )
++!buildWell( WELLTYPE, AGENT, 1, PRIORITY )
+	:	maxLat( MLAT )
+	&	maxLon( MLON )
+	<-	!buildWell( WELLTYPE, AGENT, MLAT, MLON, PRIORITY );
+	.
+	
++!buildWell( WELLTYPE, AGENT, 2, PRIORITY )
+	:	maxLat( MLAT )
+	&	minLon( MLON )
+	<-	!buildWell( WELLTYPE, AGENT, MLAT, MLON, PRIORITY );
+	.
+
++!buildWell( WELLTYPE, AGENT, 3, PRIORITY )
+	:	minLat( MLAT )
+	&	minLon( MLON )
+	<-	!buildWell( WELLTYPE, AGENT, MLAT, MLON, PRIORITY );
+	.
+
++!buildWell( WELLTYPE, AGENT, 4, PRIORITY )
 	:	minLat( MLAT )
 	&	maxLon( MLON )
-	<-	getPoint( MLAT, MLON, P );
+	<-	!buildWell( WELLTYPE, AGENT, MLAT, MLON, PRIORITY );
+	.
+
++!buildWell( WELLTYPE, AGENT, LAT, LON, PRIORITY )
+	:	true
+	<-	getPoint( LAT, LON, P );
+		.print( P );
 		!getCoordenadasPonto( P, PLAT, PLON );
 		!qtdStep( WELLTYPE, AGENT, QTD );
 		!buildWellSteps( [goto(PLAT, PLON), build(WELLTYPE)], QTD, R );
-		!voltarCentro( R, NR );
-		.print( NR );
-		.print( "QTD: ", QTD );
-		+stepsBuildWell( NR );
-		+todo(buildWell, 9);
+		+stepsBuildWell( R );
+		+todo(buildWell, PRIORITY);
+		//+todo(buildWell, PRIORITY, R );
 		.print( "buildWell pronto!!" );
-	.
-
-+!voltarCentro( R, NR )
-	:	centerLat( LAT )
-	&	centerLon( LON )
-	<-	.concat( R, [goto( LAT, LON )], NR );
 	.
 
 +!getCoordenadasPonto( point( PLAT, PLON ), LAT, LON )
 	:	true
 	<-	LAT = PLAT;
 		LON = PLON;
+	.
+
++!qtdStep( WELLTYPE, AGENT, QTD )
+	:	wellType(WELLTYPE,_,_,MIN,MAX)
+	&	role(_,_,_,_,_,MINSKILL,MAXSKILL,_,_,_,_)
+	<-	QTD = math.round( ( MAX-MIN )/MINSKILL );
+		.print("WellType: ", WELLTYPE, ", MIN: ", MIN, ", MAX: ", MAX, ", QTD:", QTD, ", MINSKILL: ", MINSKILL);
 	.
 
 +!buildWellSteps( LS, QTD, R )
@@ -37,9 +60,11 @@
 	<-	R = LS;
 	.
 
-+!qtdStep( WELLTYPE, AGENT, QTD )
-	:	wellType(WELLTYPE,_,_,MIN,MAX)
-	<-	QTD = 5 + math.round( ( MAX-MIN-5 )/7 ) + 1;
-		.print("WellType: ", WELLTYPE, ", MIN: ", MIN, ", MAX: ", MAX, ", QTD:", QTD);
++!voltarCentro
+	:	centerLat( LAT )
+	&	centerLon( LON )
+	<-	+stepsVoltarCentro( [goto( LAT, LON )] );
+		+todo( voltarCentro, 7);
+		//+todo( voltarCentro, 8, [goto( LAT, LON )] );
+		.print( "voltarCentro" );
 	.
-
