@@ -1,4 +1,4 @@
-visionrange(1000).
+visionrange(950).
 rightdirection(true).
 
 dislon(SIZE):- 	minLon(MLON) 	& centerLon(CLON) & 
