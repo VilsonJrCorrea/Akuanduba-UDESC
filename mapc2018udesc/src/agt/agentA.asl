@@ -40,7 +40,7 @@
 +simStart
 	:	not started
 	&	entity( AGENT,_,_,_,_)
-//	&	name( AGENT )
+//	&	name( agentA10 )
 	&	AGENT == agentA10
 	<-	+started;
 		!buildPoligon;
