@@ -83,8 +83,14 @@ ultimoCaminhaoAvisadoResourceNode( 23 ).
 { include("charging.asl") }		
 { include("regras.asl") }
 //{ include("itens.asl") }
-
-+resourceNode(NOME,B,C,ITEM): name(agentA23) & ultimoCaminhaoAvisadoResourceNode( NUM ) & NUM <= 34
+/*[source(percept)]:
+			not (resourceNode(A,B,C,D)[source(SCR)] &
+			SCR\==percept) */
++resourceNode(NOME,B,C,ITEM)[source(SOURCE)]
+	:	name(agentA23)
+	&	ultimoCaminhaoAvisadoResourceNode( NUM )
+	&	NUM <= 34
+	&	SOURCE \== percept
 		<-
 //		.send(agentA24, achieve, craftSemParts(NOME));
 		.concat( "agentA", NUM, NOMEAGENT );
