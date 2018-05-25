@@ -1,23 +1,23 @@
 
-+!buildWell( WELLTYPE, AGENT, 1, PRIORITY )
++!buildWell( WELLTYPE, AGENT, td, PRIORITY )
 	:	maxLat( MLAT )
 	&	maxLon( MLON )
 	<-	!buildWell( WELLTYPE, AGENT, MLAT, MLON, PRIORITY );
 	.
 	
-+!buildWell( WELLTYPE, AGENT, 2, PRIORITY )
++!buildWell( WELLTYPE, AGENT, te, PRIORITY )
 	:	maxLat( MLAT )
 	&	minLon( MLON )
 	<-	!buildWell( WELLTYPE, AGENT, MLAT, MLON, PRIORITY );
 	.
 
-+!buildWell( WELLTYPE, AGENT, 3, PRIORITY )
++!buildWell( WELLTYPE, AGENT, bd, PRIORITY )
 	:	minLat( MLAT )
 	&	minLon( MLON )
 	<-	!buildWell( WELLTYPE, AGENT, MLAT, MLON, PRIORITY );
 	.
 
-+!buildWell( WELLTYPE, AGENT, 4, PRIORITY )
++!buildWell( WELLTYPE, AGENT, be, PRIORITY )
 	:	minLat( MLAT )
 	&	maxLon( MLON )
 	<-	!buildWell( WELLTYPE, AGENT, MLAT, MLON, PRIORITY );

@@ -1,7 +1,7 @@
 mas mapc2018udesc {
 agent agentA1: agentA.asl{ 
  join: env
-focus: env.art1,env.artpolygon
+focus: env.art1
 }
 agent agentA2: agentA.asl{ 
  join: env
@@ -37,7 +37,7 @@ focus: env.art9
 }
 agent agentA10: agentA.asl{ 
  join: env
-focus: env.art10
+focus: env.art10,env.artpolygon
 }
 agent agentA11: agentA.asl{ 
  join: env

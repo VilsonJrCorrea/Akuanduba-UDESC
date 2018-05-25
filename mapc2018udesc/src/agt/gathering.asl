@@ -16,50 +16,41 @@
 		QTD = math.floor( (LOAD / TAM) ) ;
 		!repeat( [gather], QTD, [], R );
 		.concat(LIST, R, NLIST);
-		.wait(nearstorage(FS, LATRESOUR, LONRESOUR));
+		.wait(centerStorage(FS));
 		+currentStorage(FS);
-						//concatena a acao de ir para o storage central 
-						.concat(NLIST, [goto(FS)] , NNLIST);
-//						.print("printando nova nova nova nova lista" , NNLIST);
-						.concat(NNLIST, [store(ITEM,_)] , NNNLIST);
-//						.print("3nlist " , NNNLIST);
-						//.concat(NNNLIST, [retrieve(ITEM,1)], NNNNLIST);
-						//adiciona a lista com todos os steps na crença
-						-+stepsCraftSemParts(NNNLIST);
-						+todo(craftSemParts,8);
-					.
+		.concat(NLIST, [goto(FS)] , NNLIST);
+		.concat(NNLIST, [store(ITEM,_)] , NNNLIST);
+		-+stepsCraftSemParts(NNNLIST);
+		+todo(craftSemParts,8);
+	.
 
-+!craft
-	:	true
++!craftComParts(ITEM, ROLE, OTHERROLE)
+	:	role(ROLE,_,_,LOAD,_,_,_,_,_,_,_)
+	&	item( ITEM, TAM, roles(LROLES), parts(LPARTS) )
+	&	storageCentral(STORAGE)
 	<-	
 		.print("Entrou no craft");
-							// reune partes : LISTA DE PARTES, LISTA VAZIA , RETORNO
-							// plano que monta passos para ir ao nó de recurso e pegar o item.
-						!gatherParts( LP , [] , R);
-							//Verifica a workshop mais proxima
-						?nearworkshop(FACILITY);
-							//envia para todos os agentes a crenca help para que os agentes necessários  
-							//vão para o workshop, com prioridade 1(altissima).
-						.concat(R , [callBuddies( ROLES , FACILITY , 7)] , NR);
-							//concatena na lista R a ação de ir para a workshop na lista R e retorna a nova lista
-						.concat(NR , [goto(FACILITY)] , NNR);
-							//concatena a acao de construir o item 
-						.concat(NNR , [assemble] , NNNR);
-						.print("printando nova nova nova lista" , NNNR);
-							//encontra o storage central no mapa
-//						?centerStorage(FS);
-						?nearstorage(FS);
-							//concatena a acao de ir para o storage central 
-						.concat(NNNR , [goto(FS)] , NNNNR);
-						.print("printando nova nova nova nova lista" , NNNNR);
-						.concat(NNNNR , [store] , NNNNNR);
-							//acao que repete o plano por quantas vezes for necessario
-						!repeat(NNNNNR , QTD , [] , RR);
-						//adiciona a lista com todos os steps na crença
-						-+stepsCraft(RR);
-						//
-						+todo(craft,8);	
+		PASSOS_1 = [goto(STORAGE)];
+		!passosPegarItens(PASSOS_1, LPARTS, PASSOS_2);
+		?nearworkshop( WORKSHOP );
+		.concat( PASSOS_2, [goto(WORKSHOP), assemble, goto(STORAGE),store(ITEM,_)], PASSOS_3 );
+		.print( PASSOS_3 );
+//		-+stepsComParts( PASSOS_3 );
+//		+todo(craftComRetorno,8);	
 		.print("Saiu no craft");
+	.
+
++!passosPegarItens(LIST, [], LISTARETRIEVE)
+	:	true
+	<-	
+		LISTARETRIEVE = LIST;
+	.
+
++!passosPegarItens(LIST, [H|T], LISTARETRIEVE)
+	:	true
+	<-	
+		.concat(LIST, [retrieve( H, 1)], NLIST);
+		!passosPegarItens(LIST,T,NLIST);
 	.
 
 +stepHelp( [] ): 	quemPrecisaAjuda(QUEM)

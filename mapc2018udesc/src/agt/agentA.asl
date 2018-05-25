@@ -42,14 +42,24 @@ ultimoCaminhaoAvisadoResourceNode( 23 ).
 
 +simStart
 	:	not started
-	&	entity( AGENT,_,_,_,_)
-//	&	name( agentA10 )
+	&	name(AGENT)
 	&	AGENT == agentA10
-	<-	+started;
-		!buildPoligon;
+//	&	entity(AGENT,_,_,_,_)
+	<-	
+		.print("entrou ", AGENT);
+		+started;
+//		!buildPoligon;
 //		!buildWell( wellType0, AGENT, 1, 9 );
-		!buildWell( wellType1, AGENT, 2, 9 );
-		//!voltarCentro;
+//		!buildWell( wellType1, AGENT, te, 9 );
+	.
+
++simStart
+	:	name(agentA20)
+	<-	
+		.wait( centerStorage(STORAGE) );
+		+storageCentral(STORAGE);
+		.broadcast(tell, storageCentral(STORAGE) );
+		.print("Disse para tudo mundo que ", STORAGE, " e o central");
 	.
 
 +todo(ACTION,PRIORITY): true
@@ -83,22 +93,28 @@ ultimoCaminhaoAvisadoResourceNode( 23 ).
 { include("charging.asl") }		
 { include("regras.asl") }
 //{ include("itens.asl") }
-/*[source(percept)]:
-			not (resourceNode(A,B,C,D)[source(SCR)] &
-			SCR\==percept) */
+
+
 +resourceNode(NOME,B,C,ITEM)[source(SOURCE)]
 	:	name(agentA23)
 	&	ultimoCaminhaoAvisadoResourceNode( NUM )
 	&	NUM <= 34
 	&	SOURCE \== percept
 		<-
-//		.send(agentA24, achieve, craftSemParts(NOME));
 		.concat( "agentA", NUM, NOMEAGENT );
 		.send(NOMEAGENT, achieve, craftSemParts(NOME , ITEM));
 		-+ultimoCaminhaoAvisadoResourceNode( NUM+1 );
 		.print("NOME: ", NOME, ", NOMEAGENT: ", NOMEAGENT);
-		.
+	.
 
++step( X )
+	:	X = 3
+	&	role(motorcycle,_,_,_,_,_,_,_,_,_,_)
+	&	name (agentA12)
+	<-
+		//item(item7,5,roles([motorcycle,car]),parts([item4,item2,item1,item0,item3]))
+		!craftComParts(item7, motorcycle, car);
+	.
 +step( _ ): not route([]) 
 	<-	.print("continue");
 		action( continue );
