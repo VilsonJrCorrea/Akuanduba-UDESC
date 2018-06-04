@@ -2,6 +2,7 @@
 { include("$jacamoJar/templates/common-moise.asl") }
 
 ultimoCaminhaoAvisadoResourceNode( 23 ).
+caminhoesAvisadosResourceNode( [] ).
 
 +resourceNode(A,B,C,D)[source(percept)]:
 			not (resourceNode(A,B,C,D)[source(SCR)] &
@@ -42,15 +43,14 @@ ultimoCaminhaoAvisadoResourceNode( 23 ).
 
 +simStart
 	:	not started
-	&	name(AGENT)
-	&	AGENT == agentA10
-//	&	entity(AGENT,_,_,_,_)
+	&	name(agentA10)
+//	&	entity(agentA10,_,_,_,_)
+//	&	AGENT == agentA10
 	<-	
-		.print("entrou ", AGENT);
+		.print("entrou ", agentA10);
 		+started;
-//		!buildPoligon;
-//		!buildWell( wellType0, AGENT, 1, 9 );
-//		!buildWell( wellType1, AGENT, te, 9 );
+		!buildPoligon;
+		!buildWell( wellType0, agentA10, 2, 9 );
 	.
 
 +simStart
@@ -100,7 +100,7 @@ ultimoCaminhaoAvisadoResourceNode( 23 ).
 	&	ultimoCaminhaoAvisadoResourceNode( NUM )
 	&	NUM <= 34
 	&	SOURCE \== percept
-		<-
+	<-
 		.concat( "agentA", NUM, NOMEAGENT );
 		.send(NOMEAGENT, achieve, craftSemParts(NOME , ITEM));
 		-+ultimoCaminhaoAvisadoResourceNode( NUM+1 );
@@ -166,44 +166,21 @@ ultimoCaminhaoAvisadoResourceNode( 23 ).
 		-+explorationsteps(T);
 	.
 
-
-+step( _ ): doing(craft) &	stepsCraft([callBuddies( ROLES , FACILITY , PRIORITY)|T])			
-	<-
-	//action(ACT);
-	.print("craft: ", callBuddies);
-	!!callBuddies( ROLES , FACILITY , PRIORITY);
-	-+stepsCraft(T);
-	.
-
 +step( _ ): doing(help) & stepsHelp([ACT|T])			
 	<-	.print("help: ", ACT);
 		action( ACT );
 		-+stepsHelp(T);
 	.
 
-//+step( _ ): doing(craftSemParts) & 
-//			stepsCraftSemParts([store(ITEM,QUANTIDADE)|T])
-//			& hasItem( ITEM, NOVAQUANTIDADE)
-//			& lat(LATAG) & lon(LONAG) & currentStorage(STORAGE) &
-//			//storage(storage2,48.86243,2.30345,9401,0,[])
-//			storage(STORAGE , LATSTR , LONSTR , _ , _ )
-//	<-
-//		
-//		.
-
 +step( _ ): doing(craftSemParts) & 
 			stepsCraftSemParts([store(ITEM,QUANTIDADE)|T])
-			& hasItem( ITEM, NOVAQUANTIDADE)
-			
+			& hasItem( ITEM, NOVAQUANTIDADE)	
 	<-	
-		
 		.print( "quantidade: ", NOVAQUANTIDADE, " ITEM: ", ITEM );
 		action( store(ITEM,NOVAQUANTIDADE) );
 		-+stepsCraftSemParts(T);
 		-+acaoValida( store(ITEM,NOVAQUANTIDADE) );
 	.
-
-
 
 +step( _ ): doing(craftSemParts) &
 			stepsCraftSemParts([ACT|T])			
@@ -213,12 +190,59 @@ ultimoCaminhaoAvisadoResourceNode( 23 ).
 		-+stepsCraftSemParts(T);
 		-+acaoValida( ACT );
 	.
-	
-+step( _ ): doing(craft) & stepsCraft([ACT|T])			
+
++step( _ ):
+		doing(craftComParts) 
+		& stepsCraftComParts([store(ITEM,QUANTIDADE)|T])
+		& hasItem( ITEM, NOVAQUANTIDADE)
+	<-	
+		.print( "quantidade: ", NOVAQUANTIDADE, ", ITEM: ", ITEM );
+		action( store(ITEM,NOVAQUANTIDADE) );
+		-+stepsCraftComParts(T);
+		-+acaoValida( store(ITEM,NOVAQUANTIDADE) );
+	.
+
++step( _ ):
+		doing(craftComParts)
+		& stepsCraftComParts([callBuddies( ROLES , FACILITY , PRIORITY)|T])
 	<-
-		.print( "craft:", ACT);
+		//action(ACT);
+		.print("craftComParts: ", callBuddies);
+		!!callBuddies( ROLES , FACILITY , PRIORITY);
+		-+stepsCraftComParts(T);
+	.
+
++step( _ ):
+		doing(craftComParts)
+		& stepsCraftComParts([retrieve( ITEM, 1)|T])
+		& storageCentral(STORAGE)
+		& storagePossueItem( STORAGE, ITEM )
+	<-
+		?storage( STORAGE, _, _, _, _, LISTAITENS);
+		.print( "Peguei: ", ITEM, ", Storage: ", STORAGE, ", LISTAITENS: ", LISTAITENS );
+		action( retrive( ITEM, 1 ) );
+		.print("craftComParts: retrieve( ", ITEM, ", 1 )");
+		-+stepsCraftComParts(T);
+	.
+
++step( _ ):
+		doing(craftComParts)
+		& stepsCraftComParts([retrieve( ITEM, 1)|T])
+	<-
+		?storageCentral(STORAGE);
+		?storage( STORAGE, _, _, _, _, LISTAITENS);
+		.print( "Esperando: Storage: ", STORAGE, ", LISTAITENS: ", LISTAITENS );
+	.
+
++step( _ ): 
+		doing(craftComParts)
+		& stepsCraftComParts([ACT|T])
+	<-
+		?storage( STORAGE, _, _, _, _, LISTAITENS);
+		.print( "Storage: ", STORAGE, ", LISTAITENS: ", LISTAITENS );
+		.print( "craftComParts: ", ACT);
 		action( ACT );
-		-+stepsCraft(T);
+		-+stepsCraftComParts(T);
 		-+acaoValida( ACT );
 	.
 
@@ -226,7 +250,7 @@ ultimoCaminhaoAvisadoResourceNode( 23 ).
 			rechargesteps([ACT|T])			
 	<-
 		?route(ROTA);
-		.print("MINHA ROTA AGORA É !!!!!",ROTA);
+		.print("MINHA ROTA AGORA É ", ROTA, " !!!!!");
 		.print("estou no recharge steps");
 		action( ACT );
 		-+rechargesteps(T);

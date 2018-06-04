@@ -58,7 +58,11 @@ centerStorage(Facility)
 		storage(Facility, X1,Y1,_ ,_ , _) & 
 		not ( storage(_, X2,Y2,_ ,_ , _) & 
 			math.sqrt((X1-X0)*(X1-X0)+(Y1-Y0)*(Y1-Y0)) > 
-			math.sqrt((X2-X0)*(X2-X0)+(Y2-Y0)*(Y2-Y0))). 
-			
-			
+			math.sqrt((X2-X0)*(X2-X0)+(Y2-Y0)*(Y2-Y0))).
+
+storagePossueItem( STORAGE, ITEM )
+	:-
+		storage( STORAGE, _, _, _, _, LISTAITENS)
+	&	.member( item(ITEM,_,_), LISTAITENS )
+	.
 			

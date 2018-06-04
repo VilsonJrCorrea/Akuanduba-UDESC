@@ -25,18 +25,19 @@
 	.
 
 +!craftComParts(ITEM, ROLE, OTHERROLE)
-	:	role(ROLE,_,_,LOAD,_,_,_,_,_,_,_)
+	:	
+		role(ROLE,_,_,LOAD,_,_,_,_,_,_,_)
 	&	item( ITEM, TAM, roles(LROLES), parts(LPARTS) )
 	&	storageCentral(STORAGE)
 	<-	
 		.print("Entrou no craft");
-		PASSOS_1 = [goto(STORAGE)];
+		PASSOS_1 = [callBuddies( ROLE, STORAGE, 7), goto(STORAGE)];
 		!passosPegarItens(PASSOS_1, LPARTS, PASSOS_2);
 		?nearworkshop( WORKSHOP );
 		.concat( PASSOS_2, [goto(WORKSHOP), assemble, goto(STORAGE),store(ITEM,_)], PASSOS_3 );
 		.print( PASSOS_3 );
-//		-+stepsComParts( PASSOS_3 );
-//		+todo(craftComRetorno,8);	
+		-+stepsCraftComParts( PASSOS_3 );
+		+todo(craftComParts,8);	
 		.print("Saiu no craft");
 	.
 
@@ -50,7 +51,7 @@
 	:	true
 	<-	
 		.concat(LIST, [retrieve( H, 1)], NLIST);
-		!passosPegarItens(LIST,T,NLIST);
+		!passosPegarItens(NLIST,T,LISTARETRIEVE);
 	.
 
 +stepHelp( [] ): 	quemPrecisaAjuda(QUEM)
@@ -61,12 +62,21 @@
 	.
 
 +stepsCraftSemParts( [] ): 	true
-	<- 	//-todo(help, _); 
+	<- 	
 		-stepsCraftSemParts([]);
 		-todo(craftSemParts, _);
-//		.print( "terminou craftsemPartes");
+		.print( "terminou craftsemPartes");
 		//procura nova tarefa.
 	.
+
++stepsCraftComParts( [] ): 	true
+	<- 	
+		-stepsCraftSemParts([]);
+		-todo(craftSemParts, _);
+		.print( "terminou craftComPartes");
+		//procura nova tarefa.
+	.
+
 +!gatherParts([H|T] , LST , R ) :  true
 								<-
 								.wait(resourceNode( _ , LAT , LON , H ));
@@ -83,17 +93,21 @@
 //							.print("Entrou no gatherParts Vazio");
 							R = LST.
 
-+!callBuddies([] , F , PRIO): true
-						<-
-						true//.print("Entrou no callbuddies vazio");
-						.
++!callBuddies([] , F , PRIO)
+	:
+		true
+	<-
+		.print("Entrou no callbuddies vazio");
+	.
 				
-+!callBuddies( [H|T], F , PRIO): name(QUEMPRECISA)
-				<-
-//				.print("Entrou no callbuddies");
-				.broadcast(tell, help( QUEMPRECISA, H, F , PRIO));
-				!callBuddies( T , F , PRIO);
-				.
++!callBuddies( [H|T], F , PRIO)
+	:
+		name(QUEMPRECISA)
+	<-
+		.print("Entrou no callbuddies");
+		.broadcast(tell, help( QUEMPRECISA, H, F , PRIO));
+		!callBuddies( T , F , PRIO);
+	.
 	
 +!repeat(NNNR , QTD , L ,RR ): QTD> 0
 							<-
