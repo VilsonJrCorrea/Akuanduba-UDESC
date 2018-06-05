@@ -19,6 +19,16 @@ nearstorage(Facility, X0, Y0):-
 					storage(Facility, X1,Y1,_,_,_) & not (storage(_, X2,Y2,_,_,_)
 					& math.sqrt((X1-X0)*(X1-X0)+(Y1-Y0)*(Y1-Y0)) > 
 					 math.sqrt((X2-X0)*(X2-X0)+(Y2-Y0)*(Y2-Y0))).
+
+centerWorkshop(WORKSHOP)
+	:-
+		storageCentral(STORAGE)
+	&	storage(STORAGE,X0,Y0,_,_,_)
+	&	workshop(WORKSHOP, X1,Y1)
+	&	not (workshop(_,X2,Y2) & 
+			math.sqrt((X1-X0)*(X1-X0)+(Y1-Y0)*(Y1-Y0)) > 
+			math.sqrt((X2-X0)*(X2-X0)+(Y2-Y0)*(Y2-Y0)))
+	.
 					 							  
 calculatenearchargingstation(Facility,X1,Y1):- 	
 					lat(X0) & lon(Y0)

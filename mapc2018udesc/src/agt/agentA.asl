@@ -42,7 +42,17 @@ caminhoesAvisadosResourceNode( [] ).
 //{ include("regras.asl") }
 
 +simStart
-	:	not started
+	:	
+		name(agentA1)
+	&	workshopCentral( WORKSHOP )
+	<-	
+		-+stepsTeste( [ goto( WORKSHOP ) ] );
+		+todo(teste,4);	
+		.
+
++simStart
+	:	
+	not started
 	&	name(agentA10)
 //	&	entity(agentA10,_,_,_,_)
 //	&	AGENT == agentA10
@@ -54,13 +64,19 @@ caminhoesAvisadosResourceNode( [] ).
 	.
 
 +simStart
-	:	name(agentA20)
+	:	
+		name(agentA20)
 	<-	
 		.wait( centerStorage(STORAGE) );
 		+storageCentral(STORAGE);
 		.broadcast(tell, storageCentral(STORAGE) );
 		.print("Disse para tudo mundo que ", STORAGE, " e o central");
-	.
+		
+		.wait( centerWorkshop(WORKSHOP) );
+		+workshopCentral(WORKSHOP);
+		.broadcast(tell, workshopCentral(WORKSHOP) );
+		.print("Disse para tudo mundo que ", WORKSHOP, " e o central");
+.
 
 +todo(ACTION,PRIORITY): true
 	<-
@@ -109,12 +125,11 @@ caminhoesAvisadosResourceNode( [] ).
 
 +step( X )
 	:	X = 3
-	&	role(motorcycle,_,_,_,_,_,_,_,_,_,_)
-	&	name (agentA12)
+	&	name (agentA22)
 	<-
-		//item(item7,5,roles([motorcycle,car]),parts([item4,item2,item1,item0,item3]))
-		!craftComParts(item7, motorcycle, car);
-	.
+		//item(item5,5,roles([drone,car]),parts([item4,item1]))
+		!craftComParts(item5, car, drone);
+.
 +step( _ ): not route([]) 
 	<-	.print("continue");
 		action( continue );
@@ -220,7 +235,7 @@ caminhoesAvisadosResourceNode( [] ).
 	<-
 		?storage( STORAGE, _, _, _, _, LISTAITENS);
 		.print( "Peguei: ", ITEM, ", Storage: ", STORAGE, ", LISTAITENS: ", LISTAITENS );
-		action( retrive( ITEM, 1 ) );
+		action( retrieve( ITEM, 1 ) );
 		.print("craftComParts: retrieve( ", ITEM, ", 1 )");
 		-+stepsCraftComParts(T);
 	.
@@ -246,8 +261,9 @@ caminhoesAvisadosResourceNode( [] ).
 		-+acaoValida( ACT );
 	.
 
-+step( _ ): doing(recharge) &
-			rechargesteps([ACT|T])			
++step( _ ):
+		doing(recharge)
+	&	rechargesteps([ACT|T])			
 	<-
 		?route(ROTA);
 		.print("MINHA ROTA AGORA É ", ROTA, " !!!!!");
@@ -261,7 +277,14 @@ caminhoesAvisadosResourceNode( [] ).
 		.print( "priotodo:", ACTION);
 		-+doing(ACTION);
 	.
-	
+
++step( _ ):
+		doing(teste)
+		& stepsTeste( [ H|T ] )
+	<-	
+		action( H );
+		-+stepsTeste( T );
+	.
 +step( _ ): true
 	<-
 	.print("noAction");

@@ -29,16 +29,14 @@
 		role(ROLE,_,_,LOAD,_,_,_,_,_,_,_)
 	&	item( ITEM, TAM, roles(LROLES), parts(LPARTS) )
 	&	storageCentral(STORAGE)
+	&	workshopCentral(WORKSHOP)
 	<-	
-		.print("Entrou no craft");
 		PASSOS_1 = [callBuddies( ROLE, STORAGE, 7), goto(STORAGE)];
 		!passosPegarItens(PASSOS_1, LPARTS, PASSOS_2);
-		?nearworkshop( WORKSHOP );
 		.concat( PASSOS_2, [goto(WORKSHOP), assemble, goto(STORAGE),store(ITEM,_)], PASSOS_3 );
 		.print( PASSOS_3 );
 		-+stepsCraftComParts( PASSOS_3 );
 		+todo(craftComParts,8);	
-		.print("Saiu no craft");
 	.
 
 +!passosPegarItens(LIST, [], LISTARETRIEVE)
@@ -93,20 +91,27 @@
 //							.print("Entrou no gatherParts Vazio");
 							R = LST.
 
-+!callBuddies([] , F , PRIO)
-	:
-		true
-	<-
-		.print("Entrou no callbuddies vazio");
-	.
+//+!callBuddies([] , F , PRIO)
+//	:
+//		true
+//	<-
+//		.print("Entrou no callbuddies vazio");
+//	.
 				
-+!callBuddies( [H|T], F , PRIO)
++!callBuddies( ROLE, STORAGE, PRIO)
 	:
 		name(QUEMPRECISA)
 	<-
 		.print("Entrou no callbuddies");
-		.broadcast(tell, help( QUEMPRECISA, H, F , PRIO));
-		!callBuddies( T , F , PRIO);
+		.broadcast(tell, help( QUEMPRECISA, ROLE, STORAGE, PRIO));
+		//!callBuddies( T , F , PRIO);
+	.
+
++help( QUEMPRECISA, ROLE, STORAGE, PRIO)
+	:
+		role(ROLE,_,_,_,_,_,_,_,_,_,_)
+	<-
+		true
 	.
 	
 +!repeat(NNNR , QTD , L ,RR ): QTD> 0
