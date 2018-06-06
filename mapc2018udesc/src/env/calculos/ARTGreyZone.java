@@ -45,6 +45,7 @@ public class ARTGreyZone extends Artifact {
 	@OPERATION
 	void getPoint( double lat, double lon, OpFeedbackParam<Literal> retorno ) {
 		Ponto p = cal.calcularPonto(lat, lon);
+		System.out.println( ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + p.toString() );
 		try {
 			retorno.set( ASSyntax.parseLiteral( "point(" + p.getX() + "," + p.getY() + ")" ));
 		} catch (ParseException e) {
@@ -52,6 +53,7 @@ public class ARTGreyZone extends Artifact {
 		}
 		System.out.println("INTERNO: getpoint" );
 	}
+
 
 }
 

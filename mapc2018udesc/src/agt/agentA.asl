@@ -15,7 +15,7 @@ caminhoesAvisadosResourceNode( [] ).
 
 +!buildPoligon: true
 	<-
-		.wait(100);
+		.wait(5000);
 		for(chargingStation(_,X,Y,_)) {
 			addPoint(X,Y);
 		}
@@ -41,6 +41,15 @@ caminhoesAvisadosResourceNode( [] ).
 //{ include("posicaoinicial.asl") }		
 //{ include("regras.asl") }
 
++!informRole
+	:
+		true
+	<-
+	.wait(name(NAME)
+		&	role(ROLE,_,_,_,_,_,_,_,_,_,_));
+		.broadcast(tell, buddieRole(NAME, ROLE));
+	.
+
 +simStart
 	:	
 		name(agentA1)
@@ -54,12 +63,18 @@ caminhoesAvisadosResourceNode( [] ).
 	:	
 	not started
 	&	name(agentA10)
-//	&	entity(agentA10,_,_,_,_)
 //	&	AGENT == agentA10
 	<-	
-		.print("entrou ", agentA10);
-		+started;
+		.print("entrou ");
+		
 		!buildPoligon;
+		+started;
+		
+	.
++started
+	:	name(agentA10)
+	<-
+		.wait( 10000 );
 		!buildWell( wellType0, agentA10, 2, 9 );
 	.
 
@@ -147,6 +162,23 @@ caminhoesAvisadosResourceNode( [] ).
 	:	lastActionResult(successful_partial)
 	&	acaoValida( ACTION )
 	<-	.print("corigindo partial_success");
+		action( ACTION );
+	.
+
++step( _ )
+	:	doing( help )
+	&	steps(help, [ACT|T] )
+	<-	
+		action( ACT );
+		-+steps(help, T );
+		-+lastDoing( help );
+		-+acaoValida(ACT);
+	.
+
++step(_)
+	:	(lastActionResult(failed_counterpart) | lastActionResult(failed_item_type) )
+	&	acaoValida( ACTION )
+	<-	.print("corigindo failed_counterpart");
 		action( ACTION );
 	.
 

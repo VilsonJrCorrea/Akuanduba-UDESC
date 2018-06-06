@@ -25,7 +25,9 @@
 
 +!buildWell( WELLTYPE, AGENT, LAT, LON, PRIORITY )
 	:	true
-	<-	getPoint( LAT, LON, P );
+	<-	.print( WELLTYPE, " ", AGENT, " ",LAT, " ", LON, " ", PRIORITY );
+		//getPoint( double lat, double lon, OpFeedbackParam<Literal> retorno ) 
+		getPoint( LAT, LON, P );
 		.print( P );
 		!getCoordenadasPonto( P, PLAT, PLON );
 		!qtdStep( WELLTYPE, AGENT, QTD );

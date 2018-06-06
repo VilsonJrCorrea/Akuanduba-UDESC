@@ -1,0 +1,15 @@
+
+	
++step( _ ): not route([]) &lastDoing(X) & doing(X)
+	<-
+		.print("rota em andamento e doing ",X);
+		action( continue );
+.
+
++step( _ ): not route([]) &lastDoing(Y) & doing(X) & Y\==X & steps(X,[ACT|T])
+	<-
+		.print("rota em andamento e doing ",X);
+		-+lastDoing(X);	
+		action( ACT);
+		-+steps(X,T);	
+.

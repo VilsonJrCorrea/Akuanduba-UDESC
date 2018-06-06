@@ -33,7 +33,9 @@
 	<-	
 		PASSOS_1 = [callBuddies( ROLE, STORAGE, 7), goto(STORAGE)];
 		!passosPegarItens(PASSOS_1, LPARTS, PASSOS_2);
-		.concat( PASSOS_2, [goto(WORKSHOP), assemble, goto(STORAGE),store(ITEM,_)], PASSOS_3 );
+		.concat( PASSOS_2, [goto(WORKSHOP), assemble, 
+			goto(STORAGE),store(ITEM,_)
+		], PASSOS_3 );
 		.print( PASSOS_3 );
 		-+stepsCraftComParts( PASSOS_3 );
 		+todo(craftComParts,8);	
@@ -98,20 +100,23 @@
 //		.print("Entrou no callbuddies vazio");
 //	.
 				
-+!callBuddies( ROLE, STORAGE, PRIO)
++!callBuddies( ROLE, WORKSHOP, PRIO)
 	:
 		name(QUEMPRECISA)
+		&	buddieRole(NAME, ROLE)
 	<-
 		.print("Entrou no callbuddies");
-		.broadcast(tell, help( QUEMPRECISA, ROLE, STORAGE, PRIO));
+		.send(NAME, achieve, help( QUEMPRECISA, ROLE, WORKSHOP, PRIO));
+		
 		//!callBuddies( T , F , PRIO);
 	.
 
-+help( QUEMPRECISA, ROLE, STORAGE, PRIO)
++!help( QUEMPRECISA, ROLE, WORKSHOP, PRIO)
 	:
-		role(ROLE,_,_,_,_,_,_,_,_,_,_)
-	<-
 		true
+	<-
+		+steps(help, [goto(WORKSHOP), assist_assemble(QUEMPRECISA) ]);
+		+todo(help, 6);
 	.
 	
 +!repeat(NNNR , QTD , L ,RR ): QTD> 0
