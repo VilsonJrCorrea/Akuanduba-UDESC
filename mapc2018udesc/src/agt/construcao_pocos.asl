@@ -32,7 +32,7 @@
 		!getCoordenadasPonto( P, PLAT, PLON );
 		!qtdStep( WELLTYPE, AGENT, QTD );
 		!buildWellSteps( [goto(PLAT, PLON), build(WELLTYPE)], QTD, R );
-		+stepsBuildWell( R );
+		+steps( buildWell, R );
 		+todo(buildWell, PRIORITY);
 		.print( "buildWell pronto!!" );
 	.
@@ -64,7 +64,7 @@
 +!voltarCentro
 	:	centerLat( LAT )
 	&	centerLon( LON )
-	<-	+stepsVoltarCentro( [goto( LAT, LON )] );
+	<-	+steps( voltarCentro, [goto( LAT, LON )] );
 		+todo( voltarCentro, 7);
 		//+todo( voltarCentro, 8, [goto( LAT, LON )] );
 		.print( "voltarCentro" );

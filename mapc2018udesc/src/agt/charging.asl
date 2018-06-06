@@ -35,7 +35,7 @@
 		.concat([goto(Facility),charge],LS);
 		.print("Chamando o buildsteps recharge ",LS, " QTD ",QTD, " R ",R)
 		!buildstepsrecharge(LS,QTD,R);
-		-+rechargesteps(R);
+		-+steps( recharge, R);
 		+todo(recharge,10);
 	.
 	
@@ -61,7 +61,7 @@
 +rechargesteps([]):true
 	<-
 		-todo(recharge,_);
-		-rechargesteps([]);
+		-steps( recharge, []);
 	    .print("removi o todo recharge <-- ");
 	    for(todo(ACT,PRI)){
 			.print(">< ",ACT," >< ",PRI);

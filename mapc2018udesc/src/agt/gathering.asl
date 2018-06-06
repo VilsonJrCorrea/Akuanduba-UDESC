@@ -1,11 +1,12 @@
 
 
-+help(AGENT, H , F , PRIO): role(H,_,_,_,_,_,_,_,_,_,_)
-				<-
-				+stepsHelp( [goto(F) ]);
-				+todo( help, PRIO);
-				+quemPrecisaAjuda( AGENT );
-				.
+//+help(AGENT, H , F , PRIO): role(H,_,_,_,_,_,_,_,_,_,_)
+//				<-
+////				+stepsHelp( [goto(F) ]);
+//				-+steps( help, )
+//				+todo( help, PRIO);
+//				+quemPrecisaAjuda( AGENT );
+//				.
 
 +!craftSemParts(NOME , ITEM)
 	:	role(_,_,_,LOAD,_,_,_,_,_,_,_)
@@ -20,7 +21,9 @@
 		+currentStorage(FS);
 		.concat(NLIST, [goto(FS)] , NNLIST);
 		.concat(NNLIST, [store(ITEM,_)] , NNNLIST);
-		-+stepsCraftSemParts(NNNLIST);
+		
+//		-+stepsCraftSemParts(NNNLIST);
+		-+steps( craftSemParts, NNNLIST );
 		+todo(craftSemParts,8);
 	.
 
@@ -34,10 +37,11 @@
 		PASSOS_1 = [callBuddies( ROLE, STORAGE, 7), goto(STORAGE)];
 		!passosPegarItens(PASSOS_1, LPARTS, PASSOS_2);
 		.concat( PASSOS_2, [goto(WORKSHOP), assemble, 
-			goto(STORAGE),store(ITEM,_)
-		], PASSOS_3 );
+			goto(STORAGE),store(ITEM,_) ], PASSOS_3 );
 		.print( PASSOS_3 );
-		-+stepsCraftComParts( PASSOS_3 );
+		
+//		-+stepsCraftComParts( PASSOS_3 );
+		-+steps( craftComParts, PASSOS_3 );
 		+todo(craftComParts,8);	
 	.
 
@@ -56,14 +60,16 @@
 
 +stepHelp( [] ): 	quemPrecisaAjuda(QUEM)
 	<- 	//-todo(help, _); 
-		-stepsHelp([]);
+//		-stepsHelp([]);
+		-steps( craftSemParts,[] );
 		.send(QUEM, tell, cheguei);
 		-quemPrecisaAjuda(QUEM);
 	.
 
 +stepsCraftSemParts( [] ): 	true
 	<- 	
-		-stepsCraftSemParts([]);
+//		-stepsCraftSemParts([]);
+		-steps( craftSemParts, [] );
 		-todo(craftSemParts, _);
 		.print( "terminou craftsemPartes");
 		//procura nova tarefa.
@@ -71,8 +77,8 @@
 
 +stepsCraftComParts( [] ): 	true
 	<- 	
-		-stepsCraftSemParts([]);
-		-todo(craftSemParts, _);
+		-steps( craftSemParts, []);
+		-todo( craftSemParts, _);
 		.print( "terminou craftComPartes");
 		//procura nova tarefa.
 	.
@@ -115,7 +121,7 @@
 	:
 		true
 	<-
-		+steps(help, [goto(WORKSHOP), assist_assemble(QUEMPRECISA) ]);
+		+steps(help, [goto(WORKSHOP), assist_assemble(QUEMPRECISA)]);
 		+todo(help, 6);
 	.
 	
@@ -147,7 +153,7 @@
 //		.print("ACTION: ", ACTION);
 //		?stepsCraftSemParts( LIST );
 //		.print( "1 ", LIST );
-		-+stepsCraftSemParts([goto(STORAGE) | L]);
+		-+steps( craftSemParts, [goto(STORAGE) | L]);
 //		.print( "SLAT: ", SLAT, ", SLON: ", SLON );
 //		?stepsCraftSemParts( LIST2 );
 //		.print( "2 ",LIST2 );
