@@ -43,7 +43,7 @@
 	&	workshopCentral(WORKSHOP)
 	<-	
 		.print("sou um " , ROLE , "e entrei no craftcomPARTS")
-		PASSOS_1 = [callBuddies( ROLE, STORAGE, 7), goto(STORAGE)];
+		PASSOS_1 = [callBuddies( OTHERROLE, WORKSHOP, 7), goto(STORAGE)];
 		!passosPegarItens(PASSOS_1, LPARTS, PASSOS_2);
 		.concat( PASSOS_2, [goto(WORKSHOP), assemble(ITEM), 
 			goto(STORAGE),store(ITEM,_) ], PASSOS_3 );
@@ -123,14 +123,14 @@
 //		.print("Entrou no callbuddies vazio");
 //	.
 				
-+!callBuddies( ROLE, WORKSHOP, PRIO)[source(MEUNOME)]
++!callBuddies( ROLE, WORKSHOP, PRIO)//[source(MEUNOME)]
 	:
-	
 		name(QUEMPRECISA)
 		&	buddieRole(NAME, ROLE)
-		& QUEMPRECISA \== MEUNOME
+//		& QUEMPRECISA \== MEUNOME
 	<-
 		.print("Entrou no callbuddies");
+		.print("Name: ", NAME, ", ROLE: ", ROLE);
 		.send(NAME, achieve, help( QUEMPRECISA, ROLE, WORKSHOP, PRIO));
 		
 		//!callBuddies( T , F , PRIO);
@@ -140,8 +140,9 @@
 	:
 	entity(_,_,_,_,ROLE)
 		<-
+		.print( "WORKSHOP: ", WORKSHOP );
 		+steps(help, [goto(WORKSHOP), assist_assemble(QUEMPRECISA)]);
-		+todo(help, 6);
+		+todo(help, 4);
 	.
 	
 +!repeat(NNNR , QTD , L ,RR ): QTD> 0
@@ -158,10 +159,6 @@
 							RR = L
 							.
 
-//-doing(exploration): explorationsteps(ACTS) & lat(LAT) & lon(LON)
-//	<-
-//		-+explorationsteps([goto(LAT,LON)|ACTS]);
-//	.
 -doing(craftSemParts)
 	:	steps(craftSemParts ,L)
 	&	lat(LAT)

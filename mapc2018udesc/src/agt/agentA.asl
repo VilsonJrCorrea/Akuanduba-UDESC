@@ -45,21 +45,10 @@ caminhoesAvisadosResourceNode( [] ).
 	:
 		true
 	<-
-	.wait(name(NAME)
-		&	role(ROLE,_,_,_,_,_,_,_,_,_,_));
+	.wait(name(NAME)	&	role(ROLE,_,_,_,_,_,_,_,_,_,_));
 		.broadcast(tell, buddieRole(NAME, ROLE));
-		.print("------------> se apresentando<---------")
+		//.print("------------> se apresentando<---------")
 	.
-
-+simStart
-	:	
-		name(agentA42)
-	&	workshopCentral( WORKSHOP )
-	<-	
-		-steps( teste, _ );
-		+steps( teste, [ goto( WORKSHOP ) ] );
-		+todo(teste,4);	
-		.
 
 +simStart: not jaMeApresentei &
 			not started 
@@ -220,10 +209,14 @@ caminhoesAvisadosResourceNode( [] ).
 
 
 +step(_)
-	:	(lastActionResult(failed_counterpart) | lastActionResult(failed_item_type) |lastActionResult(failed_tools) )
+	:	
+	(lastActionResult(failed_counterpart) 
+		| lastActionResult(failed_item_type) 
+		|lastActionResult(failed_tools)
+	)
 	&	acaoValida( ACTION )
 	<-	.print("corrigindo failed_counterpart");
-		!!callBuddies( ROLE, WORKSHOP, PRIO);
+		//!!callBuddies( ROLE, WORKSHOP, PRIO);
 		action( ACTION );
 	.
 
@@ -347,6 +340,7 @@ caminhoesAvisadosResourceNode( [] ).
 	<-
 		?storageCentral(STORAGE);
 		?storage( STORAGE, _, _, _, _, LISTAITENS);
+		action( noAction );
 		.print( "Esperando: Storage: ", STORAGE, ", LISTAITENS: ", LISTAITENS );
 		-+lastDoing(craftComParts);
 		-+acaoValida( retrieve( ITEM, 1) );
