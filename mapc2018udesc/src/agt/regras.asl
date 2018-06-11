@@ -75,4 +75,22 @@ storagePossueItem( STORAGE, ITEM )
 		storage( STORAGE, _, _, _, _, LISTAITENS)
 	&	.member( item(ITEM,_,_), LISTAITENS )
 	.
-			
+
+calculatedistance( XA, YA, XB, YB, DISTANCIA )
+					:- DISTANCIA =  math.sqrt((XA-XB)*(XA-XB)+(YA-YB)*(YA-YB)).
+
+distanciasemsteps(DISTANCIA, NSTEPS ):-
+					role(_,VELOCIDADE,_,_,_,_,_,_,_,_,_) &
+					NSTEPS=math.ceil((DISTANCIA*111.12)/VELOCIDADE). 
+
+
+calculatehowmanystepsrecharge(Facility,TEMPO):-
+						role(_,_,_,BAT,_,_,_,_,_,_,_)&
+						chargingStation(Facility,_,_,CAP)&
+						TEMPO = math.ceil(BAT/CAP)
+						.
+						
+coeficienterecarga(COEFICIENTE):-
+				(role(drone,_,_,_,_,_,_,_,_,_,_)& COEFICIENTE=15)
+				 |(not role(drone,_,_,_,_,_,_,_,_,_,_)& COEFICIENTE=15)
+				.	

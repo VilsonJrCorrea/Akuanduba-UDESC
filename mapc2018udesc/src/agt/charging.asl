@@ -1,32 +1,29 @@
-+charge(BAT):role(_,_,_,CAP,_,_,_,_,_,_,_) & BAT<((CAP/3)*2) & not todo(recharge,10)
-	<-
-		.print("calculando recarga");
-		!calcular(STEPS);
-	.
++charge(BAT): not todo(recharge,10) &
+  lat(LATATUAL) & lon(LONATUAL)&
+  calculatenearchargingstation(Facility,X1,Y1) &
+  calculatedistance( LATATUAL, LONATUAL, X1, Y1,DISTANCIA)&
+  coeficienterecarga(COEFICIENTE)&
+  distanciasemsteps(DISTANCIA*COEFICIENTE, NSTEPS ) &
+  NSTEPS>=BAT &
+  step(STEP) 
+<-
+.print(" ENTREI AQUI NO STEP ",STEP,
+" bateria ", BAT, 
+" Distancia em graus ", DISTANCIA ,
+" COEFICIENTE ",COEFICIENTE,
+" ESTACAO DE RECARGA MAIS PROXIMA ",Facility,
+" steps calculados ", NSTEPS
+);
+?calculatehowmanystepsrecharge(Facility,TEMPO);
+.concat([goto(Facility)],LS);
+!buildstepsrecharge(LS,TEMPO,R);
+//-+rechargesteps(R);
+-steps(recharge,_);
++steps(recharge,R);
++todo(recharge,10);
+.
 
-+!calcular(STEPS):true
-	<-
-		?charge(BAT);
-		?lat(LATATUAL);
-		?lon(LONATUAL);
-		?calculatenearchargingstation(Facility,X1,Y1);
-		!calculatehowmanystepsrecharge(Facility);
-		-+nearchargingstation(Facility);
-		!calculatedistance( LATATUAL, LONATUAL, X1, Y1, DISTANCIA );
-		!calculatesteps(DISTANCIA,STEPS);
-		.print(" STEPS CALCULADOS ",STEPS, " BAT ",BAT);
-		!proximoPasso(STEPS,BAT);
-	.
 
-+!calculatesteps(DISTANCIA,STEPS):true
-	<-
-		?step(STEP);
-		?role(_,VELOCIDADE,_,_,_,_,_,_,_,_,_);
-		.wait( constante_folga(CONSTANTE) & minha_media_rota(MEDIAVEICULO));
-		TAMANHOROTA=(DISTANCIA*VELOCIDADE)/MEDIAVEICULO;
-		STEPSNECESSARIOS=(TAMANHOROTA/VELOCIDADE)+CONSTANTE;
-		STEPS=math.round(STEPSNECESSARIOS)+1;	
-	.
 	
 +!proximoPasso(STEPS,BAT):STEPS>=BAT
 	<-
@@ -35,7 +32,8 @@
 		.concat([goto(Facility),charge],LS);
 		.print("Chamando o buildsteps recharge ",LS, " QTD ",QTD, " R ",R)
 		!buildstepsrecharge(LS,QTD,R);
-		-+steps( recharge, R);
+		-steps( recharge, _);
+		+steps( recharge, R);
 		+todo(recharge,10);
 	.
 	
@@ -47,34 +45,27 @@
 	
 	
 +!buildstepsrecharge(LS,QTD,R):QTD>0
-	<-
-		.concat(LS,[charge],NLS);
-		.print("----------------->",NLS,"<------------")	
-		!buildstepsrecharge(NLS,QTD-1,R);
-	.
+<-
+.concat(LS,[charge],NLS);
+!buildstepsrecharge(NLS,QTD-1,R);
+.
 
 +!buildstepsrecharge(LS,0,R):true
-	<-
-		R=LS;
-	.
+<-
+R=LS;
+.
 
-+rechargesteps([]):true
++steps(recharge,[]):true
 	<-
 		-todo(recharge,_);
+		-timeRecharge(_);
 		-steps( recharge, []);
 	    .print("removi o todo recharge <-- ");
 	    for(todo(ACT,PRI)){
-			.print(">< ",ACT," >< ",PRI);
+			.print("1-ACT: ", ACT, ", PRI: ", PRI);
 		}	
 	.
-+!calculatehowmanystepsrecharge(Facility):true
-	<-
-		?chargingStation(Facility,_,_,CAP);
-		?role(_,_,_,BAT,_,_,_,_,_,_,_);
-		TEMPO = math.round(BAT/CAP);
-		.print("CAPACIDADE RECARGA ",CAP," BATERIA ",BAT," TEMPO NECESSARIO ",TEMPO);		
-		-+timerecharge(TEMPO);
-	.
+
 
 +charge(BAT):BAT==0
 	<-

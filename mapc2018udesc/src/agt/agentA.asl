@@ -48,17 +48,25 @@ caminhoesAvisadosResourceNode( [] ).
 	.wait(name(NAME)
 		&	role(ROLE,_,_,_,_,_,_,_,_,_,_));
 		.broadcast(tell, buddieRole(NAME, ROLE));
+		.print("------------> se apresentando<---------")
 	.
 
 +simStart
 	:	
-		name(agentA1)
+		name(agentA42)
 	&	workshopCentral( WORKSHOP )
 	<-	
-		-+steps( teste, [ goto( WORKSHOP ) ] );
+		-steps( teste, _ );
+		+steps( teste, [ goto( WORKSHOP ) ] );
 		+todo(teste,4);	
 		.
 
++simStart: not jaMeApresentei &
+			not started 
+					<-
+					!informRole;
+					+jaMeApresentei;
+					.
 +simStart
 	:	
 	not started
@@ -101,18 +109,19 @@ caminhoesAvisadosResourceNode( [] ).
 -todo(ACTION,_):true
 <-
 	-doing(ACTION);
+	!buscarTarefa;
 .
 
 +!buscarTarefa
 	:	true
 	<-	
-//		for(todo(ACT,PRI)){
-//			.print("ACT: ",ACT,", PRI: ",PRI);
-//		}
+		for(todo(ACT,PRI)){
+			.print("1-ACT: ", ACT, ", PRI: ", PRI);
+		}
 		?priotodo(ACTION2);
-//		for(doing(ACT)){
-//			.print("ACT: ",ACT);
-//		}
+		for(todo(ACT, PRI)){
+			.print("2-ACT: ", ACT, ", PRI: ", PRI);
+		}
 		.print("Prioridade: ",ACTION2);
 		-+doing(ACTION2);
 	.
@@ -143,13 +152,35 @@ caminhoesAvisadosResourceNode( [] ).
 	&	name (agentA22)
 	<-
 		//item(item5,5,roles([drone,car]),parts([item4,item1]))
+		.print("chamando craftcomparts");
 		!craftComParts(item5, car, drone);
 .
+
+//+step( _ ): not route([]) /*&lastDoing(X) & doing(X) */
+//	<-
+//		.print("rota em andamento e doing ",X);
+//		action( continue );
+//.
+
++step( _ ): not route([]) &lastDoing(Y) & doing(X) & Y==X
+	<-
+		.print("1-rota em andamento e doing ",X);
+		action( continue );
+.
+
++step( _ ): not route([]) &lastDoing(Y) & doing(X) & Y\==X & steps(X,[ACT|T])
+	<-
+		.print("2-rota em andamento e doing ",X);
+		-+lastDoing(X);	
+		action( ACT);
+		-steps(X,_);
+		+steps(X,T);
+.
+
 +step( _ ): not route([]) 
 	<-	.print("continue");
 		action( continue );
 	.
-
 +step( _ )
 	:	lastAction(randomFail)
 	&	acaoValida( ACTION )
@@ -170,15 +201,29 @@ caminhoesAvisadosResourceNode( [] ).
 	&	steps(help, [ACT|T] )
 	<-	
 		action( ACT );
-		-+steps(help, T );
+		-steps(help, _ );
+		+steps(help, T );
 		-+lastDoing( help );
 		-+acaoValida(ACT);
 	.
+//+step(_)
+//	:	(lastActionResult(failed_counterpart) | lastActionResult(failed_item_type) |lastActionResult(failed_tools) )
+//	&	acaoValida( ACTION )
+//	& 	not jaChamou
+//	& 	entity(_,_,LAT,LON,drone)
+//	& 	workshop(WORKSHOP,LAT,LON)
+//	<-	.print("corrigindo failed_counterpart e chamando");
+////		!!callBuddies( ROLE, WORKSHOP, PRIO);
+//		action( ACTION );
+//		+jaChamou
+//	.
+
 
 +step(_)
-	:	(lastActionResult(failed_counterpart) | lastActionResult(failed_item_type) )
+	:	(lastActionResult(failed_counterpart) | lastActionResult(failed_item_type) |lastActionResult(failed_tools) )
 	&	acaoValida( ACTION )
 	<-	.print("corrigindo failed_counterpart");
+		!!callBuddies( ROLE, WORKSHOP, PRIO);
 		action( ACTION );
 	.
 
@@ -193,10 +238,14 @@ caminhoesAvisadosResourceNode( [] ).
 
 +step( _ )
 	:	doing( buildWell )
-	&	steps( buildWell, [H|T] )
+	&	steps( buildWell, [ACT|T] )
 	&	todo( buildWell, _ )
-	<-	action( H );
-		-+steps( buildWell, T );
+	<-	action( ACT );
+		-steps( buildWell, _ );
+		+steps( buildWell, T );
+		-+acaoValida( ACT );
+		-+lastDoing(buildWell);
+		
 		
 //		well(well8126,48.8296,2.39843,wellType1,a,65)
 //		?well(WELLNAME,_,_,WELLTYPE,a,INTG);
@@ -212,13 +261,20 @@ caminhoesAvisadosResourceNode( [] ).
 	<-
 		.print( "exploration: ", ACT);
 		action( ACT );
-		-+steps(exploration, T);
+//		-+lastDoing(exploration , T);
+		-steps(exploration, _);
+		+steps(exploration, T);
+		-+acaoValida( ACT );
+		-+lastDoing(exploration);
 	.
 
 +step( _ ): doing(help) & steps( help, [ACT|T])			
 	<-	.print("help: ", ACT);
 		action( ACT );
-		-+steps( help, T);
+		-steps( help, _);
+		+steps( help, T);
+		-+acaoValida( ACT );
+		-+lastDoing(help);
 	.
 
 +step( _ ): doing(craftSemParts) & 
@@ -227,17 +283,21 @@ caminhoesAvisadosResourceNode( [] ).
 	<-	
 		.print( "quantidade: ", NOVAQUANTIDADE, " ITEM: ", ITEM );
 		action( store(ITEM,NOVAQUANTIDADE) );
-		-+steps( craftSemParts, T);
+		-steps( craftSemParts, _);
+		+steps( craftSemParts, T);
 		-+acaoValida( store(ITEM,NOVAQUANTIDADE) );
-	.
+		-+lastDoing(craftSemParts);
+		.
 
 +step( _ ): doing(craftSemParts) &
 			steps( craftSemParts, [ACT|T])			
 	<-
 		.print( "craftSemParts: ", ACT);
 		action( ACT );
-		-+steps( craftSemParts, T);
+		-steps( craftSemParts, _);
+		+steps( craftSemParts, T);
 		-+acaoValida( ACT );
+		-+lastDoing(craftSemParts);
 	.
 
 +step( _ ):
@@ -247,18 +307,22 @@ caminhoesAvisadosResourceNode( [] ).
 	<-	
 		.print( "quantidade: ", NOVAQUANTIDADE, ", ITEM: ", ITEM );
 		action( store(ITEM,NOVAQUANTIDADE) );
-		-+steps( craftComParts, T);
+		-steps( craftComParts, _);
+		+steps( craftComParts, T);
 		-+acaoValida( store(ITEM,NOVAQUANTIDADE) );
+		-+lastDoing(craftComParts);
 	.
 
 +step( _ ):
 		doing(craftComParts)
 		& steps( craftComParts, [callBuddies( ROLES , FACILITY , PRIORITY)|T])
 	<-
-		//action(ACT);
 		.print("craftComParts: ", callBuddies);
 		!!callBuddies( ROLES , FACILITY , PRIORITY);
-		-+steps( craftComParts, T);
+		-steps( craftComParts, _);
+		+steps( craftComParts, T);
+		-+lastDoing(craftComParts);
+		-+acaoValida( callBuddies( ROLES , FACILITY , PRIORITY) );
 	.
 
 +step( _ ):
@@ -271,7 +335,10 @@ caminhoesAvisadosResourceNode( [] ).
 		.print( "Peguei: ", ITEM, ", Storage: ", STORAGE, ", LISTAITENS: ", LISTAITENS );
 		action( retrieve( ITEM, 1 ) );
 		.print("craftComParts: retrieve( ", ITEM, ", 1 )");
-		-+steps( craftComParts, T);
+		-steps( craftComParts, _);
+		+steps( craftComParts, T);
+		-+lastDoing(craftComParts);
+		-+acaoValida( retrieve( ITEM, 1) );
 	.
 
 +step( _ ):
@@ -281,6 +348,8 @@ caminhoesAvisadosResourceNode( [] ).
 		?storageCentral(STORAGE);
 		?storage( STORAGE, _, _, _, _, LISTAITENS);
 		.print( "Esperando: Storage: ", STORAGE, ", LISTAITENS: ", LISTAITENS );
+		-+lastDoing(craftComParts);
+		-+acaoValida( retrieve( ITEM, 1) );
 	.
 
 +step( _ ): 
@@ -291,8 +360,10 @@ caminhoesAvisadosResourceNode( [] ).
 		.print( "Storage: ", STORAGE, ", LISTAITENS: ", LISTAITENS );
 		.print( "craftComParts: ", ACT);
 		action( ACT );
-		-+steps( craftComParts, T);
+		-steps( craftComParts, _);
+		+steps( craftComParts, T);
 		-+acaoValida( ACT );
+		-+lastDoing(craftComParts);
 	.
 
 +step( _ ):
@@ -303,22 +374,29 @@ caminhoesAvisadosResourceNode( [] ).
 		.print("MINHA ROTA AGORA É ", ROTA, " !!!!!");
 		.print("estou no recharge steps");
 		action( ACT );
-		-+steps( recharge, T);
-	.
-
-+step( _ ): priotodo(ACTION)
-	<-
-		.print( "priotodo:", ACTION);
-		-+doing(ACTION);
+		-steps( recharge, _);
+		+steps( recharge, T);
+		-+acaoValida( ACT );
+		-+lastDoing(recharge);
 	.
 
 +step( _ ):
 		doing(teste)
-		& steps( teste, [ H|T ] )
+		& steps( teste, [ ACT|T ] )
 	<-	
-		action( H );
-		-+steps( teste, T );
+		action( ACT );
+		-steps( teste, _ );
+		+steps( teste, T );
+		-+acaoValida( ACT );
+		-+lastDoing(teste);
 	.
+
+//+step( _ ): true//priotodo(ACTION)
+//	<-
+////		.print( "priotodo2:", ACTION);
+////		-+doing(ACTION);
+//		!buscarTarefa;
+//	.
 +step( _ ): true
 	<-
 	.print("noAction");

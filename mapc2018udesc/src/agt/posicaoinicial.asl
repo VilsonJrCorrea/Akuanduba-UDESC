@@ -30,7 +30,14 @@ invert(I,O):- (I=true & O=false)|(I=false & O=true).
 		+todo(exploration,6);		
 	.
 
-+explorationsteps([]):true
+//+explorationsteps([]):true
+//	<-
+//		-todo(exploration,_);
+////		-doing(_);
+//		-steps( exploration,[]);
+//	.
+
++steps(exploration,[]):true
 	<-
 		-todo(exploration,_);
 //		-doing(_);
@@ -39,7 +46,8 @@ invert(I,O):- (I=true & O=false)|(I=false & O=true).
 
 -doing(exploration): steps(exploration, ACTS) & lat(LAT) & lon(LON)
 	<-
-		-+steps(exploration, [goto(LAT,LON)|ACTS]);
+		-steps(exploration, _ );
+		+steps(exploration, [goto(LAT,LON)|ACTS]);
 		.print("Removi a exploracao");
 	.
 

@@ -23,8 +23,16 @@
 		.concat(NNLIST, [store(ITEM,_)] , NNNLIST);
 		
 //		-+stepsCraftSemParts(NNNLIST);
-		-+steps( craftSemParts, NNNLIST );
+		-steps( craftSemParts, _ );
+		+steps( craftSemParts, NNNLIST );
 		+todo(craftSemParts,8);
+	.
+
+-doing(craftSemParts): steps(craftSemParts, ACTS) & acaoValida(ACT)
+	<-
+		-steps(craftSemParts, _ );
+		+steps(craftSemParts, [ACT|ACTS]);
+		.print("Removi a craftSemParts");
 	.
 
 +!craftComParts(ITEM, ROLE, OTHERROLE)
@@ -34,15 +42,24 @@
 	&	storageCentral(STORAGE)
 	&	workshopCentral(WORKSHOP)
 	<-	
+		.print("sou um " , ROLE , "e entrei no craftcomPARTS")
 		PASSOS_1 = [callBuddies( ROLE, STORAGE, 7), goto(STORAGE)];
 		!passosPegarItens(PASSOS_1, LPARTS, PASSOS_2);
-		.concat( PASSOS_2, [goto(WORKSHOP), assemble, 
+		.concat( PASSOS_2, [goto(WORKSHOP), assemble(ITEM), 
 			goto(STORAGE),store(ITEM,_) ], PASSOS_3 );
 		.print( PASSOS_3 );
 		
 //		-+stepsCraftComParts( PASSOS_3 );
-		-+steps( craftComParts, PASSOS_3 );
+		-steps( craftComParts, _ );
+		+steps( craftComParts, PASSOS_3 );
 		+todo(craftComParts,8);	
+	.
+
+-doing(craftComParts): steps(craftComParts, ACTS) & lat(LAT) & lon(LON)
+	<-
+		-steps(craftComParts, _ );
+		+steps(craftComParts, [goto(LAT,LON)|ACTS]);
+		.print("Removi a craftComParts");
 	.
 
 +!passosPegarItens(LIST, [], LISTARETRIEVE)
@@ -66,7 +83,7 @@
 		-quemPrecisaAjuda(QUEM);
 	.
 
-+stepsCraftSemParts( [] ): 	true
++steps( craftSemParts, [] ): 	true
 	<- 	
 //		-stepsCraftSemParts([]);
 		-steps( craftSemParts, [] );
@@ -75,7 +92,7 @@
 		//procura nova tarefa.
 	.
 
-+stepsCraftComParts( [] ): 	true
++steps( craftComParts,[] ): 	true
 	<- 	
 		-steps( craftSemParts, []);
 		-todo( craftSemParts, _);
@@ -106,10 +123,12 @@
 //		.print("Entrou no callbuddies vazio");
 //	.
 				
-+!callBuddies( ROLE, WORKSHOP, PRIO)
++!callBuddies( ROLE, WORKSHOP, PRIO)[source(MEUNOME)]
 	:
+	
 		name(QUEMPRECISA)
 		&	buddieRole(NAME, ROLE)
+		& QUEMPRECISA \== MEUNOME
 	<-
 		.print("Entrou no callbuddies");
 		.send(NAME, achieve, help( QUEMPRECISA, ROLE, WORKSHOP, PRIO));
@@ -119,8 +138,8 @@
 
 +!help( QUEMPRECISA, ROLE, WORKSHOP, PRIO)
 	:
-		true
-	<-
+	entity(_,_,_,_,ROLE)
+		<-
 		+steps(help, [goto(WORKSHOP), assist_assemble(QUEMPRECISA)]);
 		+todo(help, 6);
 	.
@@ -144,7 +163,7 @@
 //		-+explorationsteps([goto(LAT,LON)|ACTS]);
 //	.
 -doing(craftSemParts)
-	:	stepsCraftSemParts(L)
+	:	steps(craftSemParts ,L)
 	&	lat(LAT)
 	&	lon(LON)
 	& 	currentStorage(STORAGE)
@@ -153,18 +172,19 @@
 //		.print("ACTION: ", ACTION);
 //		?stepsCraftSemParts( LIST );
 //		.print( "1 ", LIST );
-		-+steps( craftSemParts, [goto(STORAGE) | L]);
+		-steps( craftSemParts, _);
+		+steps( craftSemParts, [goto(STORAGE) | L]);
 //		.print( "SLAT: ", SLAT, ", SLON: ", SLON );
 //		?stepsCraftSemParts( LIST2 );
 //		.print( "2 ",LIST2 );
 	.
 	
 			
-+step( _ ): doing(craft) & 	stepsCraft([H | T]) & not route([])
-			<-
-			.print("Entrou no step(_)");
-			-+laststepcraft(H);
-			action(H);
-			-+stepsCraft(T);
-			.								
+//+step( _ ): doing(craft) & 	stepsCraft([H | T]) & not route([])
+//			<-
+//			.print("Entrou no step(_)");
+//			-+laststepcraft(H);
+//			action(H);
+//			-+stepsCraft(T);
+//			.								
 	
