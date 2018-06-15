@@ -138,11 +138,12 @@ caminhoesAvisadosResourceNode( [] ).
 
 +step( X )
 	:	X = 3
-	&	name (agentA22)
+	&	name (agentA8)
 	<-
 		//item(item5,5,roles([drone,car]),parts([item4,item1]))
+		//item(item6,5,roles([motorcycle,truck]),parts([item4,item2,item0,item1,item3]))
 		.print("chamando craftcomparts");
-		!craftComParts(item5, car, drone);
+		!craftComParts(item6, motorcycle, truck);
 .
 
 //+step( _ ): not route([]) /*&lastDoing(X) & doing(X) */
@@ -210,8 +211,8 @@ caminhoesAvisadosResourceNode( [] ).
 
 +step(_)
 	:	
-	(lastActionResult(failed_counterpart) 
-		| lastActionResult(failed_item_type) 
+	(//lastActionResult(failed_counterpart) |
+		lastActionResult(failed_item_type) 
 		|lastActionResult(failed_tools)
 	)
 	&	acaoValida( ACTION )
