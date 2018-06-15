@@ -1,139 +1,139 @@
 mas mapc2018udesc {
 agent agentA1: agentA.asl{ 
  join: env
-focus: env.art1
+focus: env.art1,env.gerenciamentotarefas
 }
 agent agentA2: agentA.asl{ 
  join: env
-focus: env.art2
+focus: env.art2,env.gerenciamentotarefas
 }
 agent agentA3: agentA.asl{ 
  join: env
-focus: env.art3
+focus: env.art3,env.gerenciamentotarefas
 }
 agent agentA4: agentA.asl{ 
  join: env
-focus: env.art4
+focus: env.art4,env.gerenciamentotarefas
 }
 agent agentA5: agentA.asl{ 
  join: env
-focus: env.art5
+focus: env.art5,env.gerenciamentotarefas
 }
 agent agentA6: agentA.asl{ 
  join: env
-focus: env.art6
+focus: env.art6,env.gerenciamentotarefas
 }
 agent agentA7: agentA.asl{ 
  join: env
-focus: env.art7
+focus: env.art7,env.gerenciamentotarefas
 }
 agent agentA8: agentA.asl{ 
  join: env
-focus: env.art8
+focus: env.art8,env.gerenciamentotarefas
 }
 agent agentA9: agentA.asl{ 
  join: env
-focus: env.art9
+focus: env.art9,env.gerenciamentotarefas
 }
 agent agentA10: agentA.asl{ 
  join: env
-focus: env.art10,env.artpolygon
+focus: env.art10,env.artpolygon,env.gerenciamentotarefas
 }
 agent agentA11: agentA.asl{ 
  join: env
-focus: env.art11
+focus: env.art11,env.gerenciamentotarefas
 }
 agent agentA12: agentA.asl{ 
  join: env
-focus: env.art12
+focus: env.art12,env.gerenciamentotarefas
 }
 agent agentA13: agentA.asl{ 
  join: env
-focus: env.art13
+focus: env.art13,env.gerenciamentotarefas
 }
 agent agentA14: agentA.asl{ 
  join: env
-focus: env.art14
+focus: env.art14,env.gerenciamentotarefas
 }
 agent agentA15: agentA.asl{ 
  join: env
-focus: env.art15
+focus: env.art15,env.gerenciamentotarefas
 }
 agent agentA16: agentA.asl{ 
  join: env
-focus: env.art16
+focus: env.art16,env.gerenciamentotarefas
 }
 agent agentA17: agentA.asl{ 
  join: env
-focus: env.art17
+focus: env.art17,env.gerenciamentotarefas
 }
 agent agentA18: agentA.asl{ 
  join: env
-focus: env.art18
+focus: env.art18,env.gerenciamentotarefas
 }
 agent agentA19: agentA.asl{ 
  join: env
-focus: env.art19
+focus: env.art19,env.gerenciamentotarefas
 }
 agent agentA20: agentA.asl{ 
  join: env
-focus: env.art20
+focus: env.art20,env.gerenciamentotarefas
 }
 agent agentA21: agentA.asl{ 
  join: env
-focus: env.art21
+focus: env.art21,env.gerenciamentotarefas
 }
 agent agentA22: agentA.asl{ 
  join: env
-focus: env.art22
+focus: env.art22,env.gerenciamentotarefas
 }
 agent agentA23: agentA.asl{ 
  join: env
-focus: env.art23
+focus: env.art23,env.gerenciamentotarefas
 }
 agent agentA24: agentA.asl{ 
  join: env
-focus: env.art24
+focus: env.art24,env.gerenciamentotarefas
 }
 agent agentA25: agentA.asl{ 
  join: env
-focus: env.art25
+focus: env.art25,env.gerenciamentotarefas
 }
 agent agentA26: agentA.asl{ 
  join: env
-focus: env.art26
+focus: env.art26,env.gerenciamentotarefas
 }
 agent agentA27: agentA.asl{ 
  join: env
-focus: env.art27
+focus: env.art27,env.gerenciamentotarefas
 }
 agent agentA28: agentA.asl{ 
  join: env
-focus: env.art28
+focus: env.art28,env.gerenciamentotarefas
 }
 agent agentA29: agentA.asl{ 
  join: env
-focus: env.art29
+focus: env.art29,env.gerenciamentotarefas
 }
 agent agentA30: agentA.asl{ 
  join: env
-focus: env.art30
+focus: env.art30,env.gerenciamentotarefas
 }
 agent agentA31: agentA.asl{ 
  join: env
-focus: env.art31
+focus: env.art31,env.gerenciamentotarefas
 }
 agent agentA32: agentA.asl{ 
  join: env
-focus: env.art32
+focus: env.art32,env.gerenciamentotarefas
 }
 agent agentA33: agentA.asl{ 
  join: env
-focus: env.art33
+focus: env.art33,env.gerenciamentotarefas
 }
 agent agentA34: agentA.asl{ 
  join: env
-focus: env.art34
+focus: env.art34,env.gerenciamentotarefas
 }
 //time b
 agent agentB1: agentB.asl{ 
@@ -310,6 +310,7 @@ artifact art32: EISAccess("conf/eis31.json")
 artifact art33: EISAccess("conf/eis32.json")
 artifact art34: EISAccess("conf/eis33.json")
 artifact artpolygon: calculos.ARTGreyZone
+artifact gerenciamentotarefas: gerenciadortarefas.ARTGerenciadorTarefas
 }
 
 workspace envb {

@@ -28,12 +28,19 @@
 		+todo(craftSemParts,8);
 	.
 
--doing(craftSemParts): steps(craftSemParts, ACTS) & acaoValida(ACT)
+-doing(X): steps(X, ACTS) & acaoValida(ACT)
 	<-
-		-steps(craftSemParts, _ );
-		+steps(craftSemParts, [ACT|ACTS]);
+		-steps(X, _ );
+		+steps(X, [ACT|ACTS]);
 		.print("Removi a craftSemParts");
 	.
+
+//-doing(craftSemParts): steps(craftSemParts, ACTS) & acaoValida(ACT)
+//	<-
+//		-steps(craftSemParts, _ );
+//		+steps(craftSemParts, [ACT|ACTS]);
+//		.print("Removi a craftSemParts");
+//	.
 
 +!craftComParts(ITEM, ROLE, OTHERROLE)
 	:	
@@ -55,12 +62,12 @@
 		+todo(craftComParts,8);	
 	.
 
--doing(craftComParts): steps(craftComParts, ACTS) & lat(LAT) & lon(LON)
-	<-
-		-steps(craftComParts, _ );
-		+steps(craftComParts, [goto(LAT,LON)|ACTS]);
-		.print("Removi a craftComParts");
-	.
+//-doing(craftComParts): steps(craftComParts, ACTS) & lat(LAT) & lon(LON)
+//	<-
+//		-steps(craftComParts, _ );
+//		+steps(craftComParts, [goto(LAT,LON)|ACTS]);
+//		.print("Removi a craftComParts");
+//	.
 
 +!passosPegarItens(LIST, [], LISTARETRIEVE)
 	:	true
@@ -126,13 +133,13 @@
 +!callBuddies( ROLE, WORKSHOP, PRIO)//[source(MEUNOME)]
 	:
 		name(QUEMPRECISA)
-		&	buddieRole(NAME, ROLE)
+		&	buddieRole(NAME, ROLE, _)
 //		& QUEMPRECISA \== MEUNOME
 	<-
 		.print("Entrou no callbuddies");
 		.print("Name: ", NAME, ", ROLE: ", ROLE);
 		.send(NAME, achieve, help( QUEMPRECISA, ROLE, WORKSHOP, PRIO));
-		
+//		.send(agentA10, achieve, help( QUEMPRECISA, ROLE, WORKSHOP, PRIO));
 		//!callBuddies( T , F , PRIO);
 	.
 
@@ -159,29 +166,32 @@
 							RR = L
 							.
 
--doing(craftSemParts)
-	:	steps(craftSemParts ,L)
-	&	lat(LAT)
-	&	lon(LON)
-	& 	currentStorage(STORAGE)
-	//&	acaoValida( ACTION )
-	<-	
-//		.print("ACTION: ", ACTION);
-//		?stepsCraftSemParts( LIST );
-//		.print( "1 ", LIST );
-		-steps( craftSemParts, _);
-		+steps( craftSemParts, [goto(STORAGE) | L]);
-//		.print( "SLAT: ", SLAT, ", SLON: ", SLON );
-//		?stepsCraftSemParts( LIST2 );
-//		.print( "2 ",LIST2 );
-	.
+//-doing(craftSemParts)
+//	:	steps(craftSemParts ,L)
+//	&	lat(LAT)
+//	&	lon(LON)
+//	& 	currentStorage(STORAGE)
+//	//&	acaoValida( ACTION )
+//	<-	
+////		.print("ACTION: ", ACTION);
+////		?stepsCraftSemParts( LIST );
+////		.print( "1 ", LIST );
+//		-steps( craftSemParts, _);
+//		+steps( craftSemParts, [goto(STORAGE) | L]);
+////		.print( "SLAT: ", SLAT, ", SLON: ", SLON );
+////		?stepsCraftSemParts( LIST2 );
+////		.print( "2 ",LIST2 );
+//	.
 	
-			
-//+step( _ ): doing(craft) & 	stepsCraft([H | T]) & not route([])
-//			<-
-//			.print("Entrou no step(_)");
-//			-+laststepcraft(H);
-//			action(H);
-//			-+stepsCraft(T);
-//			.								
+
 	
+	
+//regra para selecionar o item que da pra fazer
+itemacraftar(LISTAPARTS , ROLE , OTHERROLE):- 
+			storageCentral(STORAGE) &
+			item(NOME,_,roles(LISTAROLES),LISTAPARTS) &
+			storage(STORAGE,_,_,_,_,[PARTSWEHAVE]) &
+			.member( LISTAPARTS , PARTSWEHAVE ) &
+			LISTAPARTS == [ROLE | OTHERROLE] &
+			.print("FUNCIONOU")
+			.
