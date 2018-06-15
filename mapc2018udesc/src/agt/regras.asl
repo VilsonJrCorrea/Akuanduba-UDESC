@@ -94,3 +94,53 @@ coeficienterecarga(COEFICIENTE):-
 				(role(drone,_,_,_,_,_,_,_,_,_,_)& COEFICIENTE=15)
 				 |(not role(drone,_,_,_,_,_,_,_,_,_,_)& COEFICIENTE=15)
 				.	
+				
+				
++!ordemPegarItem( ITEM , ROLE , OTHERROLE)
+	:
+		item(ITEM,_,roles([H,T]),_)
+	<-	
+		!acharMaiorVolume( H, T , ROLE2  , OTHERROLE2);
+		ROLE = ROLE2;
+		OTHERROLE = OTHERROLE2;
+		.
+
+
+
++!acharMaiorVolume( H, T, ROLE , OTHERROLE):
+					CAPACITY1 >= CAPACITY2
+					<-
+					ROLE = H;
+					OTHERROLE = T;
+					.
++!acharMaiorVolume( H, T, ROLE , OTHERROLE):
+					CAPACITY1 <= CAPACITY2
+					<-
+					ROLE = T;
+					OTHERROLE = H;
+					.
+
++!acharMaiorVolume( H, T, ROLE , OTHERROLE):
+	true
+	<-
+		getCapacidade( H, CAPACITY1 );
+		getCapacidade( T, CAPACITY2 );
+		!acharMaiorVolume( H, T, ROLE , OTHERROLE);
+	.
+		
+//+!acharMaiorVolume( H, T, ROLE , OTHERROLE):
+//					buddieRole( _, H, CAPACITY1) &
+//					buddieRole( _, T, CAPACITY2) &
+//					CAPACITY1 >= CAPACITY2
+//					<-
+//					ROLE = H;
+//					OTHERROLE = T;
+//					.
+//+!acharMaiorVolume( H, T, ROLE , OTHERROLE):
+//					buddieRole( _, H, CAPACITY1) &
+//					buddieRole( _, T, CAPACITY2) &
+//					CAPACITY1 <= CAPACITY2
+//					<-
+//					ROLE = T;
+//					OTHERROLE = H;
+//					.

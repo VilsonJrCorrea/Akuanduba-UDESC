@@ -9,6 +9,8 @@ caminhoesAvisadosResourceNode( [] ).
 			SCR\==percept)
 	<-
 		.print( "Nome ResourceNode: ", A);
+		buscarAgenteParaResourceNode( truck, NOMEAGENTE );
+		.send(NOMEAGENTE, achieve, craftSemParts( A, D));
 		+resourceNode(A,B,C,D);
 		.broadcast(tell,resourceNode(A,B,C,D));
 	.
@@ -45,8 +47,9 @@ caminhoesAvisadosResourceNode( [] ).
 	:
 		true
 	<-
-	.wait(name(NAME)	&	role(ROLE,_,_,_,_,_,_,_,_,_,_));
-		.broadcast(tell, buddieRole(NAME, ROLE));
+	.wait(name(NAME)	&	role(ROLE,_,_,CAPACITY,_,_,_,_,_,_,_));
+	//.broadcast(tell, buddieRole(NAME, ROLE, CAPACITY));
+	cadastrarAgente( NAME, ROLE, CAPACITY);
 		//.print("------------> se apresentando<---------")
 	.
 
@@ -124,26 +127,48 @@ caminhoesAvisadosResourceNode( [] ).
 //{ include("itens.asl") }
 
 
-+resourceNode(NOME,B,C,ITEM)[source(SOURCE)]
-	:	name(agentA23)
-	&	ultimoCaminhaoAvisadoResourceNode( NUM )
-	&	NUM <= 34
-	&	SOURCE \== percept
+//+resourceNode(NOME,B,C,ITEM)[source(SOURCE)]
+//	:	name(agentA23)
+//	&	ultimoCaminhaoAvisadoResourceNode( NUM )
+//	&	NUM <= 34
+//	&	SOURCE \== percept
+//	<-
+//		.concat( "agentA", NUM, NOMEAGENT );
+//		.send(NOMEAGENT, achieve, craftSemParts(NOME , ITEM));
+//		-+ultimoCaminhaoAvisadoResourceNode( NUM+1 );
+//		.print("NOME: ", NOME, ", NOMEAGENT: ", NOMEAGENT);
+//	.
+
++step( X )
+	:	X = 3
+	&	name (agentA34)
 	<-
-		.concat( "agentA", NUM, NOMEAGENT );
-		.send(NOMEAGENT, achieve, craftSemParts(NOME , ITEM));
-		-+ultimoCaminhaoAvisadoResourceNode( NUM+1 );
-		.print("NOME: ", NOME, ", NOMEAGENT: ", NOMEAGENT);
-	.
+		//item(item6,5,roles([motorcycle,truck]),parts([item4,item2,item0,item1,item3]))
+		.print("chamando craftcomparts");
+		!ordemPegarItem( item6 , ROLE , OTHERROLE);
+		!craftComParts(item6, ROLE, OTHERROLE);
+.
 
 +step( X )
 	:	X = 3
 	&	name (agentA22)
 	<-
 		//item(item5,5,roles([drone,car]),parts([item4,item1]))
+		//item(item6,5,roles([motorcycle,truck]),parts([item4,item2,item0,item1,item3]))
 		.print("chamando craftcomparts");
-		!craftComParts(item5, car, drone);
+		!ordemPegarItem( item10 , ROLE , OTHERROLE);
+		!craftComParts(item10, ROLE, OTHERROLE);
 .
+
++step( X )
+	:	X = 3
+	&	name (agentA21)
+	<-
+		//item(item5,5,roles([drone,car]),parts([item4,item1]))
+		.print("chamando craftcomparts");
+		!ordemPegarItem( item5 , ROLE , OTHERROLE);
+		!craftComParts(item5, ROLE, OTHERROLE);
+.				
 
 //+step( _ ): not route([]) /*&lastDoing(X) & doing(X) */
 //	<-
