@@ -1,6 +1,13 @@
 priotodo(ACTION):- 	todo(ACTION,PRIO1) & not (todo(ACT2,PRIO2)
 					& PRIO2 > PRIO1).
 
+lesscost(PID, AGENT):-
+	helper(PID, COST1)[source(AGENT)]
+	&	not (helper(PID, COST2)[source(AGENT2)]
+		&	COST2 < COST1
+	)
+	.
+
 nearshop(Facility):- 	
 					lat(X0) & lon(Y0) 
 					& shop(Facility, X1,Y1) & not (shop(_, X2,Y2) 
@@ -50,11 +57,6 @@ finddrone(LATC, LONC, AG):-
 			  math.sqrt((CLAT-LATC)*(CLAT-LATC)+(CLON-LONC)*(CLON-LONC)) >
 			  math.sqrt((OLAT-LATC)*(OLAT-LATC)+(OLON-LONC)*(OLON-LONC))
 			).
-			
-+!calculatedistance( XA, YA, XB, YB, DISTANCIA )
-	<- DISTANCIA =  math.sqrt((XA-XB)*(XA-XB)+(YA-YB)*(YA-YB)).
-	
-	
 
 possoContinuar(STEPS,BAT,TESTE):-
 	TESTE=(BAT>STEPS)
@@ -96,37 +98,7 @@ coeficienterecarga(COEFICIENTE):-
 				.	
 				
 				
-+!ordemPegarItem( ITEM , ROLE , OTHERROLE)
-	:
-		item(ITEM,_,roles([H,T]),_)
-	<-	
-		!acharMaiorVolume( H, T , ROLE2  , OTHERROLE2);
-		ROLE = ROLE2;
-		OTHERROLE = OTHERROLE2;
-		.
 
-
-
-+!acharMaiorVolume( H, T, ROLE , OTHERROLE):
-					CAPACITY1 >= CAPACITY2
-					<-
-					ROLE = H;
-					OTHERROLE = T;
-					.
-+!acharMaiorVolume( H, T, ROLE , OTHERROLE):
-					CAPACITY1 <= CAPACITY2
-					<-
-					ROLE = T;
-					OTHERROLE = H;
-					.
-
-+!acharMaiorVolume( H, T, ROLE , OTHERROLE):
-	true
-	<-
-		getCapacidade( H, CAPACITY1 );
-		getCapacidade( T, CAPACITY2 );
-		!acharMaiorVolume( H, T, ROLE , OTHERROLE);
-	.
 		
 //+!acharMaiorVolume( H, T, ROLE , OTHERROLE):
 //					buddieRole( _, H, CAPACITY1) &

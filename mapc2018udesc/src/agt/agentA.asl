@@ -9,8 +9,8 @@ caminhoesAvisadosResourceNode( [] ).
 			SCR\==percept)
 	<-
 		.print( "Nome ResourceNode: ", A);
-		buscarAgenteParaResourceNode( truck, NOMEAGENTE );
-		.send(NOMEAGENTE, achieve, craftSemParts( A, D));
+//		buscarAgenteParaResourceNode( truck, NOMEAGENTE );
+//		.send(NOMEAGENTE, achieve, craftSemParts( A, D));
 		+resourceNode(A,B,C,D);
 		.broadcast(tell,resourceNode(A,B,C,D));
 	.
@@ -48,8 +48,8 @@ caminhoesAvisadosResourceNode( [] ).
 		true
 	<-
 	.wait(name(NAME)	&	role(ROLE,_,_,CAPACITY,_,_,_,_,_,_,_));
-	//.broadcast(tell, buddieRole(NAME, ROLE, CAPACITY));
-	cadastrarAgente( NAME, ROLE, CAPACITY);
+	.broadcast(tell, buddieRole(NAME, ROLE, CAPACITY));
+//	cadastrarAgente( NAME, ROLE, CAPACITY);
 		//.print("------------> se apresentando<---------")
 	.
 
