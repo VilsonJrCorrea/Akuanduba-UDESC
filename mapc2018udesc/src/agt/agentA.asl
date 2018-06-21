@@ -105,15 +105,26 @@ caminhoesAvisadosResourceNode( [] ).
 .
 
 +!buscarTarefa
-	:	true
+	:	.count((todo(_,_)) , QUANTIDADE) &
+			QUANTIDADE == 0
 	<-	
-		for(todo(ACT,PRI)){
-			.print("1-ACT: ", ACT, ", PRI: ", PRI);
-		}
+	.print("só entrou");
+	.
+	
++!buscarTarefa
+	:	.count((todo(_,_)) , QUANTIDADE) &
+			QUANTIDADE > 0
+	<-	
+	
+	.print("QUANTIDADE DE TODO ---------------------------- " , QUANTIDADE);
+	for(todo(ACT,PRI)){
+		
+		.print("acao: " , ACT , " PRIORIDADE " , PRI);	
+	}
+	
+
 		?priotodo(ACTION2);
-		for(todo(ACT, PRI)){
-			.print("2-ACT: ", ACT, ", PRI: ", PRI);
-		}
+
 		.print("Prioridade: ",ACTION2);
 		-+doing(ACTION2);
 	.
@@ -127,17 +138,17 @@ caminhoesAvisadosResourceNode( [] ).
 //{ include("itens.asl") }
 
 
-//+resourceNode(NOME,B,C,ITEM)[source(SOURCE)]
-//	:	name(agentA23)
-//	&	ultimoCaminhaoAvisadoResourceNode( NUM )
-//	&	NUM <= 34
-//	&	SOURCE \== percept
-//	<-
-//		.concat( "agentA", NUM, NOMEAGENT );
-//		.send(NOMEAGENT, achieve, craftSemParts(NOME , ITEM));
-//		-+ultimoCaminhaoAvisadoResourceNode( NUM+1 );
-//		.print("NOME: ", NOME, ", NOMEAGENT: ", NOMEAGENT);
-//	.
++resourceNode(NOME,B,C,ITEM)[source(SOURCE)]
+	:	name(agentA23)
+	&	ultimoCaminhaoAvisadoResourceNode( NUM )
+	&	NUM <= 34
+	&	SOURCE \== percept
+	<-
+		.concat( "agentA", NUM, NOMEAGENT );
+		.send(NOMEAGENT, achieve, craftSemParts(NOME , ITEM));
+		-+ultimoCaminhaoAvisadoResourceNode( NUM+1 );
+		.print("NOME: ", NOME, ", NOMEAGENT: ", NOMEAGENT);
+	.
 
 +step( X )
 	:	X = 3
@@ -145,30 +156,30 @@ caminhoesAvisadosResourceNode( [] ).
 	<-
 		//item(item6,5,roles([motorcycle,truck]),parts([item4,item2,item0,item1,item3]))
 		.print("chamando craftcomparts");
-		!ordemPegarItem( item6 , ROLE , OTHERROLE);
-		!craftComParts(item6, ROLE, OTHERROLE);
+		//!ordemPegarItem( item6 , ROLE , OTHERROLE);
+		!craftComParts(item6 , truck, motorcycle);
 .
 
-+step( X )
-	:	X = 3
-	&	name (agentA8)
-	<-
-		//item(item5,5,roles([drone,car]),parts([item4,item1]))
-		//item(item6,5,roles([motorcycle,truck]),parts([item4,item2,item0,item1,item3]))
-		.print("chamando craftcomparts");
-		!ordemPegarItem( item10 , ROLE , OTHERROLE);
-		!craftComParts(item10, ROLE, OTHERROLE);
-.
+//+step( X )
+//	:	X = 3
+//	&	name (agentA8)
+//	<-
+//		//item(item5,5,roles([drone,car]),parts([item4,item1]))
+//		//item(item6,5,roles([motorcycle,truck]),parts([item4,item2,item0,item1,item3]))
+//		.print("chamando craftcomparts");
+//		//!ordemPegarItem( item10 , ROLE , OTHERROLE);
+//		!craftComParts(item10, car, motorcycle);
+//.
 
-+step( X )
-	:	X = 3
-	&	name (agentA21)
-	<-
-		//item(item5,5,roles([drone,car]),parts([item4,item1]))
-		.print("chamando craftcomparts");
-		!ordemPegarItem( item5 , ROLE , OTHERROLE);
-		!craftComParts(item5, ROLE, OTHERROLE);
-.				
+//+step( X )
+//	:	X = 3
+//	&	name (agentA21)
+//	<-
+//		//item(item5,5,roles([drone,car]),parts([item4,item1]))
+//		.print("chamando craftcomparts");
+//		//!ordemPegarItem( item5 , ROLE , OTHERROLE);
+//		!craftComParts(item5, car, drone);
+//.				
 
 //+step( _ ): not route([]) /*&lastDoing(X) & doing(X) */
 //	<-
@@ -418,7 +429,7 @@ caminhoesAvisadosResourceNode( [] ).
 //	.
 +step( _ ): true
 	<-
-	.print("noAction");
+	
 	action( noAction );
 	.
 
