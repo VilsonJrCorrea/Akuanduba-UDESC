@@ -177,11 +177,7 @@ itemacraftar(LISTAPARTS , ROLE , OTHERROLE):-
 	.print("CHAMANDO SUPPORTCRAFT");
 		!supportCraft;
 	.
-+steps(craftComParts, [assemble|_]):
-	true
-	<-.print("CHAMANDO SUPPORTCRAFT");
-		!supportCraft;
-	.
+
 
 +!help(VEHICLE, WORKSHOP, PID)[source(AGENT)]:
 	role(VEHICLE,_,_,_,_,_,_,_,_,_,_)

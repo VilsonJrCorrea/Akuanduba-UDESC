@@ -106,9 +106,10 @@ caminhoesAvisadosResourceNode( [] ).
 
 +!buscarTarefa
 	:	.count((todo(_,_)) , QUANTIDADE) &
-			QUANTIDADE == 0
+			QUANTIDADE == 0 
 	<-	
-	.print("só entrou");
+	
+	.print("só entrou----------------------------------------");
 	.
 	
 +!buscarTarefa
@@ -130,9 +131,8 @@ caminhoesAvisadosResourceNode( [] ).
 	.
 
 
-
+{ include("posicaoinicial.asl") }
 { include("gathering.asl") }
-{ include("posicaoinicial.asl") }	
 { include("charging.asl") }		
 { include("regras.asl") }
 //{ include("itens.asl") }
@@ -293,6 +293,7 @@ caminhoesAvisadosResourceNode( [] ).
 //		-+lastDoing(exploration , T);
 		-steps(exploration, _);
 		+steps(exploration, T);
+		.print( ">>>>>>>>>>>>>> ACT: ", ACT, ", T: ", T);
 		-+acaoValida( ACT );
 		-+lastDoing(exploration);
 	.
@@ -380,6 +381,12 @@ caminhoesAvisadosResourceNode( [] ).
 		.print( "Esperando: Storage: ", STORAGE, ", LISTAITENS: ", LISTAITENS );
 		-+lastDoing(craftComParts);
 		-+acaoValida( retrieve( ITEM, 1) );
+	.
+
++steps(craftComParts, [assemble|_]):
+	true
+	<-.print("CHAMANDO SUPPORTCRAFT");
+		!supportCraft;
 	.
 
 +step( _ ): 

@@ -13,6 +13,16 @@ nextlon(FLON,RLON):- rightdirection(DLON) &
 
 invert(I,O):- (I=true & O=false)|(I=false & O=true).
 
+-doing(exploration): steps(exploration, ACTS) & lat(LAT) & lon(LON) & acaoValida( ACAO ) & ACTS \== []
+	<-
+		.print("Parei em ", LAT, " e ", LON);
+		-steps(exploration, _ );
+		+steps(exploration, [goto(LAT,LON)| [ACAO, ACTS]]);
+		?steps(exploration, LISTA);
+		.print(">>>>>>>>>>>>>>>>>>>>>>>>>>", LISTA);
+		.print("Removi a exploracao");
+	.
+
 +simStart: not sended(dronepos) & role(drone,_,_,_,_,_,_,_,_,_,_) 
 	<-
 		+sended(dronepos);
@@ -42,13 +52,6 @@ invert(I,O):- (I=true & O=false)|(I=false & O=true).
 		-todo(exploration,_);
 //		-doing(_);
 		-steps( exploration,[]);
-	.
-
--doing(exploration): steps(exploration, ACTS) & lat(LAT) & lon(LON)
-	<-
-		-steps(exploration, _ );
-		+steps(exploration, [goto(LAT,LON)|ACTS]);
-		.print("Removi a exploracao");
 	.
 
 +dronepos(_,_,_): .count(dronepos(_,_,_),QTD) & QTD == 4
