@@ -1,5 +1,10 @@
 { include("$jacamoJar/templates/common-cartago.asl") }
 { include("$jacamoJar/templates/common-moise.asl") }
+{ include("posicaoinicial.asl") }
+{ include("gathering.asl") }
+{ include("charging.asl") }		
+{ include("regras.asl") }
+{ include("construcao_pocos.asl")}
 
 ultimoCaminhaoAvisadoResourceNode( 23 ).
 caminhoesAvisadosResourceNode( [] ).
@@ -36,12 +41,6 @@ caminhoesAvisadosResourceNode( [] ).
 		buildPolygon;
 		.print("Poligono pronto !!");
 	.
-
-{ include("construcao_pocos.asl")}
-//{ include("charging.asl") }	
-//{ include("gathering.asl") }
-//{ include("posicaoinicial.asl") }		
-//{ include("regras.asl") }
 
 +!informRole
 	:
@@ -131,13 +130,6 @@ caminhoesAvisadosResourceNode( [] ).
 	.
 
 
-{ include("posicaoinicial.asl") }
-{ include("gathering.asl") }
-{ include("charging.asl") }		
-{ include("regras.asl") }
-//{ include("itens.asl") }
-
-
 +resourceNode(NOME,B,C,ITEM)[source(SOURCE)]
 	:	name(agentA23)
 	&	ultimoCaminhaoAvisadoResourceNode( NUM )
@@ -150,6 +142,7 @@ caminhoesAvisadosResourceNode( [] ).
 		.print("NOME: ", NOME, ", NOMEAGENT: ", NOMEAGENT);
 	.
 
+
 +step( X )
 	:	X = 3
 	&	name (agentA34)
@@ -159,6 +152,7 @@ caminhoesAvisadosResourceNode( [] ).
 		//!ordemPegarItem( item6 , ROLE , OTHERROLE);
 		!craftComParts(item6 , truck, motorcycle);
 .
+
 
 //+step( X )
 //	:	X = 3
@@ -187,12 +181,14 @@ caminhoesAvisadosResourceNode( [] ).
 //		action( continue );
 //.
 
+@s1[atomic]
 +step( _ ): not route([]) &lastDoing(Y) & doing(X) & Y==X
 	<-
 		.print("1-rota em andamento e doing ",X);
 		action( continue );
 .
 
+@s2[atomic]
 +step( _ ): not route([]) &lastDoing(Y) & doing(X) & Y\==X & steps(X,[ACT|T])
 	<-
 		.print("2-rota em andamento e doing ",X);
@@ -202,10 +198,7 @@ caminhoesAvisadosResourceNode( [] ).
 		+steps(X,T);
 .
 
-+step( _ ): not route([]) 
-	<-	.print("continue");
-		action( continue );
-	.
+@s3[atomic]
 +step( _ )
 	:	lastAction(randomFail)
 	&	acaoValida( ACTION )
@@ -214,6 +207,7 @@ caminhoesAvisadosResourceNode( [] ).
 		action( ACTION );
 	.
 
+@s4[atomic]
 +step(_)
 	:	lastActionResult(successful_partial)
 	&	acaoValida( ACTION )
@@ -221,6 +215,7 @@ caminhoesAvisadosResourceNode( [] ).
 		action( ACTION );
 	.
 
+@s5[atomic]
 +step( _ )
 	:	doing( help )
 	&	steps(help, [ACT|T] )
@@ -231,19 +226,8 @@ caminhoesAvisadosResourceNode( [] ).
 		-+lastDoing( help );
 		-+acaoValida(ACT);
 	.
-//+step(_)
-//	:	(lastActionResult(failed_counterpart) | lastActionResult(failed_item_type) |lastActionResult(failed_tools) )
-//	&	acaoValida( ACTION )
-//	& 	not jaChamou
-//	& 	entity(_,_,LAT,LON,drone)
-//	& 	workshop(WORKSHOP,LAT,LON)
-//	<-	.print("corrigindo failed_counterpart e chamando");
-////		!!callBuddies( ROLE, WORKSHOP, PRIO);
-//		action( ACTION );
-//		+jaChamou
-//	.
 
-
+@s6[atomic]
 +step(_)
 	:	
 	(//lastActionResult(failed_counterpart) |
@@ -256,6 +240,7 @@ caminhoesAvisadosResourceNode( [] ).
 		action( ACTION );
 	.
 
+@s7[atomic]
 +step( _ )
 	:	
 		doing( buildWell )
@@ -265,6 +250,7 @@ caminhoesAvisadosResourceNode( [] ).
 		!buscarTarefa;
 	.
 
+@s8[atomic]
 +step( _ )
 	:	doing( buildWell )
 	&	steps( buildWell, [ACT|T] )
@@ -274,23 +260,14 @@ caminhoesAvisadosResourceNode( [] ).
 		+steps( buildWell, T );
 		-+acaoValida( ACT );
 		-+lastDoing(buildWell);
-		
-		
-//		well(well8126,48.8296,2.39843,wellType1,a,65)
-//		?well(WELLNAME,_,_,WELLTYPE,a,INTG);
-//		.print( "WellName: ", WELLNAME, ", WellType: ", WELLTYPE, ", INTG: ", INTG );
-		
-//		role(car,3,5,50,150,8,12,400,800,40,80)
-//		?role(_,_,_,_,_,MINSKILL,MAXSKILL,_,_,_,_);
-//		.print( "MINSKILL: ", MINSKILL, ", MAXSKILL: ", MAXSKILL );
 	.
-	
+
+@s9[atomic]
 +step( _ ): doing(exploration) &
 			steps( exploration, [ACT|T])			
 	<-
 		.print( "exploration: ", ACT);
 		action( ACT );
-//		-+lastDoing(exploration , T);
 		-steps(exploration, _);
 		+steps(exploration, T);
 		.print( ">>>>>>>>>>>>>> ACT: ", ACT, ", T: ", T);
@@ -298,6 +275,7 @@ caminhoesAvisadosResourceNode( [] ).
 		-+lastDoing(exploration);
 	.
 
+@s10[atomic]
 +step( _ ): doing(help) & steps( help, [ACT|T])			
 	<-	.print("help: ", ACT);
 		action( ACT );
@@ -307,6 +285,7 @@ caminhoesAvisadosResourceNode( [] ).
 		-+lastDoing(help);
 	.
 
+@s11[atomic]
 +step( _ ): doing(craftSemParts) & 
 			steps( craftSemParts, [store(ITEM,QUANTIDADE)|T])
 			& hasItem( ITEM, NOVAQUANTIDADE)	
@@ -319,6 +298,7 @@ caminhoesAvisadosResourceNode( [] ).
 		-+lastDoing(craftSemParts);
 		.
 
+@s12[atomic]
 +step( _ ): doing(craftSemParts) &
 			steps( craftSemParts, [ACT|T])			
 	<-
@@ -330,6 +310,7 @@ caminhoesAvisadosResourceNode( [] ).
 		-+lastDoing(craftSemParts);
 	.
 
+@s13[atomic]
 +step( _ ):
 		doing(craftComParts) 
 		& steps( craftComParts, [store(ITEM,QUANTIDADE)|T])
@@ -343,6 +324,7 @@ caminhoesAvisadosResourceNode( [] ).
 		-+lastDoing(craftComParts);
 	.
 
+@s14[atomic]
 +step( _ ):
 		doing(craftComParts)
 		& steps( craftComParts, [callBuddies( ROLES , FACILITY , PRIORITY)|T])
@@ -355,6 +337,7 @@ caminhoesAvisadosResourceNode( [] ).
 		-+acaoValida( callBuddies( ROLES , FACILITY , PRIORITY) );
 	.
 
+@s15[atomic]
 +step( _ ):
 		doing(craftComParts)
 		& steps(craftComParts, [retrieve( ITEM, 1)|T])
@@ -371,6 +354,7 @@ caminhoesAvisadosResourceNode( [] ).
 		-+acaoValida( retrieve( ITEM, 1) );
 	.
 
+@s16[atomic]
 +step( _ ):
 		doing(craftComParts)
 		& steps( craftComParts, [retrieve( ITEM, 1)|T])
@@ -389,6 +373,7 @@ caminhoesAvisadosResourceNode( [] ).
 		!supportCraft;
 	.
 
+@s17[atomic]
 +step( _ ): 
 		doing(craftComParts)
 		& steps( craftComParts, [ACT|T])
@@ -403,6 +388,7 @@ caminhoesAvisadosResourceNode( [] ).
 		-+lastDoing(craftComParts);
 	.
 
+@s18[atomic]
 +step( _ ):
 		doing(recharge)
 	&	steps( recharge, [ACT|T])			
@@ -417,23 +403,7 @@ caminhoesAvisadosResourceNode( [] ).
 		-+lastDoing(recharge);
 	.
 
-+step( _ ):
-		doing(teste)
-		& steps( teste, [ ACT|T ] )
-	<-	
-		action( ACT );
-		-steps( teste, _ );
-		+steps( teste, T );
-		-+acaoValida( ACT );
-		-+lastDoing(teste);
-	.
-
-//+step( _ ): true//priotodo(ACTION)
-//	<-
-////		.print( "priotodo2:", ACTION);
-////		-+doing(ACTION);
-//		!buscarTarefa;
-//	.
+@s19[atomic]
 +step( _ ): true
 	<-
 	

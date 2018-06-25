@@ -26,11 +26,12 @@
 		+todo(craftSemParts,8);
 	.
 
--doing(X): steps(X, ACTS) & acaoValida(ACT)
+-doing(X): steps(X, ACTS) & acaoValida(ACT) 
+	& .member(X,[craftSemParts,craftComParts])
 	<-
 		-steps(X, _ );
 		+steps(X, [ACT|ACTS]);
-		.print("Removi a craftSemParts");
+		.print("Removi a ", X);
 	.
 
 //-doing(craftSemParts): steps(craftSemParts, ACTS) & acaoValida(ACT)

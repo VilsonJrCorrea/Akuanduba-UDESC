@@ -37,9 +37,8 @@ centerWorkshop(WORKSHOP)
 			math.sqrt((X2-X0)*(X2-X0)+(Y2-Y0)*(Y2-Y0)))
 	.
 					 							  
-calculatenearchargingstation(Facility,X1,Y1):- 	
-					lat(X0) & lon(Y0)
-					&    chargingStation(Facility, X1,Y1,_) & 
+calculatenearchargingstation(Facility,X0,Y0,X1,Y1,math.sqrt((X1-X0)*(X1-X0)+(Y1-Y0)*(Y1-Y0))):- 	
+					chargingStation(Facility, X1,Y1,_) & 
 					not (chargingStation(_, X2,Y2,_) & 
 						 math.sqrt((X1-X0)*(X1-X0)+(Y1-Y0)*(Y1-Y0)) > 
 					  	 math.sqrt((X2-X0)*(X2-X0)+(Y2-Y0)*(Y2-Y0))).								  
@@ -83,19 +82,14 @@ calculatedistance( XA, YA, XB, YB, DISTANCIA )
 
 distanciasemsteps(DISTANCIA, NSTEPS ):-
 					role(_,VELOCIDADE,_,_,_,_,_,_,_,_,_) &
-					NSTEPS=math.ceil((DISTANCIA*111.12)/VELOCIDADE). 
-
+					NSTEPS=math.ceil((DISTANCIA*120)/VELOCIDADE).
+//111.12
 
 calculatehowmanystepsrecharge(Facility,TEMPO):-
 						role(_,_,_,BAT,_,_,_,_,_,_,_)&
 						chargingStation(Facility,_,_,CAP)&
 						TEMPO = math.ceil(BAT/CAP)
-						.
-						
-coeficienterecarga(COEFICIENTE):-
-				(role(drone,_,_,_,_,_,_,_,_,_,_)& COEFICIENTE=15)
-				 |(not role(drone,_,_,_,_,_,_,_,_,_,_)& COEFICIENTE=15)
-				.	
+						.	
 				
 				
 

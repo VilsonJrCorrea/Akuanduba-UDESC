@@ -1,10 +1,9 @@
-visionrange(950).
 rightdirection(true).
 
 dislon(SIZE):- 	minLon(MLON) 	& centerLon(CLON) & 
- 				visionrange(VR) & SIZE=(CLON-MLON-(VR/111320)).
+ 				role(_,_,_,_,_,_,_,VR,_,_,_) & SIZE=(CLON-MLON-(VR/111320)).
 
-nextlat(CLAT,RLAT):- visionrange(VR) & RLAT=(CLAT-(VR/110570)).
+nextlat(CLAT,RLAT):- role(_,_,_,_,_,_,_,VR,_,_,_) & RLAT=(CLAT-(VR/110570)).
 
 nextlon(FLON,RLON):- rightdirection(DLON) &
 					 dislon(SIZE) & 
@@ -13,13 +12,14 @@ nextlon(FLON,RLON):- rightdirection(DLON) &
 
 invert(I,O):- (I=true & O=false)|(I=false & O=true).
 
--doing(exploration): steps(exploration, ACTS) & lat(LAT) & lon(LON) & acaoValida( ACAO ) & ACTS \== []
+-doing(exploration): steps(exploration, ACTS) & lat(LAT) 
+	& lon(LON) & acaoValida( ACAO ) & ACTS \== []
 	<-
 		.print("Parei em ", LAT, " e ", LON);
 		-steps(exploration, _ );
-		+steps(exploration, [goto(LAT,LON)| [ACAO, ACTS]]);
+		+steps(exploration, [goto(LAT,LON)| [ ACAO | ACTS ] ]);
 		?steps(exploration, LISTA);
-		.print(">>>>>>>>>>>>>>>>>>>>>>>>>>", LISTA);
+		.print(">>>>>>>>>>Esse aqui porra>>>>>>>>>>>>>>>>", LISTA);
 		.print("Removi a exploracao");
 	.
 
@@ -56,7 +56,7 @@ invert(I,O):- (I=true & O=false)|(I=false & O=true).
 
 +dronepos(_,_,_): .count(dronepos(_,_,_),QTD) & QTD == 4
 	<-
-		?visionrange(VR);
+		?role(_,_,_,_,_,_,_,VR,_,_,_);
 		?maxLat( MAXLAT );
 		?minLat( MINLAT );
 		?minLon( MINLON );
