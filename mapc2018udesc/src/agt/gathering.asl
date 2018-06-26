@@ -41,19 +41,21 @@
 //		.print("Removi a craftSemParts");
 //	.
 
-+!craftComParts(ITEM, ROLE, OTHERROLE):	
-										role(ROLE,_,_,LOAD,_,_,_,_,_,_,_) \== [source(self)] &
++!craftComParts(ITEM):	
+										role(ROLE,_,_,LOAD,_,_,_,_,_,_,_)  &
 										item( ITEM, TAM, roles(LROLES), parts(LPARTS) )&
 										storageCentral(STORAGE)	&	
 										workshopCentral(WORKSHOP)
 									<-	
-				.print("sou um " , ROLE , "e entrei no craftcomPARTS")
-				PASSOS_1 = [/*callBuddies( OTHERROLE, WORKSHOP, 7),*/ goto(STORAGE)];
+				.difference(LROLES,[ROLE],[OTHERROLE|_]);
+				
+				.print("sou um " , ROLE , " e preciso de ", OTHERROLE)
+				PASSOS_1 = [goto(STORAGE)];
 				!passosPegarItens(PASSOS_1, LPARTS, PASSOS_2);
-				.concat( PASSOS_2, [goto(WORKSHOP), assemble(ITEM), 
-				goto(STORAGE),store(ITEM,_) ], PASSOS_3 );
+				.concat( PASSOS_2, [goto(WORKSHOP), 
+					help(OTHERROLE), /* Adicionado */
+					assemble(ITEM), goto(STORAGE),store(ITEM,_) ], PASSOS_3 );
 				.print( PASSOS_3 );		
-//				-+stepsCraftComParts( PASSOS_3 );
 				-steps( craftComParts, _ );
 				+steps( craftComParts, PASSOS_3 );
 				+todo(craftComParts,8);	
@@ -103,6 +105,15 @@
 		.print( "terminou craftComParts");
 		//procura nova tarefa.
 	.
+	
+/* Adicionado */
++steps(craftComParts, [help(OTHERROLE)|T]):
+	true
+	<-.print("CHAMANDO SUPPORTCRAFT");
+		!supportCraft(OTHERROLE);
+		-steps(craftComParts, [help(OTHERROLE)|T]);
+		+steps(craftComParts, T);
+	.
 
 +!gatherParts([H|T] , LST , R ) :  true
 								<-
@@ -150,14 +161,16 @@ itemacraftar(LISTAPARTS , ROLE , OTHERROLE):-
 			.print("!@#!$@#%#$%@#$ITEM A CRAFTAR")
 			.
 
-+!supportCraft:
-				name(WHONEED)
+/* Adicionado */
++!supportCraft(OTHERROLE):
+				name(WHONEED) & workshopCentral(WORKSHOP)
 			<-	
 				.print("%¨$%¨@#%@# name");
 				.random(PID) ;
-				.broadcast (achieve, help(VEHICLE, WORKSHOP, PID));
+				.broadcast (achieve, help(OTHERROLE, WORKSHOP, PID));
 				.wait(.count(helper(PID, COST)[source(_)],N) & N>3, 100);
 				?lesscost (PID, AGENT); //regra para achar o menor custo de helper(PID,COST)[source(_)]
+				.print("Agente escolhido: ", AGENT);
 				.send (AGENT, achieve, confirmhelp( WORKSHOP, WHONEED));
 				.abolish(helper(PID, _) );				
 			.
@@ -186,14 +199,17 @@ itemacraftar(LISTAPARTS , ROLE , OTHERROLE):-
 	& lon(YA)
 	& workshop(WORKSHOP,XB,YB)
 	<-	
-		.print("PASSOU NO HELP");
+//		.print("PASSOU NO HELP");
 		?calculatedistance( XA, YA, XB, YB, COST );
 		.send(AGENT, tell, helper(PID, COST));
 	.
 
 +!confirmhelp(WORKSHOP, QUEMPRECISA):
 	true
-	<-.print("PASSOU NO CONFIRMHELP");
+	<-
+		?role(ROLE,_,_,_,_,_,_,_,_,_,_);
+		.print("Vou ajudar ",QUEMPRECISA, " e sou um ", ROLE );
+	
 		+steps(help, [goto(WORKSHOP), assist_assemble(QUEMPRECISA) ]);
 		+todo(help, 6);
 	.

@@ -145,12 +145,12 @@ caminhoesAvisadosResourceNode( [] ).
 
 +step( X )
 	:	X = 3
-	&	name (agentA34)
+	&	name (agentA13)
 	<-
 		//item(item6,5,roles([motorcycle,truck]),parts([item4,item2,item0,item1,item3]))
 		.print("chamando craftcomparts");
 		//!ordemPegarItem( item6 , ROLE , OTHERROLE);
-		!craftComParts(item6 , truck, motorcycle);
+		!craftComParts(item7);
 .
 
 
@@ -211,7 +211,7 @@ caminhoesAvisadosResourceNode( [] ).
 +step(_)
 	:	lastActionResult(successful_partial)
 	&	acaoValida( ACTION )
-	<-	.print("corigindo partial_success");
+	<-	.print("corigindo successful_partial");
 		action( ACTION );
 	.
 
@@ -230,12 +230,13 @@ caminhoesAvisadosResourceNode( [] ).
 @s6[atomic]
 +step(_)
 	:	
-	(//lastActionResult(failed_counterpart) |
-		lastActionResult(failed_item_type) 
-		|lastActionResult(failed_tools)
-	)
+	lastActionResult( X )&
+		(X == failed_wrong_param | X == failed_unknown_agent |
+			X == failed_counterpart | X == failed_tools |
+			X ==failed_location
+		)
 	&	acaoValida( ACTION )
-	<-	.print("corrigindo failed_counterpart");
+	<-	.print("corrigindo ", X);
 		//!!callBuddies( ROLE, WORKSHOP, PRIO);
 		action( ACTION );
 	.
@@ -367,11 +368,11 @@ caminhoesAvisadosResourceNode( [] ).
 		-+acaoValida( retrieve( ITEM, 1) );
 	.
 
-+steps(craftComParts, [assemble|_]):
-	true
-	<-.print("CHAMANDO SUPPORTCRAFT");
-		!supportCraft;
-	.
+//+steps(craftComParts, [assemble(_)|_]):
+//	true
+//	<-.print("CHAMANDO SUPPORTCRAFT");
+//		!supportCraft;
+//	.
 
 @s17[atomic]
 +step( _ ): 
