@@ -1,3 +1,18 @@
+qsort( [], [] ).
+
+qsort( [H|U], S ) :- splitBy(H, U, L, R)& qsort(L, SL)& qsort(R, SR)&
+ .concat(SL, [H|SR], S).
+ 
+splitBy( _, [], [], []).
+splitBy( item(NH,VH,RH,PH), [item(NU,VU,RU,PU)|T], [item(NU,VU,RU,PU)|LS], RS )
+		:- VU <= VH & splitBy(item(NH,VH,RH,PH), T, LS, RS).
+		
+		
+splitBy(item(NH,VH,RH,PH), [item(NU,VU,RU,PU)|T], LS, [item(NU,VU,RU,PU)|RS] ) 
+:- VU  > VH & splitBy(item(NH,VH,RH,PH), T, LS, RS).		
+
+//item(item10,7,roles([motorcycle,car]),parts([item5,item1,item6]))
+
 priotodo(ACTION):- 	todo(ACTION,PRIO1) & not (todo(ACT2,PRIO2)
 					& PRIO2 > PRIO1).
 
@@ -91,9 +106,8 @@ calculatehowmanystepsrecharge(Facility,TEMPO):-
 						TEMPO = math.ceil(BAT/CAP)
 						.	
 				
-				
 
-		
+//		
 //+!acharMaiorVolume( H, T, ROLE , OTHERROLE):
 //					buddieRole( _, H, CAPACITY1) &
 //					buddieRole( _, T, CAPACITY2) &

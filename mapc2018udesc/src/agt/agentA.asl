@@ -47,7 +47,8 @@ caminhoesAvisadosResourceNode( [] ).
 		true
 	<-
 	.wait(name(NAME)	&	role(ROLE,_,_,CAPACITY,_,_,_,_,_,_,_));
-	.broadcast(tell, buddieRole(NAME, ROLE, CAPACITY));
+	.substring(NUMBER,NAME,7);
+	.broadcast(tell, buddieRole(NAME, ROLE, CAPACITY, NUMBER));
 //	cadastrarAgente( NAME, ROLE, CAPACITY);
 		//.print("------------> se apresentando<---------")
 	.
@@ -143,6 +144,7 @@ caminhoesAvisadosResourceNode( [] ).
 	.
 
 
+
 +step( X )
 	:	X = 3
 	&	name (agentA13)
@@ -150,6 +152,7 @@ caminhoesAvisadosResourceNode( [] ).
 		//item(item6,5,roles([motorcycle,truck]),parts([item4,item2,item0,item1,item3]))
 		.print("chamando craftcomparts");
 		//!ordemPegarItem( item6 , ROLE , OTHERROLE);
+		!builditemlist;
 		!craftComParts(item7);
 .
 

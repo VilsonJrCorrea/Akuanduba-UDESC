@@ -67,12 +67,34 @@
 //		+steps(craftComParts, [goto(LAT,LON)|ACTS]);
 //		.print("Removi a craftComParts");
 //	.
++!builditemlist : true
+	<-
+	LIST =[];
+	+itemlist([]);
+	
+	for(item(X,Y,Z,H)){
+		!additemlist(item(X,Y,Z,H));
+//		LIST=[item(X,Y,Z,H)|LIST];
+	}
+	
+	?itemlist(C);
+	?qsort(C,SORTED);
+	-+itemlist(SORTED);
+	TE=(agentA1<agentA2);
+	.print(TE);
+	.
+
++!additemlist(H):itemlist(T)
+<-
+	-+itemlist([H|T]);
+.
 
 +!passosPegarItens(LIST, [], LISTARETRIEVE)
 	:	true
 	<-	
 		LISTARETRIEVE = LIST;
 	.
+
 
 +!passosPegarItens(LIST, [H|T], LISTARETRIEVE)
 	:	true

@@ -1,4 +1,5 @@
 mas mapc2018udesc {
+	
 agent agentA1: agentA.asl{ 
  join: env
 focus: env.art1
