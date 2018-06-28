@@ -15,6 +15,7 @@ splitBy(item(NH,VH,RH,PH), [item(NU,VU,RU,PU)|T], LS, [item(NU,VU,RU,PU)|RS] )
 
 priotodo(ACTION):- 	todo(ACTION,PRIO1) & not (todo(ACT2,PRIO2)
 					& PRIO2 > PRIO1).
+gogather(ITEM):-item(ITEM,_,roles([]),_) & not gatherCommitment(ITEM).
 
 lesscost(PID, AGENT):-
 	helper(PID, COST1)[source(AGENT)]

@@ -47,8 +47,7 @@ caminhoesAvisadosResourceNode( [] ).
 		true
 	<-
 	.wait(name(NAME)	&	role(ROLE,_,_,CAPACITY,_,_,_,_,_,_,_));
-	.substring(NUMBER,NAME,7);
-	.broadcast(tell, buddieRole(NAME, ROLE, CAPACITY, NUMBER));
+	.broadcast(tell, buddieRole(NAME, ROLE, CAPACITY));
 //	cadastrarAgente( NAME, ROLE, CAPACITY);
 		//.print("------------> se apresentando<---------")
 	.
@@ -57,6 +56,8 @@ caminhoesAvisadosResourceNode( [] ).
 			not started 
 					<-
 					!informRole;
+					!!craftSemParts;
+					!!craftComParts;
 					+jaMeApresentei;
 					.
 +simStart
@@ -129,20 +130,14 @@ caminhoesAvisadosResourceNode( [] ).
 		.print("Prioridade: ",ACTION2);
 		-+doing(ACTION2);
 	.
-
-
-+resourceNode(NOME,B,C,ITEM)[source(SOURCE)]
-	:	name(agentA23)
-	&	ultimoCaminhaoAvisadoResourceNode( NUM )
-	&	NUM <= 34
-	&	SOURCE \== percept
-	<-
-		.concat( "agentA", NUM, NOMEAGENT );
-		.send(NOMEAGENT, achieve, craftSemParts(NOME , ITEM));
-		-+ultimoCaminhaoAvisadoResourceNode( NUM+1 );
-		.print("NOME: ", NOME, ", NOMEAGENT: ", NOMEAGENT);
-	.
-
+//
+//+step( X )
+//	:	X = 3
+//	&	role(truck,_,_,_,_,_,_,_,_,_,_) 
+//	<-
+//		!!craftSemParts;
+//		action( noAction );
+//	.
 
 
 +step( X )

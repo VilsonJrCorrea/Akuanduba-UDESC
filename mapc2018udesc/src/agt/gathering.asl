@@ -8,9 +8,13 @@
 //				+quemPrecisaAjuda( AGENT );
 //				.
 
-+!craftSemParts(NOME , ITEM)	:	role(_,_,_,LOAD,_,_,_,_,_,_,_)	&	item(ITEM,TAM,_,_)
++!craftSemParts	:	role(truck,_,_,LOAD,_,_,_,_,_,_,_) & name(NAMEAGENT) 
+				& (.count(gathercommitment(_))<.count(item(_,_,_,parts([]))))
 	<-	
-		.wait(resourceNode(NOME,LATRESOUR,LONRESOUR,ITEM));
+		?gogather(ITEM);
+		addCommitment(NAMEAGENT, ITEM);
+		.wait(resourceNode(_,LATRESOUR,LONRESOUR,ITEM));
+		?item(ITEM,TAM,_,_);
 		LIST = [goto(LATRESOUR, LONRESOUR)];
 		QTD = math.floor( (LOAD / TAM) ) ;
 		!repeat( [gather], QTD, [], R );
@@ -24,6 +28,17 @@
 		-steps( craftSemParts, _ );
 		+steps( craftSemParts, NNNLIST );
 		+todo(craftSemParts,8);
+	.
+	
++!craftSemParts	:(role(ROLE,_,_,_,_,_,_,_,_,_,_) & ROLE \== truck )|
+		(.count(gathercommitment(_))>=.count(item(_,_,_,parts([]))))
+		<-	
+		true;
+		.
+
+-!craftSemParts: true
+	<-
+		!!craftSemParts;
 	.
 
 -doing(X): steps(X, ACTS) & acaoValida(ACT) 
@@ -42,10 +57,10 @@
 //	.
 
 +!craftComParts(ITEM):	
-										role(ROLE,_,_,LOAD,_,_,_,_,_,_,_)  &
-										item( ITEM, TAM, roles(LROLES), parts(LPARTS) )&
-										storageCentral(STORAGE)	&	
-										workshopCentral(WORKSHOP)
+					role(ROLE,_,_,LOAD,_,_,_,_,_,_,_)  &
+					item( ITEM, TAM, roles(LROLES), parts(LPARTS) )&
+					storageCentral(STORAGE)	&	
+					workshopCentral(WORKSHOP)
 									<-	
 				.difference(LROLES,[ROLE],[OTHERROLE|_]);
 				
