@@ -56,6 +56,8 @@ caminhoesAvisadosResourceNode( [] ).
 			not started 
 					<-
 					!informRole;
+					!!craftSemParts;
+					!!craftComParts;
 					+jaMeApresentei;
 					.
 +simStart
@@ -128,19 +130,14 @@ caminhoesAvisadosResourceNode( [] ).
 		.print("Prioridade: ",ACTION2);
 		-+doing(ACTION2);
 	.
-
-
-+resourceNode(NOME,B,C,ITEM)[source(SOURCE)]
-	:	name(agentA23)
-	&	ultimoCaminhaoAvisadoResourceNode( NUM )
-	&	NUM <= 34
-	&	SOURCE \== percept
-	<-
-		.concat( "agentA", NUM, NOMEAGENT );
-		.send(NOMEAGENT, achieve, craftSemParts(NOME , ITEM));
-		-+ultimoCaminhaoAvisadoResourceNode( NUM+1 );
-		.print("NOME: ", NOME, ", NOMEAGENT: ", NOMEAGENT);
-	.
+//
+//+step( X )
+//	:	X = 3
+//	&	role(truck,_,_,_,_,_,_,_,_,_,_) 
+//	<-
+//		!!craftSemParts;
+//		action( noAction );
+//	.
 
 
 +step( X )
@@ -150,6 +147,7 @@ caminhoesAvisadosResourceNode( [] ).
 		//item(item6,5,roles([motorcycle,truck]),parts([item4,item2,item0,item1,item3]))
 		.print("chamando craftcomparts");
 		//!ordemPegarItem( item6 , ROLE , OTHERROLE);
+		!builditemlist;
 		!craftComParts(item7);
 .
 

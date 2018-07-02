@@ -1,139 +1,140 @@
 mas mapc2018udesc {
+	
 agent agentA1: agentA.asl{ 
  join: env
-focus: env.art1
+focus: env.art1, coogather
 }
 agent agentA2: agentA.asl{ 
  join: env
-focus: env.art2
+focus: env.art2, coogather
 }
 agent agentA3: agentA.asl{ 
  join: env
-focus: env.art3
+focus: env.art3, coogather
 }
 agent agentA4: agentA.asl{ 
  join: env
-focus: env.art4
+focus: env.art4, coogather
 }
 agent agentA5: agentA.asl{ 
  join: env
-focus: env.art5
+focus: env.art5, coogather
 }
 agent agentA6: agentA.asl{ 
  join: env
-focus: env.art6
+focus: env.art6, coogather
 }
 agent agentA7: agentA.asl{ 
  join: env
-focus: env.art7
+focus: env.art7, coogather
 }
 agent agentA8: agentA.asl{ 
  join: env
-focus: env.art8
+focus: env.art8, coogather
 }
 agent agentA9: agentA.asl{ 
  join: env
-focus: env.art9
+focus: env.art9, coogather
 }
 agent agentA10: agentA.asl{ 
  join: env
-focus: env.art10,env.artpolygon
+focus: env.art10,env.artpolygon, coogather
 }
 agent agentA11: agentA.asl{ 
  join: env
-focus: env.art11
+focus: env.art11, coogather
 }
 agent agentA12: agentA.asl{ 
  join: env
-focus: env.art12
+focus: env.art12, coogather
 }
 agent agentA13: agentA.asl{ 
  join: env
-focus: env.art13
+focus: env.art13, coogather
 }
 agent agentA14: agentA.asl{ 
  join: env
-focus: env.art14
+focus: env.art14, coogather
 }
 agent agentA15: agentA.asl{ 
  join: env
-focus: env.art15
+focus: env.art15, coogather
 }
 agent agentA16: agentA.asl{ 
  join: env
-focus: env.art16
+focus: env.art16, coogather
 }
 agent agentA17: agentA.asl{ 
  join: env
-focus: env.art17
+focus: env.art17, coogather
 }
 agent agentA18: agentA.asl{ 
  join: env
-focus: env.art18
+focus: env.art18, coogather
 }
 agent agentA19: agentA.asl{ 
  join: env
-focus: env.art19
+focus: env.art19, coogather
 }
 agent agentA20: agentA.asl{ 
  join: env
-focus: env.art20
+focus: env.art20, coogather
 }
 agent agentA21: agentA.asl{ 
  join: env
-focus: env.art21
+focus: env.art21, coogather
 }
 agent agentA22: agentA.asl{ 
  join: env
-focus: env.art22
+focus: env.art22, coogather
 }
 agent agentA23: agentA.asl{ 
  join: env
-focus: env.art23
+focus: env.art23, coogather
 }
 agent agentA24: agentA.asl{ 
  join: env
-focus: env.art24
+focus: env.art24, coogather
 }
 agent agentA25: agentA.asl{ 
  join: env
-focus: env.art25
+focus: env.art25, coogather
 }
 agent agentA26: agentA.asl{ 
  join: env
-focus: env.art26
+focus: env.art26, coogather
 }
 agent agentA27: agentA.asl{ 
  join: env
-focus: env.art27
+focus: env.art27, coogather
 }
 agent agentA28: agentA.asl{ 
  join: env
-focus: env.art28
+focus: env.art28, coogather
 }
 agent agentA29: agentA.asl{ 
  join: env
-focus: env.art29
+focus: env.art29, coogather
 }
 agent agentA30: agentA.asl{ 
  join: env
-focus: env.art30
+focus: env.art30, coogather
 }
 agent agentA31: agentA.asl{ 
  join: env
-focus: env.art31
+focus: env.art31, coogather
 }
 agent agentA32: agentA.asl{ 
  join: env
-focus: env.art32
+focus: env.art32, coogather
 }
 agent agentA33: agentA.asl{ 
  join: env
-focus: env.art33
+focus: env.art33, coogather
 }
 agent agentA34: agentA.asl{ 
  join: env
-focus: env.art34
+focus: env.art34, coogather
 }
 //time b
 agent agentB1: agentB.asl{ 
@@ -310,6 +311,7 @@ artifact art32: EISAccess("conf/eis31.json")
 artifact art33: EISAccess("conf/eis32.json")
 artifact art34: EISAccess("conf/eis33.json")
 artifact artpolygon: calculos.ARTGreyZone
+artifact coogather: CooGather
 }
 
 workspace envb {
