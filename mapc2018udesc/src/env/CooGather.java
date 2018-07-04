@@ -15,6 +15,7 @@ public class CooGather extends Artifact {
 		if( !tarefas.containsKey(item) ) {
 			try {
 				tarefas.put(item, defineObsProperty("gatherCommitment", ASSyntax.parseLiteral(item)) );
+				//System.out.println(" ------------> "+agent+" - "+item);
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -42,15 +43,6 @@ public class CooGather extends Artifact {
 	
 	@OPERATION
 	void dismiss(String agent) {
-		
-	}
-	
-	private class Agente{
-		private String nome;
-		private String role;
-		private String item;
-		private String doing;
-		
 		
 	}
 }

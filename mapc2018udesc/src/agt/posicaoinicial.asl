@@ -15,29 +15,26 @@ invert(I,O):- (I=true & O=false)|(I=false & O=true).
 -doing(exploration): steps(exploration, ACTS) & lat(LAT) 
 	& lon(LON) & acaoValida( ACAO ) & ACTS \== []
 	<-
-		.print("Parei em ", LAT, " e ", LON);
 		-steps(exploration, _ );
 		+steps(exploration, [goto(LAT,LON)| [ ACAO | ACTS ] ]);
 		?steps(exploration, LISTA);
-		.print(">>>>>>>>>>Esse aqui porra>>>>>>>>>>>>>>>>", LISTA);
-		.print("Removi a exploracao");
 	.
 
-+simStart: not sended(dronepos) & role(drone,_,_,_,_,_,_,_,_,_,_) 
++!droneposition: role(R,_,_,_,_,_,_,_,_,_,_) & R\==drone
+	<- true. 
++!droneposition: role(drone,_,_,_,_,_,_,_,_,_,_) 
 	<-
-		+sended(dronepos);
 		.wait (lat(LAT));
 		.wait (lon(LON));
-		.wait (name(N));
+		?name(N);
 		.send(agentA1,tell,dronepos(N,LAT,LON));
 	.
 
 +myc(CLAT,CLON,F):true
 	<-
 		!buildexplorationsteps(CLAT, CLON,lat, F, [goto(CLAT, CLON)], R);
-		.print(R);
 		+steps( exploration, R);
-		+todo(exploration,6);		
+		+todo(exploration,9);		
 	.
 
 //+explorationsteps([]):true
