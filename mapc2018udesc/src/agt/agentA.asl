@@ -4,6 +4,7 @@
 { include("gathering.asl") }
 { include("charging.asl") }		
 { include("regras.asl") }
+{ include("job.asl") }
 { include("construcao_pocos.asl")}
 
 ultimoCaminhaoAvisadoResourceNode( 23 ).
@@ -39,7 +40,7 @@ caminhoesAvisadosResourceNode( [] ).
 			addPoint(X,Y);
 		}
 		buildPolygon;
-		.print("Poligono pronto !!");
+		//.print("Poligono pronto !!");
 	.
 
 +!informRole
@@ -66,8 +67,6 @@ caminhoesAvisadosResourceNode( [] ).
 	&	name(agentA10)
 //	&	AGENT == agentA10
 	<-	
-		.print("entrou ");
-		
 		!buildPoligon;
 		+started;
 		
@@ -83,16 +82,24 @@ caminhoesAvisadosResourceNode( [] ).
 	:	
 		name(agentA20)
 	<-	
+		.wait( 500 );
 		.wait( centerStorage(STORAGE) );
 		+storageCentral(STORAGE);
 		.broadcast(tell, storageCentral(STORAGE) );
-		.print("Disse para tudo mundo que ", STORAGE, " e o central");
+		//.print("Disse para tudo mundo que ", STORAGE, " e o central");
 		
 		.wait( centerWorkshop(WORKSHOP) );
 		+workshopCentral(WORKSHOP);
 		.broadcast(tell, workshopCentral(WORKSHOP) );
-		.print("Disse para tudo mundo que ", WORKSHOP, " e o central");
+		//.print("Disse para tudo mundo que ", WORKSHOP, " e o central");
 .
+
++job(NOMEJOB,_,_,_,_,_)
+	:
+		role(motorcycle,_,_,_,_,_,_,_,_,_,_)
+	<-
+		!realizarJob( NOMEJOB );
+	.
 
 +todo(ACTION,PRIORITY): true
 	<-
