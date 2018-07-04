@@ -11,10 +11,25 @@ public class CooGather extends Artifact {
 	private HashMap<String, ObsProperty> tarefas = new HashMap<>();
 	
 	@OPERATION
-	void addCommitment(String agent, String item) {
+	void addGatherCommitment(String agent, String item) {
 		if( !tarefas.containsKey(item) ) {
 			try {
 				tarefas.put(item, defineObsProperty("gatherCommitment", ASSyntax.parseLiteral(item)) );
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else {
+			failed("item conflicted","item_conflicted","item_conflicted");
+		}
+		
+	}
+	
+	@OPERATION
+	void addCraftCommitment(String agent, String item) {
+		if( !tarefas.containsKey(item) ) {
+			try {
+				tarefas.put(item, defineObsProperty("craftCommitment", ASSyntax.parseLiteral(item)) );
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
