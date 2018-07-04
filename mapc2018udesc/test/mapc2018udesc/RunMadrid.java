@@ -2,6 +2,9 @@ package mapc2018udesc;
 
 import static org.junit.Assert.*;
 
+import java.awt.Desktop;
+import java.net.URI;
+
 import static org.junit.Assert.*;
 import org.junit.Before;
 import jacamo.infra.JaCaMoLauncher;
@@ -18,6 +21,9 @@ public class RunMadrid {
 			@Override
 			public void run() {
 				try {
+					if (Desktop.isDesktopSupported()) {
+					    Desktop.getDesktop().browse(new URI("http://127.0.0.1:8000"));
+					}
 					Server.main(new String[] {"-conf", "conf/madrid.json", "--monitor"});					
 				} catch (Exception e) {
 					e.printStackTrace();

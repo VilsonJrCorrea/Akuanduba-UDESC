@@ -2,6 +2,8 @@ package mapc2018udesc;
 
 
 import org.junit.Before;
+import java.awt.Desktop;
+import java.net.URI;
 import jacamo.infra.JaCaMoLauncher;
 import org.junit.Test;
 import massim.Server;
@@ -14,8 +16,12 @@ public class RunLaPlata {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				try {
-					Server.main(new String[] {"-conf", "conf/laplata.json", "--monitor"});					
+				try {	
+					if (Desktop.isDesktopSupported()) {
+					    Desktop.getDesktop().browse(new URI("http://127.0.0.1:8000"));
+					}
+					Server.main(new String[] {"-conf", "conf/laplata.json", "--monitor"});
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
