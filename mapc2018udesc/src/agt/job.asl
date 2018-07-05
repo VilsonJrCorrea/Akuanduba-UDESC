@@ -1,5 +1,28 @@
-//job(job0,storage0,392,1,77,[required(item6,1),required(item7,2),required(item9,3)])
-+job(_,_,_,_,ITEM): hasItem(ITEM , X)
-						<-
-				.print("possuo o item")
-			.
+
++!realizarJob( NOMEJOB )
+	:
+		job(NOMEJOB,LOCALENTREGA,REWARD,STEPINICIAL,STEPFINAL,ITENS)
+	&	role(motorcycle,_,_,_,_,_,_,_,_,_,_)
+	&	storageCentral(STORAGE)
+	<-
+		PASSOS_1 = [ goto( STORAGE ) ];
+		!passosGathering( ITENS, [], RETORNO );
+		.concat( PASSOS_1, RETORNO, PASSOS_2);
+		.concat( PASSOS_2, [ goto( LOCALENTREGA ), deliver_job( NOMEJOB )], PASSOS_3);
+		.print( ">>>>>>>>>>>>>>>>>>>>", NOMEJOB, " ", PASSOS_3 );
+	.
+
++!passosGathering( [], LISTA, RETORNO )
+	:
+		true
+	<-
+		RETORNO = LISTA;
+	.
+
++!passosGathering( [required(ITEM, QTD)|T], LISTA, RETORNO )
+	:
+		true
+	<-
+		.concat(LISTA, [retrieve( ITEM, QTD)], N_LISTA);
+		!passosGathering( T, N_LISTA, RETORNO );
+	.

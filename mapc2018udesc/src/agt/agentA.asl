@@ -4,6 +4,7 @@
 { include("gathering.asl") }
 { include("charging.asl") }		
 { include("regras.asl") }
+{ include("job.asl") }
 { include("construcao_pocos.asl")}
 
 ultimoCaminhaoAvisadoResourceNode( 23 ).
@@ -74,6 +75,13 @@ caminhoesAvisadosResourceNode( [] ).
 					!!droneposition;
 					.
 					
++job(NOMEJOB,_,_,_,_,_)
+	:
+		role(motorcycle,_,_,_,_,_,_,_,_,_,_)
+	<-
+		!realizarJob( NOMEJOB );
+	.
+
 +todo(ACTION,PRIORITY): true
 	<-
 		!buscarTarefa;
