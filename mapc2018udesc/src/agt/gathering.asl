@@ -12,7 +12,7 @@
 				& (.count(gathercommitment(_))<.count(item(_,_,_,parts([]))))
 	<-	
 		?gogather(ITEM);
-		addCommitment(NAMEAGENT, ITEM);
+		addGatherCommitment(NAMEAGENT, ITEM);
 		.wait(resourceNode(_,LATRESOUR,LONRESOUR,ITEM));
 		?item(ITEM,TAM,_,_);
 		LIST = [goto(LATRESOUR, LONRESOUR)];
