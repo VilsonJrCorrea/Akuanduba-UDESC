@@ -2,11 +2,8 @@
 // CArtAgO artifact code for project mapc2018udesc
 
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.Set;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.logging.Logger;
 
 import cartago.*;
@@ -31,7 +28,7 @@ public class EISAccess extends Artifact implements AgentListener {
     private EnvironmentInterface ei;
     private String Agname="";
     private Boolean receiving=false;
-    private int awaitTime = 100;
+    private int awaitTime = 10;
     private String lastStep = "-1";
     private ArrayList<ObsProperty> lastRoundPropeties = new ArrayList<ObsProperty>();
 

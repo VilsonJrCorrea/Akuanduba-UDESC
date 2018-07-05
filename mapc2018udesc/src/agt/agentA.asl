@@ -4,7 +4,7 @@
 { include("gathering.asl") }
 { include("charging.asl") }		
 { include("regras.asl") }
-{ include("job.asl") }
+//{ include("job.asl") }
 { include("construcao_pocos.asl")}
 
 ultimoCaminhaoAvisadoResourceNode( 23 ).
@@ -125,7 +125,7 @@ caminhoesAvisadosResourceNode( [] ).
 	:	lastAction(randomFail)
 	&	acaoValida( ACTION )
 	<-	
-		.print( "Fazendo de novo ", ACTION);
+		//.print( "Fazendo de novo ", ACTION);
 		action( ACTION );
 	.
 
@@ -133,7 +133,7 @@ caminhoesAvisadosResourceNode( [] ).
 +step(_)
 	:	lastActionResult(successful_partial)
 	&	acaoValida( ACTION )
-	<-	.print("corigindo successful_partial");
+	<-	//.print("corigindo successful_partial");
 		action( ACTION );
 	.
 
@@ -198,7 +198,7 @@ caminhoesAvisadosResourceNode( [] ).
 
 @s10[atomic]
 +step( _ ): doing(help) & steps( help, [ACT|T])			
-	<-	.print("help: ", ACT);
+	<-	//.print("help: ", ACT);
 		action( ACT );
 		-steps( help, _);
 		+steps( help, T);
@@ -250,9 +250,9 @@ caminhoesAvisadosResourceNode( [] ).
 		& storagePossueItem( STORAGE, ITEM )
 	<-
 		?storage( STORAGE, _, _, _, _, LISTAITENS);
-		.print( "Peguei: ", ITEM, ", Storage: ", STORAGE, ", LISTAITENS: ", LISTAITENS );
+		//.print( "Peguei: ", ITEM, ", Storage: ", STORAGE, ", LISTAITENS: ", LISTAITENS );
 		action( retrieve( ITEM, 1 ) );
-		.print("craftComParts: retrieve( ", ITEM, ", 1 )");
+		//.print("craftComParts: retrieve( ", ITEM, ", 1 )");
 		-steps( craftComParts, _);
 		+steps( craftComParts, T);
 		-+lastDoing(craftComParts);
@@ -267,7 +267,7 @@ caminhoesAvisadosResourceNode( [] ).
 		?storageCentral(STORAGE);
 		?storage( STORAGE, _, _, _, _, LISTAITENS);
 		action( noAction );
-		.print( "Esperando: Storage: ", STORAGE, ", LISTAITENS: ", LISTAITENS );
+		//.print( "Esperando: Storage: ", STORAGE, ", LISTAITENS: ", LISTAITENS );
 		-+lastDoing(craftComParts);
 		-+acaoValida( retrieve( ITEM, 1) );
 	.
@@ -278,8 +278,8 @@ caminhoesAvisadosResourceNode( [] ).
 		& steps( craftComParts, [ACT|T])
 	<-
 		?storage( STORAGE, _, _, _, _, LISTAITENS);
-		.print( "Storage: ", STORAGE, ", LISTAITENS: ", LISTAITENS );
-		.print( "craftComParts: ", ACT);
+		//.print( "Storage: ", STORAGE, ", LISTAITENS: ", LISTAITENS );
+		//.print( "craftComParts: ", ACT);
 		action( ACT );
 		-steps( craftComParts, _);
 		+steps( craftComParts, T);
@@ -303,9 +303,9 @@ caminhoesAvisadosResourceNode( [] ).
 	.
 
 @s19[atomic]
-+step( _ ): true
++step( X ): true
 	<-
-	
+	//.print(X," ===========================================================================");
 	action( noAction );
 	.
 

@@ -1,12 +1,5 @@
-
-
-//+help(AGENT, H , F , PRIO): role(H,_,_,_,_,_,_,_,_,_,_)
-//				<-
-////				+stepsHelp( [goto(F) ]);
-//				-+steps( help, )
-//				+todo( help, PRIO);
-//				+quemPrecisaAjuda( AGENT );
-//				.
+repeat(NNNR , QTD , L ,RR ) :- QTD> 0 & repeat(NNNR , QTD-1 , [NNNR|L] , RR). 						
+repeat(NNNR , QTD , L ,L ).
 
 +!craftSemParts	:	role(truck,_,_,LOAD,_,_,_,_,_,_,_) & name(NAMEAGENT) 
 				& (.count(gathercommitment(_))<.count(item(_,_,_,parts([]))))
@@ -17,16 +10,17 @@
 		?item(ITEM,TAM,_,_);
 		LIST = [goto(LATRESOUR, LONRESOUR)];
 		QTD = math.floor( (LOAD / TAM) ) ;
-		!repeat( [gather], QTD, [], R );
+		
+		?repeat( gather, QTD, [], R );
 		.concat(LIST, R, NLIST);
+		
 		.wait(centerStorage(FS));
 		+currentStorage(FS);
 		.concat(NLIST, [goto(FS)] , NNLIST);
 		.concat(NNLIST, [store(ITEM,QTD)] , NNNLIST);
 		
-//		-+stepsCraftSemParts(NNNLIST);
+
 		-steps( craftSemParts, _ );
-		.print("###############\n",NNNLIST,"\n###############");
 		+steps( craftSemParts, NNNLIST );
 		+todo(craftSemParts,8);
 	.
@@ -49,7 +43,9 @@
 		+steps(X, [ACT|ACTS]);
 		.print("Removi a ", X);
 	.
-
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 +!craftComParts:	
 					role(ROLE,_,_,LOAD,_,_,_,_,_,_,_)  &
 					ROLE\==truck & 
@@ -67,7 +63,6 @@
 				.concat( PASSOS_2, [goto(WORKSHOP), 
 					help(OTHERROLE), /* Adicionado */
 					assemble(ITEM), goto(STORAGE),store(ITEM,1) ], PASSOS_3 );
-				.print("%%%%%%%%%%%%%%%%%%%%%%%\n",PASSOS_3,"\n%%%%%%%%%%%%%%%%%%%%%%%");
 				-steps( craftComParts, _ );
 				+steps( craftComParts, PASSOS_3 );
 				+todo(craftComParts,8);	
@@ -121,14 +116,6 @@
 		!passosPegarItens(NLIST,T,LISTARETRIEVE);
 	.
 
-//+stepHelp( [] ): 	quemPrecisaAjuda(QUEM)
-//	<- 	//-todo(help, _); 
-////		-stepsHelp([]);
-//		-steps( craftSemParts,[] );
-//		.send(QUEM, tell, cheguei);
-//		-quemPrecisaAjuda(QUEM);
-//	.
-
 +steps( craftSemParts, [] ): 	true
 	<- 	
 //		-stepsCraftSemParts([]);
@@ -157,7 +144,8 @@
 
 +!gatherParts([H|T] , LST , R ) :  true
 								<-
-								.wait(resourceNode( _ , LAT , LON , H ));
+								//.wait(resourceNode( _ , LAT , LON , H ));
+								?resourceNode( _ , LAT , LON , H );
 //								.print([H|T]);
 								//concatena a acao de ir para o resource node e gather em seguida
 								.concat(LST , [ goto(LAT , LON) , gather] , NLST);
@@ -172,20 +160,6 @@
 							R = LST
 							.
 							
-+!repeat(NNNR , QTD , L ,RR ): QTD> 0
-							<-
-//							.print("Entrou no repeat");
-							.concat(L , NNNR , NL );
-//							.print(NL);
-							!repeat(NNNR , QTD-1 , NL , RR);
-							.
-							
-+!repeat(NNNR , O , L , RR ) : true
-							<-
-//							.print("Entrou no repeat vazio");
-							RR = L
-							.
-
 //regra para selecionar o item que da pra fazer
 itemacraftar(LISTAPARTS , ROLE , OTHERROLE):- 
 			storageCentral(STORAGE) &
@@ -217,6 +191,11 @@ itemacraftar(LISTAPARTS , ROLE , OTHERROLE):-
 
 //[agentA9] No fail event was generated for +!help(truck,workshop4,0.2692932189931677)[source(agentA7)]
 //help(OTHERROLE, WORKSHOP, PID)
++!help(VEHICLE, _, _):
+	role(V,_,_,_,_,_,_,_,_,_,_) & VEHICLE\==V
+	<-	.print("--------------- nao eh comigo")
+		true.
+	
 +!help(VEHICLE, WORKSHOP, PID)[source(AGENT)]:
 	role(VEHICLE,_,_,_,_,_,_,_,_,_,_)
 	<-	
@@ -262,49 +241,3 @@ itemacraftar(LISTAPARTS , ROLE , OTHERROLE):-
 					ROLE = T;
 					OTHERROLE = H;
 					.
-
-//-doing(craftSemParts)
-//	:	steps(craftSemParts ,L)
-//	&	lat(LAT)
-//	&	lon(LON)
-//	& 	currentStorage(STORAGE)
-//	//&	acaoValida( ACTION )
-//	<-	
-////		.print("ACTION: ", ACTION);
-////		?stepsCraftSemParts( LIST );
-////		.print( "1 ", LIST );
-//		-steps( craftSemParts, _);
-//		+steps( craftSemParts, [goto(STORAGE) | L]);
-////		.print( "SLAT: ", SLAT, ", SLON: ", SLON );
-////		?stepsCraftSemParts( LIST2 );
-////		.print( "2 ",LIST2 );
-//	.	
-
-//+!callBuddies([] , F , PRIO)
-//	:
-//		true
-//	<-
-//		.print("Entrou no callbuddies vazio");
-//	.
-				
-//+!callBuddies( ROLE, WORKSHOP, PRIO)//[source(MEUNOME)]
-//	:
-//		name(QUEMPRECISA)
-//		&	buddieRole(NAME, ROLE, _)
-////		& QUEMPRECISA \== MEUNOME
-//	<-
-//		.print("Entrou no callbuddies");
-//		.print("Name: ", NAME, ", ROLE: ", ROLE);
-//		.send(NAME, achieve, help( QUEMPRECISA, ROLE, WORKSHOP, PRIO));
-////		.send(agentA10, achieve, help( QUEMPRECISA, ROLE, WORKSHOP, PRIO));
-//		//!callBuddies( T , F , PRIO);
-//	.
-
-//+!help( QUEMPRECISA, ROLE, WORKSHOP, PRIO)
-//	:
-//	entity(_,_,_,_,ROLE)
-//		<-
-//		.print( "WORKSHOP: ", WORKSHOP );
-//		+steps(help, [goto(WORKSHOP), assist_assemble(QUEMPRECISA)]);
-//		+todo(help, 4);
-//	.
