@@ -20,7 +20,6 @@
 		?timerecharge(QTD);
 		?nearchargingstation(Facility);
 		.concat([goto(Facility),charge],LS);
-		.print("Chamando o buildsteps recharge ",LS, " QTD ",QTD, " R ",R)
 		!buildstepsrecharge(LS,QTD,R);
 		-steps( recharge, _);
 		+steps( recharge, R);
