@@ -1,4 +1,11 @@
 
++job(NOMEJOB,_,_,_,_,_)
+	:
+		role(motorcycle,_,_,_,_,_,_,_,_,_,_)
+	<-
+		!realizarJob( NOMEJOB );
+	.
+
 +!realizarJob( NOMEJOB )
 	:
 		job(NOMEJOB,LOCALENTREGA,REWARD,STEPINICIAL,STEPFINAL,ITENS)

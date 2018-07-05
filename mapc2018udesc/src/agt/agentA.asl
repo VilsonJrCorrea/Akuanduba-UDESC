@@ -94,13 +94,6 @@ caminhoesAvisadosResourceNode( [] ).
 		//.print("Disse para tudo mundo que ", WORKSHOP, " e o central");
 .
 
-+job(NOMEJOB,_,_,_,_,_)
-	:
-		role(motorcycle,_,_,_,_,_,_,_,_,_,_)
-	<-
-		!realizarJob( NOMEJOB );
-	.
-
 +todo(ACTION,PRIORITY): true
 	<-
 		!buscarTarefa;
