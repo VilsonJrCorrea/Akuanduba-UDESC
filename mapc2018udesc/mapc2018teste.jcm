@@ -311,7 +311,7 @@ artifact art32: EISAccess("conf/eis31.json")
 artifact art33: EISAccess("conf/eis32.json")
 artifact art34: EISAccess("conf/eis33.json")
 artifact artpolygon: calculos.ARTGreyZone
-artifact coogather: CooGather
+artifact coogather: CoordinationArtifact
 }
 
 workspace envb {

@@ -1,7 +1,7 @@
 rightdirection(true).
 
-dislon(SIZE):- 	minLon(MLON) 	& centerLon(CLON) & 
- 				role(_,_,_,_,_,_,_,VR,_,_,_) & SIZE=(CLON-MLON-(VR/111320)).
+dislon(SIZE):- 	minLon(MLON) 	& maxLon(CLON) & 
+ 				role(_,_,_,_,_,_,_,VR,_,_,_) & SIZE=((CLON-MLON)/2-(VR/111320)).
 
 nextlat(CLAT,RLAT):- role(_,_,_,_,_,_,_,VR,_,_,_) & RLAT=(CLAT-(VR/110570)).
 
@@ -22,53 +22,32 @@ invert(I,O):- (I=true & O=false)|(I=false & O=true).
 
 +!droneposition: role(R,_,_,_,_,_,_,_,_,_,_) & R\==drone
 	<- true. 
-+!droneposition: role(drone,_,_,_,_,_,_,_,_,_,_) 
++!droneposition: role(drone,_,_,_,_,_,_,VR,_,_,_)
 	<-
 		.wait (lat(LAT));
 		.wait (lon(LON));
+		.wait (maxLat(MAXLAT));
+		.wait (minLat(MINLAT));
+		.wait (maxLon(MAXLON));
+		.wait (minLon(MINLON));
+		.wait (minLon(MINLON));
 		?name(N);
-		.send(agentA1,tell,dronepos(N,LAT,LON));
+		informDronePositionAndConers(LAT, LON, MINLAT, MINLON, MAXLAT, MAXLON , VR );
 	.
 
-+myc(CLAT,CLON,F):true
+
++corner(CLAT,CLON,F):true
 	<-
 		!buildexplorationsteps(CLAT, CLON,lat, F, [goto(CLAT, CLON)], R);
 		+steps( exploration, R);
 		+todo(exploration,9);		
 	.
 
-//+explorationsteps([]):true
-//	<-
-//		-todo(exploration,_);
-////		-doing(_);
-//		-steps( exploration,[]);
-//	.
-
 +steps(exploration,[]):true
 	<-
 		-todo(exploration,_);
 //		-doing(_);
 		-steps( exploration,[]);
-	.
-
-+dronepos(_,_,_): .count(dronepos(_,_,_),QTD) & QTD == 4
-	<-
-		?role(_,_,_,_,_,_,_,VR,_,_,_);
-		?maxLat( MAXLAT );
-		?minLat( MINLAT );
-		?minLon( MINLON );
-		?centerLat( CNTLAT );
-		?centerLon( CNTLON );
-		
-		+corner (MAXLAT -(VR/221140),MINLON + (VR/222640),CNTLAT);
-		+corner (MAXLAT -(VR/221140),CNTLON,CNTLAT);
-		+corner (CNTLAT,MINLON + (VR/222640),MINLAT);
-		+corner (CNTLAT,CNTLON,MINLAT);
-		for (corner(LAT,LON,F)[source(_)]) {
-			?finddrone(LAT, LON, AG);
-			.send(AG,tell,myc(LAT,LON,F));
-			.abolish (dronepos(AG,_,_));
-		} 
 	.
 
 +!buildexplorationsteps(CLAT, CLON, LAST, F, LS, R): F>CLAT   

@@ -308,7 +308,7 @@ artifact arta32: EISAccess("conf/remoto/eisa31.json")
 artifact arta33: EISAccess("conf/remoto/eisa32.json")
 artifact arta34: EISAccess("conf/remoto/eisa33.json")
 artifact artpolygon: calculos.ARTGreyZone
-artifact coogather: CooGather
+artifact coogather: CoordinationArtifact
 }
 workspace envb {
 artifact artb1: EISAccess("conf/remoto/eisb0.json")

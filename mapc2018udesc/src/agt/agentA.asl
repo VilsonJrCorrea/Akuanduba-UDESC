@@ -303,9 +303,8 @@ caminhoesAvisadosResourceNode( [] ).
 	.
 
 @s19[atomic]
-+step( X ): true
++step( _ ): true
 	<-
-	//.print(X," ===========================================================================");
-	action( noAction );
+	action(noAction);
 	.
 
