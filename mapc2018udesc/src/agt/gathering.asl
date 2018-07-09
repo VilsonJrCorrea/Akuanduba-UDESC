@@ -2,8 +2,9 @@ repeat(NNNR , QTD , L ,RR ) :- QTD> 0 & repeat(NNNR , QTD-1 , [NNNR|L] , RR).
 repeat(NNNR , QTD , L ,L ).
 
 +!craftSemParts	:	role(truck,_,_,LOAD,_,_,_,_,_,_,_) & name(NAMEAGENT) 
-				& (.count(gathercommitment(_))<.count(item(_,_,_,parts([]))))
+				& (.count(gatherCommitment(_,_))<.count(item(_,_,_,parts([]))))
 	<-	
+	
 		?gogather(ITEM);
 		addGatherCommitment(NAMEAGENT, ITEM);
 		.wait(resourceNode(_,LATRESOUR,LONRESOUR,ITEM));
@@ -15,7 +16,6 @@ repeat(NNNR , QTD , L ,L ).
 		.concat(LIST, R, NLIST);
 		
 		.wait(centerStorage(FS));
-		+currentStorage(FS);
 		.concat(NLIST, [goto(FS)] , NNLIST);
 		.concat(NNLIST, [store(ITEM,QTD)] , NNNLIST);
 		
@@ -26,7 +26,7 @@ repeat(NNNR , QTD , L ,L ).
 	.
 	
 +!craftSemParts	:(role(ROLE,_,_,_,_,_,_,_,_,_,_) & ROLE \== truck )|
-		(.count(gathercommitment(_))>=.count(item(_,_,_,parts([]))))
+		(.count(gatherCommitment(_,_))>=.count(item(_,_,_,parts([]))))
 		<-	
 		true;
 		.
@@ -41,66 +41,47 @@ repeat(NNNR , QTD , L ,L ).
 	<-
 		-steps(X, _ );
 		+steps(X, [ACT|ACTS]);
-		.print("Removi a ", X);
 	.
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
++!callCraftComPartsWithDelay: true
+	<-
+		.wait(step(10));
+		!!craftComParts;
+	.
+
 +!craftComParts:	
 					role(ROLE,_,_,LOAD,_,_,_,_,_,_,_)  &
 					ROLE\==truck & 
 					name(NAMEAGENT) &
-					(.count(craftCommitment(_))<.count(item(_,_,_,parts(P))& P\==[])) &
+					(.count(craftCommitment(_,_))<.count(item(_,_,_,parts(P))&
+														 P\==[])) &
 					storageCentral(STORAGE) &	
-					workshopCentral(WORKSHOP) 							
-				<-
+					workshopCentral(WORKSHOP)  							
+				<-				
 				?gocraft(ITEM,ROLE);
 				addCraftCommitment(NAMEAGENT, ITEM);
-				?item(ITEM,_,roles(LROLES),parts(LPARTS))
+				?item(ITEM,_,roles(LROLES),parts(LPARTS));
+				.print (ROLE," Commit ",ITEM," ",LROLES,LPARTS);
 				.difference(LROLES,[ROLE],[OTHERROLE|_]);
 				PASSOS_1 = [goto(STORAGE)];
 				!passosPegarItens(PASSOS_1, LPARTS, PASSOS_2);
 				.concat( PASSOS_2, [goto(WORKSHOP), 
-					help(OTHERROLE), /* Adicionado */
+					help(OTHERROLE), 
 					assemble(ITEM), goto(STORAGE),store(ITEM,1) ], PASSOS_3 );
-				-steps( craftComParts, _ );
 				+steps( craftComParts, PASSOS_3 );
 				+todo(craftComParts,8);	
 				.
 
 +!craftComParts	: role(truck,_,_,_,_,_,_,_,_,_,_)|
-				  (.count(craftCommitment(_))>=.count(item(_,_,_,parts(P))& P\==[]))
-		<-	
-		true;
-		.
+				  (.count(craftCommitment(_,_))>=.count(item(_,_,_,parts(P))& P\==[])) 
+		<- true; .
 
 -!craftComParts: true
 	<-
 		!!craftComParts;
 	.
-
-
-+!builditemlist : true
-	<-
-	LIST =[];
-	+itemlist([]);
-	
-	for(item(X,Y,Z,H)){
-		!additemlist(item(X,Y,Z,H));
-//		LIST=[item(X,Y,Z,H)|LIST];
-	}
-	
-	?itemlist(C);
-	?qsort(C,SORTED);
-	-+itemlist(SORTED);
-	TE=(agentA1<agentA2);
-	.print(TE);
-	.
-
-+!additemlist(H):itemlist(T)
-<-
-	-+itemlist([H|T]);
-.
 
 +!passosPegarItens(LIST, [], LISTARETRIEVE)
 	:	true
@@ -116,6 +97,7 @@ repeat(NNNR , QTD , L ,L ).
 		!passosPegarItens(NLIST,T,LISTARETRIEVE);
 	.
 
+@gather1[atomic]
 +steps( craftSemParts, [] ): 	true
 	<- 	
 //		-stepsCraftSemParts([]);
@@ -125,6 +107,7 @@ repeat(NNNR , QTD , L ,L ).
 		//procura nova tarefa.
 	.
 
+@gather2[atomic]
 +steps( craftComParts,[] ): 	true
 	<- 	
 		-steps( craftComParts, []);
@@ -133,7 +116,7 @@ repeat(NNNR , QTD , L ,L ).
 		//procura nova tarefa.
 	.
 	
-/* Adicionado */
+@gather3[atomic]
 +steps(craftComParts, [help(OTHERROLE)|T]):
 	true
 	<-.print("CHAMANDO SUPPORTCRAFT");
@@ -143,101 +126,87 @@ repeat(NNNR , QTD , L ,L ).
 	.
 
 +!gatherParts([H|T] , LST , R ) :  true
-								<-
-								//.wait(resourceNode( _ , LAT , LON , H ));
-								?resourceNode( _ , LAT , LON , H );
-//								.print([H|T]);
-								//concatena a acao de ir para o resource node e gather em seguida
-								.concat(LST , [ goto(LAT , LON) , gather] , NLST);
-								//chama recursivamente
-//								.print(NLST);
-								!gatherParts(T , NLST , R )
-								.
+	<-
+		//.wait(resourceNode( _ , LAT , LON , H ));
+		?resourceNode( _ , LAT , LON , H );
+		//concatena a acao de ir para o resource node e gather em seguida
+		.concat(LST , [ goto(LAT , LON) , gather] , NLST);
+		//chama recursivamente
+		!gatherParts(T , NLST , R )
+		.
 								
 +!gatherParts([] , LST , R): true
-							<- 
-//							.print("Entrou no gatherParts Vazio");
-							R = LST
-							.
+	<-	R = LST.
 							
-//regra para selecionar o item que da pra fazer
-itemacraftar(LISTAPARTS , ROLE , OTHERROLE):- 
-			storageCentral(STORAGE) &
-			item(NOME,_,roles(LISTAROLES),LISTAPARTS) &
-			storage(STORAGE,_,_,_,_,[PARTSWEHAVE]) &
-			.member( LISTAPARTS , PARTSWEHAVE ) &
-			LISTAPARTS == [ROLE | OTHERROLE] &
-			.print("!@#!$@#%#$%@#$ITEM A CRAFTAR")
-			.
+////regra para selecionar o item que da pra fazer
+//itemacraftar(LISTAPARTS , ROLE , OTHERROLE):- 
+//			storageCentral(STORAGE) &
+//			item(NOME,_,roles(LISTAROLES),LISTAPARTS) &
+//			storage(STORAGE,_,_,_,_,[PARTSWEHAVE]) &
+//			.member( LISTAPARTS , PARTSWEHAVE ) &
+//			LISTAPARTS == [ROLE | OTHERROLE] &
+//			.print("!@#!$@#%#$%@#$ITEM A CRAFTAR")
+//			.
 
 /* Adicionado */
 +!supportCraft(OTHERROLE):
 				name(WHONEED) & workshopCentral(WORKSHOP)
 			<-	
-				.random(PID) ;
-				.broadcast (achieve, help(OTHERROLE, WORKSHOP, PID));
-				.wait(.count(helper(PID, COST)[source(_)],N) & N>3, 100);
-				?lesscost (PID, AGENT); //regra para achar o menor custo de helper(PID,COST)[source(_)]				
-				.send (AGENT, achieve, confirmhelp( WORKSHOP, WHONEED));
-				.abolish(helper(PID, _) );				
+				 PID = math.floor(math.random(100000));
+				//.broadcast (achieve, help(OTHERROLE, WORKSHOP, PID));
+				for (partners(OTHERROLE,A) & 
+					 not craftCommitment(A,_) &
+					 not gatherCommitment(A,_)
+				) {
+					.send (A, achieve, help(WORKSHOP, PID));
+				}				
+				!!waitConfirmHelp;
 			.
-	
-+doing(craftComParts):
-	steps(craftComParts, [assemble|_])
-	<-	
-	.print("CHAMANDO SUPPORTCRAFT");
-		!supportCraft;
+			
++!waitConfirmHelp: 	.count(helper(PID, COST)[source(_)],N) & N>2 &
+					name(WHONEED) & workshopCentral(WORKSHOP)
+	<-
+		?lesscost (PID, AGENT); //regra para achar o menor custo de helper(PID,COST)[source(_)]				
+		.send (AGENT, achieve, confirmhelp( WORKSHOP, WHONEED));
+		.abolish(helper(PID, _) );				
 	.
 
-//[agentA9] No fail event was generated for +!help(truck,workshop4,0.2692932189931677)[source(agentA7)]
-//help(OTHERROLE, WORKSHOP, PID)
-+!help(VEHICLE, _, _):
-	role(V,_,_,_,_,_,_,_,_,_,_) & VEHICLE\==V
-	<-	.print("--------------- nao eh comigo")
-		true.
-	
-+!help(VEHICLE, WORKSHOP, PID)[source(AGENT)]:
-	role(VEHICLE,_,_,_,_,_,_,_,_,_,_)
+-!waitConfirmHelp: true
+	<-
+		.wait(50);
+		!!waitConfirmHelp;
+	.
+
+@help1[atomic]
++!help(WORKSHOP, PID)[source(AGENT)] : not todo(help, _)  & not lockhelp
 	<-	
-		?lat(XA)
-		?lon(YA)
-		?workshop(WORKSHOP,XB,YB)
+		+lockhelp;
+		?lat(XA);
+		?lon(YA);
+		?workshop(WORKSHOP,XB,YB);
 		?calculatedistance( XA, YA, XB, YB, COST );
-		.print("HELP1 -------->",help(VEHICLE, WORKSHOP, PID)[source(AGENT)])
 		.send(AGENT, tell, helper(PID, COST));
 	.
 
-+!help(VEHICLE, _, _):
-	role(V,_,_,_,_,_,_,_,_,_,_) & VEHICLE\==V
+@help2[atomic]	
++!help( WORKSHOP, PID): todo(help, _) | lockhelp
 	<-	true.
 
+@help3[atomic]
 +!confirmhelp(WORKSHOP, QUEMPRECISA):
 	true
 	<-
+		-lockhelp;
 		?role(ROLE,_,_,_,_,_,_,_,_,_,_);
-		.print("Vou ajudar ",QUEMPRECISA, " e sou um ", ROLE );
-	
+		.print("Vou ajudar ",QUEMPRECISA, " e sou um ", ROLE );		
 		+steps(help, [goto(WORKSHOP), assist_assemble(QUEMPRECISA) ]);
 		+todo(help, 6);
 	.
-//------------------------------------------------------
-+!ordemPegarItem( ITEM , ROLE , OTHERROLE)
-	:
-		item(ITEM,_,roles([H,T]),_)
-	<-	
-		!acharMaiorVolume( H, T , ROLE  , OTHERROLE);
-		print("-------------------------->>>>>>>" , ROLE , " - " , OTHERROLE);
-		
-		.
-+!acharMaiorVolume( H, T, ROLE , OTHERROLE):
-					CAPACITY1 >= CAPACITY2
-					<-
-					ROLE = H;
-					OTHERROLE = T;
-					.
-+!acharMaiorVolume( H, T, ROLE , OTHERROLE):
-					CAPACITY1 <= CAPACITY2
-					<-
-					ROLE = T;
-					OTHERROLE = H;
-					.
+
+@help4[atomic]
++steps(help, []):
+	true
+	<-	.print("ACABOU O HELP");
+		-doing(help);
+		-steps(help, _);
+	.

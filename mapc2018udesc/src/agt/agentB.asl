@@ -1,3 +1,5 @@
++!help(VEHICLE, WORKSHOP, PID):true
+	<-true.
 
 +step( _ ): true
 	<-

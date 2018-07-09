@@ -20,7 +20,10 @@ public class CoordinationArtifact extends Artifact {
 	void addGatherCommitment(String agent, String item) {
 		if( !tarefas.containsKey(item) ) {
 			try {
-				tarefas.put (item, defineObsProperty("gatherCommitment", ASSyntax.parseLiteral(item)) );
+				//tarefas.put (item, defineObsProperty("gatherCommitment", ASSyntax.parseLiteral(item)) );
+				tarefas.put (item, defineObsProperty("gatherCommitment", 
+						 ASSyntax.parseLiteral(agent), 
+						 ASSyntax.parseLiteral(item)) );
 				//System.out.println(" ------------> "+agent+" - "+item);
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
@@ -36,7 +39,10 @@ public class CoordinationArtifact extends Artifact {
 	void addCraftCommitment(String agent, String item) {
 		if( !tarefas.containsKey(item) ) {
 			try {
-				tarefas.put (item, defineObsProperty("craftCommitment", ASSyntax.parseLiteral(item)) );
+//				tarefas.put (item, defineObsProperty("craftCommitment", ASSyntax.parseLiteral(item)) );
+				tarefas.put (item, defineObsProperty("craftCommitment", 
+						ASSyntax.parseLiteral(agent), 
+						ASSyntax.parseLiteral(item)) );
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

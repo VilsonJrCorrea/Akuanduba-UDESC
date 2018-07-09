@@ -11,13 +11,12 @@ splitBy( item(NH,VH,RH,PH), [item(NU,VU,RU,PU)|T], [item(NU,VU,RU,PU)|LS], RS )
 splitBy(item(NH,VH,RH,PH), [item(NU,VU,RU,PU)|T], LS, [item(NU,VU,RU,PU)|RS] ) 
 :- VU  > VH & splitBy(item(NH,VH,RH,PH), T, LS, RS).		
 
-//item(item10,7,roles([motorcycle,car]),parts([item5,item1,item6]))
 
 priotodo(ACTION):- 	todo(ACTION,PRIO1) & not (todo(ACT2,PRIO2)
 					& PRIO2 > PRIO1).
 					
-gogather(ITEM):-item(ITEM,_,roles([]),_) & not gatherCommitment(ITEM).
-gocraft(ITEM,ROLE) :-item(ITEM,_,roles(R),_) & not craftCommitment(ITEM)& .member(ROLE,R).
+gogather(ITEM):-item(ITEM,_,roles([]),_) & not gatherCommitment(AGENT,ITEM).
+gocraft(ITEM,ROLE) :-item(ITEM,_,roles(R),_) & not craftCommitment(AGENT,ITEM)& .member(ROLE,R).
 
 lesscost(PID, AGENT):-
 	helper(PID, COST1)[source(AGENT)]
@@ -40,7 +39,6 @@ nearworkshop(Facility):-
 
 //storage(storage0,48.8242,2.30026,10271,0,[])
 nearstorage(Facility, X0, Y0):- 	
-					/*lat(X0) & lon(Y0) &*/ 
 					storage(Facility, X1,Y1,_,_,_) & not (storage(_, X2,Y2,_,_,_)
 					& math.sqrt((X1-X0)*(X1-X0)+(Y1-Y0)*(Y1-Y0)) > 
 					 math.sqrt((X2-X0)*(X2-X0)+(Y2-Y0)*(Y2-Y0))).
@@ -81,9 +79,12 @@ possoContinuar(STEPS,BAT,TESTE):-
 
 centerStorage(Facility)
 	:-
-		centerLat(X0) &
-		centerLon(Y0) & 
-		//storage(storage0,48.8242,2.30026,10271,0,[])
+		minLat(MILA) &
+		minLon(MILO) &
+		maxLat(MALA) &
+		maxLon(MALO) &
+		X0=(MILA+MALA)/2 &
+		Y0=(MILO+MALO)/2 &
 		storage(Facility, X1,Y1,_ ,_ , _) & 
 		not ( storage(_, X2,Y2,_ ,_ , _) & 
 			math.sqrt((X1-X0)*(X1-X0)+(Y1-Y0)*(Y1-Y0)) > 
@@ -101,29 +102,9 @@ calculatedistance( XA, YA, XB, YB, DISTANCIA )
 distanciasemsteps(DISTANCIA, NSTEPS ):-
 					role(_,VELOCIDADE,_,_,_,_,_,_,_,_,_) &
 					NSTEPS=math.ceil((DISTANCIA*120)/VELOCIDADE).
-//111.12
 
 calculatehowmanystepsrecharge(Facility,TEMPO):-
 						role(_,_,_,BAT,_,_,_,_,_,_,_)&
 						chargingStation(Facility,_,_,CAP)&
 						TEMPO = math.ceil(BAT/CAP)
 						.	
-				
-
-//		
-//+!acharMaiorVolume( H, T, ROLE , OTHERROLE):
-//					buddieRole( _, H, CAPACITY1) &
-//					buddieRole( _, T, CAPACITY2) &
-//					CAPACITY1 >= CAPACITY2
-//					<-
-//					ROLE = H;
-//					OTHERROLE = T;
-//					.
-//+!acharMaiorVolume( H, T, ROLE , OTHERROLE):
-//					buddieRole( _, H, CAPACITY1) &
-//					buddieRole( _, T, CAPACITY2) &
-//					CAPACITY1 <= CAPACITY2
-//					<-
-//					ROLE = T;
-//					OTHERROLE = H;
-//					.

@@ -7,8 +7,6 @@
 //{ include("job.asl") }
 { include("construcao_pocos.asl")}
 
-ultimoCaminhaoAvisadoResourceNode( 23 ).
-caminhoesAvisadosResourceNode( [] ).
 
 +resourceNode(A,B,C,D)[source(percept)]:
 			not (resourceNode(A,B,C,D)[source(SCR)] &
@@ -18,59 +16,15 @@ caminhoesAvisadosResourceNode( [] ).
 		.broadcast(tell,resourceNode(A,B,C,D));
 	.
 
-	
-+!buildPoligon : name(A) & A\== agentA10	
-	<- true.
-
-+!buildPoligon: name(agentA10)
-	<-
-		.wait(step(1));
-		for(chargingStation(_,X,Y,_)) {
-			addPoint(X,Y);
-		}
-		for(dump(_,X,Y)) {
-			addPoint(X,Y);
-		}
-		for(shop(_,X,Y)) {
-			addPoint(X,Y);
-		}
-		for(workshop(_,X,Y)) {
-			addPoint(X,Y);
-		}
-		for(storage(_,X,Y,_,_,_)) {
-			addPoint(X,Y);
-		}
-		buildPolygon;
-		.print("Poligono pronto !!");
-		!buildWell( wellType0, agentA10, 2, 9 );
-	.
-
-
-
-+!sendcentrals
-	:	name(agentA20)
-		
-	<-	
-		.wait( step(1));
-		?centerStorage(STORAGE); 
-		+storageCentral(STORAGE);
-		.broadcast(tell, storageCentral(STORAGE) );
-		
-		 ?centerWorkshop(WORKSHOP);
-		+workshopCentral(WORKSHOP);
-		.broadcast(tell, workshopCentral(WORKSHOP) );
-.
-
-
-+!sendcentrals : name(A) & A\== agentA20	
-	<- true.
-
 +simStart: not started
 					<-
 					+started;
+					.wait(role(VEHICLE,_,_,_,_,_,_,_,_,_,_) &
+						name(AGENT));					
+					.broadcast(tell,partners(VEHICLE,AGENT));
 					!!craftSemParts;
-					!!craftComParts;	
-					.wait(name(_));				
+					//!!craftComParts;
+					!!callCraftComPartsWithDelay										
 					!!buildPoligon;
 					!!sendcentrals;
 					!!droneposition;
@@ -101,6 +55,21 @@ caminhoesAvisadosResourceNode( [] ).
 		?priotodo(ACTION2);
 		-+doing(ACTION2);
 	.
+
++!sendcentrals
+	:	name(agentA20)
+	<-	
+		.wait( step(STEP) & STEP>0 );
+		?centerStorage(STORAGE); 
+		+storageCentral(STORAGE);
+		 ?centerWorkshop(WORKSHOP);
+		+workshopCentral(WORKSHOP);
+		.broadcast(tell, storageCentral(STORAGE) );
+		.broadcast(tell, workshopCentral(WORKSHOP) );
+.
+
++!sendcentrals : name(A) & A\== agentA20	
+	<- true.
 
 
 @s1[atomic]
@@ -178,6 +147,7 @@ caminhoesAvisadosResourceNode( [] ).
 	&	steps( buildWell, [ACT|T] )
 	&	todo( buildWell, _ )
 	<-	action( ACT );
+		//.print(ACT);
 		-steps( buildWell, _ );
 		+steps( buildWell, T );
 		-+acaoValida( ACT );
@@ -293,7 +263,6 @@ caminhoesAvisadosResourceNode( [] ).
 	&	steps( recharge, [ACT|T])			
 	<-
 		?route(ROTA);
-//		.print("MINHA ROTA AGORA � ", ROTA, " !!!!!");
 //		.print("estou no recharge steps");
 		action( ACT );
 		-steps( recharge, _);
@@ -305,6 +274,6 @@ caminhoesAvisadosResourceNode( [] ).
 @s19[atomic]
 +step( _ ): true
 	<-
-	action(noAction);
+	action( noAction );
 	.
 
