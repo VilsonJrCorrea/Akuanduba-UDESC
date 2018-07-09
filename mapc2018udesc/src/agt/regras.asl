@@ -103,10 +103,10 @@ distanciasemsteps(DISTANCIA, NSTEPS ):-
 					NSTEPS=math.ceil((DISTANCIA*120)/VELOCIDADE).
 //111.12
 
-calculatehowmanystepsrecharge(Facility,TEMPO):-
+calculatehowmanystepsrecharge(Facility,STEPSRECHARGE):-
 						role(_,_,_,BAT,_,_,_,_,_,_,_)&
 						chargingStation(Facility,_,_,CAP)&
-						TEMPO = math.ceil(BAT/CAP)
+						STEPSRECHARGE = math.ceil(BAT/CAP)
 						.	
 				
 
