@@ -1,22 +1,14 @@
 package mapc2018udesc;
-
-import static org.junit.Assert.*;
-
 import java.awt.Desktop;
 import java.net.URI;
-
-import static org.junit.Assert.*;
 import org.junit.Before;
 import jacamo.infra.JaCaMoLauncher;
 import org.junit.Test;
 import massim.Server;
 import jason.JasonException;
-import org.junit.Test;
 public class RunBuenosAires {
-
 	@Before
 	public void setUp() {
-
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -43,6 +35,4 @@ public class RunBuenosAires {
 	@Test
 	public void run() {
 	}
-
-
 }

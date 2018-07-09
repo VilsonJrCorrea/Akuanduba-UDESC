@@ -1,38 +1,17 @@
 +charge(BAT): not todo(recharge,_) &
-	  lat(LATATUAL) & lon(LONATUAL)&
-	  calculatenearchargingstation(Facility,LATATUAL,LONATUAL,X1,Y1,DISTANCIA) &
-	  distanciasemsteps(DISTANCIA, NSTEPS ) &
-//	  NSTEPS>=BAT 
-	  BAT - 2*NSTEPS < 8
+	 		 lat(CURRENTLAT) & 
+	 		 lon(CURRENTLON) &
+	 		 calculatenearchargingstation(Facility,CURRENTLAT,CURRENTLON,X1,Y1,DISTANCE) &
+			 distanciasemsteps(DISTANCE, NSTEPS ) &
+			 BAT - 2*NSTEPS < 8
 	<-
-		?calculatehowmanystepsrecharge(Facility,TEMPO);
-		!buildstepsrecharge([goto(Facility)],TEMPO,R);
-		//-+rechargesteps(R);
+		?calculatehowmanystepsrecharge(Facility,STEPSRECHARGE);
+		!buildstepsrecharge([goto(Facility)],STEPSRECHARGE,R);
 		-steps(recharge,_);
 		+steps(recharge,R);
 		+todo(recharge,10);
 	.
 
-
-	
-+!proximoPasso(STEPS,BAT):STEPS>=BAT
-	<-
-		?timerecharge(QTD);
-		?nearchargingstation(Facility);
-		.concat([goto(Facility),charge],LS);
-		!buildstepsrecharge(LS,QTD,R);
-		-steps( recharge, _);
-		+steps( recharge, R);
-		+todo(recharge,10);
-	.
-	
-	
-+!proximoPasso(STEPS,BAT):STEPS<BAT
-	<-
-		true
-	.
-	
-	
 +!buildstepsrecharge(LS,QTD,R):QTD>0
 <-
 	.concat(LS,[charge],NLS);
@@ -51,10 +30,8 @@
 		-steps( recharge, []);
 	.
 
-
 +charge(BAT):BAT==0
 	<-
-		.print("Acabou minha bateria.")
+		.print("Low battery.")
 	.	
-{ include("criteriosrecarga.asl") }
 { include("regras.asl") }
