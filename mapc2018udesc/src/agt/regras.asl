@@ -43,9 +43,9 @@ nearstorage(Facility, X0, Y0):-
 					& math.sqrt((X1-X0)*(X1-X0)+(Y1-Y0)*(Y1-Y0)) > 
 					 math.sqrt((X2-X0)*(X2-X0)+(Y2-Y0)*(Y2-Y0))).
 
-centerWorkshop(WORKSHOP)
+centerWorkshopRule(WORKSHOP)
 	:-
-		storageCentral(STORAGE)
+		centerStorage(STORAGE)
 	&	storage(STORAGE,X0,Y0,_,_,_)
 	&	workshop(WORKSHOP, X1,Y1)
 	&	not (workshop(_,X2,Y2) & 
@@ -77,7 +77,7 @@ possoContinuar(STEPS,BAT,TESTE):-
 	TESTE=(BAT>STEPS)
 .	
 
-centerStorage(Facility)
+centerStorageRule(Facility)
 	:-
 		minLat(MILA) &
 		minLon(MILO) &

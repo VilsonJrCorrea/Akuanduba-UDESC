@@ -35,13 +35,6 @@ repeat(NNNR , QTD , L ,L ).
 	<-
 		!!craftSemParts;
 	.
-
--doing(X): steps(X, ACTS) & acaoValida(ACT) 
-	& .member(X,[craftSemParts,craftComParts])
-	<-
-		-steps(X, _ );
-		+steps(X, [ACT|ACTS]);
-	.
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
@@ -57,8 +50,8 @@ repeat(NNNR , QTD , L ,L ).
 					name(NAMEAGENT) &
 					(.count(craftCommitment(_,_))<.count(item(_,_,_,parts(P))&
 														 P\==[])) &
-					storageCentral(STORAGE) &	
-					workshopCentral(WORKSHOP)  							
+					centerStorage(STORAGE) &	
+					centerWorkshop(WORKSHOP)  							
 				<-				
 				?gocraft(ITEM,ROLE);
 				addCraftCommitment(NAMEAGENT, ITEM);
@@ -98,17 +91,19 @@ repeat(NNNR , QTD , L ,L ).
 	.
 
 @gather1[atomic]
-+steps( craftSemParts, [] ): 	true
++steps( craftSemParts, [] ): true
 	<- 	
-//		-stepsCraftSemParts([]);
 		-steps( craftSemParts, [] );
 		-todo(craftSemParts, _);
-		.print( "terminou craftsemParts");
+		?name(ME);
+		?gatherCommitment(ME,ITEM);
+		?step(S);
+		.print( "step",S,": terminou craftsemParts ", ITEM);
 		//procura nova tarefa.
 	.
 
 @gather2[atomic]
-+steps( craftComParts,[] ): 	true
++steps( craftComParts,[] ): true
 	<- 	
 		-steps( craftComParts, []);
 		-todo( craftComParts, _);
@@ -125,13 +120,19 @@ repeat(NNNR , QTD , L ,L ).
 		+steps(craftComParts, T);
 	.
 
+
+//-doing(X): steps(X, ACTS) & acaoValida(ACT) & ACTS\==[] 
+//	& .member(X,[craftSemParts,craftComParts])
+//	<-
+//		-steps(X, _ );
+//		+steps(X, [ACT|ACTS]);
+//	.
+
+
 +!gatherParts([H|T] , LST , R ) :  true
 	<-
-		//.wait(resourceNode( _ , LAT , LON , H ));
 		?resourceNode( _ , LAT , LON , H );
-		//concatena a acao de ir para o resource node e gather em seguida
 		.concat(LST , [ goto(LAT , LON) , gather] , NLST);
-		//chama recursivamente
 		!gatherParts(T , NLST , R )
 		.
 								
@@ -140,7 +141,7 @@ repeat(NNNR , QTD , L ,L ).
 							
 ////regra para selecionar o item que da pra fazer
 //itemacraftar(LISTAPARTS , ROLE , OTHERROLE):- 
-//			storageCentral(STORAGE) &
+//			centerStorage(STORAGE) &
 //			item(NOME,_,roles(LISTAROLES),LISTAPARTS) &
 //			storage(STORAGE,_,_,_,_,[PARTSWEHAVE]) &
 //			.member( LISTAPARTS , PARTSWEHAVE ) &
@@ -150,7 +151,7 @@ repeat(NNNR , QTD , L ,L ).
 
 /* Adicionado */
 +!supportCraft(OTHERROLE):
-				name(WHONEED) & workshopCentral(WORKSHOP)
+				name(WHONEED) & centerWorkshop(WORKSHOP)
 			<-	
 				 PID = math.floor(math.random(100000));
 				//.broadcast (achieve, help(OTHERROLE, WORKSHOP, PID));
@@ -164,7 +165,7 @@ repeat(NNNR , QTD , L ,L ).
 			.
 			
 +!waitConfirmHelp: 	.count(helper(PID, COST)[source(_)],N) & N>2 &
-					name(WHONEED) & workshopCentral(WORKSHOP)
+					name(WHONEED) & centerWorkshop(WORKSHOP)
 	<-
 		?lesscost (PID, AGENT); //regra para achar o menor custo de helper(PID,COST)[source(_)]				
 		.send (AGENT, achieve, confirmhelp( WORKSHOP, WHONEED));

@@ -1,3 +1,8 @@
++steps( buildWell, [] ) : true
+	<-	
+		-todo( buildWell, _ );
+	.
+
 +!buildPoligon : name(A) & A\== agentA10 & A\== agentB10   	
 	<- true.
 
@@ -20,7 +25,7 @@
 			addPoint(X,Y);
 		}
 		buildPolygon;
-		.print("Poligono pronto !!");
+		//.print("Poligono pronto !!");
 		!buildWell( wellType0, agentA10, 3, 9 );
 	.
 
@@ -76,7 +81,7 @@
 		!qtdStep( WELLTYPE, AGENT, QTD );
 		!buildWellSteps( [goto(PLAT, PLON), build(WELLTYPE)], QTD, R );
 		+steps( buildWell, R );
-		.print(R);
+		//.print(R);
 		+todo(buildWell, PRIORITY);
 		//.print( "buildWell pronto!!" );
 	.

@@ -32,6 +32,6 @@
 
 +charge(BAT):BAT==0
 	<-
-		.print("Low battery.")
+		.print("No battery.")
 	.	
 { include("regras.asl") }

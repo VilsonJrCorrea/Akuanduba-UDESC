@@ -7,6 +7,14 @@
 //{ include("job.asl") }
 { include("construcao_pocos.asl")}
 
+//+doing(X): step(S)
+//	<-
+//		.print( "step",S,": doing: ",X);
+//	.
+//-doing(X): step(S)
+//	<-
+//		.print( "step",S,": stop doing: ",X);
+//	.
 
 +resourceNode(A,B,C,D)[source(percept)]:
 			not (resourceNode(A,B,C,D)[source(SCR)] &
@@ -23,7 +31,7 @@
 						name(AGENT));					
 					.broadcast(tell,partners(VEHICLE,AGENT));
 					!!craftSemParts;
-					//!!craftComParts;
+					!!craftComParts;
 					!!callCraftComPartsWithDelay										
 					!!buildPoligon;
 					!!sendcentrals;
@@ -38,6 +46,7 @@
 -todo(ACTION,_):true
 <-
 	-doing(ACTION);
+	-steps(ACTION,_);
 	!buscarTarefa;
 .
 
@@ -45,7 +54,7 @@
 	:	.count((todo(_,_)) , QUANTIDADE) &
 			QUANTIDADE == 0 
 	<-	
-		true
+		.print("nada para fazer");
 	.
 	
 +!buscarTarefa
@@ -60,12 +69,12 @@
 	:	name(agentA20)
 	<-	
 		.wait( step(STEP) & STEP>0 );
-		?centerStorage(STORAGE); 
-		+storageCentral(STORAGE);
-		 ?centerWorkshop(WORKSHOP);
-		+workshopCentral(WORKSHOP);
-		.broadcast(tell, storageCentral(STORAGE) );
-		.broadcast(tell, workshopCentral(WORKSHOP) );
+		?centerStorageRule(STORAGE); 
+		+centerStorage(STORAGE);
+		 ?centerWorkshopRule(WORKSHOP);
+		+centerWorkshop(WORKSHOP);
+		.broadcast(tell, centerWorkshop(WORKSHOP) );
+		.broadcast(tell, centerStorage(STORAGE) );
 .
 
 +!sendcentrals : name(A) & A\== agentA20	
@@ -80,100 +89,42 @@
 .
 
 @s2[atomic]
-+step( _ ): not route([]) &lastDoing(Y) & doing(X) & Y\==X & steps(X,[ACT|T])
++step( _ ): 	not route([]) 		&
+				lastDoing(Y) 		& 
+				doing(X) 			& 
+				Y\==X 				& 
+				steps(X,[ACT|T])	& 
+				steps(Y,L)			&
+				acaoValida( LA )
 	<-
 		//.print("2-rota em andamento e doing ",X);
-		-+lastDoing(X);	
-		action( ACT);
+		-+lastDoing(X);			
 		-steps(X,_);
 		+steps(X,T);
+		if (Y\==exploration) {
+			.print("recuperou last step");
+			-steps(Y,_);
+			+steps(Y,[LA|L]);
+		}
+		action( ACT);
 .
 
-@s3[atomic]
-+step( _ )
-	:	lastAction(randomFail)
-	&	acaoValida( ACTION )
-	<-	
-		//.print( "Fazendo de novo ", ACTION);
-		action( ACTION );
-	.
-
-@s4[atomic]
-+step(_)
-	:	lastActionResult(successful_partial)
-	&	acaoValida( ACTION )
-	<-	//.print("corigindo successful_partial");
-		action( ACTION );
-	.
-
-@s5[atomic]
-+step( _ )
-	:	doing( help )
-	&	steps(help, [ACT|T] )
-	<-	
-		action( ACT );
-		-steps(help, _ );
-		+steps(help, T );
-		-+lastDoing( help );
-		-+acaoValida(ACT);
-	.
-
 @s6[atomic]
-+step(_)
++step(S)
 	:	
 	lastActionResult( X )&
-		(X == failed_wrong_param | X == failed_unknown_agent |
-			X == failed_counterpart | X == failed_tools |
-			X ==failed_location
+		(	X == failed_wrong_param | X == failed_unknown_agent |
+			X == failed_counterpart | X == failed_tools 		|
+			X == failed_location  	| X == failed_item_amount 	|
+			X == partial_success	| X == successful_partial	|
+			X == randomFail	
 		)
 	&	acaoValida( ACTION )
-	<-	.print("corrigindo ", X);
-		action( ACTION );
-	.
-
-@s7[atomic]
-+step( _ )
-	:	
-		doing( buildWell )
-		&	steps( buildWell, [] )
 	<-	
-		-todo( buildWell, _ );
-		!buscarTarefa;
-	.
-
-@s8[atomic]
-+step( _ )
-	:	doing( buildWell )
-	&	steps( buildWell, [ACT|T] )
-	&	todo( buildWell, _ )
-	<-	action( ACT );
-		//.print(ACT);
-		-steps( buildWell, _ );
-		+steps( buildWell, T );
-		-+acaoValida( ACT );
-		-+lastDoing(buildWell);
-	.
-
-@s9[atomic]
-+step( _ ): doing(exploration) &
-			steps( exploration, [ACT|T])			
-	<-
-		//.print( "exploration: ", ACT);
-		action( ACT );
-		-steps(exploration, _);
-		+steps(exploration, T);
-		-+acaoValida( ACT );
-		-+lastDoing(exploration);
-	.
-
-@s10[atomic]
-+step( _ ): doing(help) & steps( help, [ACT|T])			
-	<-	//.print("help: ", ACT);
-		action( ACT );
-		-steps( help, _);
-		+steps( help, T);
-		-+acaoValida( ACT );
-		-+lastDoing(help);
+		if (X \== successful_partial	) {
+			.print( "step",S,": ",X, " repetindo ", ACTION );
+		}
+		action( ACTION );
 	.
 
 @s11[atomic]
@@ -181,23 +132,13 @@
 			steps( craftSemParts, [store(ITEM,QUANTIDADE)|T])
 			& hasItem( ITEM, NOVAQUANTIDADE)	
 	<-	
-		action( store(ITEM,NOVAQUANTIDADE) );
+		 action( store(ITEM,NOVAQUANTIDADE) );
 		-steps( craftSemParts, _);
 		+steps( craftSemParts, T);
 		-+acaoValida( store(ITEM,NOVAQUANTIDADE) );
 		-+lastDoing(craftSemParts);
-		.
-
-@s12[atomic]
-+step( _ ): doing(craftSemParts) &
-			steps( craftSemParts, [ACT|T])			
-	<-
-		action( ACT );
-		-steps( craftSemParts, _);
-		+steps( craftSemParts, T);
-		-+acaoValida( ACT );
-		-+lastDoing(craftSemParts);
 	.
+
 
 @s13[atomic]
 +step( _ ):
@@ -216,13 +157,10 @@
 +step( _ ):
 		doing(craftComParts)
 		& steps(craftComParts, [retrieve( ITEM, 1)|T])
-		& storageCentral(STORAGE)
+		& centerStorage(STORAGE)
 		& storagePossueItem( STORAGE, ITEM )
 	<-
-		?storage( STORAGE, _, _, _, _, LISTAITENS);
-		//.print( "Peguei: ", ITEM, ", Storage: ", STORAGE, ", LISTAITENS: ", LISTAITENS );
 		action( retrieve( ITEM, 1 ) );
-		//.print("craftComParts: retrieve( ", ITEM, ", 1 )");
 		-steps( craftComParts, _);
 		+steps( craftComParts, T);
 		-+lastDoing(craftComParts);
@@ -233,47 +171,29 @@
 +step( _ ):
 		doing(craftComParts)
 		& steps( craftComParts, [retrieve( ITEM, 1)|T])
+		& not storagePossueItem( STORAGE, ITEM )
 	<-
-		?storageCentral(STORAGE);
-		?storage( STORAGE, _, _, _, _, LISTAITENS);
+		//.print("aguardando item ",ITEM)
 		action( noAction );
-		//.print( "Esperando: Storage: ", STORAGE, ", LISTAITENS: ", LISTAITENS );
 		-+lastDoing(craftComParts);
-		-+acaoValida( retrieve( ITEM, 1) );
+		-+acaoValida( noAction );
 	.
 
-@s17[atomic]
-+step( _ ): 
-		doing(craftComParts)
-		& steps( craftComParts, [ACT|T])
-	<-
-		?storage( STORAGE, _, _, _, _, LISTAITENS);
-		//.print( "Storage: ", STORAGE, ", LISTAITENS: ", LISTAITENS );
-		//.print( "craftComParts: ", ACT);
-		action( ACT );
-		-steps( craftComParts, _);
-		+steps( craftComParts, T);
-		-+acaoValida( ACT );
-		-+lastDoing(craftComParts);
-	.
-
+//Doing generico
 @s18[atomic]
 +step( _ ):
-		doing(recharge)
-	&	steps( recharge, [ACT|T])			
+		doing(DOING) & steps( DOING, [ACT|T])			
 	<-
-		?route(ROTA);
-//		.print("estou no recharge steps");
 		action( ACT );
-		-steps( recharge, _);
-		+steps( recharge, T);
+		-steps( DOING, _);
+		+steps( DOING, T);
 		-+acaoValida( ACT );
-		-+lastDoing(recharge);
+		-+lastDoing(DOING);
 	.
+
 
 @s19[atomic]
 +step( _ ): true
 	<-
-	action( noAction );
+		action( noAction );
 	.
-
