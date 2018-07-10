@@ -9,20 +9,20 @@
 	<classpathentry kind="src" path="test"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JaCaMo"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="E:/GitHub/Multi-Agent-Programming-Contest-2018/Jacamo/libs/ant-1.10.1.jar"/>
-	<classpathentry kind="lib" path="E:/GitHub/Multi-Agent-Programming-Contest-2018/Jacamo/libs/ant-launcher-1.10.1.jar"/>
-	<classpathentry kind="lib" path="E:/GitHub/Multi-Agent-Programming-Contest-2018/Jacamo/libs/cartago-2.3-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="E:/GitHub/Multi-Agent-Programming-Contest-2018/Jacamo/libs/commons-codec-1.3.jar"/>
-	<classpathentry kind="lib" path="E:/GitHub/Multi-Agent-Programming-Contest-2018/Jacamo/libs/eismassim-3.5-jar-with-dependencies.jar"/>
-	<classpathentry kind="lib" path="E:/GitHub/Multi-Agent-Programming-Contest-2018/Jacamo/libs/intmas-1.0.0.jar"/>
-	<classpathentry kind="lib" path="E:/GitHub/Multi-Agent-Programming-Contest-2018/Jacamo/libs/jaca-2.3-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="E:/GitHub/Multi-Agent-Programming-Contest-2018/Jacamo/libs/jacamo-0.7-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="E:/GitHub/Multi-Agent-Programming-Contest-2018/Jacamo/libs/jade-4.5.0.jar"/>
-	<classpathentry kind="lib" path="E:/GitHub/Multi-Agent-Programming-Contest-2018/Jacamo/libs/jason-2.3-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="E:/GitHub/Multi-Agent-Programming-Contest-2018/Jacamo/libs/moise-0.11-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="E:/GitHub/Multi-Agent-Programming-Contest-2018/Jacamo/libs/npl-0.3-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="E:/GitHub/Multi-Agent-Programming-Contest-2018/Jacamo/libs/ojalgo-45.1.1.jar"/>
-	<classpathentry kind="lib" path="E:/GitHub/Multi-Agent-Programming-Contest-2018/Jacamo/libs/ojalgo-45.1.1-javadoc.jar"/>
-	<classpathentry kind="lib" path="E:/GitHub/Multi-Agent-Programming-Contest-2018/Jacamo/libs/server-2018-1.0-jar-with-dependencies.jar"/>
+	<classpathentry kind="lib" path="/home/tiago/Dropbox/workspace/Multi-Agent-Programming-Contest-2018/Jacamo/libs/server-2018-1.0-jar-with-dependencies.jar"/>
+	<classpathentry kind="lib" path="/home/tiago/Dropbox/workspace/Multi-Agent-Programming-Contest-2018/Jacamo/libs/npl-0.3-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="/home/tiago/Dropbox/workspace/Multi-Agent-Programming-Contest-2018/Jacamo/libs/moise-0.11-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="/home/tiago/Dropbox/workspace/Multi-Agent-Programming-Contest-2018/Jacamo/libs/jason-2.3-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="/home/tiago/Dropbox/workspace/Multi-Agent-Programming-Contest-2018/Jacamo/libs/jade-4.5.0.jar"/>
+	<classpathentry kind="lib" path="/home/tiago/Dropbox/workspace/Multi-Agent-Programming-Contest-2018/Jacamo/libs/jacamo-0.7-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="/home/tiago/Dropbox/workspace/Multi-Agent-Programming-Contest-2018/Jacamo/libs/jaca-2.3-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="/home/tiago/Dropbox/workspace/Multi-Agent-Programming-Contest-2018/Jacamo/libs/intmas-1.0.0.jar"/>
+	<classpathentry kind="lib" path="/home/tiago/Dropbox/workspace/Multi-Agent-Programming-Contest-2018/Jacamo/libs/eismassim-3.5-jar-with-dependencies.jar"/>
+	<classpathentry kind="lib" path="/home/tiago/Dropbox/workspace/Multi-Agent-Programming-Contest-2018/Jacamo/libs/commons-codec-1.3.jar"/>
+	<classpathentry kind="lib" path="/home/tiago/Dropbox/workspace/Multi-Agent-Programming-Contest-2018/Jacamo/libs/cartago-2.3-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="/home/tiago/Dropbox/workspace/Multi-Agent-Programming-Contest-2018/Jacamo/libs/ant-launcher-1.10.1.jar"/>
+	<classpathentry kind="lib" path="/home/tiago/Dropbox/workspace/Multi-Agent-Programming-Contest-2018/Jacamo/libs/ant-1.10.1.jar"/>
+	<classpathentry kind="lib" path="/home/tiago/Dropbox/workspace/Multi-Agent-Programming-Contest-2018/Jacamo/libs/ojalgo-45.1.1-javadoc.jar"/>
+	<classpathentry kind="lib" path="/home/tiago/Dropbox/workspace/Multi-Agent-Programming-Contest-2018/Jacamo/libs/ojalgo-45.1.1.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

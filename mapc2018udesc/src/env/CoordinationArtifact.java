@@ -15,6 +15,50 @@ public class CoordinationArtifact extends Artifact {
 	
 	private HashMap<String, ObsProperty> tarefas = new HashMap<>();
 	private HashMap<AgentId, double[]> positions = new HashMap<>();
+	private HashMap<String, ObsProperty> job = new HashMap<>();
+	private HashMap<String, ObsProperty> help = new HashMap<>();
+	
+	@OPERATION
+	void addIntentionToDoJob(String job) {
+		if( !this.job.containsKey(job) ) {
+			try {
+				signal( this.getCurrentOpAgentId(), 
+        				"dojob",ASSyntax.parseLiteral(job));
+				this.job.put(job, defineObsProperty("jobCommitment", 
+				 		   				  ASSyntax.parseLiteral(job)));
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	@OPERATION
+	void addCommitHelp(String agent) {
+		if( !this.help.containsKey(agent) ) {
+			try {
+				this.help.put (	agent, 
+								defineObsProperty("helpCommitment", 
+						 		   				  ASSyntax.parseLiteral(agent)));
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		}
+		else {
+			failed("item conflicted","item_conflicted","item_conflicted");
+		}
+	}
+	
+	@OPERATION
+	void subCommitHelp(String agent) {
+		if( !this.help.containsKey(agent) ) {
+				removeObsProperty(this.help.get(agent).getName());
+
+				this.help.remove(agent); 
+		}
+		else {
+			failed("item conflicted","item_conflicted","item_conflicted");
+		}
+	}
 	
 	@OPERATION
 	void addGatherCommitment(String agent, String item) {

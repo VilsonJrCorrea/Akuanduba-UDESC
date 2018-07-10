@@ -46,7 +46,7 @@ repeat(NNNR , QTD , L ,L ).
 
 +!craftComParts:	
 					role(ROLE,_,_,LOAD,_,_,_,_,_,_,_)  &
-					ROLE\==truck & 
+					ROLE\==drone & 
 					name(NAMEAGENT) &
 					(.count(craftCommitment(_,_))<.count(item(_,_,_,parts(P))&
 														 P\==[])) &
@@ -67,7 +67,7 @@ repeat(NNNR , QTD , L ,L ).
 				+todo(craftComParts,8);	
 				.
 
-+!craftComParts	: role(truck,_,_,_,_,_,_,_,_,_,_)|
++!craftComParts	: role(drone,_,_,_,_,_,_,_,_,_,_)|
 				  (.count(craftCommitment(_,_))>=.count(item(_,_,_,parts(P))& P\==[])) 
 		<- true; .
 
@@ -120,15 +120,6 @@ repeat(NNNR , QTD , L ,L ).
 		+steps(craftComParts, T);
 	.
 
-
-//-doing(X): steps(X, ACTS) & acaoValida(ACT) & ACTS\==[] 
-//	& .member(X,[craftSemParts,craftComParts])
-//	<-
-//		-steps(X, _ );
-//		+steps(X, [ACT|ACTS]);
-//	.
-
-
 +!gatherParts([H|T] , LST , R ) :  true
 	<-
 		?resourceNode( _ , LAT , LON , H );
@@ -157,7 +148,8 @@ repeat(NNNR , QTD , L ,L ).
 				//.broadcast (achieve, help(OTHERROLE, WORKSHOP, PID));
 				for (partners(OTHERROLE,A) & 
 					 not craftCommitment(A,_) &
-					 not gatherCommitment(A,_)
+					 not gatherCommitment(A,_) &
+					 not helpCommitment (A)
 				) {
 					.send (A, achieve, help(WORKSHOP, PID));
 				}				
@@ -195,19 +187,21 @@ repeat(NNNR , QTD , L ,L ).
 
 @help3[atomic]
 +!confirmhelp(WORKSHOP, QUEMPRECISA):
-	true
-	<-
-		-lockhelp;
+	name(A)
+	<-		
 		?role(ROLE,_,_,_,_,_,_,_,_,_,_);
 		.print("Vou ajudar ",QUEMPRECISA, " e sou um ", ROLE );		
 		+steps(help, [goto(WORKSHOP), assist_assemble(QUEMPRECISA) ]);
 		+todo(help, 6);
+		-lockhelp;
+		addCommitHelp(A);
 	.
 
 @help4[atomic]
 +steps(help, []):
-	true
+	name(A)
 	<-	.print("ACABOU O HELP");
 		-doing(help);
 		-steps(help, _);
+		subCommitHelp(A);
 	.
