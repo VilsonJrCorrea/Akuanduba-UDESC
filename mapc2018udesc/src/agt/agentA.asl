@@ -4,7 +4,7 @@
 { include("gathering.asl") }
 { include("charging.asl") }		
 { include("regras.asl") }
-{ include("job.asl") }
+//{ include("job.asl") }
 { include("construcao_pocos.asl")}
 
 //+doing(X): step(S)
@@ -112,13 +112,40 @@
 		-+lastDoing(X);			
 		-steps(X,_);
 		+steps(X,T);
-		if (Y\==exploration) {
-			.print("recuperou last step");
-			-steps(Y,_);
-			+steps(Y,[LA|L]);
-		}
-		action( ACT);
-.
+		 if (Y\==exploration) { 
+		      .print("recuperou last step"); 
+		      -steps(Y,_); 
+		      +steps(Y,[LA|L]); 
+		      .print("recuperando de uma troca de contexto"); 
+		      if (LA=assemble(_) | LA==assist_assemble(_) ) { 
+		        ?centerStorage(STORAGE); 
+		        -steps(Y,_); 
+		        +steps(Y,[goto(STORAGE)|[LA|L]]); 
+		        .print("recuperando ultima acao valida: ---> ",steps(Y,[goto(STORAGE)|[LA|L]]));   
+		      } 
+		      if (LA==gather) { 
+		        ?name(NAME); 
+		        ?gatherCommitment(NAME,ITEM); 
+		        ?resourceNode(_,LATRESOUR,LONRESOUR,ITEM); 
+		        -steps(Y,_); 
+		        +steps(Y,[goto(LATRESOUR,LONRESOUR)|[LA|L]]);   
+		        .print("recuperando ultima acao valida: ---> ",steps(Y,[goto(LATRESOUR,LONRESOUR)|[LA|L]])); 
+		      } 
+		      if (LA==assist_assemble(_)) { 
+		        ?centerWorkshop(WORKSHOP); 
+		        ?workshop(WORKSHOP,LATW,LONW); 
+		        -steps(Y,_); 
+		        +steps(Y,[goto(LATW,LONW)|[LA]]);   
+		        .print("recuperando ultima acao valida: ---> ",steps(Y,[goto(LATRESOUR,LONRESOUR)|[LA|L]]));     
+		      } 
+		      if (LA==goto(_) | LA==goto(_,_) ) {       
+		        -steps(Y,_); 
+		        +steps(Y,[LA|L]); 
+		        .print("recuperando ultima acao valida: ",steps(Y,[LA|L])); 
+		      } 	   
+	    } 
+    action( ACT); 
+. 
 
 @s6[atomic]
 +step(S)

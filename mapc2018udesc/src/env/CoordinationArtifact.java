@@ -14,8 +14,23 @@ public class CoordinationArtifact extends Artifact {
 	
 	
 	private HashMap<String, ObsProperty> tarefas = new HashMap<>();
-	private HashMap<AgentId, double[]> positions = new HashMap<>();
-	
+	private HashMap<AgentId, double[]> positions = new HashMap<>();	
+	private HashMap<String, ObsProperty> job = new HashMap<>(); 
+	   
+	  @OPERATION 
+	  void addIntentionToDoJob(String job) { 
+	    if( !this.job.containsKey(job) ) { 
+	      try { 
+	        signal( this.getCurrentOpAgentId(),  
+	                "dojob",ASSyntax.parseLiteral(job)); 
+	        this.job.put(job, defineObsProperty("jobCommitment",  
+	                          ASSyntax.parseLiteral(job))); 
+	      } catch (ParseException e) { 
+	        e.printStackTrace(); 
+	      } 
+	    } 
+	  } 
+	   
 	@OPERATION
 	void addGatherCommitment(String agent, String item) {
 		if( !tarefas.containsKey(item) ) {
