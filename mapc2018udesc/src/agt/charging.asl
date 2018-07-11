@@ -8,7 +8,7 @@
 	<-
 		!!recharge (CURRENTLAT,CURRENTLON);
 	.
-	
+@inicia_todo_recharge[atomic]	
 +!recharge (LAT,LON)
 	: calculatenearchargingstation(Facility,LAT,LON,X1,Y1,DISTANCE) 
 	<-
@@ -16,15 +16,11 @@
 		//regra para repeticao
 		?repeat( charge, STEPSRECHARGE, [], R );
 		+steps(recharge,[goto(Facility)|R]);
-		if (agentA1) {
-			.print(R);	
+		if (name(agentA2)) {
+			.print("criou ->",steps(recharge,[goto(Facility)|R]));	
 		}		
 		+todo(recharge,10);
 	.	
-+steps(recharge,[]):true
-	<-
-		-todo(recharge,_);
-	.
 
 +charge(BAT):BAT==0
 	<-

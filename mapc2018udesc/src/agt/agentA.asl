@@ -31,24 +31,26 @@
 @consume_steps[atomic]
 +lastActionResult( successful ): 
 				lastDoing(LD)							& 
-				steps(LD,[ACT|T])						& 
+				steps(LD,[ACT|T])						&
+				lastActionParams(PA)					& 
 				acaoValida( LA )						&
 				lastAction(RLA)							&
 				RLA\==continue							&
-				(RLA\==noAction							|
-				 (RLA==noAction & LA=help(OTHERROLE)))	
+				step(S)									&
+				RLA\==noAction						//	|
+				// (RLA==noAction & LA=help(OTHERROLE)))	
 	<-
 		if (T=[]) {
 			-todo(LD,_);
-			if (name(agentA1)) {
-				.print("acabou ",LD, " --------------- ",RLA);	
+			if (name(agentA2)) {
+				.print(S,": acabou ",LD, " --------------- ",RLA, PA);	
 			}
 		}
 		else {
 			-steps(LD,_);
 			+steps(LD,T);
-			if (name(agentA1)) {
-				.print("atualizou ",LD," -> ",LA, " = ",RLA, " agora ",T);	
+			if (name(agentA2)) {
+				.print(S,": atualizou ",LD," -> ",LA, " = ",RLA, PA," agora ",T);	
 			}	
 		}
 	.
@@ -130,7 +132,6 @@
 +!sendcentrals
 	:	name(agentA20)
 	<-	
-		.wait( step(STEP) & STEP>0 );
 		?centerStorageRule(STORAGE); 
 		+centerStorage(STORAGE);
 		 ?centerWorkshopRule(WORKSHOP);
@@ -144,7 +145,7 @@
 
 
 @s1[atomic]
-+step( _ ): not route([]) &lastDoing(Y) & doing(X) & Y==X
++step( _ ): not route([]) &lastDoing(X) & doing(X)
 	<-
 //		if (name(agentA1)) {
 //			.print("1-rota em andamento e doing ",X);	
@@ -166,8 +167,8 @@
 //			.print("2-rota em andamento e doing ",X);
 //		}
 		-+lastDoing(X);			
-		-steps(X,_);
-		+steps(X,T);
+//		-steps(X,_);
+//		+steps(X,T);
     	action( ACT); 
 . 
 
