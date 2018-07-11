@@ -3,10 +3,10 @@ repeat(NNNR , QTD , L ,L ).
 
 +!craftSemParts	:	role(truck,_,_,LOAD,_,_,_,_,_,_,_) & name(NAMEAGENT) 
 				& (.count(gatherCommitment(_,_))<.count(item(_,_,_,parts([]))))
-	<-		
+	<-	
+	
 		?gogather(ITEM);
 		addGatherCommitment(NAMEAGENT, ITEM);
-		.print (truck," Commit ",ITEM);
 		.wait(resourceNode(_,LATRESOUR,LONRESOUR,ITEM));
 		?item(ITEM,TAM,_,_);
 		LIST = [goto(LATRESOUR, LONRESOUR)];
@@ -19,6 +19,7 @@ repeat(NNNR , QTD , L ,L ).
 		.concat(NLIST, [goto(FS)] , NNLIST);
 		.concat(NNLIST, [store(ITEM,QTD)] , NNNLIST);
 		
+
 		-steps( craftSemParts, _ );
 		+steps( craftSemParts, NNNLIST );
 		+todo(craftSemParts,8);
@@ -45,7 +46,7 @@ repeat(NNNR , QTD , L ,L ).
 
 +!craftComParts:	
 					role(ROLE,_,_,LOAD,_,_,_,_,_,_,_)  &
-					ROLE\==drone & 
+					ROLE\==truck & 
 					name(NAMEAGENT) &
 					(.count(craftCommitment(_,_))<.count(item(_,_,_,parts(P))&
 														 P\==[])) &
@@ -66,7 +67,7 @@ repeat(NNNR , QTD , L ,L ).
 				+todo(craftComParts,8);	
 				.
 
-+!craftComParts	: role(drone,_,_,_,_,_,_,_,_,_,_)|
++!craftComParts	: role(truck,_,_,_,_,_,_,_,_,_,_)|
 				  (.count(craftCommitment(_,_))>=.count(item(_,_,_,parts(P))& P\==[])) 
 		<- true; .
 
@@ -107,6 +108,7 @@ repeat(NNNR , QTD , L ,L ).
 		-steps( craftComParts, []);
 		-todo( craftComParts, _);
 		.print( "terminou craftComParts");
+		//procura nova tarefa.
 	.
 	
 @gather3[atomic]
@@ -123,10 +125,11 @@ repeat(NNNR , QTD , L ,L ).
 +!supportCraft(OTHERROLE):
 				name(WHONEED) & centerWorkshop(WORKSHOP)
 			<-	
-				 PID = math.floor(math.random(10000));
+				 PID = math.floor(math.random(100000));
+				//.broadcast (achieve, help(OTHERROLE, WORKSHOP, PID));
 				for (partners(OTHERROLE,A) & 
 					 not craftCommitment(A,_) &
-					 not gatherCommitment(A,_) 
+					 not gatherCommitment(A,_)
 				) {
 					.send (A, achieve, help(WORKSHOP, PID));
 					.print(	"preciso da ajuda de um ",OTHERROLE,
@@ -135,7 +138,7 @@ repeat(NNNR , QTD , L ,L ).
 				!!waitConfirmHelp;
 			.
 			
-+!waitConfirmHelp: 	.count(helper(PID, COST)[source(_)],N) & N\==0 &
++!waitConfirmHelp: 	.count(helper(PID, COST)[source(_)],N) & N>2 &
 					name(WHONEED) & centerWorkshop(WORKSHOP)
 	<-
 		?lesscost (PID, AGENT); //regra para achar o menor custo de helper(PID,COST)[source(_)]				
@@ -150,9 +153,7 @@ repeat(NNNR , QTD , L ,L ).
 	.
 
 @help1[atomic]
-+!help(WORKSHOP, PID)[source(AGENT)] : 	not todo(help, _)  	& 
-										not lockhelp										
-										
++!help(WORKSHOP, PID)[source(AGENT)] : not todo(help, _)  & not lockhelp
 	<-	
 		+lockhelp;
 		?lat(XA);
@@ -168,18 +169,18 @@ repeat(NNNR , QTD , L ,L ).
 
 @help3[atomic]
 +!confirmhelp(WORKSHOP, QUEMPRECISA):
-	name(A)
-	<-		
+	true
+	<-
+		-lockhelp;
 		?role(ROLE,_,_,_,_,_,_,_,_,_,_);
-		.print("Vou ajudar ",QUEMPRECISA, " e sou um ", ROLE );
+		.print("Vou ajudar ",QUEMPRECISA, " e sou um ", ROLE );		
 		+steps(help, [goto(WORKSHOP), assist_assemble(QUEMPRECISA) ]);
 		+todo(help, 6);
-		-lockhelp;
 	.
 
 @help4[atomic]
 +steps(help, []):
-	name(A)
+	true
 	<-	.print("ACABOU O HELP");
 		-doing(help);
 		-steps(help, _);

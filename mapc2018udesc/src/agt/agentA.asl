@@ -108,39 +108,14 @@
 				steps(Y,L)			&
 				acaoValida( LA )
 	<-
-		//.print("recuperando ultima acao valida:",LA);
+		//.print("2-rota em andamento e doing ",X);
 		-+lastDoing(X);			
 		-steps(X,_);
 		+steps(X,T);
 		if (Y\==exploration) {
-			.print("recuperando de uma troca de contexto");
-			if (LA=assemble(_) | LA==assist_assemble(_) ) {
-				?centerStorage(STORAGE);
-				-steps(Y,_);
-				+steps(Y,[goto(STORAGE)|[LA|L]]);
-				.print("recuperando ultima acao valida: ---> ",steps(Y,[goto(STORAGE)|[LA|L]]));	
-			}
-			if (LA==gather) {
-				?name(NAME);
-				?gatherCommitment(NAME,ITEM);
-				?resourceNode(_,LATRESOUR,LONRESOUR,ITEM);
-				-steps(Y,_);
-				+steps(Y,[goto(LATRESOUR,LONRESOUR)|[LA|L]]);	
-				.print("recuperando ultima acao valida: ---> ",steps(Y,[goto(LATRESOUR,LONRESOUR)|[LA|L]]));
-			}
-			if (LA==assist_assemble(_)) {
-				?centerWorkshop(WORKSHOP);
-				?workshop(WORKSHOP,LATW,LONW);
-				-steps(Y,_);
-				+steps(Y,[goto(LATW,LONW)|[LA]]);	
-				.print("recuperando ultima acao valida: ---> ",steps(Y,[goto(LATRESOUR,LONRESOUR)|[LA|L]]));		
-			}
-			if (LA==goto(_) | LA==goto(_,_) ) {			
-				-steps(Y,_);
-				+steps(Y,[LA|L]);
-				.print("recuperando ultima acao valida: ",steps(Y,[LA|L]));
-			}
-	
+			.print("recuperou last step");
+			-steps(Y,_);
+			+steps(Y,[LA|L]);
 		}
 		action( ACT);
 .
@@ -153,10 +128,9 @@
 			X == failed_counterpart | X == failed_tools 		|
 			X == failed_location  	| X == failed_item_amount 	|
 			X == partial_success	| X == successful_partial	|
-			X == randomFail			| X == failed
+			X == randomFail	
 		)
-	&	acaoValida( ACTION )	&
-	ACTION \== noAction
+	&	acaoValida( ACTION )
 	<-	
 		if (X \== successful_partial	) {
 			.print( "step",S,": ",X, " repetindo ", ACTION );

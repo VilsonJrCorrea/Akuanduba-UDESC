@@ -20,8 +20,10 @@ gocraft(ITEM,ROLE) :-item(ITEM,_,roles(R),_) & not craftCommitment(AGENT,ITEM)& 
 
 lesscost(PID, AGENT):-
 	helper(PID, COST1)[source(AGENT)]
-	&	(not (helper(PID, COST2)[source(AGENT2)]
-	&	COST2 < COST1)).// | .count(helper(PID, _),1)).
+	&	not (helper(PID, COST2)[source(AGENT2)]
+		&	COST2 < COST1
+	)
+	.
 
 nearshop(Facility):- 	
 					lat(X0) & lon(Y0) 
