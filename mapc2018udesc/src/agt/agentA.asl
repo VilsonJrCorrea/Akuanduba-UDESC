@@ -17,20 +17,32 @@
 //	.
 
 //depuracao das falhas
-//+lastActionResult( X ) :	
+//+lastActionResult( X ) :
+//	lastAction(ACTION)		&
+//	lastActionParams(PA)	&
 //	step(S) 				&
-//	X\==successful 			&
-//	X\==successful_partial	&
-//	acaoValida( ACTION )
+//	ACTION=assist_assemble
+//	//acaoValida( ACTION )
 //	<-	
-//			.print( "Depuracao step",S-1,": ",X, " acao ", ACTION );
+//			.print( "Depuracao step",S,": ",X, " acao ", ACTION,PA );
 //	.
 
-//+lastActionResult( failed_item_amount ) :
-//		doing
-//	<-
-//		true;	
-//	. 	
+//depuracao das falhas
++lastAction(ACTION):
+	lastActionResult( X )	&
+	lastActionParams(PA)	&
+	step(S) 				&
+	ACTION=assist_assemble
+	<-	
+			.print( "Depuracao step",S,": ",X, " acao ", ACTION,PA );
+	.
+
+
++lastActionResult( failed_capacity ) :
+		lastdoing(LD)
+	<-
+		.print (LD, " failed_capacity")
+	. 	
 
 +resourceNode(A,B,C,D)[source(percept)]:
 			not (resourceNode(A,B,C,D)[source(SCR)] &
