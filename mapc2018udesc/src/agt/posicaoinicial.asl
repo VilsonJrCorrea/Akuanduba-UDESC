@@ -9,7 +9,6 @@ nextlon(FLON,RLON):- rightdirection(DLON) &
 					 dislon(SIZE) & 
 					 	((DLON==true  & RLON=FLON+SIZE) |
 				  		 (DLON==false & RLON=FLON-SIZE)).
-
 invert(I,O):- (I=true & O=false)|(I=false & O=true).
 
 -doing(exploration): steps(exploration, ACTS) & lat(LAT) 

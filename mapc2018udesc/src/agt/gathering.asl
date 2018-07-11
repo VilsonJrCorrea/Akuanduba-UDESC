@@ -3,10 +3,10 @@ repeat(NNNR , QTD , L ,L ).
 
 +!craftSemParts	:	role(truck,_,_,LOAD,_,_,_,_,_,_,_) & name(NAMEAGENT) 
 				& (.count(gatherCommitment(_,_))<.count(item(_,_,_,parts([]))))
-	<-	
-	
+	<-		
 		?gogather(ITEM);
 		addGatherCommitment(NAMEAGENT, ITEM);
+		.print (truck," Commit ",ITEM);
 		.wait(resourceNode(_,LATRESOUR,LONRESOUR,ITEM));
 		?item(ITEM,TAM,_,_);
 		LIST = [goto(LATRESOUR, LONRESOUR)];
@@ -19,7 +19,9 @@ repeat(NNNR , QTD , L ,L ).
 		.concat(NLIST, [goto(FS)] , NNLIST);
 		.concat(NNLIST, [store(ITEM,QTD)] , NNNLIST);
 		
-
+		//TESTANDO UM NOVO CONCEITO PARA RECARGA
+		!!recharge(LATRESOUR, LONRESOUR);
+		//--------------------------------------
 		-steps( craftSemParts, _ );
 		+steps( craftSemParts, NNNLIST );
 		+todo(craftSemParts,8);
@@ -46,7 +48,7 @@ repeat(NNNR , QTD , L ,L ).
 
 +!craftComParts:	
 					role(ROLE,_,_,LOAD,_,_,_,_,_,_,_)  &
-					ROLE\==truck & 
+					ROLE\==drone & 
 					name(NAMEAGENT) &
 					(.count(craftCommitment(_,_))<.count(item(_,_,_,parts(P))&
 														 P\==[])) &
@@ -67,7 +69,7 @@ repeat(NNNR , QTD , L ,L ).
 				+todo(craftComParts,8);	
 				.
 
-+!craftComParts	: role(truck,_,_,_,_,_,_,_,_,_,_)|
++!craftComParts	: role(drone,_,_,_,_,_,_,_,_,_,_)|
 				  (.count(craftCommitment(_,_))>=.count(item(_,_,_,parts(P))& P\==[])) 
 		<- true; .
 
@@ -108,7 +110,6 @@ repeat(NNNR , QTD , L ,L ).
 		-steps( craftComParts, []);
 		-todo( craftComParts, _);
 		.print( "terminou craftComParts");
-		//procura nova tarefa.
 	.
 	
 @gather3[atomic]
@@ -120,51 +121,22 @@ repeat(NNNR , QTD , L ,L ).
 		+steps(craftComParts, T);
 	.
 
-
-//-doing(X): steps(X, ACTS) & acaoValida(ACT) & ACTS\==[] 
-//	& .member(X,[craftSemParts,craftComParts])
-//	<-
-//		-steps(X, _ );
-//		+steps(X, [ACT|ACTS]);
-//	.
-
-
-+!gatherParts([H|T] , LST , R ) :  true
-	<-
-		?resourceNode( _ , LAT , LON , H );
-		.concat(LST , [ goto(LAT , LON) , gather] , NLST);
-		!gatherParts(T , NLST , R )
-		.
-								
-+!gatherParts([] , LST , R): true
-	<-	R = LST.
-							
-////regra para selecionar o item que da pra fazer
-//itemacraftar(LISTAPARTS , ROLE , OTHERROLE):- 
-//			centerStorage(STORAGE) &
-//			item(NOME,_,roles(LISTAROLES),LISTAPARTS) &
-//			storage(STORAGE,_,_,_,_,[PARTSWEHAVE]) &
-//			.member( LISTAPARTS , PARTSWEHAVE ) &
-//			LISTAPARTS == [ROLE | OTHERROLE] &
-//			.print("!@#!$@#%#$%@#$ITEM A CRAFTAR")
-//			.
-
-/* Adicionado */
 +!supportCraft(OTHERROLE):
 				name(WHONEED) & centerWorkshop(WORKSHOP)
 			<-	
-				 PID = math.floor(math.random(100000));
-				//.broadcast (achieve, help(OTHERROLE, WORKSHOP, PID));
+				 PID = math.floor(math.random(10000));
 				for (partners(OTHERROLE,A) & 
 					 not craftCommitment(A,_) &
-					 not gatherCommitment(A,_)
+					 not gatherCommitment(A,_) 
 				) {
 					.send (A, achieve, help(WORKSHOP, PID));
-				}				
+					.print(	"preciso da ajuda de um ",OTHERROLE,
+							" agente ",A, "me ajude");
+				}							
 				!!waitConfirmHelp;
 			.
 			
-+!waitConfirmHelp: 	.count(helper(PID, COST)[source(_)],N) & N>2 &
++!waitConfirmHelp: 	.count(helper(PID, COST)[source(_)],N) & N\==0 &
 					name(WHONEED) & centerWorkshop(WORKSHOP)
 	<-
 		?lesscost (PID, AGENT); //regra para achar o menor custo de helper(PID,COST)[source(_)]				
@@ -179,7 +151,9 @@ repeat(NNNR , QTD , L ,L ).
 	.
 
 @help1[atomic]
-+!help(WORKSHOP, PID)[source(AGENT)] : not todo(help, _)  & not lockhelp
++!help(WORKSHOP, PID)[source(AGENT)] : 	not todo(help, _)  	& 
+										not lockhelp										
+										
 	<-	
 		+lockhelp;
 		?lat(XA);
@@ -195,18 +169,18 @@ repeat(NNNR , QTD , L ,L ).
 
 @help3[atomic]
 +!confirmhelp(WORKSHOP, QUEMPRECISA):
-	true
-	<-
-		-lockhelp;
+	name(A)
+	<-		
 		?role(ROLE,_,_,_,_,_,_,_,_,_,_);
-		.print("Vou ajudar ",QUEMPRECISA, " e sou um ", ROLE );		
+		.print("Vou ajudar ",QUEMPRECISA, " e sou um ", ROLE );
 		+steps(help, [goto(WORKSHOP), assist_assemble(QUEMPRECISA) ]);
 		+todo(help, 6);
+		-lockhelp;
 	.
 
 @help4[atomic]
 +steps(help, []):
-	true
+	name(A)
 	<-	.print("ACABOU O HELP");
 		-doing(help);
 		-steps(help, _);

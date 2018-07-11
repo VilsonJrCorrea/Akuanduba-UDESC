@@ -1,9 +1,20 @@
 
 +job(NOMEJOB,_,_,_,_,_)
-	:
-		role(motorcycle,_,_,_,_,_,_,_,_,_,_)
+	:	not jobCommitment(NOMEJOB) 	&
+		not commitjob(NOMEJOB) 		&
+		name(A) 					&
+   	 	not doing(_)				&
+   	 	not commitjob(NOMEJOB)
 	<-
-		!realizarJob( NOMEJOB );
+		.print("quero fazer a entrega: ",NOMEJOB);
+		addIntentionToDoJob(NOMEJOB);	
+	.
+
++dojob(NOMEJOB) : true
+	<-
+		+commitjob(NOMEJOB);
+		.print("---------------------> vou fazer a entrega: ",NOMEJOB);
+		//!realizarJob( NOMEJOB );
 	.
 
 +!realizarJob( NOMEJOB )
