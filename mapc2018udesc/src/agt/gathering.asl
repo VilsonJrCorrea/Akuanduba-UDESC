@@ -13,7 +13,7 @@
 		QTD = math.floor( (LOAD / TAM) ) ;		
 		?repeat( gather, QTD, [], GATHERS );
 		.wait(centerStorage(FS));
-		.concat([goto(LATRESOUR, LONRESOUR)],GATHERS,[goto(FS),store(ITEM,QTD)],PLAN)
+		.concat([goto(LATRESOUR, LONRESOUR)],GATHERS,[goto(FS),store(ITEM,QTD)],PLAN);
 		+steps( craftSemParts, PLAN);
 		+todo(craftSemParts,8);
 	.
@@ -75,7 +75,6 @@
 @gather1[atomic]
 +steps( craftSemParts, [] ): true
 	<- 	
-		-steps( craftSemParts, [] );
 		-todo(craftSemParts, _);
 		?name(ME);
 		?gatherCommitment(ME,ITEM);
@@ -84,23 +83,23 @@
 		//procura nova tarefa.
 	.
 
-@gather2[atomic]
-+steps( craftComParts,[] ): true
-	<- 	
-		-steps( craftComParts, []);
-		-todo( craftComParts, _);
-		.print( "terminou craftComParts");
-		//procura nova tarefa.
-	.
+//@gather2[atomic]
+//+steps( craftComParts,[] ): true
+//	<- 	
+//		-steps( craftComParts, []);
+//		-todo( craftComParts, _);
+//		.print( "terminou craftComParts");
+//		//procura nova tarefa.
+//	.
 	
-@gather3[atomic]
-+steps(craftComParts, [help(OTHERROLE)|T]):
-	true
-	<-.print("CHAMANDO SUPPORTCRAFT");
-		!supportCraft(OTHERROLE);
-		-steps(craftComParts, [help(OTHERROLE)|T]);
-		+steps(craftComParts, T);
-	.
+//@gather3[atomic]
+//+steps(craftComParts, [help(OTHERROLE)|T]):
+//	true
+//	<-.print("CHAMANDO SUPPORTCRAFT");
+//		!supportCraft(OTHERROLE);
+//		-steps(craftComParts, [help(OTHERROLE)|T]);
+//		+steps(craftComParts, T);
+//	.
 
 
 /* Adicionado */

@@ -73,8 +73,10 @@ public class CoordinationArtifact extends Artifact {
 										double MAXLAT, double MAXLON , 
 										double VR ) {
 		if( !this.positions.containsKey(this.getCurrentOpAgentId()) ) {			
+			//guarda drones na lista
 			this.positions.put(this.getCurrentOpAgentId(), new double[]{LAT,LON});
 			if(this.positions.size()==4) {
+				//Quando todos informaram calcula o centro e os pontos iniciais das rotas
 				double [] CENTER = {(MAXLAT+MINLAT)/2,(MAXLON+MINLON)/2};
 				
 				double [][] corners = {
@@ -85,20 +87,22 @@ public class CoordinationArtifact extends Artifact {
 				};
 				DronePos [] VARINP = new DronePos[16];
 				int idx = 0;
-				
+				//cria modelo do oj!algol 
 				final ExpressionsBasedModel tmpModel = new ExpressionsBasedModel();
-				
+				// produto cartesiano drone X ponto inicial = variaveis independentes 
 				for(Map.Entry<AgentId, double[]> entry : this.positions.entrySet()) {
 				    AgentId key = entry.getKey();
 				    double [] POSITION = entry.getValue();
 				    int cidx=0;
 				    for (double[] CORNER: corners) {
+				    	// cria variavel da funcao objetivo
 					    VARINP[idx] = new DronePos(key, cidx, CORNER, POSITION);
 					    tmpModel.addVariable(VARINP[idx].getVar());					    
 					    idx++;
 					    cidx= idx%4;
 				    }
 				}
+				// cria restricoes um agente so pode ter um canto e um canto so pode ter 1 agente
 				for (int a=0;a<4;a++) {
 					Expression tmpConstraint1 = tmpModel.addExpression("ConstraintAgent"+a);
 					Expression tmpConstraint2 = tmpModel.addExpression("ConstraintCorner"+a);
@@ -122,8 +126,9 @@ public class CoordinationArtifact extends Artifact {
 						}
 					}
 				}
-		        // Solve the problem - minimise the cost
+		        // resolve o problema (minimizacao da funcao objetivo)
 		        Optimisation.Result tmpResult = tmpModel.minimise();
+		        // informa para os agentes os respectivos pontos iniciais
 		        for (int i=0; i<16; i++) {
 		        	if (tmpResult.get(i).intValue()==1) {
 		        		signal( VARINP[i].getAgent(), 

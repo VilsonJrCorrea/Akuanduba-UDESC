@@ -12,12 +12,12 @@ nextlon(FLON,RLON):- rightdirection(DLON) &
 
 invert(I,O):- (I=true & O=false)|(I=false & O=true).
 
+@special_recovery[atomic]
 -doing(exploration): steps(exploration, ACTS) & lat(LAT) 
 	& lon(LON) & acaoValida( ACAO ) & ACTS \== []
 	<-
 		-steps(exploration, _ );
 		+steps(exploration, [goto(LAT,LON)| [ ACAO | ACTS ] ]);
-		?steps(exploration, LISTA);
 	.
 
 +!droneposition: role(R,_,_,_,_,_,_,_,_,_,_) & R\==drone
@@ -42,13 +42,13 @@ invert(I,O):- (I=true & O=false)|(I=false & O=true).
 		+steps( exploration, R);
 		+todo(exploration,9);		
 	.
-
-+steps(exploration,[]):true
-	<-
-		-todo(exploration,_);
-//		-doing(_);
-		-steps( exploration,[]);
-	.
+//
+//+steps(exploration,[]):true
+//	<-
+//		-todo(exploration,_);
+////		-doing(_);
+//		-steps( exploration,[]);
+//	.
 
 +!buildexplorationsteps(CLAT, CLON, LAST, F, LS, R): F>CLAT   
 	<-

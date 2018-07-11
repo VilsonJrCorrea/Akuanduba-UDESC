@@ -1,17 +1,17 @@
 { include("$jacamoJar/templates/common-cartago.asl") }
 { include("$jacamoJar/templates/common-moise.asl") }
-{ include("posicaoinicial.asl") }
+{ include("exploration.asl") }
 { include("gathering.asl") }
 { include("charging.asl") }		
 { include("regras.asl") }
 //{ include("job.asl") }
 { include("construcao_pocos.asl")}
 
-//+doing(X): step(S)
+//+doing(X): step(S) & name(agentA1)
 //	<-
 //		.print( "step",S,": doing: ",X);
 //	.
-//-doing(X): step(S)
+//-doing(X): step(S) & name(agentA1)
 //	<-
 //		.print( "step",S,": stop doing: ",X);
 //	.
@@ -27,22 +27,50 @@
 //			.print( "Depuracao step",S,": ",X, " acao ", ACTION,PA );
 //	.
 
-//depuracao das falhas
-+lastAction(ACTION):
-	lastActionResult( X )	&
-	lastActionParams(PA)	&
-	step(S) 				&
-	ACTION=assist_assemble
-	<-	
-			.print( "Depuracao step",S,": ",X, " acao ", ACTION,PA );
+//testando uma abordagem de consumo de steps
+@consume_steps[atomic]
++lastActionResult( successful ): 
+				lastDoing(LD)							& 
+				steps(LD,[ACT|T])						& 
+				acaoValida( LA )						&
+				lastAction(RLA)							&
+				RLA\==continue							&
+				(RLA\==noAction							|
+				 (RLA==noAction & LA=help(OTHERROLE)))	
+	<-
+		if (T=[]) {
+			-todo(LD,_);
+			if (name(agentA1)) {
+				.print("acabou ",LD, " --------------- ",RLA);	
+			}
+		}
+		else {
+			-steps(LD,_);
+			+steps(LD,T);
+			if (name(agentA1)) {
+				.print("atualizou ",LD," -> ",LA, " = ",RLA, " agora ",T);	
+			}	
+		}
 	.
 
+@remove_todo_doing_steps[atomic]
+-todo(ACTION,_):true
+<-
+//	if (name(agentA1)) {
+//		.print("removeu doing e steps ",ACTION);
+//	}
+	-doing(ACTION);
+	-steps(ACTION,_);
+	!buscarTarefa;
+.
 
-+lastActionResult( failed_capacity ) :
-		lastdoing(LD)
+@dispara_busca_tarefa[atomic]
++todo(ACTION,PRIORITY): true
 	<-
-		.print (LD, " failed_capacity")
-	. 	
+		!buscarTarefa;
+	.
+
+//------------------------------------------
 
 +resourceNode(A,B,C,D)[source(percept)]:
 			not (resourceNode(A,B,C,D)[source(SCR)] &
@@ -59,42 +87,32 @@
 						name(AGENT));					
 					.broadcast(tell,partners(VEHICLE,AGENT));
 					!!craftSemParts;
-					!!craftComParts;
-					!!callCraftComPartsWithDelay										
+					//!!callCraftComPartsWithDelay										
 					!!buildPoligon;
 					!!sendcentrals;
 					!!droneposition;
 					.
 
-+todo(ACTION,PRIORITY): true
-	<-
-		!buscarTarefa;
-	.
 
--todo(ACTION,_):true
-<-
-	-doing(ACTION);
-	-steps(ACTION,_);
-	!buscarTarefa;
-.
 
-+!buscarTarefa
-	:	.count((todo(_,_)) , QUANTIDADE) 	&
-			QUANTIDADE == 0 & charge(BAT1) 	& 
-			role(_,_,_,BAT2,_,_,_,_,_,_,_)	&
-			BAT1<BAT2*0.9
-	<-	
-		//.print("nada para fazer vou recarregar");
-		?centerStorage(FS);
-		?storage(FS,LAT,LON,_,_,_);
-		!recharge (LAT,LON);
-	.
+//+!buscarTarefa
+//	:	.count((todo(_,_)) , QUANTIDADE) 	&
+//			QUANTIDADE == 0 & charge(BAT1) 	& 
+//			role(_,_,_,BAT2,_,_,_,_,_,_,_)	&
+//			BAT1<BAT2*0.9
+//	<-	
+//		//.print("nada para fazer vou recarregar");
+//		?centerStorage(FS);
+//		?storage(FS,LAT,LON,_,_,_);
+//		!recharge (LAT,LON);
+//	.
 
 +!buscarTarefa
 	:	.count((todo(_,_)) , QUANTIDADE) 	&
-			QUANTIDADE == 0 & charge(BAT1) 	& 
-			role(_,_,_,BAT2,_,_,_,_,_,_,_)	&
-			BAT1>=BAT2*0.9
+			QUANTIDADE == 0 
+//			& charge(BAT1) 	& 
+//			role(_,_,_,BAT2,_,_,_,_,_,_,_)	&
+//			BAT1>=BAT2*0.9
 	<-	
 		.print("nada para fazer");
 	.
@@ -106,6 +124,7 @@
 	<-	
 		?priotodo(ACTION2);
 		-+doing(ACTION2);
+		//.print ("troquei agora -> ",ACTION2);
 	.
 
 +!sendcentrals
@@ -127,7 +146,10 @@
 @s1[atomic]
 +step( _ ): not route([]) &lastDoing(Y) & doing(X) & Y==X
 	<-
-		//.print("1-rota em andamento e doing ",X);
+//		if (name(agentA1)) {
+//			.print("1-rota em andamento e doing ",X);	
+//		}
+		
 		action( continue );
 .
 
@@ -138,74 +160,16 @@
 				Y\==X 				& 
 				steps(X,[ACT|T])	& 
 				steps(Y,L)			&
-				acaoValida( LA )
+				acaoValida( LA )	
 	<-
-		//.print("2-rota em andamento e doing ",X);
+//		if (name(agentA1)) {
+//			.print("2-rota em andamento e doing ",X);
+//		}
 		-+lastDoing(X);			
 		-steps(X,_);
 		+steps(X,T);
-		 if (Y\==exploration) { 
-		      .print(	"recuperando de uma troca de contexto ",
-		      			Y," -> ", X," ( ",LA," )" ); 
-		      if (LA=assemble(_) | LA=assist_assemble(_) ) { 
-		        ?centerStorage(STORAGE); 
-		        -steps(Y,_); 
-		        +steps(Y,[goto(STORAGE)|[LA|L]]); 
-		        .print("recuperando ultima acao valida: ---> ",steps(Y,[goto(STORAGE)|[LA|L]]));   
-		      } 
-		      if (LA=gather) { 
-		        ?name(NAME); 
-		        ?gatherCommitment(NAME,ITEM); 
-		        ?resourceNode(_,LATRESOUR,LONRESOUR,ITEM); 
-		        -steps(Y,_); 
-		        +steps(Y,[goto(LATRESOUR,LONRESOUR)|[LA|L]]);   
-		        .print("recuperando ultima acao valida: ---> ",steps(Y,[goto(LATRESOUR,LONRESOUR)|[LA|L]])); 
-		      } 
-		      if (LA=assist_assemble(_)) { 
-		        ?centerWorkshop(WORKSHOP); 
-		        ?workshop(WORKSHOP,LATW,LONW); 
-		        -steps(Y,_); 
-		        +steps(Y,[goto(LATW,LONW)|[LA]]);   
-		        .print("recuperando ultima acao valida: ---> ",steps(Y,[goto(LATRESOUR,LONRESOUR)|[LA|L]]));     
-		      } 
-		      if (LA=goto(_) | LA=goto(_,_) ) {       
-		        -steps(Y,_); 
-		        +steps(Y,[LA|L]); 
-		        .print("recuperando ultima acao valida: ",steps(Y,[LA|L])); 
-		      } 	   
-	    } 
-    action( ACT); 
+    	action( ACT); 
 . 
-
-@s6[atomic]
-+step(S)
-	:	
-	lastActionResult( X )&
-		(	X == failed_wrong_param | X == failed_unknown_agent |
-			X == failed_counterpart | X == failed_tools 		|
-			X == failed_location  	| X == partial_success		| 
-			X == successful_partial	| X == randomFail	
-		)
-	&	acaoValida( ACTION )
-	<-	
-		if (X \== successful_partial	) {
-			.print( "step",S,": ",X, " repetindo ", ACTION );
-		}
-		action( ACTION );
-	.
-
-@s11[atomic]
-+step( _ ): doing(craftSemParts) & 
-			steps( craftSemParts, [store(ITEM,QUANTIDADE)|T])
-			& hasItem( ITEM, NOVAQUANTIDADE)	
-	<-	
-		 action( store(ITEM,NOVAQUANTIDADE) );
-		-steps( craftSemParts, _);
-		+steps( craftSemParts, T);
-		-+acaoValida( store(ITEM,NOVAQUANTIDADE) );
-		-+lastDoing(craftSemParts);
-	.
-
 
 @s13[atomic]
 +step( _ ):
@@ -214,8 +178,6 @@
 		& hasItem( ITEM, NOVAQUANTIDADE)
 	<-	
 		action( store(ITEM,NOVAQUANTIDADE) );
-		-steps( craftComParts, _);
-		+steps( craftComParts, T);
 		-+acaoValida( store(ITEM,NOVAQUANTIDADE) );
 		-+lastDoing(craftComParts);
 	.
@@ -228,10 +190,20 @@
 		& storagePossueItem( STORAGE, ITEM )
 	<-
 		action( retrieve( ITEM, 1 ) );
-		-steps( craftComParts, _);
-		+steps( craftComParts, T);
 		-+lastDoing(craftComParts);
 		-+acaoValida( retrieve( ITEM, 1) );
+	.
+	
+@gather3[atomic]
++step( _ ):
+	doing(craftComParts)	&
+	steps(craftComParts, [help(OTHERROLE)|T])
+	<-	
+		.print("CHAMANDO SUPPORTCRAFT");
+		-+lastDoing(craftComParts);
+		-+acaoValida( help(OTHERROLE) );
+		!supportCraft(OTHERROLE);
+		action(noAction);
 	.
 
 @s16[atomic]
@@ -240,7 +212,6 @@
 		& steps( craftComParts, [retrieve( ITEM, 1)|T])
 		& not storagePossueItem( STORAGE, ITEM )
 	<-
-		//.print("aguardando item ",ITEM)
 		action( noAction );
 		-+lastDoing(craftComParts);
 		-+acaoValida( noAction );
@@ -248,12 +219,13 @@
 
 //Doing generico
 @s18[atomic]
-+step( _ ):
++step( S ):
 		doing(DOING) & steps( DOING, [ACT|T])			
 	<-
+//		if (name(agentA1)) {
+//			.print (S," : ",steps( DOING, ACT));
+//		}
 		action( ACT );
-		-steps( DOING, _);
-		+steps( DOING, T);
 		-+acaoValida( ACT );
 		-+lastDoing(DOING);
 	.

@@ -16,6 +16,9 @@
 		//regra para repeticao
 		?repeat( charge, STEPSRECHARGE, [], R );
 		+steps(recharge,[goto(Facility)|R]);
+		if (agentA1) {
+			.print(R);	
+		}		
 		+todo(recharge,10);
 	.	
 +steps(recharge,[]):true
@@ -25,6 +28,7 @@
 
 +charge(BAT):BAT==0
 	<-
-		.print("No battery.")
+		//.print("No battery.")
+		true
 	.	
 { include("regras.asl") }
