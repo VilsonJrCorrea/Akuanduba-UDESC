@@ -4,7 +4,7 @@
 { include("gathering.asl") }
 { include("charging.asl") }		
 { include("regras.asl") }
-//{ include("job.asl") }
+{ include("job.asl") }
 { include("construcao_pocos.asl")}
 
 //+doing(X): step(S)

@@ -118,6 +118,8 @@ repeat(NNNR , QTD , L ,L ).
 		+steps(craftComParts, T);
 	.
 
+
+/* Adicionado */
 +!supportCraft(OTHERROLE):
 				name(WHONEED) & centerWorkshop(WORKSHOP)
 			<-	
@@ -128,7 +130,7 @@ repeat(NNNR , QTD , L ,L ).
 				) {
 					.send (A, achieve, help(WORKSHOP, PID));
 					.print(	"preciso da ajuda de um ",OTHERROLE,
-							" agente ",A, "me ajude");
+							" agente ",A, " me ajude");
 				}							
 				!!waitConfirmHelp;
 			.
@@ -181,4 +183,5 @@ repeat(NNNR , QTD , L ,L ).
 	<-	.print("ACABOU O HELP");
 		-doing(help);
 		-steps(help, _);
+		subCommitHelp(A);
 	.
