@@ -19,9 +19,6 @@ repeat(NNNR , QTD , L ,L ).
 		.concat(NLIST, [goto(FS)] , NNLIST);
 		.concat(NNLIST, [store(ITEM,QTD)] , NNNLIST);
 		
-		//TESTANDO UM NOVO CONCEITO PARA RECARGA
-		!!recharge(LATRESOUR, LONRESOUR);
-		//--------------------------------------
 		-steps( craftSemParts, _ );
 		+steps( craftSemParts, NNNLIST );
 		+todo(craftSemParts,8);
