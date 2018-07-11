@@ -1,6 +1,3 @@
-repeat(NNNR , QTD , L ,RR ) :- QTD> 0 & repeat(NNNR , QTD-1 , [NNNR|L] , RR). 						
-repeat(NNNR , QTD , L ,L ).
-
 +!craftSemParts	:	role(truck,_,_,LOAD,_,_,_,_,_,_,_) & name(NAMEAGENT) 
 				& (.count(gatherCommitment(_,_))<.count(item(_,_,_,parts([]))))
 	<-	
@@ -46,7 +43,7 @@ repeat(NNNR , QTD , L ,L ).
 
 +!craftComParts:	
 					role(ROLE,_,_,LOAD,_,_,_,_,_,_,_)  &
-					ROLE\==truck & 
+					ROLE\==drone & 
 					name(NAMEAGENT) &
 					(.count(craftCommitment(_,_))<.count(item(_,_,_,parts(P))&
 														 P\==[])) &
@@ -67,7 +64,7 @@ repeat(NNNR , QTD , L ,L ).
 				+todo(craftComParts,8);	
 				.
 
-+!craftComParts	: role(truck,_,_,_,_,_,_,_,_,_,_)|
++!craftComParts	: role(drone,_,_,_,_,_,_,_,_,_,_)|
 				  (.count(craftCommitment(_,_))>=.count(item(_,_,_,parts(P))& P\==[])) 
 		<- true; .
 
@@ -77,18 +74,17 @@ repeat(NNNR , QTD , L ,L ).
 	.
 
 +!passosPegarItens(LIST, [], LISTARETRIEVE)
-	:	true
-	<-	
-		LISTARETRIEVE = LIST;
-	.
-
-
-+!passosPegarItens(LIST, [H|T], LISTARETRIEVE)
-	:	true
-	<-	
-		.concat(LIST, [retrieve( H, 1)], NLIST);
-		!passosPegarItens(NLIST,T,LISTARETRIEVE);
-	.
+  :  true
+  <-  
+    LISTARETRIEVE = LIST;
+  .
+ 
+ +!passosPegarItens(LIST, [H|T], LISTARETRIEVE)
+  :  true
+  <-  
+    .concat(LIST, [retrieve( H, 1)], NLIST);
+    !passosPegarItens(NLIST,T,LISTARETRIEVE);
+  .
 
 @gather1[atomic]
 +steps( craftSemParts, [] ): true
@@ -184,5 +180,4 @@ repeat(NNNR , QTD , L ,L ).
 	<-	.print("ACABOU O HELP");
 		-doing(help);
 		-steps(help, _);
-		subCommitHelp(A);
 	.

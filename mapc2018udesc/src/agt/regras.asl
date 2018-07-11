@@ -1,3 +1,6 @@
+repeat(NNNR , QTD , L ,RR ) :- QTD> 0 & repeat(NNNR , QTD-1 , [NNNR|L] , RR). 						
+repeat(NNNR , QTD , L ,L ).
+
 qsort( [], [] ).
 
 qsort( [H|U], S ) :- splitBy(H, U, L, R)& qsort(L, SL)& qsort(R, SR)&
