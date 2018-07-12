@@ -22,11 +22,23 @@ splitBy(item(NH,VH,RH,PH), [item(NU,VU,RU,PU)|T], LS, [item(NU,VU,RU,PU)|RS] )
 :- VU  > VH & splitBy(item(NH,VH,RH,PH), T, LS, RS).		
 
 
-priotodo(ACTION):- 	todo(ACTION,PRIO1) & not waiting(ACTION) & not (todo(ACT2,PRIO2)
+priotodo(ACTION):- 	todo(ACTION,PRIO1) & not waiting(ACTION,_) & not (todo(ACT2,PRIO2)
 					& PRIO2 > PRIO1).
 					
 gogather(ITEM):-item(ITEM,_,roles([]),_) & not gatherCommitment(AGENT,ITEM).
-gocraft(ITEM,ROLE) :-item(ITEM,_,roles(R),_) & not craftCommitment(AGENT,ITEM)& .member(ROLE,R).
+
+
+gocraft(ITEM,ROLE) :-	item(ITEM,_,roles(R),_) 		& 
+						not craftCommitment(AGENT,ITEM)	& 
+						.member(ROLE,R).
+
+sumvolrule([ITEM|T],VOL):-	item(ITEM,V,_,_) 			& 
+							( 	T\==[] 					&
+							  	sumvolrule([T],VA)   	&
+							  	VOL=V+VA)				|
+							(	T=[]					&
+								VOL=V).			
+
 
 lesscost(PID, AGENT):-
 	helper(PID, COST1)[source(AGENT)]	&	

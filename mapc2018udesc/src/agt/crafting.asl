@@ -15,13 +15,14 @@
 		not gatherCommitment(NAMEAGENT,_)
 	<-				
 		?gocraft(ITEM,ROLE);
-		addCraftCommitment(NAMEAGENT, ITEM);				
 		?item(ITEM,_,roles(LROLES),parts(LPARTS));
+		?(LOAD<VOL & sumvolrule([LPARTS],VOL));
+		addCraftCommitment(NAMEAGENT, ITEM);				
 		.print("Commitment ",ITEM," ",roles(LROLES)," ",parts(LPARTS));
-		.difference(LROLES,[ROLE],[OTHERROLE|_]);								
+		.difference(LROLES,[ROLE],OTHERROLES);								
 		?retrieveitensrule(LPARTS, [], RETRIEVELIST);				
 		.concat( [goto(STORAGE)], RETRIEVELIST, 
-				 [goto(WORKSHOP), help(OTHERROLE), 
+				 [goto(WORKSHOP), help(OTHERROLES), 
 				  assemble(ITEM), goto(STORAGE),
 	   			  store(ITEM,1) ],
 				PLAN);
@@ -38,11 +39,12 @@
 		!!craftComParts;
 	.
 
-+!supportCraft(OTHERROLE):
++!supportCraft(OTHERROLES):
 				name(WHONEED) & centerWorkshop(WORKSHOP)
 			<-	
 				 PID = math.floor(math.random(100000));
-				for (partners(OTHERROLE,A) & 
+				for (.member (OTHERROLE,OTHERROLES) &
+					 partners(OTHERROLE,A) & 
 					 not craftCommitment(A,_) &
 					 not gatherCommitment(A,_)
 				) {
@@ -78,7 +80,9 @@
 
 @help2[atomic]	
 +!help( WORKSHOP, PID): todo(help, _) | lockhelp
-	<-	true.
+	<-	
+	.print("JA ESTOU COMPROMETIDO. NAO ESTOU INTERESSADO NO TRAMPO DO AGENTE ",AGENT);	
+	.
 
 @help3[atomic]
 +!confirmhelp(WORKSHOP, QUEMPRECISA):
@@ -92,7 +96,13 @@
 	.
 	
 @readytoassist
-+!ready_to_assist:true
++!ready_to_assist:waiting(craftComParts,BARRIER)
 	<- 
-		-waiting(craftComParts);
+		-+waiting(craftComParts,BARRIER-1);
+	.
+	
++waiting(craftComParts,0): true
+	<-
+		.print("removeu o waiting");
+		-waiting(craftComParts,0);
 	.

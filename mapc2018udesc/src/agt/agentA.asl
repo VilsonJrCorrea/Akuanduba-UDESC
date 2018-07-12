@@ -86,13 +86,13 @@
 .
 
 +!whattodo
-	:	.count((todo(TD,_) & not waiting(TD)) , 0)
+	:	.count((todo(TD,_) & not waiting(TD,_)) , 0)
 	<-	
 		-doing(_);
 	.
 	
 +!whattodo
-	:	.count((todo(TD,_) & not waiting(TD)), QUANTIDADE) &
+	:	.count((todo(TD,_) & not waiting(TD,_)), QUANTIDADE) &
 			QUANTIDADE > 0
 	<-	
 		
@@ -126,13 +126,14 @@
 . 
 
 @docrafthelp[atomic]
-+!do: doing(craftComParts) & steps( craftComParts, [help(OTHERROLE)|T]) 			
++!do: doing(craftComParts) & steps( craftComParts, [help(OTHERROLES)|T]) 			
 	<-
 		if (name(A) & craftCommitment(A,item4)){
 			.print(chamando);	
 		}		
-		+waiting(craftComParts);
-		!!supportCraft(OTHERROLE);
+		.length(OTHERROLES,BARRIER);
+		+waiting(craftComParts,BARRIER);
+		!!supportCraft(OTHERROLES);
 		-steps( craftComParts, _);
 		+steps( craftComParts, T);
 		action(noAction);
