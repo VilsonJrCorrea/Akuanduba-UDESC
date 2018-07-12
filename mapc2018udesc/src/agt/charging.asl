@@ -16,9 +16,6 @@
 		//regra para repeticao
 		?repeat( charge, STEPSRECHARGE, [], R );
 		+steps(recharge,[goto(Facility)|R]);
-		if (name(agentA2)) {
-			.print("criou ->",steps(recharge,[goto(Facility)|R]));	
-		}		
 		+todo(recharge,10);
 	.	
 
