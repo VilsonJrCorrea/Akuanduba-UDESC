@@ -164,8 +164,9 @@
 	.
 	
 @s19[atomic]
-+step( S ): true
++step( S ): laststep(LS) & not LS=S
 	<-
+		-+laststep(S);
 		!consumestep;
 		!whattodo;
 		!do;				
