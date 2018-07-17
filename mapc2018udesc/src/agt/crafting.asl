@@ -51,16 +51,26 @@
 					.send (A, achieve, help(WORKSHOP, PID));
 				}							
 			.
-
-+helper(PID, COST): .count(helper(PID, _),N) & N>1
+			
+@helper1[atomic]
++helper(PID, COST): .count(helper(PID, _),N) & N>1 & not demanded_assist(PID)
 	<-
 		?name(WHONEED);
 		?centerWorkshop(WORKSHOP);
 		?lesscost (PID, AGENT);
+		+demanded_assist(PID);
 		.send (AGENT, achieve, confirmhelp( WORKSHOP, WHONEED));
-		.abolish(helper(PID, _) ); 
+		.abolish(helper(PID, _)[source(_)] ); 
 	.
 
+@helper2[atomic]
++helper(PID, COST): demanded_assist(PID)
+	<-
+		-helper(PID, COST)[source(_)];
+	.
+
+	
+@helper3[atomic]
 +helper(PID, COST): .count(helper(PID, _),1)
 	<-
 		true;

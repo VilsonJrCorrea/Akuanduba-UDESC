@@ -150,11 +150,14 @@
 
 
 @s18[atomic]
-+!do:
++!do: 	step(S) &
 		doing(DOING) & steps( DOING, [ACT|T])			
 	<-		
 		-+lastDoing(DOING);
 		-+acaoValida( ACT );
+		if (ACT=assemble(_) | ACT=assist_assemble(_)){
+			.print(S,": ",ACT);
+		}
 		action( ACT );
 	.
 	
@@ -164,7 +167,8 @@
 	.
 	
 @s19[atomic]
-+step( S ): laststep(LS) & not LS=S
++step( S ): (laststep(LS) & not LS=S) |
+			 (not laststep(LS))
 	<-
 		-+laststep(S);
 		!consumestep;

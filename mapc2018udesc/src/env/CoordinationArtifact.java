@@ -80,10 +80,10 @@ public class CoordinationArtifact extends Artifact {
 				double [] CENTER = {(MAXLAT+MINLAT)/2,(MAXLON+MINLON)/2};
 				
 				double [][] corners = {
-						{MAXLAT -(VR/221140),MINLON + (VR/222640),CENTER[0]},
-						{MAXLAT -(VR/221140),CENTER[1],CENTER[0]},
-						{CENTER[0],MINLON + (VR/222640),MINLAT},
-						{CENTER[0],CENTER[1],MINLAT}
+						{MAXLAT -(VR/221140),MINLON + (VR/222640),CENTER[0]+(VR/221140)},
+						{MAXLAT -(VR/221140),CENTER[1],CENTER[0]+(VR/221140)},
+						{CENTER[0],MINLON + (VR/222640),MINLAT+(VR/221140)},
+						{CENTER[0],CENTER[1],MINLAT+(VR/221140)}
 				};
 				DronePos [] VARINP = new DronePos[16];
 				int idx = 0;

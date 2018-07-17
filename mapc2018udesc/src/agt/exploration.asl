@@ -27,7 +27,6 @@ invert(I,O):- (I=true & O=false)|(I=false & O=true).
 		informDronePositionAndConers(LAT, LON, MINLAT, MINLON, MAXLAT, MAXLON , VR );
 	.
 
-
 +corner(CLAT,CLON,F):true
 	<-
 		!buildexplorationsteps(CLAT, CLON,lat, F, [goto(CLAT, CLON)], R);
