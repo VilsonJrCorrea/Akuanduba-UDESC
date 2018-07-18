@@ -29,7 +29,6 @@ public class CreateJCMArt {
 		try {
 			Files.write(Paths.get(output+".jcm"), (header+detail+footer).getBytes());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

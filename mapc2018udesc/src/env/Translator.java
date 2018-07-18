@@ -113,7 +113,6 @@ public class Translator {
 				try {
 					aux = ASSyntax.parseTerm(pe.get(i).toProlog());
 				} catch (ParseException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

@@ -21,10 +21,8 @@ public class CoordinationArtifact extends Artifact {
 	  void addIntentionToDoJob(String job) { 
 	    if( !this.job.containsKey(job) ) { 
 	      try { 
-	        signal( this.getCurrentOpAgentId(),  
-	                "dojob",ASSyntax.parseLiteral(job)); 
-	        this.job.put(job, defineObsProperty("jobCommitment",  
-	                          ASSyntax.parseLiteral(job))); 
+	        signal( this.getCurrentOpAgentId(), "dojob",ASSyntax.parseLiteral(job)); 
+	        this.job.put(job, defineObsProperty("jobCommitment", ASSyntax.parseLiteral(job))); 
 	      } catch (ParseException e) { 
 	        e.printStackTrace(); 
 	      } 
@@ -41,7 +39,6 @@ public class CoordinationArtifact extends Artifact {
 						 ASSyntax.parseLiteral(item)) );
 				//System.out.println(" ------------> "+agent+" - "+item);
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}else {
@@ -59,7 +56,6 @@ public class CoordinationArtifact extends Artifact {
 						ASSyntax.parseLiteral(agent), 
 						ASSyntax.parseLiteral(item)) );
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}else {

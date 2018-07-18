@@ -1,40 +1,64 @@
+{ include("regras.asl") }
 
 +job(NOMEJOB,_,_,_,_,_)
- :  not jobCommitment(NOMEJOB)   & 
-    name(A)           			 & 
-    not doing(_)       		 	  
+	:
+		not jobCommitment(NOMEJOB)
+	&	name(A)
+	&	not doing(_)
+    &	role(motorcycle,_,_,_,_,_,_,_,_,_,_)
   <- 
   	?step(S);
     +commitjob(NOMEJOB);
-    addIntentionToDoJob(NOMEJOB);  
+    addIntentionToDoJob(NOMEJOB);
     .print("---- ",S," ---------------> vou fazer a entrega: ",NOMEJOB);
-    //!realizarJob( NOMEJOB ); 
-  . 
+  .
  
-+dojob(NOMEJOB) : true 
++dojob(NOMEJOB)
+	:
+		role(ROLE,_,_,_,_,_,_,_,_,_,_)
     <-
-    	.print("---------------------> vou fazer a entrega: ",NOMEJOB);
+    	.print( "Disseram para eu, um(a) ", ROLE, " fazer o job ", NOMEJOB );
+    	!realizarJob( NOMEJOB );
 	.
 
 +!realizarJob( NOMEJOB )
 	:
 		job(NOMEJOB,LOCALENTREGA,REWARD,STEPINICIAL,STEPFINAL,ITENS)
-	&	role(motorcycle,_,_,_,_,_,_,_,_,_,_)
+	&	role(motorcycle,_,_,CAPACIDADE,_,_,_,_,_,_,_)
 	&	storageCentral(STORAGE)
-	//	Apenas poder testa com jobs mais simples.
-	//	required(item10,1)
-	&	.difference(ITENS, [required(item1,_),required(item2,_), required(item3,_), required(item4,_)],RESULT)
-	&	RESULT == []
-	<-
-		PASSOS_1 = [ goto( STORAGE ) ];
-		!passosGathering( ITENS, [], RETORNO );
-		.concat( PASSOS_1, RETORNO, PASSOS_2);
-		.concat( PASSOS_2, [ goto( LOCALENTREGA ), deliver_job( NOMEJOB )], PASSOS_3);
-		.print( ">>>>>>>>>>>>>>>>>>>>", NOMEJOB, " ", PASSOS_3 );
+	<-	
+		.print( "Entrou no realizarJob(", NOMEJOB, ")");
+		!calcularVolume( ITENS, 0, VOLUMETOTAL );
 		
-		-steps( job, _ );
-		+steps( job, PASSOS_3 );
-		+todo(job,8);
+		if( possoCarregarTudo( CAPACIDADE, VOLUMETOTAL ) ){
+			PASSOS_1 = [ goto( STORAGE ) ];
+			!passosGathering( ITENS, [], RETORNO );
+			.concat( PASSOS_1, RETORNO, PASSOS_2);
+			.concat( PASSOS_2, [ goto( LOCALENTREGA ), deliver_job( NOMEJOB )], PASSOS_3);
+			.length( PASSOS_3, TAMANHOLISTAPASSOS );
+			
+			if( possuoTempoParaRealizarJob( NOMEJOB, TAMANHOLISTAPASSOS ) ){
+//				-steps( job, _ );
+//				+steps( job, PASSOS_3 );
+//				+todo(job,8);
+
+				.print( "Vou realizar o trabalho ", NOMEJOB );
+			}else{
+				.print( "Sem tempo para realizar o job", NOMEJOB, " ", TAMANHOLISTAPASSOS );
+			}
+				
+		}else{
+			.print( "Sem capacidade para carregar", CAPACIDADE, " ", VOLUMETOTAL )
+		}
+	.
+
++!realizarJob( NOMEJOB )
+	:
+		job(NOMEJOB, _, _, _, _, _)
+	&	role(ROLE,_,_,_,_,_,_,_,_,_,_)
+	& 	ROLE \== motorcycle
+	<-
+		.print( "Não sou uma moto, por isso não posso realizar entregas" );
 	.
 
 +!passosGathering( [], LISTA, RETORNO )
@@ -51,3 +75,20 @@
 		.concat(LISTA, [retrieve( ITEM, QTD)], N_LISTA);
 		!passosGathering( T, N_LISTA, RETORNO );
 	.
+
++!calcularVolume( [], VOLUMEATUAL, VOLUMETOTAL )
+	:
+		true
+	<-
+		VOLUMETOTAL = VOLUMEATUAL;
+	.
+
++!calcularVolume( [required(ITEM, QTD)|T], VOLUMEATUAL, VOLUMETOTAL )
+	:
+		item(ITEM, VOLUMEITEM, _, _)
+	<-
+		AUXVOLUME = VOLUMEATUAL + VOLUMEITEM * QTD;
+		!calcularVolume( T, AUXVOLUME, VOLUMETOTAL );
+	.
+
+

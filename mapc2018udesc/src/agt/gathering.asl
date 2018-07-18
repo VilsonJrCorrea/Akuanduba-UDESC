@@ -13,7 +13,7 @@
 		QTD = math.floor( (LOAD / TAM) ) ;		
 		?repeat( gather, QTD, [], GATHERS );
 		.wait(centerStorage(FS));
-		.concat([goto(LATRESOUR, LONRESOUR)],GATHERS,[goto(FS),store(ITEM,QTD)],PLAN)
+		.concat([goto(LATRESOUR, LONRESOUR)],GATHERS,[goto(FS),store(ITEM,QTD)],PLAN);
 		+steps( craftSemParts, PLAN);
 		+todo(craftSemParts,8);
 	.
