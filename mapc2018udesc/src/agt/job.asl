@@ -6,11 +6,10 @@
 	&	name(A)
 	&	not doing(_)
     &	role(motorcycle,_,_,_,_,_,_,_,_,_,_)
-  <- 
-  	?step(S);
-    +commitjob(NOMEJOB);
-    addIntentionToDoJob(NOMEJOB);
-    .print("---- ",S," ---------------> vou fazer a entrega: ",NOMEJOB);
+    <- 
+  		?step(S);
+    	+commitjob(NOMEJOB);
+    	addIntentionToDoJob(NOMEJOB);
   .
  
 +dojob(NOMEJOB)
@@ -18,16 +17,17 @@
 		role(ROLE,_,_,_,_,_,_,_,_,_,_)
     <-
     	.print( "Disseram para eu, um(a) ", ROLE, " fazer o job ", NOMEJOB );
-    	!realizarJob( NOMEJOB );
+    	!!realizarJob( NOMEJOB );
 	.
 
 +!realizarJob( NOMEJOB )
 	:
 		job(NOMEJOB,LOCALENTREGA,REWARD,STEPINICIAL,STEPFINAL,ITENS)
 	&	role(motorcycle,_,_,CAPACIDADE,_,_,_,_,_,_,_)
-	&	storageCentral(STORAGE)
-	<-	
-		.print( "Entrou no realizarJob(", NOMEJOB, ")");
+	&	centerStorage(STORAGE)
+	<-
+		
+		.print( "Entrou no realizarJob( ", NOMEJOB, " )");
 		!calcularVolume( ITENS, 0, VOLUMETOTAL );
 		
 		if( possoCarregarTudo( CAPACIDADE, VOLUMETOTAL ) ){
@@ -44,21 +44,12 @@
 
 				.print( "Vou realizar o trabalho ", NOMEJOB );
 			}else{
-				.print( "Sem tempo para realizar o job", NOMEJOB, " ", TAMANHOLISTAPASSOS );
+				.print( "Sem tempo para realizar o job ", NOMEJOB, " ", TAMANHOLISTAPASSOS );
 			}
 				
 		}else{
 			.print( "Sem capacidade para carregar", CAPACIDADE, " ", VOLUMETOTAL )
 		}
-	.
-
-+!realizarJob( NOMEJOB )
-	:
-		job(NOMEJOB, _, _, _, _, _)
-	&	role(ROLE,_,_,_,_,_,_,_,_,_,_)
-	& 	ROLE \== motorcycle
-	<-
-		.print( "Não sou uma moto, por isso não posso realizar entregas" );
 	.
 
 +!passosGathering( [], LISTA, RETORNO )
