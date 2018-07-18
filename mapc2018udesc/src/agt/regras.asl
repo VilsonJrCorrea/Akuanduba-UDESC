@@ -1,5 +1,5 @@
-repeat(NNNR , QTD , L ,RR ) :- QTD> 0 & repeat(NNNR , QTD-1 , [NNNR|L] , RR). 						
-repeat(NNNR , QTD , L ,L ).
+repeat(TERM , QTD , L ,RR ) :- QTD> 0 & repeat(TERM , QTD-1 , [TERM|L] , RR). 						
+repeat(TERM , QTD , L ,L ).
 
 retrieveitensrule([], RETRIEVE, RETRIEVELIST) :- 
     RETRIEVELIST = RETRIEVE.
@@ -33,11 +33,11 @@ gocraft(ITEM,ROLE) :-	item(ITEM,_,roles(R),_) 		&
 						.member(ROLE,R).
 
 sumvolrule([ITEM|T],VOL):-	item(ITEM,V,_,_) 			& 
-							( 	T\==[] 					&
-							  	sumvolrule([T],VA)   	&
+							(( 	T\==[] 					&
+							  	sumvolrule(T,VA)   		&
 							  	VOL=V+VA)				|
 							(	T=[]					&
-								VOL=V).			
+								VOL=V)).			
 
 
 lesscost(PID, AGENT):-

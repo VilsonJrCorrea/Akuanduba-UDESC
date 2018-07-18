@@ -22,7 +22,7 @@
 					.wait(role(VEHICLE,_,_,_,_,_,_,_,_,_,_) &
 						name(AGENT));					
 					.broadcast(tell,partners(VEHICLE,AGENT));
-					!!craftSemParts;
+					!!callcraftSemParts;
 					!!callCraftComPartsWithDelay										
 					!!buildPoligon;
 					!!sendcentrals;
@@ -128,9 +128,6 @@
 @docrafthelp[atomic]
 +!do: doing(craftComParts) & steps( craftComParts, [help(OTHERROLES)|T]) 			
 	<-
-		if (name(A) & craftCommitment(A,item4)){
-			.print(chamando);	
-		}		
 		.length(OTHERROLES,BARRIER);
 		+waiting(craftComParts,BARRIER);
 		!!supportCraft(OTHERROLES);
@@ -155,9 +152,9 @@
 	<-		
 		-+lastDoing(DOING);
 		-+acaoValida( ACT );
-		if (ACT=assemble(_) | ACT=assist_assemble(_)){
-			.print(S,": ",ACT);
-		}
+//		if (ACT=assemble(_) | ACT=assist_assemble(_)){
+//			.print(S,": ",ACT);
+//		}
 		action( ACT );
 	.
 	

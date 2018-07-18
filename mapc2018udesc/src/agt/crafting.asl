@@ -1,57 +1,95 @@
+minimumqtd([HLPARTS|TLPARTS],LSTORAGE) :- 
+					(	.member(item(HLPARTS,QTD,_),LSTORAGE)	& 
+						QTD>4 									&
+						minimumqtd (TLPARTS,LSTORAGE)).
+minimumqtd([],LSTORAGE).
+
 +!callCraftComPartsWithDelay: true
 	<-
 		.wait(step(3));
-		!!craftComParts;
+		!!callCraftComParts;
 	.
+
++!callCraftComParts :	role(ROLE,_,_,LOAD,_,_,_,_,_,_,_)  										&
+						ROLE\==drone 															& 
+						name(NAMEAGENT) 														&
+						(.count(craftCommitment(_,_))<.count(item(_,_,_,parts(P)) & P\==[]))	&
+						centerStorage(STORAGE) 													&	
+						centerWorkshop(WORKSHOP) 												&
+						not craftCommitment(NAMEAGENT,_) 										&
+						not gatherCommitment(NAMEAGENT,_)
+		<-
+			?gocraft(ITEM,ROLE);
+			addCraftCommitment(NAMEAGENT, ITEM);
+			.print("Commitment ",ITEM);
+			!!craftComParts;
+		.
+
++!callCraftComParts	:role(drone,_,_,_,_,_,_,_,_,_,_)|
+				 	 (.count(craftCommitment(_,_))>=.count(item(_,_,_,parts(P))& P\==[])) 
+		<- true; .
+
+-!callCraftComParts: true
+		<- !!callCraftComParts;	.		
 
 +!craftComParts:	
 		role(ROLE,_,_,LOAD,_,_,_,_,_,_,_)  										&
-		ROLE\==drone 															& 
 		name(NAMEAGENT) 														&
-		(.count(craftCommitment(_,_))<.count(item(_,_,_,parts(P)) & P\==[]))	&
 		centerStorage(STORAGE) 													&	
 		centerWorkshop(WORKSHOP) 												&
-		not craftCommitment(NAMEAGENT,_) 										&
-		not gatherCommitment(NAMEAGENT,_)
-	<-				
-		?gocraft(ITEM,ROLE);
-		?item(ITEM,_,roles(LROLES),parts(LPARTS));
-		?(LOAD<VOL & sumvolrule([LPARTS],VOL));
-		addCraftCommitment(NAMEAGENT, ITEM);				
-		.print("Commitment ",ITEM," ",roles(LROLES)," ",parts(LPARTS));
-		.difference(LROLES,[ROLE],OTHERROLES);								
+		craftCommitment(NAMEAGENT,ITEM) 										
+	<-					
+		?item(ITEM,_,roles(LROLES),parts(LPARTS));			
+		.difference(LROLES,[ROLE],OTHERROLES);
+		?sumvolrule(LPARTS,VOL);
+		if (LOAD<VOL) {
+			?nearshop(SHOP);
+			?upgrade(load,_,SIZE);
+			QTDUPGRADE = math.ceil((VOL-LOAD)/SIZE);
+			?repeat(upgrade(load) , QTDUPGRADE , [] , RUPGRADE );
+			SETUPLOAD = [goto(SHOP)|RUPGRADE ];
+		}	
+		else {
+			SETUPLOAD = [];
+		}
 		?retrieveitensrule(LPARTS, [], RETRIEVELIST);				
-		.concat( [goto(STORAGE)], RETRIEVELIST, 
+		.concat( SETUPLOAD, [goto(STORAGE)], RETRIEVELIST, 
 				 [goto(WORKSHOP), help(OTHERROLES), 
 				  assemble(ITEM), goto(STORAGE),
 	   			  store(ITEM,1) ],
 				PLAN);
+		.wait(	storage(storage5,_,_,_,_,LSTORAGE) &
+				minimumqtd(LPARTS,LSTORAGE) );
 		+steps( craftComParts, PLAN);
 		+todo(craftComParts,8);	
-	.
-
-+!craftComParts	: role(drone,_,_,_,_,_,_,_,_,_,_)|
-				  (.count(craftCommitment(_,_))>=.count(item(_,_,_,parts(P))& P\==[])) 
-		<- true; .
-
--!craftComParts: true
-	<-
-		!!craftComParts;
 	.
 
 +!supportCraft(OTHERROLES):
 				name(WHONEED) & centerWorkshop(WORKSHOP)
 			<-	
 				 PID = math.floor(math.random(100000));
-				for (.member (OTHERROLE,OTHERROLES) &
-					 partners(OTHERROLE,A) & 
-					 not craftCommitment(A,_) &
-					 not gatherCommitment(A,_)
-				) {
-					.send (A, achieve, help(WORKSHOP, PID));
-				}							
+				 !selectiveBroadcast(OTHERROLES,PID,WORKSHOP);					
 			.
-			
+	
++!selectiveBroadcast(OTHERROLES,PID,WORKSHOP)
+	: not demanded_assist(PID)
+		<-
+			for (.member (OTHERROLE,OTHERROLES) &
+				 partners(OTHERROLE,A) 			& 
+				 not craftCommitment(A,_) 		&
+				 not gatherCommitment(A,_)		) {
+				.send (A, achieve, help(WORKSHOP, PID));
+			}
+			.wait(100);
+			!!selectiveBroadcast(OTHERROLES,PID,WORKSHOP)
+		.		
+
+-!selectiveBroadcast(OTHERROLES,PID,WORKSHOP): true
+	<-
+		//.print("PAREI DE PEDIR ->",help(WORKSHOP, PID));
+		true;
+	.
+		
 @helper1[atomic]
 +helper(PID, COST): .count(helper(PID, _),N) & N>1 & not demanded_assist(PID)
 	<-
@@ -60,13 +98,18 @@
 		?lesscost (PID, AGENT);
 		+demanded_assist(PID);
 		.send (AGENT, achieve, confirmhelp( WORKSHOP, WHONEED));
+		for (helper(PID, _)[source(AGENTDISMISSED)] & not AGENT=AGENTDISMISSED ) {
+			.send (AGENTDISMISSED, achieve, dismisshelp);
+		}
+		
 		.abolish(helper(PID, _)[source(_)] ); 
 	.
 
 @helper2[atomic]
-+helper(PID, COST): demanded_assist(PID)
++helper(PID, COST)[source(AGENTDISMISSED)]: demanded_assist(PID)
 	<-
-		-helper(PID, COST)[source(_)];
+		.send (AGENTDISMISSED, achieve, dismisshelp);
+		-helper(PID, COST)[source(AGENTDISMISSED)];
 	.
 
 	
@@ -79,7 +122,7 @@
 @help1[atomic]
 +!help(WORKSHOP, PID)[source(AGENT)] : not todo(help, _)  & not lockhelp
 	<-	
-		.print("INTERESSADO NO TRAMPO DO AGENTE ",AGENT);	
+		//.print("INTERESSADO NO TRAMPO DO AGENTE ",AGENT);	
 		+lockhelp;
 		?lat(XA);
 		?lon(YA);
@@ -91,7 +134,8 @@
 @help2[atomic]	
 +!help( WORKSHOP, PID): todo(help, _) | lockhelp
 	<-	
-	.print("JA ESTOU COMPROMETIDO. NAO ESTOU INTERESSADO NO TRAMPO DO AGENTE ",AGENT);	
+	//.print("JA ESTOU COMPROMETIDO");
+	true;	
 	.
 
 @help3[atomic]
@@ -100,9 +144,16 @@
 	<-
 		-lockhelp;
 		?role(ROLE,_,_,_,_,_,_,_,_,_,_);
-		.print("Vou ajudar ",QUEMPRECISA, " e sou um ", ROLE );		
+		//.print("Vou ajudar ",QUEMPRECISA, " e sou um ", ROLE );		
 		+steps(help, [goto(WORKSHOP), ready_to_assist(QUEMPRECISA), assist_assemble(QUEMPRECISA) ]);
 		+todo(help, 6);
+	.
+
+@help4[atomic]
++!dismisshelp:
+	true
+	<-
+		-lockhelp;
 	.
 	
 @readytoassist
@@ -113,6 +164,14 @@
 	
 +waiting(craftComParts,0): true
 	<-
-		.print("removeu o waiting");
+		//.print("removeu o waiting");
 		-waiting(craftComParts,0);
 	.
+
+-todo(craftComParts,8):
+	name(NAMEAGENT) 				& 
+	craftCommitment(NAMEAGENT,ITEM)
+<-
+	.print("produziu ",ITEM)
+	!!craftComParts;
+.	
