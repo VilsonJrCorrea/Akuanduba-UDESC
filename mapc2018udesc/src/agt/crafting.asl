@@ -1,6 +1,6 @@
 minimumqtd([HLPARTS|TLPARTS],LSTORAGE) :- 
 					(	.member(item(HLPARTS,QTD,_),LSTORAGE)	& 
-						QTD>4 									&
+						QTD>2									&
 						minimumqtd (TLPARTS,LSTORAGE)).
 minimumqtd([],LSTORAGE).
 
@@ -61,6 +61,8 @@ minimumqtd([],LSTORAGE).
 		.wait(	storage(storage5,_,_,_,_,LSTORAGE) &
 				minimumqtd(LPARTS,LSTORAGE) );
 		+steps( craftComParts, PLAN);
+		-expectedplan( craftComParts, _);
+		+expectedplan( craftComParts, PLAN);
 		+todo(craftComParts,8);	
 	.
 
@@ -146,6 +148,8 @@ minimumqtd([],LSTORAGE).
 		?role(ROLE,_,_,_,_,_,_,_,_,_,_);
 		//.print("Vou ajudar ",QUEMPRECISA, " e sou um ", ROLE );		
 		+steps(help, [goto(WORKSHOP), ready_to_assist(QUEMPRECISA), assist_assemble(QUEMPRECISA) ]);
+		-expectedplan( help, _);
+		+expectedplan( help, [goto(WORKSHOP), ready_to_assist(QUEMPRECISA), assist_assemble(QUEMPRECISA) ]);
 		+todo(help, 6);
 	.
 
@@ -172,6 +176,6 @@ minimumqtd([],LSTORAGE).
 	name(NAMEAGENT) 				& 
 	craftCommitment(NAMEAGENT,ITEM)
 <-
-	.print("produziu ",ITEM)
+	//.print("produziu ",ITEM)
 	!!craftComParts;
 .	

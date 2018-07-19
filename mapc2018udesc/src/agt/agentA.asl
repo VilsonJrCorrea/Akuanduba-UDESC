@@ -47,7 +47,7 @@
 @consume_steps[atomic]
 +!consumestep: 
 				lastActionResult( successful )			& 
-				lastDoing(LD)							& 
+				doing(LD)								& 
 				steps(LD,[ACT|T])						&
 				lastAction(RLA)							&
 				route(ROUTE)							&
@@ -94,12 +94,46 @@
 +!whattodo
 	:	.count((todo(TD,_) & not waiting(TD,_)), QUANTIDADE) &
 			QUANTIDADE > 0
-	<-	
-		
+	<-			
 		?priotodo(ACTION2);
 		-+doing(ACTION2);
+		!checkRollback;
 	.
 
++!checkRollback:not route([]) 		&
+				lastDoing(LD) 		& 
+				doing(D) 			& 
+				LD\==D 				& 
+				steps(LD,L)			&
+				LD=exploration	
+	<-
+			?lat(LAT);
+			?lon(LON);
+			-steps(LD, _ );
+			+steps(LD, [goto(LAT,LON)| L]);
+	.
+
++!checkRollback:lastDoing(LD) 		& 
+				doing(D) 			& 
+				LD\==D 				& 
+				steps(LD,L)			&
+				LD\==exploration	&
+				L=[HL|TL]			&
+				not (HL=goto(_) |HL=goto(_,_)) 	
+	<-
+			?expectedplan( LD, EXPP);
+			.length(EXPP,QTDEXPP);
+			.length(L,QTDL);
+			?rollbackcutexpectedrule(EXPP, QTDEXPP-QTDL, LDONED);
+			.reverse(LDONED,RLDONED);
+			?rollbackrule([goto(_),goto(_,_)], RLDONED, RACTION);			
+			.print("rollback ",LD,": ",[RACTION| L]);									
+			-steps(LD, _ );
+			+steps(LD, [RACTION| L]);
+	.
+
++!checkRollback :true
+	<- true .
 
 @s1[atomic]
 +!do: route(R) &lastDoing(X) & doing(X) & not R=[]
@@ -113,17 +147,13 @@
 				doing(X) 			& 
 				Y\==X 				& 
 				steps(X,[ACT|T])	& 
-				steps(Y,L)		
+				steps(Y,L)			&
+				Y=exploration	
 	<-
-		if (Y=exploration) {
-			?lat(LAT);
-			?lon(LON);
-			-steps(Y, _ );
-			+steps(Y, [goto(LAT,LON)| L]);
-		}
-		-+lastDoing(X);
-    	action( ACT);
-. 
+			
+			-+lastDoing(X);
+    		action( ACT);
+	. 
 
 @docrafthelp[atomic]
 +!do: doing(craftComParts) & steps( craftComParts, [help(OTHERROLES)|T]) 			
@@ -151,10 +181,6 @@
 		doing(DOING) & steps( DOING, [ACT|T])			
 	<-		
 		-+lastDoing(DOING);
-		-+acaoValida( ACT );
-//		if (ACT=assemble(_) | ACT=assist_assemble(_)){
-//			.print(S,": ",ACT);
-//		}
 		action( ACT );
 	.
 	

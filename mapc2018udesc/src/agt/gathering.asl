@@ -32,6 +32,8 @@
 		.wait(centerStorage(FS));
 		.concat([goto(LATRESOUR, LONRESOUR)],GATHERS,[goto(FS),store(ITEM,QTD)],PLAN);
 		+steps( craftSemParts, PLAN);
+		-expectedplan( craftSemParts, _);
+		+expectedplan( craftSemParts, PLAN);
 		+todo(craftSemParts,8);
 	.
 
