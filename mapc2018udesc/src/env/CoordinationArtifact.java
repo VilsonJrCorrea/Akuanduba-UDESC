@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,9 +15,20 @@ public class CoordinationArtifact extends Artifact {
 	
 	
 	private HashMap<String, ObsProperty> tarefas = new HashMap<>();
+	private ArrayList<CraftTask> craftTask = new ArrayList<CraftTask>();
 	private HashMap<AgentId, double[]> positions = new HashMap<>();	
 	private HashMap<String, ObsProperty> job = new HashMap<>(); 
 	   
+	
+		// -----------------
+			private int sumcraft(String item) {
+				int sum=0;
+				for (CraftTask ct: this.craftTask) 
+					sum+= ct.getItem().equals(item)?1:0;
+				return sum;
+			}
+	
+		// -----------------	
 	  @OPERATION 
 	  void addIntentionToDoJob(String job) { 
 	    if( !this.job.containsKey(job) ) { 
@@ -51,13 +63,15 @@ public class CoordinationArtifact extends Artifact {
 	}
 		
 	@OPERATION
-	void addCraftCommitment(String agent, String item) {
-		if( !tarefas.containsKey(item) ) {
+	void addCraftCommitment(String agent, String item, int qtd) {
+		if( sumcraft(item)<qtd) {
 			try {
 //				tarefas.put (item, defineObsProperty("craftCommitment", ASSyntax.parseLiteral(item)) );
-				tarefas.put (item, defineObsProperty("craftCommitment", 
-						ASSyntax.parseLiteral(agent), 
-						ASSyntax.parseLiteral(item)) );
+				this.craftTask.add(
+						new CraftTask( item, 
+									   defineObsProperty("craftCommitment", 
+											   			 ASSyntax.parseLiteral(agent), 
+											   			 ASSyntax.parseLiteral(item))));
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -187,6 +201,27 @@ public class CoordinationArtifact extends Artifact {
 					 		   +"\t"+ this.POSITION[0]+"\t"+this.POSITION[1]
 					 		   +"\t"+ getDistance());
 		}		
+	}
+	protected class CraftTask {
+		private String  item;
+		private ObsProperty OP;
+		public CraftTask(String item, ObsProperty oP) {
+			this.item = item;
+			OP = oP;
+		}
+		public String getItem() {
+			return item;
+		}
+		public void setItem(String item) {
+			this.item = item;
+		}
+		public ObsProperty getOP() {
+			return OP;
+		}
+		public void setOP(ObsProperty oP) {
+			OP = oP;
+		}
+		
 	}
 }
 

@@ -82,7 +82,7 @@
 		!buildWellSteps( [goto(PLAT, PLON), build(WELLTYPE)], QTD, R );
 		+steps( buildWell, R );
 		-expectedplan( buildWell, _);
-		+expectedplan( buildWell, PLAN);
+		+expectedplan( buildWell, R);
 		+todo(buildWell, PRIORITY);
 		//.print( "buildWell pronto!!" );
 	.

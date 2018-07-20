@@ -1,11 +1,14 @@
-minimumqtd([HLPARTS|TLPARTS],LSTORAGE) :- 
-					(	.member(item(HLPARTS,QTD,_),LSTORAGE)	& 
-						QTD>2									&
-						minimumqtd (TLPARTS,LSTORAGE)).
-minimumqtd([],LSTORAGE).
-
 +!callCraftComPartsWithDelay: true
 	<-
+		.wait(step(1));
+		for (item(ITEM,_,_,parts(P)) & P\==[]) {
+			.count(item(_,_,_,parts(PARTS)) & .member(ITEM,PARTS),QTD);
+			+numberAgRequired(ITEM,QTD+1);
+			TMP=TMP+QTD+1;
+		}
+		.findall(X,numberAgRequired(_,X),LTMP);
+		+numberTotalCraft(math.sum(LTMP));
+			
 		.wait(step(3));
 		!!callCraftComParts;
 	.
@@ -13,15 +16,19 @@ minimumqtd([],LSTORAGE).
 +!callCraftComParts :	role(ROLE,_,_,LOAD,_,_,_,_,_,_,_)  										&
 						ROLE\==drone 															& 
 						name(NAMEAGENT) 														&
-						(.count(craftCommitment(_,_))<.count(item(_,_,_,parts(P)) & P\==[]))	&
+						numberTotalCraft(NTC)													&
+						.count(craftCommitment(_,_))<NTC	 									&
+//						(.count(craftCommitment(_,_))<.count(item(_,_,_,parts(P)) & P\==[]))	&
 						centerStorage(STORAGE) 													&	
 						centerWorkshop(WORKSHOP) 												&
 						not craftCommitment(NAMEAGENT,_) 										&
 						not gatherCommitment(NAMEAGENT,_)
 		<-
-			?gocraft(ITEM,ROLE);
-			addCraftCommitment(NAMEAGENT, ITEM);
-			.print("Commitment ",ITEM);
+			?gocraft(ITEM,ROLE,QTD);
+			//?gocraft(ITEM,ROLE);
+			addCraftCommitment(NAMEAGENT, ITEM,QTD);
+			.print("commited with ",ITEM);
+			//addCraftCommitment(NAMEAGENT, ITEM);
 			!!upgradecapacity;
 			!!craftComParts;
 		.
@@ -49,7 +56,8 @@ minimumqtd([],LSTORAGE).
 	<- true.
 
 +!callCraftComParts	:role(drone,_,_,_,_,_,_,_,_,_,_)|
-				 	 (.count(craftCommitment(_,_))>=.count(item(_,_,_,parts(P))& P\==[])) 
+				 	 (numberTotalCraft(NTC)					&			
+				 	 .count(craftCommitment(_,_))<NTC)	  
 		<- true; .
 
 -!callCraftComParts: true
@@ -82,16 +90,17 @@ minimumqtd([],LSTORAGE).
 				name(WHONEED) & centerWorkshop(WORKSHOP)
 			<-	
 				 PID = math.floor(math.random(100000));
-				 !selectiveBroadcast(OTHERROLES,PID,WORKSHOP);					
+				 !!selectiveBroadcast(OTHERROLES,PID,WORKSHOP);					
 			.
 	
 +!selectiveBroadcast(OTHERROLES,PID,WORKSHOP)
 	: not demanded_assist(PID)
 		<-
 			for (.member (OTHERROLE,OTHERROLES) &
-				 partners(OTHERROLE,A) 			& 
-				 not craftCommitment(A,_) 		&
-				 not gatherCommitment(A,_)		) {
+				 partners(OTHERROLE,A) 			)//& 
+//				 not craftCommitment(A,_) 		&
+//				 not gatherCommitment(A,_)		) 
+				 {
 				.send (A, achieve, help(WORKSHOP, PID));
 			}
 			.wait(100);
@@ -162,7 +171,7 @@ minimumqtd([],LSTORAGE).
 		+steps(help, [goto(WORKSHOP), ready_to_assist(QUEMPRECISA), assist_assemble(QUEMPRECISA) ]);
 		-expectedplan( help, _);
 		+expectedplan( help, [goto(WORKSHOP), ready_to_assist(QUEMPRECISA), assist_assemble(QUEMPRECISA) ]);
-		+todo(help, 6);
+		+todo(help, 8.2);//6
 	.
 
 @help4[atomic]

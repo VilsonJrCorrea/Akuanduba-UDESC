@@ -23,7 +23,7 @@
 						name(AGENT));					
 					.broadcast(tell,partners(VEHICLE,AGENT));
 					!!callcraftSemParts;
-					!!callCraftComPartsWithDelay										
+					!!callCraftComPartsWithDelay;										
 					!!buildPoligon;
 					!!sendcentrals;
 					!!exploration;

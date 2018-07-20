@@ -1,10 +1,11 @@
 +!help(VEHICLE, WORKSHOP, PID):true
 	<-true.
 
-+step( _ ): true
++step( S): (laststep(LS) & not LS=S) |
+			 (not laststep(LS))
 	<-
-
-	action( noAction );
+		-+laststep(S);
+		action( noAction );
 	.	
 { include("$jacamoJar/templates/common-cartago.asl") }
 { include("$jacamoJar/templates/common-moise.asl") }

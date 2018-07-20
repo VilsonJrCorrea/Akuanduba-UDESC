@@ -1,5 +1,6 @@
 repeat(TERM , QTD , L ,RR ) :- QTD> 0 & repeat(TERM , QTD-1 , [TERM|L] , RR). 						
-repeat(TERM , QTD , L ,L ).
+repeat(TERM , QTD , L ,L ).		
+
 
 rollbackcutexpectedrule([HEXPECTED|TEXPECTED], QTD, DONNED) :- 
 	QTD>0 & DONNED=[HEXPECTED|DON] & rollbackcutexpectedrule(TEXPECTED, QTD-1, DON).
@@ -14,6 +15,11 @@ rollbackrule(LISTWHATSEARCH, [HLISTSOURCE|TLISTSOURCE], ACTION) :-
 rollbackrule(LISTWHATSEARCH, [HLISTSOURCE|TLISTSOURCE], ACTION) :-
 	not .member(HLISTSOURCE,LISTWHATSEARCH) & rollbackrule(LISTWHATSEARCH, TLISTSOURCE, ACTION).
 
+minimumqtd([HLPARTS|TLPARTS],LSTORAGE) :- 
+					(	.member(item(HLPARTS,QTD,_),LSTORAGE)	& 
+						QTD>0									&
+						minimumqtd (TLPARTS,LSTORAGE)).
+minimumqtd([],LSTORAGE).
 
 retrieveitensrule([], RETRIEVE, RETRIEVELIST) :- 
     RETRIEVELIST = RETRIEVE.
@@ -41,10 +47,14 @@ priotodo(ACTION):- 	todo(ACTION,PRIO1) & not waiting(ACTION,_) & not (todo(ACT2,
 					
 gogather(ITEM):-item(ITEM,_,roles([]),_) & not gatherCommitment(AGENT,ITEM).
 
+gocraft(ITEM,ROLE,QTD) :-	item(ITEM,_,roles(R),_) 			&
+							numberAgRequired(ITEM,QTD)			&	
+							.count(craftCommitment(_,ITEM))<QTD &
+							.member(ROLE,R).
 
-gocraft(ITEM,ROLE) :-	item(ITEM,_,roles(R),_) 		& 
-						not craftCommitment(AGENT,ITEM)	& 
-						.member(ROLE,R).
+//gocraft(ITEM,ROLE) :-	item(ITEM,_,roles(R),_) 		& 
+//						not craftCommitment(AGENT,ITEM)	& 
+//						.member(ROLE,R).
 
 sumvolrule([ITEM|T],VOL):-	item(ITEM,V,_,_) 			& 
 							(( 	T\==[] 					&
