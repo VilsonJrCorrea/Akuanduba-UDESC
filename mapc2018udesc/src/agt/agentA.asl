@@ -127,7 +127,7 @@
 			?rollbackcutexpectedrule(EXPP, QTDEXPP-QTDL, LDONED);
 			.reverse(LDONED,RLDONED);
 			?rollbackrule([goto(_),goto(_,_)], RLDONED, RACTION);			
-			.print("rollback ",LD,": ",[RACTION| L]);									
+			//.print("rollback ",LD,": ",[RACTION| L]);									
 			-steps(LD, _ );
 			+steps(LD, [RACTION| L]);
 	.

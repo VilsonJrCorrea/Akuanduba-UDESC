@@ -22,8 +22,31 @@ minimumqtd([],LSTORAGE).
 			?gocraft(ITEM,ROLE);
 			addCraftCommitment(NAMEAGENT, ITEM);
 			.print("Commitment ",ITEM);
+			!!upgradecapacity;
 			!!craftComParts;
 		.
+
++!upgradecapacity:	
+		role(ROLE,_,_,LOAD,_,_,_,_,_,_,_) 		&
+		name(NAMEAGENT) 			     		&
+		craftCommitment(NAMEAGENT,ITEM)			&
+		item(ITEM,_,_,parts(LPARTS))&
+		sumvolrule(LPARTS,VOL)					&
+		LOAD<VOL	 										
+	<-					
+		?nearshop(SHOP);
+		?upgrade(load,_,SIZE);
+		QTDUPGRADE = math.ceil((VOL-LOAD)/SIZE);
+		?repeat(upgrade(load) , QTDUPGRADE , [] , RUPGRADE );
+		SETUPLOAD = [goto(SHOP)|RUPGRADE ];
+		+steps( upgradecapacity, SETUPLOAD);
+		-expectedplan( upgradecapacity, _);
+		+expectedplan( upgradecapacity, SETUPLOAD);
+		+todo(upgradecapacity,8.5);
+	.
+
++!upgradecapacity:true
+	<- true.
 
 +!callCraftComParts	:role(drone,_,_,_,_,_,_,_,_,_,_)|
 				 	 (.count(craftCommitment(_,_))>=.count(item(_,_,_,parts(P))& P\==[])) 
@@ -41,19 +64,8 @@ minimumqtd([],LSTORAGE).
 	<-					
 		?item(ITEM,_,roles(LROLES),parts(LPARTS));			
 		.difference(LROLES,[ROLE],OTHERROLES);
-		?sumvolrule(LPARTS,VOL);
-		if (LOAD<VOL) {
-			?nearshop(SHOP);
-			?upgrade(load,_,SIZE);
-			QTDUPGRADE = math.ceil((VOL-LOAD)/SIZE);
-			?repeat(upgrade(load) , QTDUPGRADE , [] , RUPGRADE );
-			SETUPLOAD = [goto(SHOP)|RUPGRADE ];
-		}	
-		else {
-			SETUPLOAD = [];
-		}
 		?retrieveitensrule(LPARTS, [], RETRIEVELIST);				
-		.concat( SETUPLOAD, [goto(STORAGE)], RETRIEVELIST, 
+		.concat( [goto(STORAGE)], RETRIEVELIST, 
 				 [goto(WORKSHOP), help(OTHERROLES), 
 				  assemble(ITEM), goto(STORAGE),
 	   			  store(ITEM,1) ],
@@ -176,6 +188,6 @@ minimumqtd([],LSTORAGE).
 	name(NAMEAGENT) 				& 
 	craftCommitment(NAMEAGENT,ITEM)
 <-
-	//.print("produziu ",ITEM)
+	.print("produziu ",ITEM)
 	!!craftComParts;
 .	
