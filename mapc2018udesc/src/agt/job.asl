@@ -30,7 +30,9 @@
 		.print( "Entrou no realizarJob( ", NOMEJOB, " )");
 		!calcularVolume( ITENS, 0, VOLUMETOTAL );
 		
+		.print( "Posso carregar tudo?" );
 		?possoCarregarTudo( CAPACIDADE, VOLUMETOTAL );
+		.print( "sim" );
 		
 		PASSOS_1 = [ goto( STORAGE ) ];
 		!passosGathering( ITENS, [], RETORNO );
@@ -38,20 +40,25 @@
 		.concat( PASSOS_2, [ goto( LOCALENTREGA ), deliver_job( NOMEJOB )], PASSOS_3);
 		.length( PASSOS_3, TAMANHOLISTAPASSOS );
 		
+		.print( "Tenho tempo suficiente?" );
 		?possuoTempoParaRealizarJob( NOMEJOB, TAMANHOLISTAPASSOS );
+		.print( "sim" );
 
 		-steps( job, _ );
 		+steps( job, PASSOS_3 );
-		+todo(job,8);
+		+todo( job, 8 );
 		
 	.
 
-//-!realizarJob( NOMEJOB )
-//	:
-//		true
-//	<-
-//		.print( "Falha no plano de realizar job" );
-//	.
+-!realizarJob( NOMEJOB )
+	:
+		name( NAME )
+	&	role(ROLE,_,_,_,_,_,_,_,_,_,_)
+	<-
+		.print( "não" );
+		.print( "O ", ROLE, " de nome ", NAME, " não pode realizar o trabalho." );
+		// Aqui tem que vir uma instrução para desmarcar o trabalho como sendo feito.
+	.
 
 +!passosGathering( [], LISTA, RETORNO )
 	:

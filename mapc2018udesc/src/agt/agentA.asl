@@ -86,7 +86,6 @@
 			role(_,_,_,BAT2,_,_,_,_,_,_,_)	&
 			BAT1<BAT2*0.9
 	<-	
-		//.print("nada para fazer vou recarregar");
 		?centerStorage(FS);
 		?storage(FS,LAT,LON,_,_,_);
 		!recharge (LAT,LON);
@@ -211,7 +210,7 @@
 			steps( craftSemParts, [store(ITEM,QUANTIDADE)|T])
 			& hasItem( ITEM, NOVAQUANTIDADE)	
 	<-	
-		.print( "Fazendo store em craftSemParts" );
+//		.print( "Fazendo store em craftSemParts" );
 		 action( store(ITEM,NOVAQUANTIDADE) );
 		-steps( craftSemParts, _);
 		+steps( craftSemParts, T);
@@ -226,7 +225,7 @@
 		& steps( craftComParts, [store(ITEM,QUANTIDADE)|T])
 		& hasItem( ITEM, NOVAQUANTIDADE)
 	<-	
-		.print( "Fazendo store em craftComParts" );
+//		.print( "Fazendo store em craftComParts" );
 		action( store(ITEM,NOVAQUANTIDADE) );
 		-steps( craftComParts, _);
 		+steps( craftComParts, T);
@@ -241,7 +240,7 @@
 		& centerStorage(STORAGE)
 		& storagePossueItem( STORAGE, ITEM )
 	<-
-		.print( "Fazendo retrieve em craftComParts" );
+//		.print( "Fazendo retrieve em craftComParts" );
 		action( retrieve( ITEM, 1 ) );
 		-steps( craftComParts, _);
 		+steps( craftComParts, T);
@@ -255,7 +254,7 @@
 		& steps( craftComParts, [retrieve( ITEM, 1)|T])
 		& not storagePossueItem( STORAGE, ITEM )
 	<-
-		.print("aguardando item em craftComParts ",ITEM);
+//		.print("aguardando item em craftComParts ",ITEM);
 		action( noAction );
 		-+lastDoing(craftComParts);
 		-+acaoValida( noAction );
@@ -266,7 +265,7 @@
 +step( _ ):
 		doing(DOING) & steps( DOING, [ACT|T])			
 	<-
-		.print( "Doing generico ", ACT, " ", DOING );
+//		.print( "Doing generico ", ACT, " ", DOING );
 		action( ACT );
 		-steps( DOING, _);
 		+steps( DOING, T);

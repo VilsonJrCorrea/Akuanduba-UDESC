@@ -122,7 +122,7 @@ possuoTempoParaRealizarJob( NOMEJOB, TAMANHOLISTAPASSOS )
 	:-
 //		true
 		job(NOMEJOB,LOCALENTREGA,REWARD,STEPINICIAL,STEPFINAL,ITENS)
-	&	storageCentral(STORAGE)
+	&	centerStorage( STORAGE )
 	&	storage( STORAGE, STORAGELAT, STORAGELON, _, _, _)
 	&	storage( LOCALENTREGA, DESTINOLAT, DESTINOLON, _, _, _)
 	&	lat( MEULAT )
