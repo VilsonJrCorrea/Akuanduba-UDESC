@@ -55,8 +55,10 @@
 +simStart: not started
 					<-
 					+started;
-					.wait(role(VEHICLE,_,_,_,_,_,_,_,_,_,_) &
-						name(AGENT));					
+					.wait(
+						role(VEHICLE,_,_,_,_,_,_,_,_,_,_)
+						& name(AGENT)
+					);					
 					.broadcast(tell,partners(VEHICLE,AGENT));
 					!!craftSemParts;
 					!!craftComParts;
@@ -120,27 +122,35 @@
 		.broadcast(tell, centerStorage(STORAGE) );
 .
 
-+!sendcentrals : name(A) & A\== agentA20	
++!sendcentrals
+	:
+		name(A)
+	&	A\== agentA20	
 	<- true.
 
 
 @s1[atomic]
-+step( _ ): not route([]) &lastDoing(Y) & doing(X) & Y==X
++step( _ )
+	:	not route([])
+	&	lastDoing(Y)
+	&	doing(X)
+	&	Y==X
 	<-
-		//.print("1-rota em andamento e doing ",X);
+		//.print("rota em andamento e doing ",X);
 		action( continue );
 .
 
 @s2[atomic]
-+step( _ ): 	not route([]) 		&
-				lastDoing(Y) 		& 
-				doing(X) 			& 
-				Y\==X 				& 
-				steps(X,[ACT|T])	& 
-				steps(Y,L)			&
-				acaoValida( LA )
++step( _ )
+	:
+		not route([])
+	&	lastDoing(Y)
+	&	doing(X)
+	&	Y\==X
+	&	steps(X,[ACT|T])
+	&	steps(Y,L)
+	&	acaoValida( LA )
 	<-
-		//.print("2-rota em andamento e doing ",X);
 		-+lastDoing(X);			
 		-steps(X,_);
 		+steps(X,T);
@@ -174,7 +184,7 @@
 		        .print("recuperando ultima acao valida: ",steps(Y,[LA|L])); 
 		      } 	   
 	    } 
-    action( ACT); 
+    action( ACT ); 
 . 
 
 @s6[atomic]
@@ -184,12 +194,14 @@
 		(	X == failed_wrong_param | X == failed_unknown_agent |
 			X == failed_counterpart | X == failed_tools 		|
 			X == failed_location  	| X == partial_success		| 
-			X == successful_partial	| X == randomFail	
+			X == successful_partial	| X == randomFail			|
+			X == failed_item_amount
 		)
 	&	acaoValida( ACTION )
+	&	doing( DOING )
 	<-	
 		if (X \== successful_partial	) {
-			.print( "step",S,": ",X, " repetindo ", ACTION );
+			.print( "step ",S,": ",X, " repetindo ", ACTION, " em ", DOING );
 		}
 		action( ACTION );
 	.
@@ -199,6 +211,7 @@
 			steps( craftSemParts, [store(ITEM,QUANTIDADE)|T])
 			& hasItem( ITEM, NOVAQUANTIDADE)	
 	<-	
+		.print( "Fazendo store em craftSemParts" );
 		 action( store(ITEM,NOVAQUANTIDADE) );
 		-steps( craftSemParts, _);
 		+steps( craftSemParts, T);
@@ -213,6 +226,7 @@
 		& steps( craftComParts, [store(ITEM,QUANTIDADE)|T])
 		& hasItem( ITEM, NOVAQUANTIDADE)
 	<-	
+		.print( "Fazendo store em craftComParts" );
 		action( store(ITEM,NOVAQUANTIDADE) );
 		-steps( craftComParts, _);
 		+steps( craftComParts, T);
@@ -227,6 +241,7 @@
 		& centerStorage(STORAGE)
 		& storagePossueItem( STORAGE, ITEM )
 	<-
+		.print( "Fazendo retrieve em craftComParts" );
 		action( retrieve( ITEM, 1 ) );
 		-steps( craftComParts, _);
 		+steps( craftComParts, T);
@@ -240,7 +255,7 @@
 		& steps( craftComParts, [retrieve( ITEM, 1)|T])
 		& not storagePossueItem( STORAGE, ITEM )
 	<-
-		//.print("aguardando item ",ITEM)
+		.print("aguardando item em craftComParts ",ITEM);
 		action( noAction );
 		-+lastDoing(craftComParts);
 		-+acaoValida( noAction );
@@ -251,6 +266,7 @@
 +step( _ ):
 		doing(DOING) & steps( DOING, [ACT|T])			
 	<-
+		.print( "Doing generico ", ACT, " ", DOING );
 		action( ACT );
 		-steps( DOING, _);
 		+steps( DOING, T);
@@ -262,5 +278,6 @@
 @s19[atomic]
 +step( _ ): true
 	<-
-		action( noAction );
+//		.print( "noAction" );
+		action( noAction  );
 	.

@@ -5,7 +5,8 @@
 		not jobCommitment(NOMEJOB)
 	&	name(A)
 	&	not doing(_)
-    &	role(motorcycle,_,_,_,_,_,_,_,_,_,_)
+//    &	role(motorcycle,_,_,_,_,_,_,_,_,_,_)
+    &	role(car,_,_,_,_,_,_,_,_,_,_)
     <- 
   		?step(S);
     	+commitjob(NOMEJOB);
@@ -23,34 +24,34 @@
 +!realizarJob( NOMEJOB )
 	:
 		job(NOMEJOB,LOCALENTREGA,REWARD,STEPINICIAL,STEPFINAL,ITENS)
-	&	role(motorcycle,_,_,CAPACIDADE,_,_,_,_,_,_,_)
+	&	role(car,_,_,CAPACIDADE,_,_,_,_,_,_,_)
 	&	centerStorage(STORAGE)
-	<-
-		
+	<-	
 		.print( "Entrou no realizarJob( ", NOMEJOB, " )");
 		!calcularVolume( ITENS, 0, VOLUMETOTAL );
 		
-		if( possoCarregarTudo( CAPACIDADE, VOLUMETOTAL ) ){
-			PASSOS_1 = [ goto( STORAGE ) ];
-			!passosGathering( ITENS, [], RETORNO );
-			.concat( PASSOS_1, RETORNO, PASSOS_2);
-			.concat( PASSOS_2, [ goto( LOCALENTREGA ), deliver_job( NOMEJOB )], PASSOS_3);
-			.length( PASSOS_3, TAMANHOLISTAPASSOS );
-			
-			if( possuoTempoParaRealizarJob( NOMEJOB, TAMANHOLISTAPASSOS ) ){
-//				-steps( job, _ );
-//				+steps( job, PASSOS_3 );
-//				+todo(job,8);
+		?possoCarregarTudo( CAPACIDADE, VOLUMETOTAL );
+		
+		PASSOS_1 = [ goto( STORAGE ) ];
+		!passosGathering( ITENS, [], RETORNO );
+		.concat( PASSOS_1, RETORNO, PASSOS_2);
+		.concat( PASSOS_2, [ goto( LOCALENTREGA ), deliver_job( NOMEJOB )], PASSOS_3);
+		.length( PASSOS_3, TAMANHOLISTAPASSOS );
+		
+		?possuoTempoParaRealizarJob( NOMEJOB, TAMANHOLISTAPASSOS );
 
-				.print( "Vou realizar o trabalho ", NOMEJOB );
-			}else{
-				.print( "Sem tempo para realizar o job ", NOMEJOB, " ", TAMANHOLISTAPASSOS );
-			}
-				
-		}else{
-			.print( "Sem capacidade para carregar", CAPACIDADE, " ", VOLUMETOTAL )
-		}
+		-steps( job, _ );
+		+steps( job, PASSOS_3 );
+		+todo(job,8);
+		
 	.
+
+//-!realizarJob( NOMEJOB )
+//	:
+//		true
+//	<-
+//		.print( "Falha no plano de realizar job" );
+//	.
 
 +!passosGathering( [], LISTA, RETORNO )
 	:
