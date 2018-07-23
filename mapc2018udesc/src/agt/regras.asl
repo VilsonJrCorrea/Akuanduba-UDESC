@@ -131,3 +131,5 @@ calculatehowmanystepsrecharge(Facility,STEPSRECHARGE):-
 						role(_,_,_,BAT,_,_,_,_,_,_,_)&
 						chargingStation(Facility,_,_,CAP)&
 						STEPSRECHARGE = math.ceil(BAT/CAP).
+						
+// Teste para commit
