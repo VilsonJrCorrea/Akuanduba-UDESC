@@ -18,17 +18,14 @@
 						name(NAMEAGENT) 														&
 						numberTotalCraft(NTC)													&
 						.count(craftCommitment(_,_))<NTC	 									&
-//						(.count(craftCommitment(_,_))<.count(item(_,_,_,parts(P)) & P\==[]))	&
 						centerStorage(STORAGE) 													&	
 						centerWorkshop(WORKSHOP) 												&
 						not craftCommitment(NAMEAGENT,_) 										&
 						not gatherCommitment(NAMEAGENT,_)
 		<-
 			?gocraft(ITEM,ROLE,QTD);
-			//?gocraft(ITEM,ROLE);
 			addCraftCommitment(NAMEAGENT, ITEM,QTD);
 			.print("commited with ",ITEM);
-			//addCraftCommitment(NAMEAGENT, ITEM);
 			!!upgradecapacity;
 			!!craftComParts;
 		.
@@ -37,7 +34,7 @@
 		role(ROLE,_,_,LOAD,_,_,_,_,_,_,_) 		&
 		name(NAMEAGENT) 			     		&
 		craftCommitment(NAMEAGENT,ITEM)			&
-		item(ITEM,_,_,parts(LPARTS))&
+		item(ITEM,_,_,parts(LPARTS))			&
 		sumvolrule(LPARTS,VOL)					&
 		LOAD<VOL	 										
 	<-					

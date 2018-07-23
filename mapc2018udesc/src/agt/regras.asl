@@ -1,7 +1,6 @@
 repeat(TERM , QTD , L ,RR ) :- QTD> 0 & repeat(TERM , QTD-1 , [TERM|L] , RR). 						
 repeat(TERM , QTD , L ,L ).		
 
-
 rollbackcutexpectedrule([HEXPECTED|TEXPECTED], QTD, DONNED) :- 
 	QTD>0 & DONNED=[HEXPECTED|DON] & rollbackcutexpectedrule(TEXPECTED, QTD-1, DON).
 	
@@ -17,7 +16,7 @@ rollbackrule(LISTWHATSEARCH, [HLISTSOURCE|TLISTSOURCE], ACTION) :-
 
 minimumqtd([HLPARTS|TLPARTS],LSTORAGE) :- 
 					(	.member(item(HLPARTS,QTD,_),LSTORAGE)	& 
-						QTD>0									&
+						QTD>1									&
 						minimumqtd (TLPARTS,LSTORAGE)).
 minimumqtd([],LSTORAGE).
 
@@ -52,10 +51,6 @@ gocraft(ITEM,ROLE,QTD) :-	item(ITEM,_,roles(R),_) 			&
 							.count(craftCommitment(_,ITEM))<QTD &
 							.member(ROLE,R).
 
-//gocraft(ITEM,ROLE) :-	item(ITEM,_,roles(R),_) 		& 
-//						not craftCommitment(AGENT,ITEM)	& 
-//						.member(ROLE,R).
-
 sumvolrule([ITEM|T],VOL):-	item(ITEM,V,_,_) 			& 
 							(( 	T\==[] 					&
 							  	sumvolrule(T,VA)   		&
@@ -80,7 +75,6 @@ nearworkshop(Facility):-
 					& math.sqrt((X1-X0)*(X1-X0)+(Y1-Y0)*(Y1-Y0)) > 
 					 math.sqrt((X2-X0)*(X2-X0)+(Y2-Y0)*(Y2-Y0))).
 
-//storage(storage0,48.8242,2.30026,10271,0,[])
 nearstorage(Facility, X0, Y0):- 	
 					storage(Facility, X1,Y1,_,_,_) & not (storage(_, X2,Y2,_,_,_)
 					& math.sqrt((X1-X0)*(X1-X0)+(Y1-Y0)*(Y1-Y0)) > 
