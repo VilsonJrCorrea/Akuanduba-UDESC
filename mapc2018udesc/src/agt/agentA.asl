@@ -7,6 +7,8 @@
 { include("regras.asl") }
 //{ include("job.asl") }
 { include("construcao_pocos.asl")}
+{ include("restartround.asl")}
+
 
 +resourceNode(A,B,C,D)[source(percept)]:
 			not (resourceNode(A,B,C,D)[source(SCR)] &
