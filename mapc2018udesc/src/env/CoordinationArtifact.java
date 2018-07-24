@@ -19,7 +19,23 @@ public class CoordinationArtifact extends Artifact {
 	private HashMap<AgentId, double[]> positions = new HashMap<>();	
 	private HashMap<String, ObsProperty> job = new HashMap<>(); 
 	   
-	
+	 @OPERATION 
+	 void resetBlackboard() {
+		 for(Map.Entry<String, ObsProperty> entry : this.tarefas.entrySet()) {
+				 removeObsProperty(entry.getValue().getName());
+		 }
+		 this.tarefas = new HashMap<>();
+		 for (CraftTask ct: this.craftTask) {			 
+			 removeObsProperty(ct.getOP().getName());
+		 }
+		 this.craftTask = new ArrayList<CraftTask>();
+		 this.positions = new HashMap<>();
+		 for(Map.Entry<String, ObsProperty> entry : this.job.entrySet()) {
+			 removeObsProperty(entry.getValue().getName());
+	 }
+	 this.job = new HashMap<>();
+		 
+	 }
 		// -----------------
 			private int sumcraft(String item) {
 				int sum=0;
