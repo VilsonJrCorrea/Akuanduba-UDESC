@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.jboss.netty.util.internal.SystemPropertyUtil;
 import org.ojalgo.optimisation.Expression;
 import org.ojalgo.optimisation.ExpressionsBasedModel;
 import org.ojalgo.optimisation.Optimisation;
@@ -18,23 +19,28 @@ public class CoordinationArtifact extends Artifact {
 	private ArrayList<CraftTask> craftTask = new ArrayList<CraftTask>();
 	private HashMap<AgentId, double[]> positions = new HashMap<>();	
 	private HashMap<String, ObsProperty> job = new HashMap<>(); 
+	int round =-1;
 	   
 	 @OPERATION 
-	 void resetBlackboard() {
-		 for(Map.Entry<String, ObsProperty> entry : this.tarefas.entrySet()) {
+	 void resetBlackboard(int round) {
+		 if (this.round<round) {
+			 this.round=round;
+			  System.out.println("---> reseting blackboards");
+			 for(Map.Entry<String, ObsProperty> entry : this.tarefas.entrySet()) {
+					 removeObsProperty(entry.getValue().getName());
+			 }
+			 this.tarefas = new HashMap<>();
+			 for (CraftTask ct: this.craftTask) {			 
+				 removeObsProperty(ct.getOP().getName());
+			 }
+			 this.craftTask = new ArrayList<CraftTask>();
+			 this.positions = new HashMap<>();
+			 for(Map.Entry<String, ObsProperty> entry : this.job.entrySet()) {
 				 removeObsProperty(entry.getValue().getName());
-		 }
-		 this.tarefas = new HashMap<>();
-		 for (CraftTask ct: this.craftTask) {			 
-			 removeObsProperty(ct.getOP().getName());
-		 }
-		 this.craftTask = new ArrayList<CraftTask>();
-		 this.positions = new HashMap<>();
-		 for(Map.Entry<String, ObsProperty> entry : this.job.entrySet()) {
-			 removeObsProperty(entry.getValue().getName());
-	 }
-	 this.job = new HashMap<>();
-		 
+			 }
+			 this.job = new HashMap<>();
+			 round++;
+		 }		 
 	 }
 		// -----------------
 			private int sumcraft(String item) {
@@ -115,6 +121,7 @@ public class CoordinationArtifact extends Artifact {
 						{CENTER[0],MINLON + (VR/222640),MINLAT+(VR/221140)},
 						{CENTER[0],CENTER[1],MINLAT+(VR/221140)}
 				};
+				
 				DronePos [] VARINP = new DronePos[16];
 				int idx = 0;
 				//cria modelo do oj!algol 

@@ -1,5 +1,3 @@
-rightdirection(true).
-
 dislon(SIZE):- 	minLon(MLON) 	& maxLon(CLON) & 
  				role(_,_,_,_,_,_,_,VR,_,_,_) & SIZE=((CLON-MLON)/2-(VR/111320)).
 
@@ -29,6 +27,7 @@ invert(I,O):- (I=true & O=false)|(I=false & O=true).
 
 +corner(CLAT,CLON,F):true
 	<-
+		-+rightdirection(true);
 		!buildexplorationsteps(CLAT, CLON,lat, F, [goto(CLAT, CLON)], R);
 		+steps( exploration, R);
 		+todo(exploration,9);		
