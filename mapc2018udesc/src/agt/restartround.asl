@@ -20,7 +20,7 @@ roundnumber(0).
 		.abolish(ponto(_,_));
 		.abolish(demanded_assist(_));
 		.abolish(lockhelp);
-		
+		.abolish(dependencelevel(_,_));
 		//irao apitar pois no proximo round tem que construir tudo de novo. 
 		.abolish(todo(_,_));
 		.abolish(steps(_,_));
@@ -29,6 +29,5 @@ roundnumber(0).
 		-+roundnumber(RN+1);
 		resetBlackboard(RN+1);		
 	
-		//os drones irao apitar erro 
 		.abolish(started);	
 	.
