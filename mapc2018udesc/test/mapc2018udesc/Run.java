@@ -15,9 +15,9 @@ public class Run {
 			@Override
 			public void run() {
 				try {
-//					if (Desktop.isDesktopSupported()) {
-//					    Desktop.getDesktop().browse(new URI("http://127.0.0.1:8000"));
-//					}
+					if (Desktop.isDesktopSupported()) {
+					    Desktop.getDesktop().browse(new URI("http://127.0.0.1:8000"));
+					}
 					Server.main(new String[] {"-conf", "conf/SampleConfig.json", "--monitor"});					
 				} catch (Exception e) {
 					e.printStackTrace();
