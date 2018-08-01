@@ -132,4 +132,23 @@ calculatehowmanystepsrecharge(Facility,STEPSRECHARGE):-
 						chargingStation(Facility,_,_,CAP)&
 						STEPSRECHARGE = math.ceil(BAT/CAP).
 						
-// Teste para commit
+possuoTempoParaRealizarJob( NOMEJOB, TAMANHOLISTAPASSOS )
+	:-
+//		true
+		job(NOMEJOB,LOCALENTREGA,REWARD,STEPINICIAL,STEPFINAL,ITENS)
+	&	centerStorage( STORAGE )
+	&	storage( STORAGE, STORAGELAT, STORAGELON, _, _, _)
+	&	storage( LOCALENTREGA, DESTINOLAT, DESTINOLON, _, _, _)
+	&	lat( MEULAT )
+	&	lon( MEULON )
+	&	calculatedistance( MEULAT, MEULON, STORAGELAT, STORAGELON, DISTANCIASTORAGE )
+	&	calculatedistance( MEULAT, MEULON, DESTINOLAT, DESTINOLON, DISTANCIADESTINO )
+	&	distanciasemsteps( DISTANCIASTORAGE, STEPSSTORAGE )
+	&	distanciasemsteps( DISTANCIADESTINO, STEPSDESTINO )
+	&	( STEPFINAL - STEPINICIAL ) > ( TAMANHOLISTAPASSOS + STEPSDESTINO + STEPSSTORAGE + 10)
+	.
+
+possoCarregarTudo( CAPACIDADE, VOLUMETOTAL )
+	:-
+		CAPACIDADE > VOLUMETOTAL
+.
