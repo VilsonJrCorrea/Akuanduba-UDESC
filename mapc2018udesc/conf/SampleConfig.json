@@ -72,7 +72,7 @@
         "motorcycle" : {
           "baseSpeed" : 4,
           "maxSpeed" : 6,
-          "baseLoad" : 30,
+          "baseLoad" : 1000,
           "maxLoad" : 70,
           "baseBattery" : 30,
           "maxBattery" : 60,
@@ -85,7 +85,7 @@
         "car" : {
           "baseSpeed" : 3,
           "maxSpeed" : 5,
-          "baseLoad" : 50,
+          "baseLoad" : 1000,
           "maxLoad" : 150,
           "baseBattery" : 40,
           "maxBattery" : 80,
