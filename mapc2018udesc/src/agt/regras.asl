@@ -52,12 +52,18 @@ gocraft(ITEM,ROLE,QTD) :-	item(ITEM,_,roles(R),_) 			&
 							.member(ROLE,R).
 
 sumvolrule([ITEM|T],VOL):-	item(ITEM,V,_,_) 			& 
-							(( 	T\==[] 					&
+							((  T\==[] 					&
 							  	sumvolrule(T,VA)   		&
 							  	VOL=V+VA)				|
 							(	T=[]					&
 								VOL=V)).			
 
+sumvolruleJOB([required(ITEM,QTD)|T],VOL):-	item(ITEM,V,_,_) 			& 
+							((  T\==[] 					&
+							  	sumvolruleJOB(T,VA)   		&
+							  	VOL=V*QTD+VA)				|
+							(	T=[]					&
+								VOL=QTD*V)).
 
 lesscost(PID, AGENT):-
 	helper(PID, COST1)[source(AGENT)]	&	
@@ -132,7 +138,7 @@ calculatehowmanystepsrecharge(Facility,STEPSRECHARGE):-
 						chargingStation(Facility,_,_,CAP)&
 						STEPSRECHARGE = math.ceil(BAT/CAP).
 						
-possuoTempoParaRealizarJob( NOMEJOB, TAMANHOLISTAPASSOS )
+possuoTempoParaRealizarJob( NOMEJOB, TEMPONECESSARIO )
 	:-
 //		true
 		job(NOMEJOB,LOCALENTREGA,REWARD,STEPINICIAL,STEPFINAL,ITENS)
@@ -142,10 +148,11 @@ possuoTempoParaRealizarJob( NOMEJOB, TAMANHOLISTAPASSOS )
 	&	lat( MEULAT )
 	&	lon( MEULON )
 	&	calculatedistance( MEULAT, MEULON, STORAGELAT, STORAGELON, DISTANCIASTORAGE )
-	&	calculatedistance( MEULAT, MEULON, DESTINOLAT, DESTINOLON, DISTANCIADESTINO )
 	&	distanciasemsteps( DISTANCIASTORAGE, STEPSSTORAGE )
+	&	calculatedistance( STORAGELAT, STORAGELON, DESTINOLAT, DESTINOLON, DISTANCIADESTINO )
 	&	distanciasemsteps( DISTANCIADESTINO, STEPSDESTINO )
-	&	( STEPFINAL - STEPINICIAL ) > ( TAMANHOLISTAPASSOS + STEPSDESTINO + STEPSSTORAGE + 10)
+	&	.length( ITENS, NUMEROITENS )
+	&	TEMPONECESSARIO = ( NUMEROITENS + STEPSDESTINO + STEPSSTORAGE + 10)
 	.
 
 possoCarregarTudo( CAPACIDADE, VOLUMETOTAL )
