@@ -2,7 +2,8 @@
 
 +job(NOMEJOB,_,_,_,_,_)
 	:
-		not jobCommitment(NOMEJOB)
+		name( NAME )
+	&	not jobCommitment(NAME,NOMEJOB)
 	&	not doing(_)
     &	role(ROLE,_,_,CAPACIDADE,_,_,_,_,_,_,_)
     &	(ROLE=car | ROLE=motocycle)
@@ -15,7 +16,7 @@
 	&	TEMPONECESSARIO <= ( STEPFINAL - STEPATUAL )
     <- 
 //    	+jobCommitment(NOMEJOB);
-    	addIntentionToDoJob(NOMEJOB);
+    	addIntentionToDoJob(NAME, NOMEJOB);
   .
  
 +dojob(NOMEJOB)
@@ -47,19 +48,21 @@
 
 		-steps( job, _ );
 		+steps( job, PASSOS_3 );
-		+todo( job, 8 );
+		-expectedplan( job, _);
+		+expectedplan( job, PASSOS_3 );
+		+todo( job, 5 );
 		
 	.
 
--!realizarJob( NOMEJOB )
-	:
-		name( NAME )
-	&	role(ROLE,_,_,_,_,_,_,_,_,_,_)
+-todo(job,_)
+	: 	jobCommitment(NAME,NOMEJOB) &
+		name( NAME )				&
+		role(ROLE,_,_,_,_,_,_,_,_,_,_)
 	<-
-		-jobCommitment( NOMEJOB );
+		removeIntentionToDoJob(NAME, NOMEJOB)
 //		removeIntentionToDoJob( NOMEJOB );
-		.print( "O ", ROLE, " de nome ", NAME, " não pode realizar o trabalho ", NOMEJOB );
-		// Aqui tem que vir uma instrução para desmarcar o trabalho como sendo feito.
+		.print( "O ", ROLE, " de nome ", NAME, " nao pode realizar o trabalho ", NOMEJOB );
+		// Aqui tem que vir uma instruï¿½ï¿½o para desmarcar o trabalho como sendo feito.
 	.
 
 +!passosGathering( [], LISTA, RETORNO )

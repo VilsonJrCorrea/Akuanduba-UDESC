@@ -52,24 +52,32 @@ public class CoordinationArtifact extends Artifact {
 
 	// -----------------
 	@OPERATION
-	void addIntentionToDoJob(String job) {
+	void addIntentionToDoJob(String agent, String job) {
 		if (!this.job.containsKey(job)) {
 			try {
 				signal(this.getCurrentOpAgentId(), "dojob", ASSyntax.parseLiteral(job));
-				this.job.put(job, defineObsProperty("jobCommitmentAAAAA", ASSyntax.parseLiteral(job)));
+				this.job.put(job, defineObsProperty("jobCommitment",  
+													ASSyntax.parseLiteral(agent),
+													ASSyntax.parseLiteral(job)));
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
 		}
 	}
 
-//	@OPERATION
-//	void removeIntentionToDoJob(String job) {
-//		if (!this.job.containsKey(job)) {
-//			this.job.remove(job);
-//			removeObsPropertyByTemplate("jobCommitment", job);
-//		}
-//	}
+	@OPERATION
+	void removeIntentionToDoJob(String agent, String job) {
+		try {
+			if (!this.job.containsKey(job)) {
+				this.job.remove(job);
+				removeObsPropertyByTemplate("jobCommitment",
+											ASSyntax.parseLiteral(agent),
+											ASSyntax.parseLiteral(job));
+			}
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+	}
 
 	@OPERATION
 	void addGatherCommitment(String agent, String item) {

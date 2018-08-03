@@ -41,8 +41,8 @@ splitBy(item(NH,VH,RH,PH), [item(NU,VU,RU,PU)|T], LS, [item(NU,VU,RU,PU)|RS] )
 :- VU  > VH & splitBy(item(NH,VH,RH,PH), T, LS, RS).		
 
 
-priotodo(ACTION):- 	todo(ACTION,PRIO1) & not waiting(ACTION,_) & not (todo(ACT2,PRIO2)
-					& PRIO2 > PRIO1).
+priotodo(ACTION):- 	todo(ACTION,PRIO1) & not waiting(ACTION,_) & 
+						not (todo(ACT2,PRIO2) & not waiting(ACT2,_) & PRIO2 > PRIO1).
 					
 gogather(ITEM):-item(ITEM,_,roles([]),_) & not gatherCommitment(AGENT,ITEM).
 

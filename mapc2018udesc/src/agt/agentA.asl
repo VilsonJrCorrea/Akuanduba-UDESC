@@ -97,6 +97,7 @@
 	:	.count((todo(TD,_) & not waiting(TD,_)), QUANTIDADE) &
 			QUANTIDADE > 0
 	<-			
+		
 		?priotodo(ACTION2);
 		-+doing(ACTION2);
 		!checkRollback;
