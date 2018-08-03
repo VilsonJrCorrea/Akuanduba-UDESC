@@ -42,7 +42,7 @@
 //		.print( "Tempo: ", ( STEPFINAL - STEPATUAL ), ", TempoNecessario: ", TEMPONECESSARIO );
 
 		PASSOS_1 = [ goto( STORAGE ) ];
-		!passosGathering( ITENS, [], RETORNO );
+		!passosRetrieve( ITENS, [], RETORNO );
 		.concat( PASSOS_1, RETORNO, PASSOS_2);
 		.concat( PASSOS_2, [ goto( LOCALENTREGA ), deliver_job( NOMEJOB )], PASSOS_3);
 
@@ -51,7 +51,6 @@
 		-expectedplan( job, _);
 		+expectedplan( job, PASSOS_3 );
 		+todo( job, 5 );
-		
 	.
 
 -todo(job,_)
@@ -65,17 +64,17 @@
 		// Aqui tem que vir uma instru��o para desmarcar o trabalho como sendo feito.
 	.
 
-+!passosGathering( [], LISTA, RETORNO )
++!passosRetrieve( [], LISTA, RETORNO )
 	:
 		true
 	<-
 		RETORNO = LISTA;
 	.
 
-+!passosGathering( [required(ITEM, QTD)|T], LISTA, RETORNO )
++!passosRetrieve( [required(ITEM, QTD)|T], LISTA, RETORNO )
 	:
-		true
+		repeat( retrieve(ITEM,1) , QTD , [] ,RR )
 	<-
-		.concat(LISTA, [retrieve( ITEM, QTD)], N_LISTA);
-		!passosGathering( T, N_LISTA, RETORNO );
+		.concat(LISTA, RR, N_LISTA);
+		!passosRetrieve( T, N_LISTA, RETORNO);
 	.

@@ -1,5 +1,5 @@
 repeat(TERM , QTD , L ,RR ) :- QTD> 0 & repeat(TERM , QTD-1 , [TERM|L] , RR). 						
-repeat(TERM , QTD , L ,L ).		
+repeat(TERM , QTD , L ,L ).
 
 rollbackcutexpectedrule([HEXPECTED|TEXPECTED], QTD, DONNED) :- 
 	QTD>0 & DONNED=[HEXPECTED|DON] & rollbackcutexpectedrule(TEXPECTED, QTD-1, DON).
