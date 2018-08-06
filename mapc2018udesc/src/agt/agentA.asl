@@ -6,7 +6,7 @@
 { include("crafting.asl") }
 { include("charging.asl") }		
 { include("regras.asl") }
-//{ include("job.asl") }
+{ include("job.asl") }
 { include("construcao_pocos.asl")}
 { include("restartround.asl")}
 
