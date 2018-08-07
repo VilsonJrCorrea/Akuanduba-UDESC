@@ -75,10 +75,13 @@
 		name( NAME )
 	&	jobCommitment( NAME,JOB )
 	&	not job( JOB,_,_,_,_,_ )
+	&	step( STEP )
 	<-
 		.print( STEP, "-Acabou o tempo para eu fazer o job ", JOB );
 		removeIntentionToDoJob( NAME, JOB );
 	.
+
++!testarTrabalho<-true.
 
 -todo(job,_)
 	: 	jobCommitment(NAME,NOMEJOB) &
