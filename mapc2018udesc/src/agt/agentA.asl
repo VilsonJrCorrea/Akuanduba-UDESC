@@ -199,5 +199,5 @@
 		-+laststep(S);
 		!consumestep;
 		!whattodo;
-		!do;				
+		!do;		
 	.

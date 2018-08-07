@@ -27,7 +27,7 @@
 		role(ROLE,_,_,_,_,_,_,_,_,_,_)
     <-
     	.print( "Eu, um(a) ", ROLE, " vou fazer o job ", NOMEJOB );
-//    	!!realizarJob( NOMEJOB );
+    	!!realizarJob( NOMEJOB );
 	.
 
 +!realizarJob( NOMEJOB )
@@ -56,8 +56,8 @@
 	&	job( JOB,_,_,_,_,ITENSJOB)
 	&	temTodosItens( ITENSJOB, ITENSTORAGE )
 	<-
-		//.print( "Chegou a hora de fazer o job ", STORAGE, ": ", LISTITENS );
-		!!realizarJob( JOB );
+		.print( "Chegou a hora de fazer o job ", STORAGE, ": ", LISTITENS );
+		//!!realizarJob( JOB );
 	.
 
 +storage(STORAGE,_,_,_,_,LISTITENS)
@@ -70,13 +70,13 @@
 		true;
 	.
 
-+step( S )
++!testarTrabalho
 	:
 		name( NAME )
 	&	jobCommitment( NAME,JOB )
 	&	not job( JOB,_,_,_,_,_ )
 	<-
-		.print( "Acabou o tempo para eu fazer o job ", JOB );
+		.print( STEP, "-Acabou o tempo para eu fazer o job ", JOB );
 		removeIntentionToDoJob( NAME, JOB );
 	.
 
@@ -86,7 +86,6 @@
 		role(ROLE,_,_,_,_,_,_,_,_,_,_)
 	<-
 		removeIntentionToDoJob(NAME, NOMEJOB);
-//		removeIntentionToDoJob( NOMEJOB );
 	.
 
 +!passosRetrieve( [], LISTA, RETORNO )
