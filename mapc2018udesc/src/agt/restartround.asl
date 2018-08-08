@@ -1,13 +1,46 @@
 roundnumber(0).
 
+@start[atomic]
++simStart: not started 
+		<-
+				+started;				
+
+				.wait(role(VEHICLE,_,_,_,_,_,_,_,_,_,_) &
+					name(AGENT));					
+				.broadcast(tell,partners(VEHICLE,AGENT));		
+						
+				!!callcraftSemParts;
+				!!callCraftComPartsWithDelay;										
+				!!buildPoligon;
+				!!sendcentrals;
+				!!exploration;
+		.
+
+
++!sendcentrals
+	:	name(agentA20)
+	<-	
+		.wait(step(1));
+		?centerStorageRule(STORAGE); 
+		+centerStorage(STORAGE);
+		?centerWorkshopRule(WORKSHOP);
+		+centerWorkshop(WORKSHOP);
+		.broadcast(tell, centerWorkshop(WORKSHOP) );
+		.broadcast(tell, centerStorage(STORAGE) );
+.
+
++!sendcentrals : name(A) & A\== agentA20	
+	<- true.
+
 @end[atomic]
-+simEnd: not simEnded
++simEnd: not simEnded & roundnumber(RN)
 	<-
-		+simEnded;
+		+simEnded;	
+		
 		.drop_all_events;		
    		.drop_all_intentions;
    		.drop_all_desires;
-
+	
 		.abolish(resourcenode(_,_,_,_));
 		.abolish(centerStorage(_));
 		.abolish(centerWorkshop(_));
@@ -21,13 +54,17 @@ roundnumber(0).
 		.abolish(demanded_assist(_));
 		.abolish(lockhelp);
 		.abolish(dependencelevel(_,_));
-		//irao apitar pois no proximo round tem que construir tudo de novo. 
 		.abolish(todo(_,_));
 		.abolish(steps(_,_));
-
-		?roundnumber(RN);
+		
 		-+roundnumber(RN+1);
 		resetBlackboard(RN+1);		
-	
-		.abolish(started);	
+		
+		.abolish(started);			
 	.
+	
++steps(S): step(S-1)
+<-
+	//.print("Estou no ultimo step ",S-1);
+	.abolish(simEnded);	
+.

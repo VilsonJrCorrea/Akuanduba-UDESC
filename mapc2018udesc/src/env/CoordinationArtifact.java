@@ -24,7 +24,7 @@ public class CoordinationArtifact extends Artifact {
 	void resetBlackboard(int round) {
 		if (this.round < round) {
 			this.round = round;
-			System.out.println("---> reseting blackboards");
+			System.out.println("---> reseting blackboards "+this.round);
 			for (Map.Entry<String, ObsProperty> entry : this.tarefas.entrySet()) {
 				removeObsProperty(entry.getValue().getName());
 			}
