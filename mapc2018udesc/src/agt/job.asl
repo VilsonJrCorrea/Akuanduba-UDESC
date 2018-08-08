@@ -5,9 +5,12 @@
 		name( NAME )
 	&	not jobCommitment(NAME,NOMEJOB)
 	&	not doing(_)
+	
+//	&	not todo(craftComParts,_)
+    
     &	role(ROLE,_,_,CAPACIDADE,_,_,_,_,_,_,_)
     &	(ROLE=car | ROLE=motocycle)
-    &	job(NOMEJOB,LOCALENTREGA,REWARD,STEPINICIAL,STEPFINAL,ITENS)
+    &	job( NOMEJOB,LOCALENTREGA,REWARD,STEPINICIAL,STEPFINAL,ITENS )
 	&	step( STEPATUAL )
 	&	centerStorage(STORAGE)
 	&	sumvolruleJOB( ITENS, VOLUMETOTAL )
@@ -23,7 +26,7 @@
 	:
 		role(ROLE,_,_,_,_,_,_,_,_,_,_)
     <-
-    	.print( "Disseram para eu, um(a) ", ROLE, " fazer o job ", NOMEJOB );
+    	.print( "Eu, um(a) ", ROLE, " vou fazer o job ", NOMEJOB );
     	!!realizarJob( NOMEJOB );
 	.
 
@@ -33,14 +36,6 @@
 	&	job(NOMEJOB,LOCALENTREGA,REWARD,STEPINICIAL,STEPFINAL,ITENS)
 
 	<-	
-		.print( "Entrou para realizar o job " );
-		
-//		?sumvolruleJOB( ITENS, VOLUMETOTAL );
-//		.print( "Capacidade: ", CAPACIDADE, ", VolumeTotal: ", VOLUMETOTAL );
-
-//		?possuoTempoParaRealizarJob( NOMEJOB, TEMPONECESSARIO );
-//		.print( "Tempo: ", ( STEPFINAL - STEPATUAL ), ", TempoNecessario: ", TEMPONECESSARIO );
-
 		PASSOS_1 = [ goto( STORAGE ) ];
 		!passosRetrieve( ITENS, [], RETORNO );
 		.concat( PASSOS_1, RETORNO, PASSOS_2);
@@ -53,15 +48,47 @@
 		+todo( job, 5 );
 	.
 
++storage(STORAGE,_,_,_,_,ITENSTORAGE)
+	:
+		centerStorage( STORAGE )
+	&	name( NAME )
+	&	jobCommitment( NAME, JOB )
+	&	job( JOB,_,_,_,_,ITENSJOB)
+	&	temTodosItens( ITENSJOB, ITENSTORAGE )
+	<-
+		.print( "Chegou a hora de fazer o job ", STORAGE, ": ", LISTITENS );
+		//!!realizarJob( JOB );
+	.
+
++storage(STORAGE,_,_,_,_,LISTITENS)
+	:
+		centerStorage( STORAGE )
+	&	name( NAME )
+	&	jobCommitment( NAME, JOB )
+	<-
+		//.print( "nao ", STORAGE, ": ", LISTITENS );
+		true;
+	.
+
++!testarTrabalho
+	:
+		name( NAME )
+	&	jobCommitment( NAME,JOB )
+	&	not job( JOB,_,_,_,_,_ )
+	&	step( STEP )
+	<-
+		.print( STEP, "-Acabou o tempo para eu fazer o job ", JOB );
+		removeIntentionToDoJob( NAME, JOB );
+	.
+
++!testarTrabalho<-true.
+
 -todo(job,_)
 	: 	jobCommitment(NAME,NOMEJOB) &
 		name( NAME )				&
 		role(ROLE,_,_,_,_,_,_,_,_,_,_)
 	<-
-		removeIntentionToDoJob(NAME, NOMEJOB)
-//		removeIntentionToDoJob( NOMEJOB );
-		.print( "O ", ROLE, " de nome ", NAME, " nao pode realizar o trabalho ", NOMEJOB );
-		// Aqui tem que vir uma instru��o para desmarcar o trabalho como sendo feito.
+		removeIntentionToDoJob(NAME, NOMEJOB);
 	.
 
 +!passosRetrieve( [], LISTA, RETORNO )

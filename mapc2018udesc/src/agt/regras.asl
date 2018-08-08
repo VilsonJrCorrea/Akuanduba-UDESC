@@ -140,7 +140,6 @@ calculatehowmanystepsrecharge(Facility,STEPSRECHARGE):-
 						
 possuoTempoParaRealizarJob( NOMEJOB, TEMPONECESSARIO )
 	:-
-//		true
 		job(NOMEJOB,LOCALENTREGA,REWARD,STEPINICIAL,STEPFINAL,ITENS)
 	&	centerStorage( STORAGE )
 	&	storage( STORAGE, STORAGELAT, STORAGELON, _, _, _)
@@ -155,7 +154,32 @@ possuoTempoParaRealizarJob( NOMEJOB, TEMPONECESSARIO )
 	&	TEMPONECESSARIO = ( NUMEROITENS + STEPSDESTINO + STEPSSTORAGE + 10)
 	.
 
-possoCarregarTudo( CAPACIDADE, VOLUMETOTAL )
+temTodosItens( ITENSJOB, ITENSSTORAGE )
 	:-
-		CAPACIDADE > VOLUMETOTAL
-.
+		buscarNomesItensJOB( ITENSJOB, [], NOMESJOB )
+	&	buscarNomesItensSTORAGE( ITENSSTORAGE, [], NOMESSTORAGE )
+	&	.difference( NOMESJOB, NOMESSTORAGE, DIFF )
+	&	DIFF==[]
+	.
+
+buscarNomesItensJOB( [], LISTA, RETORNO )
+	:-
+		RETORNO=LISTA
+	.
+
+buscarNomesItensJOB( [required(ITEM,_)|T], LISTA, RETORNO )
+	:-
+		.concat( [ITEM], LISTA, N_LISTA )
+	&	buscarNomesItensJOB( T, N_LISTA, RETORNO)
+	.
+
+buscarNomesItensSTORAGE( [], LISTA, RETORNO )
+	:-
+		RETORNO=LISTA
+	.
+
+buscarNomesItensSTORAGE( [item(ITEM,_,_)|T], LISTA, RETORNO )
+	:-
+		.concat( [ITEM], LISTA, N_LISTA )
+	&	buscarNomesItensSTORAGE( T, N_LISTA, RETORNO)
+	.

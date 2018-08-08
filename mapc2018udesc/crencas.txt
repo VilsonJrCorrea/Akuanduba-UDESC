@@ -1,0 +1,213 @@
+ Inspection of agent agentA1
+- Beliefs	
+requestAction[...].
+simStart[...].
+started[...].
+actionID(84)[...].
+cellSize(200)[...].
+centerLat(48.8424)[...].
+centerLon(2.3209)[...].
+centerStorage(storage5)[...].
+centerWorkshop(workshop5)[...].
+charge(16)[...].
+deadline(1533579014265)[...].
+doing(exploration)[...].
+id("paris")[...].
+lastAction(continue)[...].
+lastActionParams([])[...].
+lastActionResult(successful)[...].
+lastDoing(exploration)[...].
+laststep(84)[...].
+lat(48.86473)[...].
+load(0)[...].
+lon(2.3037)[...].
+map(paris)[...].
+massium(2356)[...].
+maxLat(48.9)[...].
+maxLon(2.41)[...].
+minLat(48.82)[...].
+minLon(2.26)[...].
+name(agentA1)[...].
+numberTotalCraft(11)[...].
+proximity(5)[...].
+rightdirection(false)[...].
+roundnumber(0)[...].
+route([])[...].
+routeLength(0)[...].
+score(390)[...].
+seedCapital(5000)[...].
+step(84)[...].
+steps(1000)[...].
+team(a)[...].
+timestamp(1533579010265)[...].
+craftCommitment(agentA12,item6)[...].
+craftCommitment(agentA14,item5)[...].
+craftCommitment(agentA15,item4)[...].
+craftCommitment(agentA16,item5)[...].
+craftCommitment(agentA17,item8)[...].
+craftCommitment(agentA18,item5)[...].
+craftCommitment(agentA21,item4)[...].
+craftCommitment(agentA22,item4)[...].
+craftCommitment(agentA6,item6)[...].
+craftCommitment(agentA7,item7)[...].
+craftCommitment(agentA9,item6)[...].
+gatherCommitment(agentA23,item1)[...].
+gatherCommitment(agentA24,item2)[...].
+gatherCommitment(agentA25,item3)[...].
+gatherCommitment(agentA32,item0)[...].
+jobCommitment(agentA13,job0)[...].
+jobCommitment(agentA14,job9)[...].
+jobCommitment(agentA15,job7)[...].
+jobCommitment(agentA16,job3)[...].
+jobCommitment(agentA17,job1)[...].
+jobCommitment(agentA18,job16)[...].
+jobCommitment(agentA19,job21)[...].
+jobCommitment(agentA20,job6)[...].
+jobCommitment(agentA21,job17)[...].
+jobCommitment(agentA22,job15)[...].
+joined(env,cobj_2)[...].
+joined(main,cobj_0)[...].
+numberAgRequired(item4,3)[...].
+numberAgRequired(item5,3)[...].
+numberAgRequired(item6,3)[...].
+numberAgRequired(item7,1)[...].
+numberAgRequired(item8,1)[...].
+partners(car,agentA13)[...].
+partners(car,agentA14)[...].
+partners(car,agentA15)[...].
+partners(car,agentA16)[...].
+partners(car,agentA17)[...].
+partners(car,agentA18)[...].
+partners(car,agentA19)[...].
+partners(car,agentA20)[...].
+partners(car,agentA21)[...].
+partners(car,agentA22)[...].
+partners(drone,agentA2)[...].
+partners(drone,agentA3)[...].
+partners(drone,agentA4)[...].
+partners(motorcycle,agentA10)[...].
+partners(motorcycle,agentA11)[...].
+partners(motorcycle,agentA12)[...].
+partners(motorcycle,agentA5)[...].
+partners(motorcycle,agentA6)[...].
+partners(motorcycle,agentA7)[...].
+partners(motorcycle,agentA8)[...].
+partners(motorcycle,agentA9)[...].
+partners(truck,agentA23)[...].
+partners(truck,agentA24)[...].
+partners(truck,agentA25)[...].
+partners(truck,agentA26)[...].
+partners(truck,agentA27)[...].
+partners(truck,agentA28)[...].
+partners(truck,agentA29)[...].
+partners(truck,agentA30)[...].
+partners(truck,agentA31)[...].
+partners(truck,agentA32)[...].
+partners(truck,agentA33)[...].
+partners(truck,agentA34)[...].
+qsort([],[])[...].
+steps(exploration,[goto(48.86472822646285,2.3323050664750267),goto(48.85930179976483,2.3323050664750267)])[...].
+todo(exploration,9)[...].
+dump(dump0,48.84929,2.32596)[...].
+dump(dump1,48.86291,2.27301)[...].
+dump(dump2,48.89826,2.33569)[...].
+focused(env,art1[...],cobj_4)[...].
+focused(env,coogather[...],cobj_5)[...].
+shop(shop0,48.84688,2.32036)[...].
+shop(shop1,48.82567,2.38349)[...].
+shop(shop2,48.87787,2.26824)[...].
+shop(shop3,48.89927,2.367)[...].
+shop(shop4,48.88411,2.38417)[...].
+upgrade(battery,300,5)[...].
+upgrade(load,200,10)[...].
+upgrade(skill,1000,1)[...].
+upgrade(speed,1000,1)[...].
+upgrade(vision,1000,50)[...].
+workshop(workshop0,48.85247,2.28629)[...].
+workshop(workshop1,48.83279,2.30354)[...].
+workshop(workshop2,48.84198,2.39812)[...].
+workshop(workshop3,48.8858,2.27265)[...].
+workshop(workshop4,48.88958,2.30934)[...].
+workshop(workshop5,48.87405,2.34195)[...].
+workshop(workshop6,48.89504,2.39389)[...].
+chargingStation(chargingStation0,48.84937,2.26543,40)[...].
+chargingStation(chargingStation1,48.84928,2.33623,34)[...].
+chargingStation(chargingStation2,48.84526,2.39536,23)[...].
+chargingStation(chargingStation3,48.87951,2.26265,38)[...].
+chargingStation(chargingStation4,48.89724,2.30548,36)[...].
+chargingStation(chargingStation5,48.87246,2.35543,21)[...].
+chargingStation(chargingStation6,48.88474,2.40367,37)[...].
+item(item0,5,roles([]),parts([]))[...].
+item(item1,9,roles([]),parts([]))[...].
+item(item2,6,roles([]),parts([]))[...].
+item(item3,5,roles([]),parts([]))[...].
+item(item4,10,roles([motorcycle,car]),parts([item2,item0,item3]))[...].
+item(item5,9,roles([car,drone]),parts([item1,item2,item0,item3]))[...].
+item(item6,7,roles([motorcycle,drone]),parts([item1,item4,item2,item5,item0,item3]))[...].
+item(item7,10,roles([motorcycle,drone]),parts([item4,item1,item2,item5,item6,item0,item3]))[...].
+item(item8,5,roles([car,truck]),parts([item2,item6,item0,item3]))[...].
+resourceNode(node0,48.87789,2.33678,item0)[...].
+resourceNode(node1,48.89629,2.26387,item2)[...].
+resourceNode(node2,48.87839,2.37056,item1)[...].
+resourceNode(node3,48.8742,2.38195,item3)[...].
+resourceNode(node5,48.8294,2.33109,item1)[...].
+resourceNode(node6,48.8576,2.37992,item0)[...].
+resourceNode(node7,48.84601,2.4025,item0)[...].
+resourceNode(node8,48.8629,2.36465,item3)[...].
+entity(agentA1,a,48.86473,2.3037,drone)[...].
+entity(agentB20,b,48.86673,2.30149,car)[...].
+wellType(wellType0,844,6,28,57)[...].
+wellType(wellType1,964,7,28,56)[...].
+job(job12,storage2,660,39,133,[required(item4,1),required(item5,2),required(item6,1),required(item7,2),required(item8,2)])[...].
+job(job13,storage7,532,41,111,[required(item4,3),required(item5,1),required(item6,2),required(item7,1),required(item8,2)])[...].
+job(job15,storage3,367,43,107,[required(item4,1),required(item6,1),required(item7,1)])[...].
+job(job16,storage5,361,45,120,[required(item4,1),required(item5,1),required(item7,2)])[...].
+job(job17,storage1,377,49,134,[required(item4,1),required(item6,1),required(item7,1),required(item8,1)])[...].
+job(job18,storage3,615,51,109,[required(item4,2),required(item5,1),required(item6,1),required(item7,2),required(item8,2)])[...].
+job(job20,storage4,779,62,144,[required(item5,4),required(item6,2),required(item7,4)])[...].
+job(job21,storage2,432,70,168,[required(item4,2),required(item6,1),required(item7,2)])[...].
+job(job23,storage6,579,71,139,[required(item4,1),required(item6,3),required(item7,2),required(item8,1)])[...].
+job(job24,storage3,624,74,124,[required(item4,2),required(item6,3),required(item7,1),required(item8,3)])[...].
+job(job25,storage5,376,76,171,[required(item4,1),required(item6,1),required(item7,1),required(item8,1)])[...].
+job(job27,storage6,513,78,149,[required(item4,3),required(item5,1),required(item7,1),required(item8,3)])[...].
+job(job28,storage2,510,81,136,[required(item4,3),required(item5,2),required(item6,2),required(item7,1),required(item8,1)])[...].
+job(job29,storage2,512,83,170,[required(item5,1),required(item6,2),required(item7,1),required(item8,2)])[...].
+job(job3,storage1,481,18,84,[required(item4,1),required(item5,1),required(item6,1),required(item7,2)])[...].
+job(job4,storage1,922,20,91,[required(item5,1),required(item6,2),required(item7,4),required(item8,3)])[...].
+job(job7,storage2,425,23,120,[required(item4,1),required(item6,1),required(item7,1),required(item8,1)])[...].
+job(job9,storage5,458,36,89,[required(item7,2),required(item8,1)])[...].
+storage(storage0,48.85842,2.27773,13946,0,[])[...].
+storage(storage1,48.82957,2.32677,8221,0,[])[...].
+storage(storage2,48.83586,2.37935,14671,0,[])[...].
+storage(storage3,48.84834,2.38402,13718,0,[])[...].
+storage(storage4,48.88148,2.27002,9235,0,[])[...].
+storage(storage5,48.87113,2.33853,11454,398,[item(item0,20,0),item(item1,22,0),item(item3,20,0)])[...].
+storage(storage6,48.86509,2.36804,7571,0,[])[...].
+storage(storage7,48.88509,2.40376,7946,0,[])[...].
+role(drone,5,7,15,25,1,3,600,1000,20,40)[...].
++ Rules	
+- Events	
+Sel	Trigger	Intention
+	+job(job13,storage7,532,41,111,[required(item4,3),required(item5,1),required(item6,2),required(item7,1),required(item8,2)])[...]	
+	+job(job25,storage5,376,76,171,[required(item4,1),required(item6,1),required(item7,1),required(item8,1)])[...]	
+	+job(job3,storage1,481,18,84,[required(item4,1),required(item5,1),required(item6,1),required(item7,2)])[...]	
+	+job(job15,storage3,367,43,107,[required(item4,1),required(item6,1),required(item7,1)])[...]	
+	+job(job4,storage1,922,20,91,[required(item5,1),required(item6,2),required(item7,4),required(item8,3)])[...]	
+	+job(job17,storage1,377,49,134,[required(item4,1),required(item6,1),required(item7,1),required(item8,1)])[...]	
+	+job(job29,storage2,512,83,170,[required(item5,1),required(item6,2),required(item7,1),required(item8,2)])[...]	
+	+job(job9,storage5,458,36,89,[required(item7,2),required(item8,1)])[...]	
+	+job(job21,storage2,432,70,168,[required(item4,2),required(item6,1),required(item7,2)])[...]	
+	+job(job16,storage5,361,45,120,[required(item4,1),required(item5,1),required(item7,2)])[...]	
+	+charge(16)[...]	
+	+job(job24,storage3,624,74,124,[required(item4,2),required(item6,3),required(item7,1),required(item8,3)])[...]	
+	+job(job18,storage3,615,51,109,[required(item4,2),required(item5,1),required(item6,1),required(item7,2),required(item8,2)])[...]	
+	+job(job28,storage2,510,81,136,[required(item4,3),required(item5,2),required(item6,2),required(item7,1),required(item8,1)])[...]	
+	+job(job12,storage2,660,39,133,[required(item4,1),required(item5,2),required(item6,1),required(item7,2),required(item8,2)])[...]	
+	+job(job7,storage2,425,23,120,[required(item4,1),required(item6,1),required(item7,1),required(item8,1)])[...]	
+	+job(job20,storage4,779,62,144,[required(item5,4),required(item6,2),required(item7,4)])[...]	
+X	+lastDoing(exploration)[...]	15858946
++ Intentions	
+Actions	
+Pend	Feed	Sel	Term	Result	Intention
+			action(goto(48.86472822646285,2.3323050664750267))	false	15858946
++ Annotations		

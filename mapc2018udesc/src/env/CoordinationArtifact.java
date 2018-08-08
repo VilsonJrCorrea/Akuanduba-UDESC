@@ -67,18 +67,20 @@ public class CoordinationArtifact extends Artifact {
 
 	@OPERATION
 	void removeIntentionToDoJob(String agent, String job) {
-		try {
-			if (!this.job.containsKey(job)) {
-				this.job.remove(job);
+		if (this.job.containsKey(job)) {
+			System.out.println("Vai remover");
+			try {
 				removeObsPropertyByTemplate("jobCommitment",
-											ASSyntax.parseLiteral(agent),
-											ASSyntax.parseLiteral(job));
+						ASSyntax.parseLiteral(agent),
+						ASSyntax.parseLiteral(job));
+			} catch (ParseException e) {
+				e.printStackTrace();
 			}
-		} catch (ParseException e) {
-			e.printStackTrace();
+			this.job.remove(job);
+			System.out.println("Removeu");
 		}
 	}
-
+	
 	@OPERATION
 	void addGatherCommitment(String agent, String item) {
 		if (!tarefas.containsKey(item)) {
