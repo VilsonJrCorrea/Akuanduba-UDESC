@@ -1,22 +1,20 @@
 { include("regras.asl") }
 
-+job(NOMEJOB,_,_,_,_,_)
+@job[atomic]
++job(NOMEJOB,LOCALENTREGA,REWARD,STEPINICIAL,STEPFINAL,ITENS)
 	:
 		name( NAME )
-	&	not jobCommitment(NAME,NOMEJOB)
-	&	not doing(_)
-	
-//	&	not todo(craftComParts,_)
-    
+	&	not jobCommitment(NAME,_)
+	&	not doing(_)  
     &	role(ROLE,_,_,CAPACIDADE,_,_,_,_,_,_,_)
     &	(ROLE=car | ROLE=motocycle)
-    &	job( NOMEJOB,LOCALENTREGA,REWARD,STEPINICIAL,STEPFINAL,ITENS )
 	&	step( STEPATUAL )
 	&	centerStorage(STORAGE)
 	&	sumvolruleJOB( ITENS, VOLUMETOTAL )
 	&	CAPACIDADE >= VOLUMETOTAL
 	&	possuoTempoParaRealizarJob( NOMEJOB, TEMPONECESSARIO )
 	&	TEMPONECESSARIO <= ( STEPFINAL - STEPATUAL )
+//	&	.print( "TN: ", TEMPONECESSARIO, ", T: ", (STEPFINAL-STEPATUAL) )
     <- 
 //    	+jobCommitment(NOMEJOB);
     	addIntentionToDoJob(NAME, NOMEJOB);
@@ -30,6 +28,7 @@
     	!!realizarJob( NOMEJOB );
 	.
 
+@realizarJob[atomic]
 +!realizarJob( NOMEJOB )
 	:
 		centerStorage(STORAGE)
@@ -40,7 +39,7 @@
 		!passosRetrieve( ITENS, [], RETORNO );
 		.concat( PASSOS_1, RETORNO, PASSOS_2);
 		.concat( PASSOS_2, [ goto( LOCALENTREGA ), deliver_job( NOMEJOB )], PASSOS_3);
-
+		
 		-steps( job, _ );
 		+steps( job, PASSOS_3 );
 		-expectedplan( job, _);

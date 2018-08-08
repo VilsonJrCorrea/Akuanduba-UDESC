@@ -109,9 +109,9 @@ finddrone(LATC, LONC, AG):-
 			  math.sqrt((OLAT-LATC)*(OLAT-LATC)+(OLON-LONC)*(OLON-LONC))
 			).
 
-possoContinuar(STEPS,BAT,TESTE):-
-	TESTE=(BAT>STEPS)
-.	
+//possoContinuar(STEPS,BAT,TESTE):-
+//	TESTE=(BAT>STEPS)
+//.	
 
 centerStorageRule(Facility)
 	:-
@@ -150,8 +150,19 @@ possuoTempoParaRealizarJob( NOMEJOB, TEMPONECESSARIO )
 	&	distanciasemsteps( DISTANCIASTORAGE, STEPSSTORAGE )
 	&	calculatedistance( STORAGELAT, STORAGELON, DESTINOLAT, DESTINOLON, DISTANCIADESTINO )
 	&	distanciasemsteps( DISTANCIADESTINO, STEPSDESTINO )
-	&	.length( ITENS, NUMEROITENS )
+	&	qtdItens( ITENS, 0, NUMEROITENS )
 	&	TEMPONECESSARIO = ( NUMEROITENS + STEPSDESTINO + STEPSSTORAGE + 10)
+	.
+
+qtdItens( [], QTDATUAL, QTDTOTAL )
+	:-
+		QTDTOTAL=QTDATUAL
+	.
+
+qtdItens( [required(_,QTD)|T], QTDATUAL, QTDTOTAL )
+	:-
+		NQTD=QTDATUAL+QTD
+	&	qtdItens( T, NQTD, QTDTOTAL)
 	.
 
 temTodosItens( ITENSJOB, ITENSSTORAGE )

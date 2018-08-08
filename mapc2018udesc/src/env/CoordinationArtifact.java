@@ -68,7 +68,6 @@ public class CoordinationArtifact extends Artifact {
 	@OPERATION
 	void removeIntentionToDoJob(String agent, String job) {
 		if (this.job.containsKey(job)) {
-			System.out.println("Vai remover");
 			try {
 				removeObsPropertyByTemplate("jobCommitment",
 						ASSyntax.parseLiteral(agent),
@@ -77,7 +76,6 @@ public class CoordinationArtifact extends Artifact {
 				e.printStackTrace();
 			}
 			this.job.remove(job);
-			System.out.println("Removeu");
 		}
 	}
 	
