@@ -33,6 +33,14 @@ invert(I,O):- (I=true & O=false)|(I=false & O=true).
 		+todo(exploration,9);		
 	.
 
++resourceNode(A,B,C,D)[source(percept)]:
+			not (resourceNode(A,B,C,D)[source(SCR)] &
+			SCR\==percept)
+	<-
+		+resourceNode(A,B,C,D);
+		.broadcast(tell,resourceNode(A,B,C,D));
+	.
+
 +!buildexplorationsteps(CLAT, CLON, LAST, F, LS, R): F>CLAT   
 	<-
 	 R=LS.
@@ -53,3 +61,5 @@ invert(I,O):- (I=true & O=false)|(I=false & O=true).
 		.concat (LS,[goto( RLAT, CLON)],NLS );
 		!buildexplorationsteps(RLAT, CLON,lat, F, NLS, R);
 	.
+	
+

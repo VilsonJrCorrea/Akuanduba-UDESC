@@ -2,49 +2,14 @@
 { include("$jacamoJar/templates/common-moise.asl") }
 { include("exploration.asl") }
 { include("gathering.asl") }
-//{ include("crafting2.asl") }
-{ include("crafting.asl") }
+{ include("crafting2.asl") }
+//{ include("crafting.asl") }
 { include("charging.asl") }		
 { include("regras.asl") }
 { include("job.asl") }
 { include("construcao_pocos.asl")}
 { include("restartround.asl")}
 
-+resourceNode(A,B,C,D)[source(percept)]:
-			not (resourceNode(A,B,C,D)[source(SCR)] &
-			SCR\==percept)
-	<-
-		+resourceNode(A,B,C,D);
-		.broadcast(tell,resourceNode(A,B,C,D));
-	.
-
-+simStart: not started
-					<-
-					+started;
-					.wait(role(VEHICLE,_,_,_,_,_,_,_,_,_,_) &
-						name(AGENT));					
-					.broadcast(tell,partners(VEHICLE,AGENT));
-					!!callcraftSemParts;
-					!!callCraftComPartsWithDelay;										
-					!!buildPoligon;
-					!!sendcentrals;
-					!!exploration;
-					.
-
-+!sendcentrals
-	:	name(agentA20)
-	<-	
-		.wait(step(1));
-		?centerStorageRule(STORAGE); 
-		+centerStorage(STORAGE);
-		?centerWorkshopRule(WORKSHOP);
-		+centerWorkshop(WORKSHOP);
-		.broadcast(tell, centerWorkshop(WORKSHOP) );
-		.broadcast(tell, centerStorage(STORAGE) );
-.
-
-+!sendcentrals : name(A) & A\== agentA20	
-	<- true.
 
 @consume_steps[atomic]
 +!consumestep: 
