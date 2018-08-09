@@ -56,17 +56,7 @@
 	&	temTodosItens( ITENSJOB, ITENSTORAGE )
 	<-
 		.print( "Chegou a hora de fazer o job ", STORAGE, ": ", LISTITENS );
-		//!!realizarJob( JOB );
-	.
-
-+storage(STORAGE,_,_,_,_,LISTITENS)
-	:
-		centerStorage( STORAGE )
-	&	name( NAME )
-	&	jobCommitment( NAME, JOB )
-	<-
-		//.print( "nao ", STORAGE, ": ", LISTITENS );
-		true;
+		+todo( job, 9 );
 	.
 
 +!testarTrabalho
@@ -77,7 +67,12 @@
 	&	step( STEP )
 	<-
 		.print( STEP, "-Acabou o tempo para eu fazer o job ", JOB );
+		!rollBackJob;
 		removeIntentionToDoJob( NAME, JOB );
+		
+		-steps( job, _ );
+		-expectedplan( job, _);
+		-todo( job, _ );
 	.
 
 +!testarTrabalho<-true.
@@ -88,6 +83,38 @@
 		role(ROLE,_,_,_,_,_,_,_,_,_,_)
 	<-
 		removeIntentionToDoJob(NAME, NOMEJOB);
+	.
+
++!rollBackJob
+	:
+		hasItem( _, _)
+	&	centerStorage( STORAGE )
+	<-
+		+listaAux( [] );
+		for( hasItem( ITEM, QTD ) ){
+			?listaAux( LISTA );
+			.concat( LISTA, [retrieve( ITEM, QTD )], NLISTA );
+			-+listaAux( NLISTA );
+		}
+		?listaAux( LISTAFINAL );
+		-listaAux( _ );
+		
+		.concat( [goto(STORAGE)], LISTAFINAL, PASSOS );
+		
+		-steps( rollBackJob, _ );
+		+steps( rollBackJob, PASSOS );
+		-expectedplan( rollBackJob, _);
+		+expectedplan( rollBackJob, PASSOS_3 );
+		+todo( rollBackJob, 8.8 );
+		
+		.print( "Adicionei plano para devolver os itens" );
+	.
+
++!rollBackJob
+	:
+		true
+	<-
+		.print( "Nada para devolver" );
 	.
 
 +!passosRetrieve( [], LISTA, RETORNO )

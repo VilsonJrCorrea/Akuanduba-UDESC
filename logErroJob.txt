@@ -1,0 +1,623 @@
+	at EISAccess.action(EISAccess.java:155)
+	... 10 more
+[agentA22] No failure event was generated for +!do[code(action(goto(storage5))),code_line(152),code_src("C:/Users/10516125940/Documents/GitHub/Multi-Agent-Programming-Contest-2018/mapc2018udesc/src/agt/agentA.asl"),env_failure_reason(unknown_operation("action/1")),error(action_failed),error_msg("Unknown Operation"),source(self)]
+intention 74592472: 
+    +!do[source(self)] <- ... action(ACT) / {_14032654=rollBackJob, ACT=goto(storage5), S=141, DOING=rollBackJob, T=[retrieve(item4,1)]}
+    +step(113)[artifact_id(cobj_4),percept_type(obs_prop),source(percept),artifact_name(cobj_4,art22),workspace(cobj_4,env,cobj_2)] <- ... !do / {S=113, LS=112, _14032649=112}
+
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.GeneratedMethodAccessor35.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at cartago.ArtifactOpMethod.exec(ArtifactOpMethod.java:39)
+	at cartago.Artifact.doOperation(Artifact.java:407)
+	at cartago.Artifact.access$200(Artifact.java:32)
+	at cartago.Artifact$ArtifactAdapter.doOperation(Artifact.java:1275)
+	at cartago.WorkspaceKernel.serveOperation(WorkspaceKernel.java:1136)
+	at cartago.WorkspaceKernel.access$000(WorkspaceKernel.java:48)
+	at cartago.WorkspaceKernel$EnvironmentController.run(WorkspaceKernel.java:1477)
+Caused by: java.lang.AssertionError
+	at massim.eismassim.EISEntity.performAction(EISEntity.java:341)
+	at massim.eismassim.EnvironmentInterface.performEntityAction(EnvironmentInterface.java:108)
+	at eis.EIDefaultImpl.performAction(EIDefaultImpl.java:783)
+	at EISAccess.action(EISAccess.java:155)
+	... 10 more
+[agentA22] No failure event was generated for +!do[code(action(goto(storage5))),code_line(152),code_src("C:/Users/10516125940/Documents/GitHub/Multi-Agent-Programming-Contest-2018/mapc2018udesc/src/agt/agentA.asl"),env_failure_reason(unknown_operation("action/1")),error(action_failed),error_msg("Unknown Operation"),source(self)]
+intention 74593806: 
+    +!do[source(self)] <- ... action(ACT) / {_14032820=rollBackJob, ACT=goto(storage5), S=141, DOING=rollBackJob, T=[retrieve(item4,1)]}
+    +step(114)[artifact_id(cobj_4),percept_type(obs_prop),source(percept),artifact_name(cobj_4,art22),workspace(cobj_4,env,cobj_2)] <- ... !do / {_14032815=113, S=114, LS=113}
+
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.GeneratedMethodAccessor35.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at cartago.ArtifactOpMethod.exec(ArtifactOpMethod.java:39)
+	at cartago.Artifact.doOperation(Artifact.java:407)
+	at cartago.Artifact.access$200(Artifact.java:32)
+	at cartago.Artifact$ArtifactAdapter.doOperation(Artifact.java:1275)
+	at cartago.WorkspaceKernel.serveOperation(WorkspaceKernel.java:1136)
+	at cartago.WorkspaceKernel.access$000(WorkspaceKernel.java:48)
+	at cartago.WorkspaceKernel$EnvironmentController.run(WorkspaceKernel.java:1477)
+Caused by: java.lang.AssertionError
+	at massim.eismassim.EISEntity.performAction(EISEntity.java:341)
+	at massim.eismassim.EnvironmentInterface.performEntityAction(EnvironmentInterface.java:108)
+	at eis.EIDefaultImpl.performAction(EIDefaultImpl.java:783)
+	at EISAccess.action(EISAccess.java:155)
+	... 10 more
+[agentA22] No failure event was generated for +!do[code(action(goto(storage5))),code_line(152),code_src("C:/Users/10516125940/Documents/GitHub/Multi-Agent-Programming-Contest-2018/mapc2018udesc/src/agt/agentA.asl"),env_failure_reason(unknown_operation("action/1")),error(action_failed),error_msg("Unknown Operation"),source(self)]
+intention 74594244: 
+    +!do[source(self)] <- ... action(ACT) / {ACT=goto(storage5), S=141, DOING=rollBackJob, T=[retrieve(item4,1)], _14032867=rollBackJob}
+    +step(115)[artifact_id(cobj_4),percept_type(obs_prop),source(percept),artifact_name(cobj_4,art22),workspace(cobj_4,env,cobj_2)] <- ... !do / {_14032864=114, S=115, LS=114}
+
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.GeneratedMethodAccessor35.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at cartago.ArtifactOpMethod.exec(ArtifactOpMethod.java:39)
+	at cartago.Artifact.doOperation(Artifact.java:407)
+	at cartago.Artifact.access$200(Artifact.java:32)
+	at cartago.Artifact$ArtifactAdapter.doOperation(Artifact.java:1275)
+	at cartago.WorkspaceKernel.serveOperation(WorkspaceKernel.java:1136)
+	at cartago.WorkspaceKernel.access$000(WorkspaceKernel.java:48)
+	at cartago.WorkspaceKernel$EnvironmentController.run(WorkspaceKernel.java:1477)
+Caused by: java.lang.AssertionError
+	at massim.eismassim.EISEntity.performAction(EISEntity.java:341)
+	at massim.eismassim.EnvironmentInterface.performEntityAction(EnvironmentInterface.java:108)
+	at eis.EIDefaultImpl.performAction(EIDefaultImpl.java:783)
+	at EISAccess.action(EISAccess.java:155)
+	... 10 more
+[agentA22] No failure event was generated for +!do[code(action(goto(storage5))),code_line(152),code_src("C:/Users/10516125940/Documents/GitHub/Multi-Agent-Programming-Contest-2018/mapc2018udesc/src/agt/agentA.asl"),env_failure_reason(unknown_operation("action/1")),error(action_failed),error_msg("Unknown Operation"),source(self)]
+intention 74608653: 
+    +!do[source(self)] <- ... action(ACT) / {ACT=goto(storage5), S=141, DOING=rollBackJob, T=[retrieve(item4,1)], _14034849=rollBackJob}
+    +step(116)[artifact_id(cobj_4),percept_type(obs_prop),source(percept),artifact_name(cobj_4,art22),workspace(cobj_4,env,cobj_2)] <- ... !do / {_14034836=115, S=116, LS=115}
+
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.GeneratedMethodAccessor35.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at cartago.ArtifactOpMethod.exec(ArtifactOpMethod.java:39)
+	at cartago.Artifact.doOperation(Artifact.java:407)
+	at cartago.Artifact.access$200(Artifact.java:32)
+	at cartago.Artifact$ArtifactAdapter.doOperation(Artifact.java:1275)
+	at cartago.WorkspaceKernel.serveOperation(WorkspaceKernel.java:1136)
+	at cartago.WorkspaceKernel.access$000(WorkspaceKernel.java:48)
+	at cartago.WorkspaceKernel$EnvironmentController.run(WorkspaceKernel.java:1477)
+Caused by: java.lang.AssertionError
+	at massim.eismassim.EISEntity.performAction(EISEntity.java:341)
+	at massim.eismassim.EnvironmentInterface.performEntityAction(EnvironmentInterface.java:108)
+	at eis.EIDefaultImpl.performAction(EIDefaultImpl.java:783)
+	at EISAccess.action(EISAccess.java:155)
+	... 10 more
+[agentA22] No failure event was generated for +!do[code(action(goto(storage5))),code_line(152),code_src("C:/Users/10516125940/Documents/GitHub/Multi-Agent-Programming-Contest-2018/mapc2018udesc/src/agt/agentA.asl"),env_failure_reason(unknown_operation("action/1")),error(action_failed),error_msg("Unknown Operation"),source(self)]
+intention 74609687: 
+    +!do[source(self)] <- ... action(ACT) / {ACT=goto(storage5), _14035702=rollBackJob, S=141, DOING=rollBackJob, T=[retrieve(item4,1)]}
+    +step(117)[artifact_id(cobj_4),percept_type(obs_prop),source(percept),artifact_name(cobj_4,art22),workspace(cobj_4,env,cobj_2)] <- ... !do / {_14035691=116, S=117, LS=116}
+
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.GeneratedMethodAccessor35.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at cartago.ArtifactOpMethod.exec(ArtifactOpMethod.java:39)
+	at cartago.Artifact.doOperation(Artifact.java:407)
+	at cartago.Artifact.access$200(Artifact.java:32)
+	at cartago.Artifact$ArtifactAdapter.doOperation(Artifact.java:1275)
+	at cartago.WorkspaceKernel.serveOperation(WorkspaceKernel.java:1136)
+	at cartago.WorkspaceKernel.access$000(WorkspaceKernel.java:48)
+	at cartago.WorkspaceKernel$EnvironmentController.run(WorkspaceKernel.java:1477)
+Caused by: java.lang.AssertionError
+	at massim.eismassim.EISEntity.performAction(EISEntity.java:341)
+	at massim.eismassim.EnvironmentInterface.performEntityAction(EnvironmentInterface.java:108)
+	at eis.EIDefaultImpl.performAction(EIDefaultImpl.java:783)
+	at EISAccess.action(EISAccess.java:155)
+	... 10 more
+[agentA22] No failure event was generated for +!do[code(action(goto(storage5))),code_line(152),code_src("C:/Users/10516125940/Documents/GitHub/Multi-Agent-Programming-Contest-2018/mapc2018udesc/src/agt/agentA.asl"),env_failure_reason(unknown_operation("action/1")),error(action_failed),error_msg("Unknown Operation"),source(self)]
+intention 74609811: 
+    +!do[source(self)] <- ... action(ACT) / {ACT=goto(storage5), _14035911=rollBackJob, S=141, DOING=rollBackJob, T=[retrieve(item4,1)]}
+    +step(118)[artifact_id(cobj_4),percept_type(obs_prop),source(percept),artifact_name(cobj_4,art22),workspace(cobj_4,env,cobj_2)] <- ... !do / {_14035904=117, S=118, LS=117}
+
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.GeneratedMethodAccessor35.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at cartago.ArtifactOpMethod.exec(ArtifactOpMethod.java:39)
+	at cartago.Artifact.doOperation(Artifact.java:407)
+	at cartago.Artifact.access$200(Artifact.java:32)
+	at cartago.Artifact$ArtifactAdapter.doOperation(Artifact.java:1275)
+	at cartago.WorkspaceKernel.serveOperation(WorkspaceKernel.java:1136)
+	at cartago.WorkspaceKernel.access$000(WorkspaceKernel.java:48)
+	at cartago.WorkspaceKernel$EnvironmentController.run(WorkspaceKernel.java:1477)
+Caused by: java.lang.AssertionError
+	at massim.eismassim.EISEntity.performAction(EISEntity.java:341)
+	at massim.eismassim.EnvironmentInterface.performEntityAction(EnvironmentInterface.java:108)
+	at eis.EIDefaultImpl.performAction(EIDefaultImpl.java:783)
+	at EISAccess.action(EISAccess.java:155)
+	... 10 more
+[agentA22] No failure event was generated for +!do[code(action(goto(storage5))),code_line(152),code_src("C:/Users/10516125940/Documents/GitHub/Multi-Agent-Programming-Contest-2018/mapc2018udesc/src/agt/agentA.asl"),env_failure_reason(unknown_operation("action/1")),error(action_failed),error_msg("Unknown Operation"),source(self)]
+intention 74632465: 
+    +!do[source(self)] <- ... action(ACT) / {_14042380=rollBackJob, ACT=goto(storage5), S=141, DOING=rollBackJob, T=[retrieve(item4,1)]}
+    +step(119)[artifact_id(cobj_4),percept_type(obs_prop),source(percept),artifact_name(cobj_4,art22),workspace(cobj_4,env,cobj_2)] <- ... !do / {S=119, LS=118, _14042374=118}
+
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.GeneratedMethodAccessor35.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at cartago.ArtifactOpMethod.exec(ArtifactOpMethod.java:39)
+	at cartago.Artifact.doOperation(Artifact.java:407)
+	at cartago.Artifact.access$200(Artifact.java:32)
+	at cartago.Artifact$ArtifactAdapter.doOperation(Artifact.java:1275)
+	at cartago.WorkspaceKernel.serveOperation(WorkspaceKernel.java:1136)
+	at cartago.WorkspaceKernel.access$000(WorkspaceKernel.java:48)
+	at cartago.WorkspaceKernel$EnvironmentController.run(WorkspaceKernel.java:1477)
+Caused by: java.lang.AssertionError
+	at massim.eismassim.EISEntity.performAction(EISEntity.java:341)
+	at massim.eismassim.EnvironmentInterface.performEntityAction(EnvironmentInterface.java:108)
+	at eis.EIDefaultImpl.performAction(EIDefaultImpl.java:783)
+	at EISAccess.action(EISAccess.java:155)
+	... 10 more
+[agentA22] No failure event was generated for +!do[code(action(goto(storage5))),code_line(152),code_src("C:/Users/10516125940/Documents/GitHub/Multi-Agent-Programming-Contest-2018/mapc2018udesc/src/agt/agentA.asl"),env_failure_reason(unknown_operation("action/1")),error(action_failed),error_msg("Unknown Operation"),source(self)]
+intention 74632774: 
+    +!do[source(self)] <- ... action(ACT) / {ACT=goto(storage5), _14042540=rollBackJob, S=141, DOING=rollBackJob, T=[retrieve(item4,1)]}
+    +step(120)[artifact_id(cobj_4),percept_type(obs_prop),source(percept),artifact_name(cobj_4,art22),workspace(cobj_4,env,cobj_2)] <- ... !do / {_14042530=119, S=120, LS=119}
+
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.GeneratedMethodAccessor35.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at cartago.ArtifactOpMethod.exec(ArtifactOpMethod.java:39)
+	at cartago.Artifact.doOperation(Artifact.java:407)
+	at cartago.Artifact.access$200(Artifact.java:32)
+	at cartago.Artifact$ArtifactAdapter.doOperation(Artifact.java:1275)
+	at cartago.WorkspaceKernel.serveOperation(WorkspaceKernel.java:1136)
+	at cartago.WorkspaceKernel.access$000(WorkspaceKernel.java:48)
+	at cartago.WorkspaceKernel$EnvironmentController.run(WorkspaceKernel.java:1477)
+Caused by: java.lang.AssertionError
+	at massim.eismassim.EISEntity.performAction(EISEntity.java:341)
+	at massim.eismassim.EnvironmentInterface.performEntityAction(EnvironmentInterface.java:108)
+	at eis.EIDefaultImpl.performAction(EIDefaultImpl.java:783)
+	at EISAccess.action(EISAccess.java:155)
+	... 10 more
+[agentA22] No failure event was generated for +!do[code(action(goto(storage5))),code_line(152),code_src("C:/Users/10516125940/Documents/GitHub/Multi-Agent-Programming-Contest-2018/mapc2018udesc/src/agt/agentA.asl"),env_failure_reason(unknown_operation("action/1")),error(action_failed),error_msg("Unknown Operation"),source(self)]
+intention 74633108: 
+    +!do[source(self)] <- ... action(ACT) / {ACT=goto(storage5), S=141, DOING=rollBackJob, T=[retrieve(item4,1)], _14042692=rollBackJob}
+    +step(121)[artifact_id(cobj_4),percept_type(obs_prop),source(percept),artifact_name(cobj_4,art22),workspace(cobj_4,env,cobj_2)] <- ... !do / {_14042687=120, S=121, LS=120}
+
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.GeneratedMethodAccessor35.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at cartago.ArtifactOpMethod.exec(ArtifactOpMethod.java:39)
+	at cartago.Artifact.doOperation(Artifact.java:407)
+	at cartago.Artifact.access$200(Artifact.java:32)
+	at cartago.Artifact$ArtifactAdapter.doOperation(Artifact.java:1275)
+	at cartago.WorkspaceKernel.serveOperation(WorkspaceKernel.java:1136)
+	at cartago.WorkspaceKernel.access$000(WorkspaceKernel.java:48)
+	at cartago.WorkspaceKernel$EnvironmentController.run(WorkspaceKernel.java:1477)
+Caused by: java.lang.AssertionError
+	at massim.eismassim.EISEntity.performAction(EISEntity.java:341)
+	at massim.eismassim.EnvironmentInterface.performEntityAction(EnvironmentInterface.java:108)
+	at eis.EIDefaultImpl.performAction(EIDefaultImpl.java:783)
+	at EISAccess.action(EISAccess.java:155)
+	... 10 more
+[agentA22] No failure event was generated for +!do[code(action(goto(storage5))),code_line(152),code_src("C:/Users/10516125940/Documents/GitHub/Multi-Agent-Programming-Contest-2018/mapc2018udesc/src/agt/agentA.asl"),env_failure_reason(unknown_operation("action/1")),error(action_failed),error_msg("Unknown Operation"),source(self)]
+intention 74633516: 
+    +!do[source(self)] <- ... action(ACT) / {_14042835=rollBackJob, ACT=goto(storage5), S=141, DOING=rollBackJob, T=[retrieve(item4,1)]}
+    +step(122)[artifact_id(cobj_4),percept_type(obs_prop),source(percept),artifact_name(cobj_4,art22),workspace(cobj_4,env,cobj_2)] <- ... !do / {_14042830=121, S=122, LS=121}
+
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.GeneratedMethodAccessor35.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at cartago.ArtifactOpMethod.exec(ArtifactOpMethod.java:39)
+	at cartago.Artifact.doOperation(Artifact.java:407)
+	at cartago.Artifact.access$200(Artifact.java:32)
+	at cartago.Artifact$ArtifactAdapter.doOperation(Artifact.java:1275)
+	at cartago.WorkspaceKernel.serveOperation(WorkspaceKernel.java:1136)
+	at cartago.WorkspaceKernel.access$000(WorkspaceKernel.java:48)
+	at cartago.WorkspaceKernel$EnvironmentController.run(WorkspaceKernel.java:1477)
+Caused by: java.lang.AssertionError
+	at massim.eismassim.EISEntity.performAction(EISEntity.java:341)
+	at massim.eismassim.EnvironmentInterface.performEntityAction(EnvironmentInterface.java:108)
+	at eis.EIDefaultImpl.performAction(EIDefaultImpl.java:783)
+	at EISAccess.action(EISAccess.java:155)
+	... 10 more
+[agentA22] No failure event was generated for +!do[code(action(goto(storage5))),code_line(152),code_src("C:/Users/10516125940/Documents/GitHub/Multi-Agent-Programming-Contest-2018/mapc2018udesc/src/agt/agentA.asl"),env_failure_reason(unknown_operation("action/1")),error(action_failed),error_msg("Unknown Operation"),source(self)]
+intention 74634999: 
+    +!do[source(self)] <- ... action(ACT) / {ACT=goto(storage5), S=141, DOING=rollBackJob, T=[retrieve(item4,1)], _14043002=rollBackJob}
+    +step(123)[artifact_id(cobj_4),percept_type(obs_prop),source(percept),artifact_name(cobj_4,art22),workspace(cobj_4,env,cobj_2)] <- ... !do / {_14042999=122, S=123, LS=122}
+
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.GeneratedMethodAccessor35.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at cartago.ArtifactOpMethod.exec(ArtifactOpMethod.java:39)
+	at cartago.Artifact.doOperation(Artifact.java:407)
+	at cartago.Artifact.access$200(Artifact.java:32)
+	at cartago.Artifact$ArtifactAdapter.doOperation(Artifact.java:1275)
+	at cartago.WorkspaceKernel.serveOperation(WorkspaceKernel.java:1136)
+	at cartago.WorkspaceKernel.access$000(WorkspaceKernel.java:48)
+	at cartago.WorkspaceKernel$EnvironmentController.run(WorkspaceKernel.java:1477)
+Caused by: java.lang.AssertionError
+	at massim.eismassim.EISEntity.performAction(EISEntity.java:341)
+	at massim.eismassim.EnvironmentInterface.performEntityAction(EnvironmentInterface.java:108)
+	at eis.EIDefaultImpl.performAction(EIDefaultImpl.java:783)
+	at EISAccess.action(EISAccess.java:155)
+	... 10 more
+[agentA22] No failure event was generated for +!do[code(action(goto(storage5))),code_line(152),code_src("C:/Users/10516125940/Documents/GitHub/Multi-Agent-Programming-Contest-2018/mapc2018udesc/src/agt/agentA.asl"),env_failure_reason(unknown_operation("action/1")),error(action_failed),error_msg("Unknown Operation"),source(self)]
+intention 74652263: 
+    +!do[source(self)] <- ... action(ACT) / {_14048312=rollBackJob, ACT=goto(storage5), S=141, DOING=rollBackJob, T=[retrieve(item4,1)]}
+    +step(124)[artifact_id(cobj_4),percept_type(obs_prop),source(percept),artifact_name(cobj_4,art22),workspace(cobj_4,env,cobj_2)] <- ... !do / {_14048306=123, S=124, LS=123}
+
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.GeneratedMethodAccessor35.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at cartago.ArtifactOpMethod.exec(ArtifactOpMethod.java:39)
+	at cartago.Artifact.doOperation(Artifact.java:407)
+	at cartago.Artifact.access$200(Artifact.java:32)
+	at cartago.Artifact$ArtifactAdapter.doOperation(Artifact.java:1275)
+	at cartago.WorkspaceKernel.serveOperation(WorkspaceKernel.java:1136)
+	at cartago.WorkspaceKernel.access$000(WorkspaceKernel.java:48)
+	at cartago.WorkspaceKernel$EnvironmentController.run(WorkspaceKernel.java:1477)
+Caused by: java.lang.AssertionError
+	at massim.eismassim.EISEntity.performAction(EISEntity.java:341)
+	at massim.eismassim.EnvironmentInterface.performEntityAction(EnvironmentInterface.java:108)
+	at eis.EIDefaultImpl.performAction(EIDefaultImpl.java:783)
+	at EISAccess.action(EISAccess.java:155)
+	... 10 more
+[agentA22] No failure event was generated for +!do[code(action(goto(storage5))),code_line(152),code_src("C:/Users/10516125940/Documents/GitHub/Multi-Agent-Programming-Contest-2018/mapc2018udesc/src/agt/agentA.asl"),env_failure_reason(unknown_operation("action/1")),error(action_failed),error_msg("Unknown Operation"),source(self)]
+intention 74677434: 
+    +!do[source(self)] <- ... action(ACT) / {ACT=goto(storage5), S=141, DOING=rollBackJob, T=[retrieve(item4,1)], _14057401=rollBackJob}
+    +step(125)[artifact_id(cobj_4),percept_type(obs_prop),source(percept),artifact_name(cobj_4,art22),workspace(cobj_4,env,cobj_2)] <- ... !do / {_14057396=124, S=125, LS=124}
+
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.GeneratedMethodAccessor35.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at cartago.ArtifactOpMethod.exec(ArtifactOpMethod.java:39)
+	at cartago.Artifact.doOperation(Artifact.java:407)
+	at cartago.Artifact.access$200(Artifact.java:32)
+	at cartago.Artifact$ArtifactAdapter.doOperation(Artifact.java:1275)
+	at cartago.WorkspaceKernel.serveOperation(WorkspaceKernel.java:1136)
+	at cartago.WorkspaceKernel.access$000(WorkspaceKernel.java:48)
+	at cartago.WorkspaceKernel$EnvironmentController.run(WorkspaceKernel.java:1477)
+Caused by: java.lang.AssertionError
+	at massim.eismassim.EISEntity.performAction(EISEntity.java:341)
+	at massim.eismassim.EnvironmentInterface.performEntityAction(EnvironmentInterface.java:108)
+	at eis.EIDefaultImpl.performAction(EIDefaultImpl.java:783)
+	at EISAccess.action(EISAccess.java:155)
+	... 10 more
+[agentA22] No failure event was generated for +!do[code(action(goto(storage5))),code_line(152),code_src("C:/Users/10516125940/Documents/GitHub/Multi-Agent-Programming-Contest-2018/mapc2018udesc/src/agt/agentA.asl"),env_failure_reason(unknown_operation("action/1")),error(action_failed),error_msg("Unknown Operation"),source(self)]
+intention 74678652: 
+    +!do[source(self)] <- ... action(ACT) / {ACT=goto(storage5), S=141, _14057630=rollBackJob, DOING=rollBackJob, T=[retrieve(item4,1)]}
+    +step(126)[artifact_id(cobj_4),percept_type(obs_prop),source(percept),artifact_name(cobj_4,art22),workspace(cobj_4,env,cobj_2)] <- ... !do / {_14057621=125, S=126, LS=125}
+
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.GeneratedMethodAccessor35.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at cartago.ArtifactOpMethod.exec(ArtifactOpMethod.java:39)
+	at cartago.Artifact.doOperation(Artifact.java:407)
+	at cartago.Artifact.access$200(Artifact.java:32)
+	at cartago.Artifact$ArtifactAdapter.doOperation(Artifact.java:1275)
+	at cartago.WorkspaceKernel.serveOperation(WorkspaceKernel.java:1136)
+	at cartago.WorkspaceKernel.access$000(WorkspaceKernel.java:48)
+	at cartago.WorkspaceKernel$EnvironmentController.run(WorkspaceKernel.java:1477)
+Caused by: java.lang.AssertionError
+	at massim.eismassim.EISEntity.performAction(EISEntity.java:341)
+	at massim.eismassim.EnvironmentInterface.performEntityAction(EnvironmentInterface.java:108)
+	at eis.EIDefaultImpl.performAction(EIDefaultImpl.java:783)
+	at EISAccess.action(EISAccess.java:155)
+	... 10 more
+[agentA22] No failure event was generated for +!do[code(action(goto(storage5))),code_line(152),code_src("C:/Users/10516125940/Documents/GitHub/Multi-Agent-Programming-Contest-2018/mapc2018udesc/src/agt/agentA.asl"),env_failure_reason(unknown_operation("action/1")),error(action_failed),error_msg("Unknown Operation"),source(self)]
+intention 74690106: 
+    +!do[source(self)] <- ... action(ACT) / {ACT=goto(storage5), S=141, _14060144=rollBackJob, DOING=rollBackJob, T=[retrieve(item4,1)]}
+    +step(127)[artifact_id(cobj_4),percept_type(obs_prop),source(percept),artifact_name(cobj_4,art22),workspace(cobj_4,env,cobj_2)] <- ... !do / {_14060139=126, S=127, LS=126}
+
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.GeneratedMethodAccessor35.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at cartago.ArtifactOpMethod.exec(ArtifactOpMethod.java:39)
+	at cartago.Artifact.doOperation(Artifact.java:407)
+	at cartago.Artifact.access$200(Artifact.java:32)
+	at cartago.Artifact$ArtifactAdapter.doOperation(Artifact.java:1275)
+	at cartago.WorkspaceKernel.serveOperation(WorkspaceKernel.java:1136)
+	at cartago.WorkspaceKernel.access$000(WorkspaceKernel.java:48)
+	at cartago.WorkspaceKernel$EnvironmentController.run(WorkspaceKernel.java:1477)
+Caused by: java.lang.AssertionError
+	at massim.eismassim.EISEntity.performAction(EISEntity.java:341)
+	at massim.eismassim.EnvironmentInterface.performEntityAction(EnvironmentInterface.java:108)
+	at eis.EIDefaultImpl.performAction(EIDefaultImpl.java:783)
+	at EISAccess.action(EISAccess.java:155)
+	... 10 more
+[agentA22] No failure event was generated for +!do[code(action(goto(storage5))),code_line(152),code_src("C:/Users/10516125940/Documents/GitHub/Multi-Agent-Programming-Contest-2018/mapc2018udesc/src/agt/agentA.asl"),env_failure_reason(unknown_operation("action/1")),error(action_failed),error_msg("Unknown Operation"),source(self)]
+intention 74690673: 
+    +!do[source(self)] <- ... action(ACT) / {_14060219=rollBackJob, ACT=goto(storage5), S=141, DOING=rollBackJob, T=[retrieve(item4,1)]}
+    +step(128)[artifact_id(cobj_4),percept_type(obs_prop),source(percept),artifact_name(cobj_4,art22),workspace(cobj_4,env,cobj_2)] <- ... !do / {S=128, LS=127, _14060210=127}
+
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.GeneratedMethodAccessor35.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at cartago.ArtifactOpMethod.exec(ArtifactOpMethod.java:39)
+	at cartago.Artifact.doOperation(Artifact.java:407)
+	at cartago.Artifact.access$200(Artifact.java:32)
+	at cartago.Artifact$ArtifactAdapter.doOperation(Artifact.java:1275)
+	at cartago.WorkspaceKernel.serveOperation(WorkspaceKernel.java:1136)
+	at cartago.WorkspaceKernel.access$000(WorkspaceKernel.java:48)
+	at cartago.WorkspaceKernel$EnvironmentController.run(WorkspaceKernel.java:1477)
+Caused by: java.lang.AssertionError
+	at massim.eismassim.EISEntity.performAction(EISEntity.java:341)
+	at massim.eismassim.EnvironmentInterface.performEntityAction(EnvironmentInterface.java:108)
+	at eis.EIDefaultImpl.performAction(EIDefaultImpl.java:783)
+	at EISAccess.action(EISAccess.java:155)
+	... 10 more
+[agentA22] No failure event was generated for +!do[code(action(goto(storage5))),code_line(152),code_src("C:/Users/10516125940/Documents/GitHub/Multi-Agent-Programming-Contest-2018/mapc2018udesc/src/agt/agentA.asl"),env_failure_reason(unknown_operation("action/1")),error(action_failed),error_msg("Unknown Operation"),source(self)]
+intention 74691137: 
+    +!do[source(self)] <- ... action(ACT) / {_14060288=rollBackJob, ACT=goto(storage5), S=141, DOING=rollBackJob, T=[retrieve(item4,1)]}
+    +step(129)[artifact_id(cobj_4),percept_type(obs_prop),source(percept),artifact_name(cobj_4,art22),workspace(cobj_4,env,cobj_2)] <- ... !do / {_14060284=128, S=129, LS=128}
+
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.GeneratedMethodAccessor35.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at cartago.ArtifactOpMethod.exec(ArtifactOpMethod.java:39)
+	at cartago.Artifact.doOperation(Artifact.java:407)
+	at cartago.Artifact.access$200(Artifact.java:32)
+	at cartago.Artifact$ArtifactAdapter.doOperation(Artifact.java:1275)
+	at cartago.WorkspaceKernel.serveOperation(WorkspaceKernel.java:1136)
+	at cartago.WorkspaceKernel.access$000(WorkspaceKernel.java:48)
+	at cartago.WorkspaceKernel$EnvironmentController.run(WorkspaceKernel.java:1477)
+Caused by: java.lang.AssertionError
+	at massim.eismassim.EISEntity.performAction(EISEntity.java:341)
+	at massim.eismassim.EnvironmentInterface.performEntityAction(EnvironmentInterface.java:108)
+	at eis.EIDefaultImpl.performAction(EIDefaultImpl.java:783)
+	at EISAccess.action(EISAccess.java:155)
+	... 10 more
+[agentA22] No failure event was generated for +!do[code(action(goto(storage5))),code_line(152),code_src("C:/Users/10516125940/Documents/GitHub/Multi-Agent-Programming-Contest-2018/mapc2018udesc/src/agt/agentA.asl"),env_failure_reason(unknown_operation("action/1")),error(action_failed),error_msg("Unknown Operation"),source(self)]
+intention 74691442: 
+    +!do[source(self)] <- ... action(ACT) / {ACT=goto(storage5), S=141, DOING=rollBackJob, T=[retrieve(item4,1)], _14060356=rollBackJob}
+    +step(130)[artifact_id(cobj_4),percept_type(obs_prop),source(percept),artifact_name(cobj_4,art22),workspace(cobj_4,env,cobj_2)] <- ... !do / {_14060352=129, S=130, LS=129}
+
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.GeneratedMethodAccessor35.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at cartago.ArtifactOpMethod.exec(ArtifactOpMethod.java:39)
+	at cartago.Artifact.doOperation(Artifact.java:407)
+	at cartago.Artifact.access$200(Artifact.java:32)
+	at cartago.Artifact$ArtifactAdapter.doOperation(Artifact.java:1275)
+	at cartago.WorkspaceKernel.serveOperation(WorkspaceKernel.java:1136)
+	at cartago.WorkspaceKernel.access$000(WorkspaceKernel.java:48)
+	at cartago.WorkspaceKernel$EnvironmentController.run(WorkspaceKernel.java:1477)
+Caused by: java.lang.AssertionError
+	at massim.eismassim.EISEntity.performAction(EISEntity.java:341)
+	at massim.eismassim.EnvironmentInterface.performEntityAction(EnvironmentInterface.java:108)
+	at eis.EIDefaultImpl.performAction(EIDefaultImpl.java:783)
+	at EISAccess.action(EISAccess.java:155)
+	... 10 more
+[agentA22] No failure event was generated for +!do[code(action(goto(storage5))),code_line(152),code_src("C:/Users/10516125940/Documents/GitHub/Multi-Agent-Programming-Contest-2018/mapc2018udesc/src/agt/agentA.asl"),env_failure_reason(unknown_operation("action/1")),error(action_failed),error_msg("Unknown Operation"),source(self)]
+intention 74691833: 
+    +!do[source(self)] <- ... action(ACT) / {ACT=goto(storage5), S=141, DOING=rollBackJob, T=[retrieve(item4,1)], _14060433=rollBackJob}
+    +step(131)[artifact_id(cobj_4),percept_type(obs_prop),source(percept),artifact_name(cobj_4,art22),workspace(cobj_4,env,cobj_2)] <- ... !do / {_14060429=130, S=131, LS=130}
+
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.GeneratedMethodAccessor35.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at cartago.ArtifactOpMethod.exec(ArtifactOpMethod.java:39)
+	at cartago.Artifact.doOperation(Artifact.java:407)
+	at cartago.Artifact.access$200(Artifact.java:32)
+	at cartago.Artifact$ArtifactAdapter.doOperation(Artifact.java:1275)
+	at cartago.WorkspaceKernel.serveOperation(WorkspaceKernel.java:1136)
+	at cartago.WorkspaceKernel.access$000(WorkspaceKernel.java:48)
+	at cartago.WorkspaceKernel$EnvironmentController.run(WorkspaceKernel.java:1477)
+Caused by: java.lang.AssertionError
+	at massim.eismassim.EISEntity.performAction(EISEntity.java:341)
+	at massim.eismassim.EnvironmentInterface.performEntityAction(EnvironmentInterface.java:108)
+	at eis.EIDefaultImpl.performAction(EIDefaultImpl.java:783)
+	at EISAccess.action(EISAccess.java:155)
+	... 10 more
+[agentA22] No failure event was generated for +!do[code(action(goto(storage5))),code_line(152),code_src("C:/Users/10516125940/Documents/GitHub/Multi-Agent-Programming-Contest-2018/mapc2018udesc/src/agt/agentA.asl"),env_failure_reason(unknown_operation("action/1")),error(action_failed),error_msg("Unknown Operation"),source(self)]
+intention 74692247: 
+    +!do[source(self)] <- ... action(ACT) / {ACT=goto(storage5), S=141, DOING=rollBackJob, T=[retrieve(item4,1)], _14060509=rollBackJob}
+    +step(132)[artifact_id(cobj_4),percept_type(obs_prop),source(percept),artifact_name(cobj_4,art22),workspace(cobj_4,env,cobj_2)] <- ... !do / {_14060505=131, S=132, LS=131}
+
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.GeneratedMethodAccessor35.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at cartago.ArtifactOpMethod.exec(ArtifactOpMethod.java:39)
+	at cartago.Artifact.doOperation(Artifact.java:407)
+	at cartago.Artifact.access$200(Artifact.java:32)
+	at cartago.Artifact$ArtifactAdapter.doOperation(Artifact.java:1275)
+	at cartago.WorkspaceKernel.serveOperation(WorkspaceKernel.java:1136)
+	at cartago.WorkspaceKernel.access$000(WorkspaceKernel.java:48)
+	at cartago.WorkspaceKernel$EnvironmentController.run(WorkspaceKernel.java:1477)
+Caused by: java.lang.AssertionError
+	at massim.eismassim.EISEntity.performAction(EISEntity.java:341)
+	at massim.eismassim.EnvironmentInterface.performEntityAction(EnvironmentInterface.java:108)
+	at eis.EIDefaultImpl.performAction(EIDefaultImpl.java:783)
+	at EISAccess.action(EISAccess.java:155)
+	... 10 more
+[agentA22] No failure event was generated for +!do[code(action(goto(storage5))),code_line(152),code_src("C:/Users/10516125940/Documents/GitHub/Multi-Agent-Programming-Contest-2018/mapc2018udesc/src/agt/agentA.asl"),env_failure_reason(unknown_operation("action/1")),error(action_failed),error_msg("Unknown Operation"),source(self)]
+intention 74692766: 
+    +!do[source(self)] <- ... action(ACT) / {ACT=goto(storage5), S=141, DOING=rollBackJob, T=[retrieve(item4,1)], _14060593=rollBackJob}
+    +step(133)[artifact_id(cobj_4),percept_type(obs_prop),source(percept),artifact_name(cobj_4,art22),workspace(cobj_4,env,cobj_2)] <- ... !do / {_14060588=132, S=133, LS=132}
+
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.GeneratedMethodAccessor35.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at cartago.ArtifactOpMethod.exec(ArtifactOpMethod.java:39)
+	at cartago.Artifact.doOperation(Artifact.java:407)
+	at cartago.Artifact.access$200(Artifact.java:32)
+	at cartago.Artifact$ArtifactAdapter.doOperation(Artifact.java:1275)
+	at cartago.WorkspaceKernel.serveOperation(WorkspaceKernel.java:1136)
+	at cartago.WorkspaceKernel.access$000(WorkspaceKernel.java:48)
+	at cartago.WorkspaceKernel$EnvironmentController.run(WorkspaceKernel.java:1477)
+Caused by: java.lang.AssertionError
+	at massim.eismassim.EISEntity.performAction(EISEntity.java:341)
+	at massim.eismassim.EnvironmentInterface.performEntityAction(EnvironmentInterface.java:108)
+	at eis.EIDefaultImpl.performAction(EIDefaultImpl.java:783)
+	at EISAccess.action(EISAccess.java:155)
+	... 10 more
+[agentA22] No failure event was generated for +!do[code(action(goto(storage5))),code_line(152),code_src("C:/Users/10516125940/Documents/GitHub/Multi-Agent-Programming-Contest-2018/mapc2018udesc/src/agt/agentA.asl"),env_failure_reason(unknown_operation("action/1")),error(action_failed),error_msg("Unknown Operation"),source(self)]
+intention 74693284: 
+    +!do[source(self)] <- ... action(ACT) / {ACT=goto(storage5), S=141, DOING=rollBackJob, T=[retrieve(item4,1)], _14060678=rollBackJob}
+    +step(134)[artifact_id(cobj_4),percept_type(obs_prop),source(percept),artifact_name(cobj_4,art22),workspace(cobj_4,env,cobj_2)] <- ... !do / {_14060674=133, S=134, LS=133}
+
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.GeneratedMethodAccessor35.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at cartago.ArtifactOpMethod.exec(ArtifactOpMethod.java:39)
+	at cartago.Artifact.doOperation(Artifact.java:407)
+	at cartago.Artifact.access$200(Artifact.java:32)
+	at cartago.Artifact$ArtifactAdapter.doOperation(Artifact.java:1275)
+	at cartago.WorkspaceKernel.serveOperation(WorkspaceKernel.java:1136)
+	at cartago.WorkspaceKernel.access$000(WorkspaceKernel.java:48)
+	at cartago.WorkspaceKernel$EnvironmentController.run(WorkspaceKernel.java:1477)
+Caused by: java.lang.AssertionError
+	at massim.eismassim.EISEntity.performAction(EISEntity.java:341)
+	at massim.eismassim.EnvironmentInterface.performEntityAction(EnvironmentInterface.java:108)
+	at eis.EIDefaultImpl.performAction(EIDefaultImpl.java:783)
+	at EISAccess.action(EISAccess.java:155)
+	... 10 more
+[agentA22] No failure event was generated for +!do[code(action(goto(storage5))),code_line(152),code_src("C:/Users/10516125940/Documents/GitHub/Multi-Agent-Programming-Contest-2018/mapc2018udesc/src/agt/agentA.asl"),env_failure_reason(unknown_operation("action/1")),error(action_failed),error_msg("Unknown Operation"),source(self)]
+intention 74693683: 
+    +!do[source(self)] <- ... action(ACT) / {ACT=goto(storage5), S=141, DOING=rollBackJob, T=[retrieve(item4,1)], _14060820=rollBackJob}
+    +step(135)[artifact_id(cobj_4),percept_type(obs_prop),source(percept),artifact_name(cobj_4,art22),workspace(cobj_4,env,cobj_2)] <- ... !do / {_14060810=134, S=135, LS=134}
+
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.GeneratedMethodAccessor35.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at cartago.ArtifactOpMethod.exec(ArtifactOpMethod.java:39)
+	at cartago.Artifact.doOperation(Artifact.java:407)
+	at cartago.Artifact.access$200(Artifact.java:32)
+	at cartago.Artifact$ArtifactAdapter.doOperation(Artifact.java:1275)
+	at cartago.WorkspaceKernel.serveOperation(WorkspaceKernel.java:1136)
+	at cartago.WorkspaceKernel.access$000(WorkspaceKernel.java:48)
+	at cartago.WorkspaceKernel$EnvironmentController.run(WorkspaceKernel.java:1477)
+Caused by: java.lang.AssertionError
+	at massim.eismassim.EISEntity.performAction(EISEntity.java:341)
+	at massim.eismassim.EnvironmentInterface.performEntityAction(EnvironmentInterface.java:108)
+	at eis.EIDefaultImpl.performAction(EIDefaultImpl.java:783)
+	at EISAccess.action(EISAccess.java:155)
+	... 10 more
+[agentA22] No failure event was generated for +!do[code(action(goto(storage5))),code_line(152),code_src("C:/Users/10516125940/Documents/GitHub/Multi-Agent-Programming-Contest-2018/mapc2018udesc/src/agt/agentA.asl"),env_failure_reason(unknown_operation("action/1")),error(action_failed),error_msg("Unknown Operation"),source(self)]
+intention 74720801: 
+    +!do[source(self)] <- ... action(ACT) / {_14069117=rollBackJob, ACT=goto(storage5), S=141, DOING=rollBackJob, T=[retrieve(item4,1)]}
+    +step(136)[artifact_id(cobj_4),percept_type(obs_prop),source(percept),artifact_name(cobj_4,art22),workspace(cobj_4,env,cobj_2)] <- ... !do / {S=136, LS=135, _14069104=135}
+
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.GeneratedMethodAccessor35.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at cartago.ArtifactOpMethod.exec(ArtifactOpMethod.java:39)
+	at cartago.Artifact.doOperation(Artifact.java:407)
+	at cartago.Artifact.access$200(Artifact.java:32)
+	at cartago.Artifact$ArtifactAdapter.doOperation(Artifact.java:1275)
+	at cartago.WorkspaceKernel.serveOperation(WorkspaceKernel.java:1136)
+	at cartago.WorkspaceKernel.access$000(WorkspaceKernel.java:48)
+	at cartago.WorkspaceKernel$EnvironmentController.run(WorkspaceKernel.java:1477)
+Caused by: java.lang.AssertionError
+	at massim.eismassim.EISEntity.performAction(EISEntity.java:341)
+	at massim.eismassim.EnvironmentInterface.performEntityAction(EnvironmentInterface.java:108)
+	at eis.EIDefaultImpl.performAction(EIDefaultImpl.java:783)
+	at EISAccess.action(EISAccess.java:155)
+	... 10 more
+[agentA22] No failure event was generated for +!do[code(action(goto(storage5))),code_line(152),code_src("C:/Users/10516125940/Documents/GitHub/Multi-Agent-Programming-Contest-2018/mapc2018udesc/src/agt/agentA.asl"),env_failure_reason(unknown_operation("action/1")),error(action_failed),error_msg("Unknown Operation"),source(self)]
+intention 74723391: 
+    +!do[source(self)] <- ... action(ACT) / {_14070253=rollBackJob, ACT=goto(storage5), S=141, DOING=rollBackJob, T=[retrieve(item4,1)]}
+    +step(137)[artifact_id(cobj_4),percept_type(obs_prop),source(percept),artifact_name(cobj_4,art22),workspace(cobj_4,env,cobj_2)] <- ... !do / {S=137, LS=136, _14070247=136}
+
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.GeneratedMethodAccessor35.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at cartago.ArtifactOpMethod.exec(ArtifactOpMethod.java:39)
+	at cartago.Artifact.doOperation(Artifact.java:407)
+	at cartago.Artifact.access$200(Artifact.java:32)
+	at cartago.Artifact$ArtifactAdapter.doOperation(Artifact.java:1275)
+	at cartago.WorkspaceKernel.serveOperation(WorkspaceKernel.java:1136)
+	at cartago.WorkspaceKernel.access$000(WorkspaceKernel.java:48)
+	at cartago.WorkspaceKernel$EnvironmentController.run(WorkspaceKernel.java:1477)
+Caused by: java.lang.AssertionError
+	at massim.eismassim.EISEntity.performAction(EISEntity.java:341)
+	at massim.eismassim.EnvironmentInterface.performEntityAction(EnvironmentInterface.java:108)
+	at eis.EIDefaultImpl.performAction(EIDefaultImpl.java:783)
+	at EISAccess.action(EISAccess.java:155)
+	... 10 more
+[agentA22] No failure event was generated for +!do[code(action(goto(storage5))),code_line(152),code_src("C:/Users/10516125940/Documents/GitHub/Multi-Agent-Programming-Contest-2018/mapc2018udesc/src/agt/agentA.asl"),env_failure_reason(unknown_operation("action/1")),error(action_failed),error_msg("Unknown Operation"),source(self)]
+intention 74724200: 
+    +!do[source(self)] <- ... action(ACT) / {ACT=goto(storage5), S=141, DOING=rollBackJob, T=[retrieve(item4,1)], _14070508=rollBackJob}
+    +step(138)[artifact_id(cobj_4),percept_type(obs_prop),source(percept),artifact_name(cobj_4,art22),workspace(cobj_4,env,cobj_2)] <- ... !do / {S=138, LS=137, _14070504=137}
+
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.GeneratedMethodAccessor35.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at cartago.ArtifactOpMethod.exec(ArtifactOpMethod.java:39)
+	at cartago.Artifact.doOperation(Artifact.java:407)
+	at cartago.Artifact.access$200(Artifact.java:32)
+	at cartago.Artifact$ArtifactAdapter.doOperation(Artifact.java:1275)
+	at cartago.WorkspaceKernel.serveOperation(WorkspaceKernel.java:1136)
+	at cartago.WorkspaceKernel.access$000(WorkspaceKernel.java:48)
+	at cartago.WorkspaceKernel$EnvironmentController.run(WorkspaceKernel.java:1477)
+Caused by: java.lang.AssertionError
+	at massim.eismassim.EISEntity.performAction(EISEntity.java:341)
+	at massim.eismassim.EnvironmentInterface.performEntityAction(EnvironmentInterface.java:108)
+	at eis.EIDefaultImpl.performAction(EIDefaultImpl.java:783)
+	at EISAccess.action(EISAccess.java:155)
+	... 10 more
+[agentA22] No failure event was generated for +!do[code(action(goto(storage5))),code_line(152),code_src("C:/Users/10516125940/Documents/GitHub/Multi-Agent-Programming-Contest-2018/mapc2018udesc/src/agt/agentA.asl"),env_failure_reason(unknown_operation("action/1")),error(action_failed),error_msg("Unknown Operation"),source(self)]
+intention 74728825: 
+    +!do[source(self)] <- ... action(ACT) / {ACT=goto(storage5), S=141, _14071538=rollBackJob, DOING=rollBackJob, T=[retrieve(item4,1)]}
+    +step(139)[artifact_id(cobj_4),percept_type(obs_prop),source(percept),artifact_name(cobj_4,art22),workspace(cobj_4,env,cobj_2)] <- ... !do / {_14071528=138, S=139, LS=138}
+
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.GeneratedMethodAccessor35.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at cartago.ArtifactOpMethod.exec(ArtifactOpMethod.java:39)
+	at cartago.Artifact.doOperation(Artifact.java:407)
+	at cartago.Artifact.access$200(Artifact.java:32)
+	at cartago.Artifact$ArtifactAdapter.doOperation(Artifact.java:1275)
+	at cartago.WorkspaceKernel.serveOperation(WorkspaceKernel.java:1136)
+	at cartago.WorkspaceKernel.access$000(WorkspaceKernel.java:48)
+	at cartago.WorkspaceKernel$EnvironmentController.run(WorkspaceKernel.java:1477)
+Caused by: java.lang.AssertionError
+	at massim.eismassim.EISEntity.performAction(EISEntity.java:341)
+	at massim.eismassim.EnvironmentInterface.performEntityAction(EnvironmentInterface.java:108)
+	at eis.EIDefaultImpl.performAction(EIDefaultImpl.java:783)
+	at EISAccess.action(EISAccess.java:155)
+	... 10 more
+[agentA22] No failure event was generated for +!do[code(action(goto(storage5))),code_line(152),code_src("C:/Users/10516125940/Documents/GitHub/Multi-Agent-Programming-Contest-2018/mapc2018udesc/src/agt/agentA.asl"),env_failure_reason(unknown_operation("action/1")),error(action_failed),error_msg("Unknown Operation"),source(self)]
+intention 74730937: 
+    +!do[source(self)] <- ... action(ACT) / {ACT=goto(storage5), S=141, DOING=rollBackJob, T=[retrieve(item4,1)], _14072494=rollBackJob}
+    +step(140)[artifact_id(cobj_4),percept_type(obs_prop),source(percept),artifact_name(cobj_4,art22),workspace(cobj_4,env,cobj_2)] <- ... !do / {_14072484=139, S=140, LS=139}
+
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.GeneratedMethodAccessor35.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at cartago.ArtifactOpMethod.exec(ArtifactOpMethod.java:39)
+	at cartago.Artifact.doOperation(Artifact.java:407)
+	at cartago.Artifact.access$200(Artifact.java:32)
+	at cartago.Artifact$ArtifactAdapter.doOperation(Artifact.java:1275)
+	at cartago.WorkspaceKernel.serveOperation(WorkspaceKernel.java:1136)
+	at cartago.WorkspaceKernel.access$000(WorkspaceKernel.java:48)
+	at cartago.WorkspaceKernel$EnvironmentController.run(WorkspaceKernel.java:1477)
+Caused by: java.lang.AssertionError
+	at massim.eismassim.EISEntity.performAction(EISEntity.java:341)
+	at massim.eismassim.EnvironmentInterface.performEntityAction(EnvironmentInterface.java:108)
+	at eis.EIDefaultImpl.performAction(EIDefaultImpl.java:783)
+	at EISAccess.action(EISAccess.java:155)
+	... 10 more
+[agentA22] No failure event was generated for +!do[code(action(goto(storage5))),code_line(152),code_src("C:/Users/10516125940/Documents/GitHub/Multi-Agent-Programming-Contest-2018/mapc2018udesc/src/agt/agentA.asl"),env_failure_reason(unknown_operation("action/1")),error(action_failed),error_msg("Unknown Operation"),source(self)]
+intention 74737850: 
+    +!do[source(self)] <- ... action(ACT) / {ACT=goto(storage5), S=141, DOING=rollBackJob, T=[retrieve(item4,1)], _14075135=rollBackJob}
+    +step(141)[artifact_id(cobj_4),percept_type(obs_prop),source(percept),artifact_name(cobj_4,art22),workspace(cobj_4,env,cobj_2)] <- ... !do / {_14075130=140, S=141, LS=140}
+
