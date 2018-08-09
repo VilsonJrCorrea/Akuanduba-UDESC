@@ -8,17 +8,29 @@ roundnumber(0).
 				.wait(role(VEHICLE,_,_,_,_,_,_,_,_,_,_) &
 					name(AGENT));					
 				.broadcast(tell,partners(VEHICLE,AGENT));		
-						
+
+				!agentnumber;
 				!!callcraftSemParts;
 				!!callCraftComPartsWithDelay;										
 				!!buildPoligon;
 				!!sendcentrals;
 				!!exploration;
+			
 		.
 
 
++!agentnumber: true
+	<-
+		?name(N);
+		?team(T);
+		.concat(agent,T,D);
+		.delete(D,N,R);
+		//.print(R);
+		+agentid(R);
+	.
+
 +!sendcentrals
-	:	name(agentA20)
+	:	agentid("20")
 	<-	
 		.wait(step(1));
 		?centerStorageRule(STORAGE); 
@@ -29,7 +41,7 @@ roundnumber(0).
 		.broadcast(tell, centerStorage(STORAGE) );
 .
 
-+!sendcentrals : name(A) & A\== agentA20	
++!sendcentrals : not agentid("20")
 	<- true.
 
 @end[atomic]

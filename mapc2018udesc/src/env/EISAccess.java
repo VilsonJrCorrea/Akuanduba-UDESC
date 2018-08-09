@@ -122,6 +122,12 @@ public class EISAccess extends Artifact implements AgentListener {
 								this.lastRoundPropeties.add(
 									defineObsProperty(pe.getName(),Translator.parametersToTerms(tmp)));
 							}
+							else if (pe.getName().equals("name")) {
+								LinkedList<Parameter> tmp = pe.getClonedParameters();
+								tmp.set(0, new Identifier(tmp.get(0).toString().toLowerCase()));
+								this.lastRoundPropeties.add(
+									defineObsProperty(pe.getName(),Translator.parametersToTerms(tmp)));
+							}
 							else {
 								this.lastRoundPropeties.add( defineObsProperty(	pe.getName(),
 												Translator.parametersToTerms(pe.getClonedParameters())));

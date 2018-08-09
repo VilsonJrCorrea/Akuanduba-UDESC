@@ -11,7 +11,7 @@
     {
       "id" : "RiodeJaneiro",
       "scenarioClass" : "city.CitySimulation",
-      "steps" : 100,
+      "steps" : 1000,
       "map" : "RiodeJaneiro",
       "seedCapital" : 5000,
       "minLon" : -43.2569,

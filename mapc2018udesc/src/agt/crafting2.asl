@@ -21,7 +21,7 @@ highlevel(ITEM,LEVEL):- item(ITEM,_,_,_)&
      			 dependencelevel(IT,YL)	&
      			 YL>LEVEL).
 
-+!callCraftComPartsWithDelay: (name(agentA15) | name(agentB15))
++!callCraftComPartsWithDelay: agentid("15") 
 	<-
 		.wait(step(1));
 		for (item(ITEM,_,_,parts(P)) & not P=[]) {
@@ -40,8 +40,7 @@ highlevel(ITEM,LEVEL):- item(ITEM,_,_,_)&
 		!!callCraftComParts;
 	.
 
-+!callCraftComPartsWithDelay: not name(agentA15) & 
-							  not name(agentB15)
++!callCraftComPartsWithDelay: not agentid("15")
 	<- true.
 @initccp[atomic]	
 +numberAgRequired(_,_)[source(S)]: not S=self &
