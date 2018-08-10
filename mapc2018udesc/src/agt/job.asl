@@ -1,16 +1,13 @@
 { include("regras.asl") }
 
-+job(NOMEJOB,_,_,_,_,_)
+@job[atomic]
++job( NOMEJOB,LOCALENTREGA,REWARD,STEPINICIAL,STEPFINAL,ITENS )
 	:
 		name( NAME )
-	&	not jobCommitment(NAME,NOMEJOB)
-	&	not doing(_)
-	
-//	&	not todo(craftComParts,_)
-    
+	&	not jobCommitment(NAME,_)
+	&	not doing(_)    
     &	role(ROLE,_,_,CAPACIDADE,_,_,_,_,_,_,_)
     &	(ROLE=car | ROLE=motocycle)
-    &	job( NOMEJOB,LOCALENTREGA,REWARD,STEPINICIAL,STEPFINAL,ITENS )
 	&	step( STEPATUAL )
 	&	centerStorage(STORAGE)
 	&	sumvolruleJOB( ITENS, VOLUMETOTAL )
@@ -18,7 +15,6 @@
 	&	possuoTempoParaRealizarJob( NOMEJOB, TEMPONECESSARIO )
 	&	TEMPONECESSARIO <= ( STEPFINAL - STEPATUAL )
     <- 
-//    	+jobCommitment(NOMEJOB);
     	addIntentionToDoJob(NAME, NOMEJOB);
   .
  
@@ -30,6 +26,7 @@
     	!!realizarJob( NOMEJOB );
 	.
 
+@realizarJob[atomic]
 +!realizarJob( NOMEJOB )
 	:
 		centerStorage(STORAGE)
@@ -57,18 +54,10 @@
 	&	temTodosItens( ITENSJOB, ITENSTORAGE )
 	<-
 		.print( "Chegou a hora de fazer o job ", STORAGE, ": ", LISTITENS );
-		//!!realizarJob( JOB );
+		-todo( job, _ );
+		+todo( job, 9 );
 	.
 
-+storage(STORAGE,_,_,_,_,LISTITENS)
-	:
-		centerStorage( STORAGE )
-	&	name( NAME )
-	&	jobCommitment( NAME, JOB )
-	<-
-		//.print( "nao ", STORAGE, ": ", LISTITENS );
-		true;
-	.
 
 +!testarTrabalho
 	:
@@ -78,10 +67,45 @@
 	&	step( STEP )
 	<-
 		.print( STEP, "-Acabou o tempo para eu fazer o job ", JOB );
+		!rollBackJob;
 		removeIntentionToDoJob( NAME, JOB );
+		-steps( job, _ );
+		-expectedplan( job, _);
+		-todo( job, _ );
 	.
 
 +!testarTrabalho<-true.
+
++!rollBackJob
+	:
+		hasItem( _, _)
+	&	centerStorage( STORAGE )
+	<-
+		+listaAux( [] );
+		for( hasItem( ITEM, QTD ) ){
+			?listaAux( LISTA );
+			.concat( LISTA, [retrieve( ITEM, QTD )], NLISTA );
+			-+listaAux( NLISTA );
+		}
+		?listaAux( LISTAFINAL );
+		-listaAux( _ );
+		
+		.concat( [goto(STORAGE)], LISTAFINAL, PASSOS );
+		
+		-steps( rollBackJob, _ );
+		+steps( rollBackJob, PASSOS );
+		-expectedplan( rollBackJob, _);
+		+expectedplan( rollBackJob, PASSOS_3 );
+		+todo( rollBackJob, 8.8 );
+		
+		.print( "Adicionei plano para devolver os itens" );
+	.
++!rollBackJob
+	:
+		true
+	<-
+		.print( "Nada para devolver" );
+	.
 
 -todo(job,_)
 	: 	jobCommitment(NAME,NOMEJOB) &
