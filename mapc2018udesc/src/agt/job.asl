@@ -1,4 +1,9 @@
-{ include("regras.asl") }
+passosRetrieve( [], LISTA, RETORNO ) :- RETORNO = LISTA.
+passosRetrieve( [required(ITEM, QTD)|T], LISTA, RETORNO ):-
+		repeat( retrieve(ITEM,1) , QTD , [] ,RR ) &
+		.concat(LISTA, RR, N_LISTA) &
+		passosRetrieve( T, N_LISTA, RETORNO).
+
 
 @job[atomic]
 +job( NOMEJOB,LOCALENTREGA,REWARD,STEPINICIAL,STEPFINAL,ITENS )
@@ -34,7 +39,7 @@
 
 	<-	
 		PASSOS_1 = [ goto( STORAGE ) ];
-		!passosRetrieve( ITENS, [], RETORNO );
+		?passosRetrieve( ITENS, [], RETORNO );
 		.concat( PASSOS_1, RETORNO, PASSOS_2);
 		.concat( PASSOS_2, [ goto( LOCALENTREGA ), deliver_job( NOMEJOB )], PASSOS_3);
 
@@ -45,18 +50,19 @@
 		+todo( job, 5 );
 	.
 
-+storage(STORAGE,_,_,_,_,ITENSTORAGE)
-	:
-		centerStorage( STORAGE )
-	&	name( NAME )
-	&	jobCommitment( NAME, JOB )
-	&	job( JOB,_,_,_,_,ITENSJOB)
-	&	temTodosItens( ITENSJOB, ITENSTORAGE )
-	<-
-		.print( "Chegou a hora de fazer o job ", STORAGE, ": ", LISTITENS );
-		-todo( job, _ );
-		+todo( job, 9 );
-	.
+
+//+storage(STORAGE,_,_,_,_,ITENSTORAGE)
+//	:
+//		centerStorage( STORAGE )
+//	&	name( NAME )
+//	&	jobCommitment( NAME, JOB )
+//	&	job( JOB,_,_,_,_,ITENSJOB)
+//	&	temTodosItens( ITENSJOB, ITENSTORAGE )
+//	<-
+//		.print( "Chegou a hora de fazer o job ", STORAGE, ": ", LISTITENS );
+//		-todo( job, _ );
+//		+todo( job, 9 );
+//	.
 
 
 +!testarTrabalho
@@ -113,19 +119,4 @@
 		role(ROLE,_,_,_,_,_,_,_,_,_,_)
 	<-
 		removeIntentionToDoJob(NAME, NOMEJOB);
-	.
-
-+!passosRetrieve( [], LISTA, RETORNO )
-	:
-		true
-	<-
-		RETORNO = LISTA;
-	.
-
-+!passosRetrieve( [required(ITEM, QTD)|T], LISTA, RETORNO )
-	:
-		repeat( retrieve(ITEM,1) , QTD , [] ,RR )
-	<-
-		.concat(LISTA, RR, N_LISTA);
-		!passosRetrieve( T, N_LISTA, RETORNO);
 	.
