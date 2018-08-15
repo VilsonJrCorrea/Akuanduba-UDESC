@@ -1,5 +1,6 @@
 roundnumber(0).
 
+	
 @start[atomic]
 +simStart: not started 
 		<-
@@ -23,7 +24,8 @@ roundnumber(0).
 	<-
 		?name(N);
 		?team(T);
-		.concat(agent,T,D);
+		jia.upper(T,BIGT);		
+		.concat("agent",BIGT,D);
 		.delete(D,N,R);
 		//.print(R);
 		+agentid(R);

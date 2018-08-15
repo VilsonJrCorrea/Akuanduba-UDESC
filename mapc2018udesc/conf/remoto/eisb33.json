@@ -1,6 +1,6 @@
 {
 "scenario":"city2018",
-"host":"10.60.40.27",
+"host":"10.60.185.18",
 "port":12300,
 "scheduling":false,
 "timeout":40000,

@@ -162,7 +162,7 @@
 			 (not laststep(LS))
 	<-
 		-+laststep(S);
-		!testarTrabalho;
+	//	!testarTrabalho;
 		!consumestep;
 		!whattodo;
 		!do;
