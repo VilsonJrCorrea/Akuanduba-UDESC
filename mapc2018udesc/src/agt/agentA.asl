@@ -2,8 +2,8 @@
 { include("$jacamoJar/templates/common-moise.asl") }
 { include("exploration.asl") }
 { include("gathering.asl") }
-{ include("crafting2.asl") }
-//{ include("crafting.asl") }
+//{ include("crafting2.asl") }
+{ include("crafting.asl") }
 { include("charging.asl") }		
 { include("regras.asl") }
 { include("job.asl") }
@@ -162,7 +162,7 @@
 			 (not laststep(LS))
 	<-
 		-+laststep(S);
-	//	!testarTrabalho;
+		!testarTrabalho;
 		!consumestep;
 		!whattodo;
 		!do;

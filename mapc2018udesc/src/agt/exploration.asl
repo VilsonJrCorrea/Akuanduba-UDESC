@@ -21,7 +21,7 @@ invert(I,O):- (I=true & O=false)|(I=false & O=true).
 		.wait (maxLon(MAXLON));
 		.wait (minLon(MINLON));
 		.wait (minLon(MINLON));
-		?name(N);
+		.wait (name(N));
 		informDronePositionAndConers(LAT, LON, MINLAT, MINLON, MAXLAT, MAXLON , VR );
 	.
 

@@ -28,7 +28,7 @@ public class EISAccess extends Artifact implements AgentListener {
     private EnvironmentInterface ei;
     private String Agname="";
     private Boolean receiving=false;
-    private int awaitTime = 60;
+    private int awaitTime = 100;
     private String lastStep = "-1";
     private ArrayList<ObsProperty> lastRoundPropeties = new ArrayList<ObsProperty>();
 
@@ -143,19 +143,20 @@ public class EISAccess extends Artifact implements AgentListener {
 	}
 	
 	@OPERATION
-	void action(String action) throws NoValueException {
+	void action(String action) {
 		Literal literal = Literal.parseLiteral(action);
-		while (!ei.isEntityConnected(this.Agname)) {
-			await_time(this.awaitTime);
-		}
+//		while (!ei.isEntityConnected(this.Agname)) {
+//			await_time(this.awaitTime);
+//		}
 		Action a = null;
 		try {
 			if (ei != null) {
 				a = Translator.literalToAction(literal);
 				ei.performAction(this.Agname, a);
 			}
-		} catch (ActException e) {
-			System.out.println(a.toProlog());
+		} catch (Exception e) {
+			System.out.println("------> "+action);
+			System.out.println("------> "+a.toProlog());
 			e.printStackTrace();
 		}
 	}
