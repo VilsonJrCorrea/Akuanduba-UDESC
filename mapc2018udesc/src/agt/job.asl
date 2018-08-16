@@ -90,7 +90,7 @@ passosRetrieve( [required(ITEM, QTD)|T], LISTA, RETORNO ):-
 		+listaAux( [] );
 		for( hasItem( ITEM, QTD ) ){
 			?listaAux( LISTA );
-			.concat( LISTA, [retrieve( ITEM, QTD )], NLISTA );
+			.concat( LISTA, [store( ITEM, QTD )], NLISTA );
 			-+listaAux( NLISTA );
 		}
 		?listaAux( LISTAFINAL );
