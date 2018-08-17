@@ -80,6 +80,14 @@
 			-steps(LD, _ );
 			+steps(LD, [goto(LAT,LON)| L]);
 	.
+	
++!checkRollback:lastDoing(LD) 	& 
+				doing(D) 		& 
+				LD\==D 			& 
+				steps(LD,L)		&
+				not job( JOB,_,_,_,_,_ ) 
+	<-
+		true.	
 
 +!checkRollback:lastDoing(LD) 		& 
 				doing(D) 			& 

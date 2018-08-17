@@ -194,7 +194,7 @@ buildStore( L, R )
 	:-
 		hasItem( I, Q ) &
 		not .member( store( I, Q ), L) &
-		.print( "1-I: ", I, ", Q: ", Q, ", L: ", L ) &
+//		.print( "1-I: ", I, ", Q: ", Q, ", L: ", L ) &
 		buildStore( [store( I, Q ) | L ], R ).
 
 buildStore( L, R )

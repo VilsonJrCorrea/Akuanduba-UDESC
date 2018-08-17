@@ -10,9 +10,10 @@ passosRetrieve( [required(ITEM, QTD)|T], LISTA, RETORNO ):-
 	:
 		name( NAME )
 	&	not jobCommitment(NAME,_)
+	&	not gatherCommitment( NAME, _ )
+	&	not craftCommitment( NAME, _ )
 	&	not doing(_)    
     &	role(ROLE,_,_,CAPACIDADE,_,_,_,_,_,_,_)
-    &	(ROLE=car | ROLE=motocycle)
 	&	step( STEPATUAL )
 	&	centerStorage(STORAGE)
 	&	sumvolruleJOB( ITENS, VOLUMETOTAL )
@@ -75,10 +76,9 @@ passosRetrieve( [required(ITEM, QTD)|T], LISTA, RETORNO ):-
 		.print( STEP, "-Acabou o tempo para eu fazer o job ", JOB );
 		!rollBackJob;
 		removeIntentionToDoJob( NAME, JOB );
-		-steps( job, _ );
-		-expectedplan( job, _);
-		-todo( job, _ );
+		!removetodo(job);
 	.
+
 
 +!testarTrabalho<-true.
 
