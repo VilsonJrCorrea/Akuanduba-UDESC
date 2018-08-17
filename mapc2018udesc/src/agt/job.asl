@@ -87,14 +87,8 @@ passosRetrieve( [required(ITEM, QTD)|T], LISTA, RETORNO ):-
 		hasItem( _, _)
 	&	centerStorage( STORAGE )
 	<-
-		+listaAux( [] );
-		for( hasItem( ITEM, QTD ) ){
-			?listaAux( LISTA );
-			.concat( LISTA, [store( ITEM, QTD )], NLISTA );
-			-+listaAux( NLISTA );
-		}
-		?listaAux( LISTAFINAL );
-		-listaAux( _ );
+		?buildStore( [], LISTAFINAL );
+		.print( LISTAFINAL );
 		
 		.concat( [goto(STORAGE)], LISTAFINAL, PASSOS );
 		

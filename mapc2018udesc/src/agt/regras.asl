@@ -189,3 +189,18 @@ buscarNomesItensSTORAGE( [item(ITEM,_,_)|T], LISTA, RETORNO )
 		.concat( [ITEM], LISTA, N_LISTA )
 	&	buscarNomesItensSTORAGE( T, N_LISTA, RETORNO)
 	.
+
+buildStore( L, R )
+	:-
+		hasItem( I, Q ) &
+		not .member( store( I, Q ), L) &
+		.print( "1-I: ", I, ", Q: ", Q, ", L: ", L ) &
+		buildStore( [store( I, Q ) | L ], R ).
+
+buildStore( L, R )
+	:-
+//		not hasItem( I, Q ) &
+//		.print( "2-I: ", I, ", Q: ", Q, ", L: ", L ) &
+//		.member( store( I, Q ), L ) &
+		R = L.
+

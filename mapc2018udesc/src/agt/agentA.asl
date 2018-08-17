@@ -158,10 +158,8 @@
 	.
 	
 @s19[atomic]
-+step( S ): (laststep(LS) & not LS=S) |
-			 (not laststep(LS))
++step( S ): true
 	<-
-		-+laststep(S);
 		!testarTrabalho;
 		!consumestep;
 		!whattodo;

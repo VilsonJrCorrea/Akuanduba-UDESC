@@ -1,0 +1,814 @@
+CArtAgO Http Server running on http://192.168.56.1:3273
+[JaCaMoLauncher] Workspace envb created.
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+entity "connectionB14" is not connected. trying to connect.
+[JaCaMoLauncher] artifact artb14: EISAccess("conf/eisb13.json") at envb created.
+Entity connectionB14: socket successfully created
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+entity "connectionB15" is not connected. trying to connect.
+[JaCaMoLauncher] artifact artb15: EISAccess("conf/eisb14.json") at envb created.
+Entity connectionB15: socket successfully created
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+entity "connectionB12" is not connected. trying to connect.
+[JaCaMoLauncher] artifact artb12: EISAccess("conf/eisb11.json") at envb created.
+Entity connectionB12: socket successfully created
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+entity "connectionB34" is not connected. trying to connect.
+[JaCaMoLauncher] artifact artb34: EISAccess("conf/eisb33.json") at envb created.
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+[JaCaMoLauncher] artifact artb13: EISAccess("conf/eisb12.json") at envb created.
+entity "connectionB13" is not connected. trying to connect.
+Configuring EIS: city2018@localhost:12300
+Entity connectionB34: socket successfully created
+Timeout set to 40000
+Entity connectionB13: socket successfully created
+[JaCaMoLauncher] artifact artb18: EISAccess("conf/eisb17.json") at envb created.
+entity "connectionB18" is not connected. trying to connect.
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+Entity connectionB18: socket successfully created
+[JaCaMoLauncher] artifact artb19: EISAccess("conf/eisb18.json") at envb created.
+entity "connectionB19" is not connected. trying to connect.
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+Entity connectionB19: socket successfully created
+[JaCaMoLauncher] artifact artb16: EISAccess("conf/eisb15.json") at envb created.
+entity "connectionB16" is not connected. trying to connect.
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+Entity connectionB16: socket successfully created
+entity "connectionB17" is not connected. trying to connect.
+[JaCaMoLauncher] artifact artb17: EISAccess("conf/eisb16.json") at envb created.
+Entity connectionB17: socket successfully created
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+entity "connectionB21" is not connected. trying to connect.
+[JaCaMoLauncher] artifact artb21: EISAccess("conf/eisb20.json") at envb created.
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+Entity connectionB21: socket successfully created
+entity "connectionB22" is not connected. trying to connect.
+[JaCaMoLauncher] artifact artb22: EISAccess("conf/eisb21.json") at envb created.
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+[JaCaMoLauncher] artifact artb20: EISAccess("conf/eisb19.json") at envb created.
+Entity connectionB22: socket successfully created
+entity "connectionB20" is not connected. trying to connect.
+Configuring EIS: city2018@localhost:12300
+Entity connectionB20: socket successfully created
+Timeout set to 40000
+entity "connectionB25" is not connected. trying to connect.
+[JaCaMoLauncher] artifact artb25: EISAccess("conf/eisb24.json") at envb created.
+Entity connectionB25: socket successfully created
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+entity "connectionB26" is not connected. trying to connect.
+Entity connectionB26: socket successfully created
+[JaCaMoLauncher] artifact artb26: EISAccess("conf/eisb25.json") at envb created.
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+entity "connectionB23" is not connected. trying to connect.
+[JaCaMoLauncher] artifact artb23: EISAccess("conf/eisb22.json") at envb created.
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+[JaCaMoLauncher] artifact artb24: EISAccess("conf/eisb23.json") at envb created.
+entity "connectionB24" is not connected. trying to connect.
+Entity connectionB23: socket successfully created
+Entity connectionB24: socket successfully created
+Configuring EIS: city2018@localhost:12300
+[ MONITOR ] 1 viewer(s) connected
+Timeout set to 40000
+[JaCaMoLauncher] artifact artb29: EISAccess("conf/eisb28.json") at envb created.
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+[JaCaMoLauncher] artifact artb27: EISAccess("conf/eisb26.json") at envb created.
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+entity "connectionB28" is not connected. trying to connect.
+[JaCaMoLauncher] artifact artb28: EISAccess("conf/eisb27.json") at envb created.
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+entity "connectionB29" is not connected. trying to connect.
+[JaCaMoLauncher] artifact artb7: EISAccess("conf/eisb6.json") at envb created.
+entity "connectionB27" is not connected. trying to connect.
+Entity connectionB29: socket successfully created
+Entity connectionB28: socket successfully created
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+entity "connectionB7" is not connected. trying to connect.
+[JaCaMoLauncher] artifact artb8: EISAccess("conf/eisb7.json") at envb created.
+entity "connectionB8" is not connected. trying to connect.
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+Entity connectionB8: socket successfully created
+Entity connectionB27: socket successfully created
+[JaCaMoLauncher] artifact artb9: EISAccess("conf/eisb8.json") at envb created.
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+[JaCaMoLauncher] artifact artb3: EISAccess("conf/eisb2.json") at envb created.
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+[JaCaMoLauncher] artifact artb4: EISAccess("conf/eisb3.json") at envb created.
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+[JaCaMoLauncher] artifact artb5: EISAccess("conf/eisb4.json") at envb created.
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+[JaCaMoLauncher] artifact artb6: EISAccess("conf/eisb5.json") at envb created.
+entity "connectionB5" is not connected. trying to connect.
+entity "connectionB4" is not connected. trying to connect.
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+[JaCaMoLauncher] artifact artb10: EISAccess("conf/eisb9.json") at envb created.
+entity "connectionB10" is not connected. trying to connect.
+entity "connectionB6" is not connected. trying to connect.
+Entity connectionB7: socket successfully created
+entity "connectionB3" is not connected. trying to connect.
+entity "connectionB9" is not connected. trying to connect.
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+Entity connectionB4: socket successfully created
+[JaCaMoLauncher] artifact artb32: EISAccess("conf/eisb31.json") at envb created.
+Entity connectionB10: socket successfully created
+Entity connectionB5: socket successfully created
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+[JaCaMoLauncher] artifact artb11: EISAccess("conf/eisb10.json") at envb created.
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+Entity connectionB3: socket successfully created
+[JaCaMoLauncher] artifact artb33: EISAccess("conf/eisb32.json") at envb created.
+Entity connectionB6: socket successfully created
+entity "connectionB33" is not connected. trying to connect.
+entity "connectionB11" is not connected. trying to connect.
+Entity connectionB9: socket successfully created
+Configuring EIS: city2018@localhost:12300
+entity "connectionB32" is not connected. trying to connect.
+Entity connectionB32: socket successfully created
+Timeout set to 40000
+Entity connectionB7: authentication acknowledged
+Entity connectionB7: connection successfully authenticated
+Entity connectionB7: listening for incoming messages
+Entity connectionB9: authentication acknowledged
+Entity connectionB9: connection successfully authenticated
+Entity connectionB9: listening for incoming messages
+[JaCaMoLauncher] artifact artb1: EISAccess("conf/eisb0.json") at envb created.
+Entity connectionB28: authentication acknowledged
+Entity connectionB28: connection successfully authenticated
+Entity connectionB28: listening for incoming messages
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+[JaCaMoLauncher] artifact artb30: EISAccess("conf/eisb29.json") at envb created.
+Entity connectionB32: authentication acknowledged
+Entity connectionB32: connection successfully authenticated
+Entity connectionB32: listening for incoming messages
+Entity connectionB26: authentication acknowledged
+Entity connectionB26: connection successfully authenticated
+Entity connectionB15: authentication acknowledged
+Entity connectionB15: connection successfully authenticated
+Entity connectionB3: authentication acknowledged
+Entity connectionB3: connection successfully authenticated
+Entity connectionB26: listening for incoming messages
+Entity connectionB10: authentication acknowledged
+Entity connectionB10: connection successfully authenticated
+Entity connectionB3: listening for incoming messages
+Entity connectionB10: listening for incoming messages
+Entity connectionB15: listening for incoming messages
+Configuring EIS: city2018@localhost:12300
+Entity connectionB27: authentication acknowledged
+Timeout set to 40000
+Entity connectionB27: connection successfully authenticated
+Entity connectionB12: authentication acknowledged
+Entity connectionB12: connection successfully authenticated
+Entity connectionB12: listening for incoming messages
+Entity connectionB27: listening for incoming messages
+Entity connectionB14: authentication acknowledged
+Entity connectionB14: connection successfully authenticated
+Entity connectionB14: listening for incoming messages
+Entity connectionB29: authentication acknowledged
+Entity connectionB29: connection successfully authenticated
+[JaCaMoLauncher] artifact artb2: EISAccess("conf/eisb1.json") at envb created.
+Entity connectionB29: listening for incoming messages
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+[JaCaMoLauncher] artifact artb31: EISAccess("conf/eisb30.json") at envb created.
+entity "connectionB30" is not connected. trying to connect.
+[JaCaMoLauncher] Workspace env created.
+entity "connectionB2" is not connected. trying to connect.
+entity "connectionB31" is not connected. trying to connect.
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+Entity connectionB31: socket successfully created
+[JaCaMoLauncher] artifact art2: EISAccess("conf/eis1.json") at env created.
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+Entity connectionB4: authentication acknowledged
+Entity connectionB17: authentication acknowledged
+Entity connectionB17: connection successfully authenticated
+Entity connectionB4: connection successfully authenticated
+[JaCaMoLauncher] artifact art1: EISAccess("conf/eis0.json") at env created.
+Entity connectionB4: listening for incoming messages
+Entity connectionB17: listening for incoming messages
+[JaCaMoLauncher] artifact coogather: CoordinationArtifact() at env created.
+Configuring EIS: city2018@localhost:12300
+Entity connectionB21: authentication acknowledged
+Entity connectionB20: authentication acknowledged
+Entity connectionB34: authentication acknowledged
+Entity connectionB19: authentication acknowledged
+Entity connectionB19: connection successfully authenticated
+Entity connectionB19: listening for incoming messages
+Entity connectionB24: authentication acknowledged
+Entity connectionB18: authentication acknowledged
+Entity connectionB34: connection successfully authenticated
+Entity connectionB34: listening for incoming messages
+Entity connectionB20: connection successfully authenticated
+Entity connectionB21: connection successfully authenticated
+Entity connectionB21: listening for incoming messages
+Entity connectionB8: authentication acknowledged
+Entity connectionB8: connection successfully authenticated
+Entity connectionB8: listening for incoming messages
+Timeout set to 40000
+Entity connectionB23: authentication acknowledged
+Entity connectionB20: listening for incoming messages
+Entity connectionB18: connection successfully authenticated
+Entity connectionB18: listening for incoming messages
+Entity connectionB24: connection successfully authenticated
+[JaCaMoLauncher] artifact art16: EISAccess("conf/eis15.json") at env created.
+Entity connectionB23: connection successfully authenticated
+Entity connectionB23: listening for incoming messages
+Entity connectionB24: listening for incoming messages
+Entity connectionB16: authentication acknowledged
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+Entity connectionB16: connection successfully authenticated
+entity "connectionA17" is not connected. trying to connect.
+entity "connectionA16" is not connected. trying to connect.
+entity "connectionA1" is not connected. trying to connect.
+Entity connectionB6: authentication acknowledged
+Entity connectionB6: connection successfully authenticated
+[JaCaMoLauncher] artifact art17: EISAccess("conf/eis16.json") at env created.
+Entity connectionB22: authentication acknowledged
+Entity connectionB22: connection successfully authenticated
+Entity connectionB5: authentication acknowledged
+Entity connectionB5: connection successfully authenticated
+Entity connectionB5: listening for incoming messages
+Entity connectionB22: listening for incoming messages
+Entity connectionB6: listening for incoming messages
+Entity connectionB16: listening for incoming messages
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+[JaCaMoLauncher] artifact art18: EISAccess("conf/eis17.json") at env created.
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+[JaCaMoLauncher] artifact art19: EISAccess("conf/eis18.json") at env created.
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+Entity connectionB13: authentication acknowledged
+Entity connectionB13: connection successfully authenticated
+[JaCaMoLauncher] artifact art12: EISAccess("conf/eis11.json") at env created.
+Entity connectionB13: listening for incoming messages
+Entity connectionA16: socket successfully created
+Entity connectionA17: socket successfully created
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+entity "connectionA12" is not connected. trying to connect.
+Entity connectionB25: authentication acknowledged
+[JaCaMoLauncher] artifact art34: EISAccess("conf/eis33.json") at env created.
+Entity connectionB25: connection successfully authenticated
+Entity connectionB25: listening for incoming messages
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+[JaCaMoLauncher] artifact art13: EISAccess("conf/eis12.json") at env created.
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+[JaCaMoLauncher] artifact art14: EISAccess("conf/eis13.json") at env created.
+Entity connectionB33: socket successfully created
+entity "connectionB1" is not connected. trying to connect.
+entity "connectionA34" is not connected. trying to connect.
+Entity connectionB11: socket successfully created
+Entity connectionB31: authentication acknowledged
+Entity connectionB31: connection successfully authenticated
+Entity connectionB31: listening for incoming messages
+Entity connectionA34: socket successfully created
+entity "connectionA13" is not connected. trying to connect.
+entity "connectionA14" is not connected. trying to connect.
+entity "connectionA18" is not connected. trying to connect.
+entity "connectionA19" is not connected. trying to connect.
+Entity connectionB1: socket successfully created
+Entity connectionA14: socket successfully created
+Entity connectionA16: authentication acknowledged
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+Entity connectionB2: socket successfully created
+entity "connectionA2" is not connected. trying to connect.
+Entity connectionA18: socket successfully created
+[JaCaMoLauncher] artifact art15: EISAccess("conf/eis14.json") at env created.
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+[JaCaMoLauncher] artifact art30: EISAccess("conf/eis29.json") at env created.
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+[JaCaMoLauncher] artifact art31: EISAccess("conf/eis30.json") at env created.
+Entity connectionA16: connection successfully authenticated
+Entity connectionA16: listening for incoming messages
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+[JaCaMoLauncher] artifact art10: EISAccess("conf/eis9.json") at env created.
+Configuring EIS: city2018@localhost:12300
+Entity connectionA1: socket successfully created
+Entity connectionB33: authentication acknowledged
+Entity connectionB33: connection successfully authenticated
+Entity connectionB33: listening for incoming messages
+Entity connectionA17: authentication acknowledged
+Entity connectionB11: authentication acknowledged
+Entity connectionB11: connection successfully authenticated
+Entity connectionB11: listening for incoming messages
+Entity connectionA12: socket successfully created
+Entity connectionB30: socket successfully created
+Entity connectionA17: connection successfully authenticated
+Timeout set to 40000
+Entity connectionA17: listening for incoming messages
+[JaCaMoLauncher] artifact art32: EISAccess("conf/eis31.json") at env created.
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+[JaCaMoLauncher] artifact art11: EISAccess("conf/eis10.json") at env created.
+entity "connectionA32" is not connected. trying to connect.
+Entity connectionB1: authentication acknowledged
+Entity connectionB1: connection successfully authenticated
+Entity connectionB1: listening for incoming messages
+Entity connectionB2: authentication acknowledged
+Entity connectionB2: connection successfully authenticated
+Entity connectionB2: listening for incoming messages
+Entity connectionA19: socket successfully created
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+Entity connectionA19: authentication acknowledged
+Entity connectionA19: connection successfully authenticated
+Entity connectionA19: listening for incoming messages
+entity "connectionA30" is not connected. trying to connect.
+Entity connectionB30: authentication acknowledged
+[JaCaMoLauncher] artifact art33: EISAccess("conf/eis32.json") at env created.
+Entity connectionB30: connection successfully authenticated
+Entity connectionA2: socket successfully created
+Entity connectionA1: authentication acknowledged
+Entity connectionA1: connection successfully authenticated
+Entity connectionA1: listening for incoming messages
+Entity connectionA13: socket successfully created
+entity "connectionA31" is not connected. trying to connect.
+Entity connectionB30: listening for incoming messages
+entity "connectionA10" is not connected. trying to connect.
+entity "connectionA11" is not connected. trying to connect.
+entity "connectionA15" is not connected. trying to connect.
+Entity connectionA18: authentication acknowledged
+Entity connectionA18: connection successfully authenticated
+Entity connectionA18: listening for incoming messages
+Entity connectionA15: socket successfully created
+Entity connectionA14: authentication acknowledged
+Entity connectionA14: connection successfully authenticated
+Entity connectionA14: listening for incoming messages
+Entity connectionA34: authentication acknowledged
+Entity connectionA34: connection successfully authenticated
+Entity connectionA34: listening for incoming messages
+[JaCaMoLauncher] artifact artpolygon: calculos.ARTGreyZone() at env created.
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+Entity connectionA32: socket successfully created
+[JaCaMoLauncher] artifact art8: EISAccess("conf/eis7.json") at env created.
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+[JaCaMoLauncher] artifact art7: EISAccess("conf/eis6.json") at env created.
+Entity connectionA12: authentication acknowledged
+Entity connectionA12: connection successfully authenticated
+Entity connectionA12: listening for incoming messages
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+Entity connectionA11: socket successfully created
+Entity connectionA13: authentication acknowledged
+Entity connectionA13: connection successfully authenticated
+[JaCaMoLauncher] artifact art9: EISAccess("conf/eis8.json") at env created.
+Entity connectionA13: listening for incoming messages
+entity "connectionA8" is not connected. trying to connect.
+entity "connectionA7" is not connected. trying to connect.
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+[JaCaMoLauncher] artifact art4: EISAccess("conf/eis3.json") at env created.
+Entity connectionA2: authentication acknowledged
+Entity connectionA2: connection successfully authenticated
+Entity connectionA2: listening for incoming messages
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+[JaCaMoLauncher] artifact art3: EISAccess("conf/eis2.json") at env created.
+Configuring EIS: city2018@localhost:12300
+Entity connectionA32: authentication acknowledged
+entity "connectionA3" is not connected. trying to connect.
+Entity connectionA8: socket successfully created
+entity "connectionA9" is not connected. trying to connect.
+Entity connectionA32: connection successfully authenticated
+Entity connectionA11: authentication acknowledged
+Entity connectionA11: connection successfully authenticated
+Entity connectionA11: listening for incoming messages
+Timeout set to 40000
+Entity connectionA32: listening for incoming messages
+[JaCaMoLauncher] artifact art6: EISAccess("conf/eis5.json") at env created.
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+[JaCaMoLauncher] artifact art5: EISAccess("conf/eis4.json") at env created.
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+[JaCaMoLauncher] artifact art27: EISAccess("conf/eis26.json") at env created.
+Entity connectionA3: socket successfully created
+Entity connectionA8: authentication acknowledged
+Entity connectionA8: connection successfully authenticated
+Entity connectionA8: listening for incoming messages
+Entity connectionA9: socket successfully created
+entity "connectionA5" is not connected. trying to connect.
+entity "connectionA27" is not connected. trying to connect.
+Entity connectionA9: authentication acknowledged
+Entity connectionA3: authentication acknowledged
+Entity connectionA9: connection successfully authenticated
+Entity connectionA3: connection successfully authenticated
+Entity connectionA3: listening for incoming messages
+Entity connectionA9: listening for incoming messages
+Entity connectionA27: socket successfully created
+entity "connectionA33" is not connected. trying to connect.
+Entity connectionA10: socket successfully created
+Entity connectionA31: socket successfully created
+Entity connectionA30: socket successfully created
+Entity connectionA10: authentication acknowledged
+Entity connectionA15: authentication acknowledged
+Entity connectionA10: connection successfully authenticated
+Entity connectionA15: connection successfully authenticated
+Entity connectionA33: socket successfully created
+Entity connectionA10: listening for incoming messages
+Entity connectionA15: listening for incoming messages
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+[JaCaMoLauncher] artifact art28: EISAccess("conf/eis27.json") at env created.
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+[JaCaMoLauncher] artifact art29: EISAccess("conf/eis28.json") at env created.
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+[JaCaMoLauncher] artifact art23: EISAccess("conf/eis22.json") at env created.
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+[JaCaMoLauncher] artifact art24: EISAccess("conf/eis23.json") at env created.
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+[JaCaMoLauncher] artifact art25: EISAccess("conf/eis24.json") at env created.
+Entity connectionA33: authentication acknowledged
+Entity connectionA33: connection successfully authenticated
+Entity connectionA33: listening for incoming messages
+entity "connectionA4" is not connected. trying to connect.
+Entity connectionA7: socket successfully created
+entity "connectionA6" is not connected. trying to connect.
+Entity connectionA5: socket successfully created
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+[JaCaMoLauncher] artifact art26: EISAccess("conf/eis25.json") at env created.
+entity "connectionA29" is not connected. trying to connect.
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+entity "connectionA23" is not connected. trying to connect.
+entity "connectionA26" is not connected. trying to connect.
+Entity connectionA23: socket successfully created
+[JaCaMoLauncher] artifact art20: EISAccess("conf/eis19.json") at env created.
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+entity "connectionA28" is not connected. trying to connect.
+[JaCaMoLauncher] artifact art21: EISAccess("conf/eis20.json") at env created.
+Entity connectionA4: socket successfully created
+Configuring EIS: city2018@localhost:12300
+Timeout set to 40000
+[JaCaMoLauncher] artifact art22: EISAccess("conf/eis21.json") at env created.
+Entity connectionA27: authentication acknowledged
+Entity connectionA27: connection successfully authenticated
+Entity connectionA27: listening for incoming messages
+Entity connectionA26: socket successfully created
+Entity connectionA31: authentication acknowledged
+Entity connectionA31: connection successfully authenticated
+Entity connectionA31: listening for incoming messages
+Entity connectionA30: authentication acknowledged
+Entity connectionA30: connection successfully authenticated
+Entity connectionA30: listening for incoming messages
+entity "connectionA21" is not connected. trying to connect.
+entity "connectionA22" is not connected. trying to connect.
+Entity connectionA5: authentication acknowledged
+Entity connectionA5: connection successfully authenticated
+Entity connectionA5: listening for incoming messages
+Entity connectionA26: authentication acknowledged
+Entity connectionA26: connection successfully authenticated
+Entity connectionA26: listening for incoming messages
+Entity connectionA22: socket successfully created
+Entity connectionA22: authentication acknowledged
+Entity connectionA22: connection successfully authenticated
+Entity connectionA22: listening for incoming messages
+Jason Http Server running on http://192.168.56.1:3272
+entity "connectionA24" is not connected. trying to connect.
+entity "connectionA20" is not connected. trying to connect.
+Entity connectionA6: socket successfully created
+Entity connectionA29: socket successfully created
+Entity connectionA20: socket successfully created
+entity "connectionA25" is not connected. trying to connect.
+[ MONITOR ] 2 viewer(s) connected
+Entity connectionA7: authentication acknowledged
+Entity connectionA7: connection successfully authenticated
+Entity connectionA7: listening for incoming messages
+Entity connectionA21: socket successfully created
+Entity connectionA28: socket successfully created
+Entity connectionA24: socket successfully created
+Entity connectionA23: authentication acknowledged
+Entity connectionA23: connection successfully authenticated
+Entity connectionA6: authentication acknowledged
+Entity connectionA29: authentication acknowledged
+Entity connectionA6: connection successfully authenticated
+Entity connectionA29: connection successfully authenticated
+Entity connectionA23: listening for incoming messages
+Entity connectionA4: authentication acknowledged
+Entity connectionA6: listening for incoming messages
+Entity connectionA29: listening for incoming messages
+Entity connectionA4: connection successfully authenticated
+Entity connectionA4: listening for incoming messages
+Entity connectionA20: authentication acknowledged
+Entity connectionA20: connection successfully authenticated
+Entity connectionA20: listening for incoming messages
+Entity connectionA25: socket successfully created
+Entity connectionA21: authentication acknowledged
+Entity connectionA21: connection successfully authenticated
+Entity connectionA21: listening for incoming messages
+Entity connectionA24: authentication acknowledged
+Entity connectionA24: connection successfully authenticated
+Entity connectionA24: listening for incoming messages
+Entity connectionA25: authentication acknowledged
+Entity connectionA25: connection successfully authenticated
+Entity connectionA25: listening for incoming messages
+Entity connectionA28: authentication acknowledged
+Entity connectionA28: connection successfully authenticated
+Entity connectionA28: listening for incoming messages
+[Thread-0] INFO com.graphhopper.GraphHopper - version 0.7.0|2016-06-15T08:38:51Z (5,14,4,3,3,2)
+[Thread-0] INFO com.graphhopper.GraphHopper - graph car|RAM_STORE|2D|NoExt|5,14,4,3,3, details:edges:27 511(1MB), nodes:18 275(1MB), name:(1MB), geo:73 490(1MB), bounds:2.252902327170275,2.4162700939834885,48.814300048670916,48.9032961183033
+INTERNO: construindo o poligono !
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Ponto [nome=, x=48.83054, y=2.2722425]
+INTERNO: getpoint
+[agentA20] Eu, um(a) car vou fazer o job job0
+[agentA22] commited with item8
+[agentA21] commited with item5
+[agentA16] commited with item5
+[agentA15] commited with item5
+[agentA13] commited with item4
+[agentA7] commited with item6
+[agentA10] commited with item6
+[agentA9] commited with item6
+[agentA6] commited with item7
+[agentA5] commited with item4
+[agentA14] commited with item4
+[agentA16] Eu, um(a) car vou fazer o job job1
+[agentA18] Eu, um(a) car vou fazer o job job3
+[agentA21] Eu, um(a) car vou fazer o job job6
+[agentA19] Eu, um(a) car vou fazer o job job8
+[agentA15] Eu, um(a) car vou fazer o job job9
+[agentA22] Eu, um(a) car vou fazer o job job14
+[agentA14] Eu, um(a) car vou fazer o job job16
+[agentA17] Eu, um(a) car vou fazer o job job17
+[agentA16] 68-Acabou o tempo para eu fazer o job job1
+[agentA16] Nada para devolver
+[agentA13] Eu, um(a) car vou fazer o job job21
+[agentA16] Eu, um(a) car vou fazer o job job25
+[agentA21] 78-Acabou o tempo para eu fazer o job job6
+[agentA21] Nada para devolver
+[agentA20] 80-Acabou o tempo para eu fazer o job job0
+[agentA20] Nada para devolver
+[agentA20] Eu, um(a) car vou fazer o job job29
+[agentA18] 85-Acabou o tempo para eu fazer o job job3
+[agentA18] Nada para devolver
+[agentA18] Eu, um(a) car vou fazer o job job30
+[agentA15] 90-Acabou o tempo para eu fazer o job job9
+[agentA15] Nada para devolver
+[agentA21] Eu, um(a) car vou fazer o job job33
+[agentA15] Eu, um(a) car vou fazer o job job32
+[agentA13] produziu item4
+[agentA21] produziu item5
+[agentA22] 108-Acabou o tempo para eu fazer o job job14
+[agentA22] Nada para devolver
+[agentA22] Eu, um(a) car vou fazer o job job35
+[agentA15] produziu item5
+[agentA14] produziu item4
+[agentA5] produziu item4
+[agentA16] produziu item5
+[agentA19] 121-Acabou o tempo para eu fazer o job job8
+[agentA19] 1-I: item4, Q: 1, L: []
+[agentA19] [store(item4,1)]
+[agentA19] Adicionei plano para devolver os itens
+[agentA14] 121-Acabou o tempo para eu fazer o job job16
+[agentA14] 1-I: item2, Q: 1, L: []
+[agentA14] 1-I: item3, Q: 1, L: [store(item2,1)]
+[agentA14] 1-I: item0, Q: 1, L: [store(item3,1),store(item2,1)]
+[agentA14] [store(item0,1),store(item3,1),store(item2,1)]
+[agentA14] Adicionei plano para devolver os itens
+[agentA13] produziu item4
+[agentA19] Eu, um(a) car vou fazer o job job34
+[agentA21] produziu item5
+[agentA14] Eu, um(a) car vou fazer o job job40
+[agentA16] produziu item5
+[agentA5] produziu item4
+[agentA17] 135-Acabou o tempo para eu fazer o job job17
+[agentA17] 1-I: item4, Q: 1, L: []
+[agentA17] [store(item4,1)]
+[agentA17] Adicionei plano para devolver os itens
+[agentA15] produziu item5
+[agentA17] Eu, um(a) car vou fazer o job job44
+[agentA21] produziu item5
+[agentA5] produziu item4
+[agentA13] produziu item4
+[agentA7] produziu item6
+[agentA16] produziu item5
+[agentA15] 156-Acabou o tempo para eu fazer o job job32
+[agentA15] 1-I: item4, Q: 1, L: []
+[agentA15] [store(item4,1)]
+[agentA15] Adicionei plano para devolver os itens
+[agentA15] Eu, um(a) car vou fazer o job job47
+[agentA13] 169-Acabou o tempo para eu fazer o job job21
+[agentA13] Nada para devolver
+[agentA21] 171-Acabou o tempo para eu fazer o job job33
+[agentA21] 1-I: item6, Q: 1, L: []
+[agentA21] 1-I: item2, Q: 1, L: [store(item6,1)]
+[agentA21] 1-I: item3, Q: 1, L: [store(item2,1),store(item6,1)]
+[agentA21] 1-I: item5, Q: 1, L: [store(item3,1),store(item2,1),store(item6,1)]
+[agentA21] [store(item5,1),store(item3,1),store(item2,1),store(item6,1)]
+[agentA21] Adicionei plano para devolver os itens
+[agentA20] 171-Acabou o tempo para eu fazer o job job29
+[agentA20] 1-I: item5, Q: 1, L: []
+[agentA20] [store(item5,1)]
+[agentA20] Adicionei plano para devolver os itens
+[agentA19] 172-Acabou o tempo para eu fazer o job job34
+[agentA19] 1-I: item4, Q: 1, L: []
+[agentA19] [store(item4,1)]
+[agentA19] Adicionei plano para devolver os itens
+[agentA16] 172-Acabou o tempo para eu fazer o job job25
+[agentA16] 1-I: item2, Q: 1, L: []
+[agentA16] 1-I: item3, Q: 1, L: [store(item2,1)]
+[agentA16] 1-I: item1, Q: 1, L: [store(item3,1),store(item2,1)]
+[agentA16] [store(item1,1),store(item3,1),store(item2,1)]
+[agentA16] Adicionei plano para devolver os itens
+[agentA20] Eu, um(a) car vou fazer o job job61
+[agentA18] 174-Acabou o tempo para eu fazer o job job30
+[agentA18] 1-I: item4, Q: 2, L: []
+[agentA18] [store(item4,2)]
+[agentA18] Adicionei plano para devolver os itens
+[agentA19] Eu, um(a) car vou fazer o job job62
+[agentA9] produziu item6
+[agentA18] Eu, um(a) car vou fazer o job job36
+[agentA5] produziu item4
+[agentA16] Eu, um(a) car vou fazer o job job42
+[agentA21] Eu, um(a) car vou fazer o job job58
+[agentA15] produziu item5
+[agentA13] produziu item4
+[agentA10] produziu item6
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.GeneratedMethodAccessor35.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at cartago.ArtifactOpMethod.exec(ArtifactOpMethod.java:39)
+	at cartago.Artifact.doOperation(Artifact.java:407)
+	at cartago.Artifact.access$200(Artifact.java:32)
+	at cartago.Artifact$ArtifactAdapter.doOperation(Artifact.java:1275)
+	at cartago.WorkspaceKernel.serveOperation(WorkspaceKernel.java:1136)
+	at cartago.WorkspaceKernel.access$000(WorkspaceKernel.java:48)
+	at cartago.WorkspaceKernel$EnvironmentController.run(WorkspaceKernel.java:1477)
+Caused by: java.lang.AssertionError
+	at massim.eismassim.EISEntity.performAction(EISEntity.java:341)
+	at massim.eismassim.EnvironmentInterface.performEntityAction(EnvironmentInterface.java:108)
+	at eis.EIDefaultImpl.performAction(EIDefaultImpl.java:783)
+	at EISAccess.action(EISAccess.java:155)
+	... 10 more
+[agentA13] No failure event was generated for +!do[code(action(goto(storage5))),code_line(152),code_src("C:/Users/10516125940/Documents/GitHub/Multi-Agent-Programming-Contest-2018/mapc2018udesc/src/agt/agentA.asl"),env_failure_reason(unknown_operation("action/1")),error(action_failed),error_msg("Unknown Operation"),source(self)]
+intention 38515593: 
+    +!do[source(self)] <- ... action(ACT) / {ACT=goto(storage5), S=186, DOING=craftComParts, T=[retrieve(item3,1),retrieve(item2,1),retrieve(item0,1),goto(workshop5),help([motorcycle]),assemble(item4),goto(storage5),store(item4,1)], _729331=craftComParts}
+    +step(186)[artifact_id(cobj_4),percept_type(obs_prop),source(percept),artifact_name(cobj_4,art13),workspace(cobj_4,env,cobj_2)] <- ... !do / {S=186}
+
+[agentA13] Eu, um(a) car vou fazer o job job52
+[agentA14] 191-Acabou o tempo para eu fazer o job job40
+[agentA14] Nada para devolver
+[agentA7] produziu item6
+[agentA22] 193-Acabou o tempo para eu fazer o job job35
+[agentA22] 1-I: item6, Q: 3, L: []
+[agentA22] [store(item6,3)]
+[agentA22] Adicionei plano para devolver os itens
+[agentA18] 196-Acabou o tempo para eu fazer o job job36
+[agentA18] 1-I: item6, Q: 1, L: []
+[agentA18] [store(item6,1)]
+[agentA18] Adicionei plano para devolver os itens
+[agentA22] Eu, um(a) car vou fazer o job job65
+[agentA13] produziu item4
+[agentA9] produziu item6
+[agentA18] Eu, um(a) car vou fazer o job job75
+[agentA5] produziu item4
+[agentA17] 208-Acabou o tempo para eu fazer o job job44
+[agentA17] 1-I: item4, Q: 1, L: []
+[agentA17] 1-I: item5, Q: 1, L: [store(item4,1)]
+[agentA17] [store(item5,1),store(item4,1)]
+[agentA17] Adicionei plano para devolver os itens
+[agentA15] produziu item5
+[agentA16] 210-Acabou o tempo para eu fazer o job job42
+[agentA16] 1-I: item0, Q: 1, L: []
+[agentA16] [store(item0,1)]
+[agentA16] Adicionei plano para devolver os itens
+[agentA10] produziu item6
+[agentA5] produziu item4
+[agentA13] produziu item4
+[agentA7] produziu item6
+[agentA13] 220-Acabou o tempo para eu fazer o job job52
+[agentA13] 1-I: item4, Q: 1, L: []
+[agentA13] [store(item4,1)]
+[agentA13] Adicionei plano para devolver os itens
+[agentA17] Eu, um(a) car vou fazer o job job79
+[agentA22] produziu item8
+[agentA13] Eu, um(a) car vou fazer o job job81
+[agentA21] 240-Acabou o tempo para eu fazer o job job58
+[agentA21] 1-I: item0, Q: 1, L: []
+[agentA21] 1-I: item1, Q: 1, L: [store(item0,1)]
+[agentA21] [store(item1,1),store(item0,1)]
+[agentA21] Adicionei plano para devolver os itens
+[agentA15] 241-Acabou o tempo para eu fazer o job job47
+[agentA15] 1-I: item6, Q: 1, L: []
+[agentA15] 1-I: item4, Q: 1, L: [store(item6,1)]
+[agentA15] 1-I: item5, Q: 1, L: [store(item4,1),store(item6,1)]
+[agentA15] [store(item5,1),store(item4,1),store(item6,1)]
+[agentA15] Adicionei plano para devolver os itens
+[ MONITOR ] 1 viewer(s) connected
+[ MONITOR ] 2 viewer(s) connected
+[agentA19] 252-Acabou o tempo para eu fazer o job job62
+[agentA19] 1-I: item6, Q: 2, L: []
+[agentA19] 1-I: item5, Q: 1, L: [store(item6,2)]
+[agentA19] [store(item5,1),store(item6,2)]
+[agentA19] Adicionei plano para devolver os itens
+[agentA15] Eu, um(a) car vou fazer o job job87
+[agentA19] Eu, um(a) car vou fazer o job job82
+[agentA15] produziu item5
+[agentA5] produziu item4
+[agentA13] produziu item4
+[agentA20] 263-Acabou o tempo para eu fazer o job job61
+[agentA20] 1-I: item6, Q: 2, L: []
+[agentA20] 1-I: item8, Q: 1, L: [store(item6,2)]
+[agentA20] 1-I: item4, Q: 1, L: [store(item8,1),store(item6,2)]
+[agentA20] [store(item4,1),store(item8,1),store(item6,2)]
+[agentA20] Adicionei plano para devolver os itens
+[agentA20] Eu, um(a) car vou fazer o job job91
+[agentA22] produziu item8
+[agentA22] 271-Acabou o tempo para eu fazer o job job65
+[agentA22] 1-I: item5, Q: 2, L: []
+[agentA22] [store(item5,2)]
+[agentA22] Adicionei plano para devolver os itens
+[agentA20] 278-Acabou o tempo para eu fazer o job job91
+[agentA20] Nada para devolver
+[agentA20] Eu, um(a) car vou fazer o job job93
+[agentA18] 280-Acabou o tempo para eu fazer o job job75
+[agentA18] 1-I: item4, Q: 1, L: []
+[agentA18] [store(item4,1)]
+[agentA18] Adicionei plano para devolver os itens
+[agentA5] produziu item4
+[agentA13] produziu item4
+[agentA15] produziu item5
+[agentA18] Eu, um(a) car vou fazer o job job85
+[agentA13] 290-Acabou o tempo para eu fazer o job job81
+[agentA13] 1-I: item6, Q: 1, L: []
+[agentA13] 1-I: item2, Q: 1, L: [store(item6,1)]
+[agentA13] 1-I: item3, Q: 1, L: [store(item2,1),store(item6,1)]
+[agentA13] 1-I: item0, Q: 1, L: [store(item3,1),store(item2,1),store(item6,1)]
+[agentA13] 1-I: item5, Q: 1, L: [store(item0,1),store(item3,1),store(item2,1),store(item6,1)]
+[agentA13] [store(item5,1),store(item0,1),store(item3,1),store(item2,1),store(item6,1)]
+[agentA13] Adicionei plano para devolver os itens
+[agentA13] No failure event was generated for +!checkRollback[code(.length(_1103584,_1103585)),code_line(93),code_src("C:/Users/10516125940/Documents/GitHub/Multi-Agent-Programming-Contest-2018/mapc2018udesc/src/agt/agentA.asl"),error(ia_failed),error_msg(""),source(self)]
+intention 61551932: 
+    +!checkRollback[source(self)] <- ... .length(EXPP,QTDEXPP); .length(L,QTDL); ?rollbackcutexpectedrule(EXPP,(QTDEXPP-QTDL),LDONED); .reverse(LDONED,RLDONED); ?rollbackrule([goto(_5852),goto(_5853,_5854)],RLDONED,RACTION); -steps(LD,_5855); +steps(LD,[RACTION|L]) / {LD=rollBackJob, TL=[store(item3,1),store(item2,1),store(item6,1)], EXPP=_1102745, D=recharge, L=[store(item0,1),store(item3,1),store(item2,1),store(item6,1)], HL=store(item0,1)}
+    +!whattodo[source(self)] <- ... !checkRollback / {_1103583=rollBackJob, QUANTIDADE=4, ACTION2=recharge}
+    +step(293)[artifact_id(cobj_4),percept_type(obs_prop),source(percept),artifact_name(cobj_4,art13),workspace(cobj_4,env,cobj_2)] <- ... !whattodo; !do / {S=293}
+
+[agentA20] 293-Acabou o tempo para eu fazer o job job93
+[agentA20] Nada para devolver
+[agentA20] Eu, um(a) car vou fazer o job job98
+[agentA13] No failure event was generated for +!checkRollback[code(.length(_1103918,_1103919)),code_line(93),code_src("C:/Users/10516125940/Documents/GitHub/Multi-Agent-Programming-Contest-2018/mapc2018udesc/src/agt/agentA.asl"),error(ia_failed),error_msg(""),source(self)]
+intention 62498050: 
+    +!checkRollback[source(self)] <- ... .length(EXPP,QTDEXPP); .length(L,QTDL); ?rollbackcutexpectedrule(EXPP,(QTDEXPP-QTDL),LDONED); .reverse(LDONED,RLDONED); ?rollbackrule([goto(_5852),goto(_5853,_5854)],RLDONED,RACTION); -steps(LD,_5855); +steps(LD,[RACTION|L]) / {LD=rollBackJob, TL=[store(item3,1),store(item2,1),store(item6,1)], EXPP=_1102745, D=recharge, L=[store(item0,1),store(item3,1),store(item2,1),store(item6,1)], HL=store(item0,1)}
+    +!whattodo[source(self)] <- ... !checkRollback / {QUANTIDADE=4, ACTION2=recharge, _1103917=recharge}
+    +step(294)[artifact_id(cobj_4),percept_type(obs_prop),source(percept),artifact_name(cobj_4,art13),workspace(cobj_4,env,cobj_2)] <- ... !whattodo; !do / {S=294}
+
+[agentA22] produziu item8
+[agentA13] No failure event was generated for +!checkRollback[code(.length(_1104214,_1104215)),code_line(93),code_src("C:/Users/10516125940/Documents/GitHub/Multi-Agent-Programming-Contest-2018/mapc2018udesc/src/agt/agentA.asl"),error(ia_failed),error_msg(""),source(self)]
+intention 63419428: 
+    +!checkRollback[source(self)] <- ... .length(EXPP,QTDEXPP); .length(L,QTDL); ?rollbackcutexpectedrule(EXPP,(QTDEXPP-QTDL),LDONED); .reverse(LDONED,RLDONED); ?rollbackrule([goto(_5852),goto(_5853,_5854)],RLDONED,RACTION); -steps(LD,_5855); +steps(LD,[RACTION|L]) / {LD=rollBackJob, TL=[store(item3,1),store(item2,1),store(item6,1)], EXPP=_1102745, D=recharge, L=[store(item0,1),store(item3,1),store(item2,1),store(item6,1)], HL=store(item0,1)}
+    +!whattodo[source(self)] <- ... !checkRollback / {QUANTIDADE=4, ACTION2=recharge, _1104213=recharge}
+    +step(295)[artifact_id(cobj_4),percept_type(obs_prop),source(percept),artifact_name(cobj_4,art13),workspace(cobj_4,env,cobj_2)] <- ... !whattodo; !do / {S=295}
+
+[agentA13] No failure event was generated for +!checkRollback[code(.length(_1104588,_1104589)),code_line(93),code_src("C:/Users/10516125940/Documents/GitHub/Multi-Agent-Programming-Contest-2018/mapc2018udesc/src/agt/agentA.asl"),error(ia_failed),error_msg(""),source(self)]
+intention 64522576: 
+    +!checkRollback[source(self)] <- ... .length(EXPP,QTDEXPP); .length(L,QTDL); ?rollbackcutexpectedrule(EXPP,(QTDEXPP-QTDL),LDONED); .reverse(LDONED,RLDONED); ?rollbackrule([goto(_5852),goto(_5853,_5854)],RLDONED,RACTION); -steps(LD,_5855); +steps(LD,[RACTION|L]) / {LD=rollBackJob, TL=[store(item3,1),store(item2,1),store(item6,1)], EXPP=_1102745, D=recharge, L=[store(item0,1),store(item3,1),store(item2,1),store(item6,1)], HL=store(item0,1)}
+    +!whattodo[source(self)] <- ... !checkRollback / {QUANTIDADE=4, ACTION2=recharge, _1104587=recharge}
+    +step(296)[artifact_id(cobj_4),percept_type(obs_prop),source(percept),artifact_name(cobj_4,art13),workspace(cobj_4,env,cobj_2)] <- ... !whattodo; !do / {S=296}
+
+[agentA22] Eu, um(a) car vou fazer o job job102
