@@ -1,5 +1,0 @@
-#!/bin/bash
-
-source `dirname $0`/jacamo-setup
-
-java -classpath $JACAMO_JAR:$JASON_JAR jacamo.infra.RunJaCaMoJar $1 application
