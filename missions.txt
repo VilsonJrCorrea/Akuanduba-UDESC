@@ -1,0 +1,18 @@
+mission(job48,storage1,840,143,204,840,840,0,[required(item4,1),required(item5,1),required(item6,1),required(item7,3),required(item8,4)])[...].
+mission( NOME, LOCALENTREGA, RECOMPENSA*, STEPINICIAL, STEPFINAL, RECOMPENSA**, RECOMPENSA***, TEMPOLEILAO****, ITENS  ).
+
+*	Recompensa
+**	Pode ser a multa
+***	Tem mesmo valor que a recompensa, mas eu não sei o que é.
+****	Deve ser ignorado.
+
+
+mission(job71,storage4,434,197,288,434,434,0,[required(item4,2),required(item5,1),required(item6,2),required(item7,1)])[...].
+[ NORMAL  ]  ##   New job: : 1x item5, 2x item4, 2x item6, 1x item7 reward(434) 197-288 storage4 loc(2.27002,48.88148) capacity(9235) Mission
+[ NORMAL  ]  ##   New job: : 1x item5, 2x item4, 2x item6, 1x item7 reward(434) 197-288 storage4 loc(2.27002,48.88148) capacity(9235) Mission
+
+
+<mission auctionTime="0" start="10" end="100" fine="500" id="job2"
+         lowestBid="1000" reward="1001" storage="storage0">
+  <required amount="42" name="item1"/>
+</mission>

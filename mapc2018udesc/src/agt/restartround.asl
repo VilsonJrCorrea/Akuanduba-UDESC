@@ -2,7 +2,7 @@ roundnumber(0).
 
 	
 @start[atomic]
-+simStart: not started 
++simStart: not started
 		<-
 				+started;				
 
@@ -18,7 +18,6 @@ roundnumber(0).
 				!!exploration;
 			
 		.
-
 
 +!agentnumber: true
 	<-

@@ -35,10 +35,11 @@ passosRetrieve( [required(ITEM, QTD)|T], LISTA, RETORNO ):-
 @realizarJob[atomic]
 +!realizarJob( NOMEJOB )
 	:
-		centerStorage(STORAGE)
-	&	job(NOMEJOB,LOCALENTREGA,REWARD,STEPINICIAL,STEPFINAL,ITENS)
+		true
 
 	<-	
+		.wait(centerStorage(STORAGE)
+	&	job(NOMEJOB,LOCALENTREGA,REWARD,STEPINICIAL,STEPFINAL,ITENS));
 		PASSOS_1 = [ goto( STORAGE ) ];
 		?passosRetrieve( ITENS, [], RETORNO );
 		.concat( PASSOS_1, RETORNO, PASSOS_2);

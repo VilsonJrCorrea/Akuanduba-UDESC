@@ -75,8 +75,8 @@
 				  assemble(ITEM), goto(STORAGE),
 	   			  store(ITEM,1) ],
 				PLAN);
-		.wait(	storage(storage5,_,_,_,_,LSTORAGE) &
-				minimumqtd(LPARTS,LSTORAGE) );
+//		.wait(	storage(storage5,_,_,_,_,LSTORAGE) &
+//				minimumqtd(LPARTS,LSTORAGE) );
 		+steps( craftComParts, PLAN);
 		-expectedplan( craftComParts, _);
 		+expectedplan( craftComParts, PLAN);
