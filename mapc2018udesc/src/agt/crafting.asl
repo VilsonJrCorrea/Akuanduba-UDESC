@@ -75,7 +75,8 @@
 				  assemble(ITEM), goto(STORAGE),
 	   			  store(ITEM,1) ],
 				PLAN);
-		.wait(	storage(storage5,_,_,_,_,LSTORAGE) &
+		.print("Esperando ",ITEM);
+		.wait(	storage(STORAGE,_,_,_,_,LSTORAGE) &
 				minimumqtd(LPARTS,LSTORAGE) );
 		+steps( craftComParts, PLAN);
 		-expectedplan( craftComParts, _);
@@ -100,7 +101,7 @@
 				 {
 				.send (A, achieve, help(WORKSHOP, PID));
 			}
-			.wait(100);
+			.wait(50);
 			!!selectiveBroadcast(OTHERROLES,PID,WORKSHOP)
 		.		
 

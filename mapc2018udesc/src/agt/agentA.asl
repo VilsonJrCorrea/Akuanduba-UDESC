@@ -165,11 +165,32 @@
 		action( noAction );
 	.
 	
-@s19[atomic]
 +step( S ): true
 	<-
 		!testarTrabalho;
+//		!!cycle;
+		!!timer(10);
+//		!consumestep;
+//		!whattodo;
+//		!do;
+	.
+
+@s19[atomic]
++!cycle: true
+	<-
 		!consumestep;
 		!whattodo;
 		!do;
+		.drop_intention(timer(110));
 	.
+	
++!timer(TIME): true
+	<-
+		.wait(TIME);
+		.print("1");
+		.drop_intention(cycle);
+		.print("2")
+		action( noAction );
+		.print("Estorou step");
+	.
+	

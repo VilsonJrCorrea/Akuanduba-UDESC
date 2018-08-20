@@ -26,7 +26,7 @@
 		}
 		buildPolygon;
 		//.print("Poligono pronto !!");
-		!buildWell( wellType0, AG, 3, 9 );
+		!buildWell( wellType0, AG, 1, 9 );
 	.
 
 

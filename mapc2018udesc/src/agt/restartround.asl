@@ -1,7 +1,7 @@
 roundnumber(0).
 
 	
-@start[atomic]
+//@start[atomic]
 +simStart: not started 
 		<-
 				+started;				

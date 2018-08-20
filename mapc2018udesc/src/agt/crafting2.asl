@@ -102,8 +102,9 @@ highlevel(ITEM,LEVEL):- item(ITEM,_,_,_)&
 		<- true; .
 
 -!callCraftComParts: true
-		<- !!callCraftComParts;	.		
-
+		<- !!callCraftComParts;	.	
+			
+@craftComPart[atomic]
 +!craftComParts:	
 		role(ROLE,_,_,LOAD,_,_,_,_,_,_,_)  										&
 		name(NAMEAGENT) 														&
@@ -144,7 +145,7 @@ highlevel(ITEM,LEVEL):- item(ITEM,_,_,_)&
 				 {
 				.send (A, achieve, help(WORKSHOP, PID));
 			}
-			.wait(100);
+			.wait(50);
 			!!selectiveBroadcast(OTHERROLES,PID,WORKSHOP)
 		.		
 
@@ -187,9 +188,9 @@ highlevel(ITEM,LEVEL):- item(ITEM,_,_,_)&
 	<-	
 		//.print("INTERESSADO NO TRAMPO DO AGENTE ",AGENT);	
 		+lockhelp;
-		.wait(lat(XA));
-		.wait(lon(YA));
-		.wait(workshop(WORKSHOP,XB,YB));
+		?lat(XA);
+		?lon(YA);
+		?workshop(WORKSHOP,XB,YB);
 		?calculatedistance( XA, YA, XB, YB, COST );
 		.send(AGENT, tell, helper(PID, COST));
 	.

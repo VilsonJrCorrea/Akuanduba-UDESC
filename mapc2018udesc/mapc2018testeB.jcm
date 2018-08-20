@@ -137,185 +137,185 @@ agent agentb34: agentA.asl{
  join: envb
 focus: envb.artb34, coogather
 }
-
-//------------------------------------------------------------------------------------------------------------------//
-//time b
-agent agenta1: agentB.asl{ 
- join: enva
-focus: enva.arta1
-}
-agent agenta2: agentB.asl{ 
- join: enva
-focus: enva.arta2
-}
-agent agenta3: agentB.asl{ 
- join: enva
-focus: enva.arta3
-}
-agent agenta4: agentB.asl{ 
- join: enva
-focus: enva.arta4
-}
-agent agenta5: agentB.asl{ 
- join: enva
-focus: enva.arta5
-}
-agent agenta6: agentB.asl{ 
- join: enva
-focus: enva.arta6
-}
-agent agenta7: agentB.asl{ 
- join: enva
-focus: enva.arta7
-}
-agent agenta8: agentB.asl{ 
- join: enva
-focus: enva.arta8
-}
-agent agenta9: agentB.asl{ 
- join: enva
-focus: enva.arta9
-}
-agent agenta10: agentB.asl{ 
- join: enva
-focus: enva.arta10
-}
-agent agenta11: agentB.asl{ 
- join: enva
-focus: enva.arta11
-}
-agent agenta12: agentB.asl{ 
- join: enva
-focus: enva.arta12
-}
-agent agenta13: agentB.asl{ 
- join: enva
-focus: enva.arta13
-}
-agent agenta14: agentB.asl{ 
- join: enva
-focus: enva.arta14
-}
-agent agenta15: agentB.asl{ 
- join: enva
-focus: enva.arta15
-}
-agent agenta16: agentB.asl{ 
- join: enva
-focus: enva.arta16
-}
-agent agenta17: agentB.asl{ 
- join: enva
-focus: enva.arta17
-}
-agent agenta18: agentB.asl{ 
- join: enva
-focus: enva.arta18
-}
-agent agenta19: agentB.asl{ 
- join: enva
-focus: enva.arta19
-}
-agent agenta20: agentB.asl{ 
- join: enva
-focus: enva.arta20
-}
-agent agenta21: agentB.asl{ 
- join: enva
-focus: enva.arta21
-}
-agent agenta22: agentB.asl{ 
- join: enva
-focus: enva.arta22
-}
-agent agenta23: agentB.asl{ 
- join: enva
-focus: enva.arta23
-}
-agent agenta24: agentB.asl{ 
- join: enva
-focus: enva.arta24
-}
-agent agenta25: agentB.asl{ 
- join: enva
-focus: enva.arta25
-}
-agent agenta26: agentB.asl{ 
- join: enva
-focus: enva.arta26
-}
-agent agenta27: agentB.asl{ 
- join: enva
-focus: enva.arta27
-}
-agent agenta28: agentB.asl{ 
- join: enva
-focus: enva.arta28
-}
-agent agenta29: agentB.asl{ 
- join: enva
-focus: enva.arta29
-}
-agent agenta30: agentB.asl{ 
- join: enva
-focus: enva.arta30
-}
-agent agenta31: agentB.asl{ 
- join: enva
-focus: enva.arta31
-}
-agent agenta32: agentB.asl{ 
- join: enva
-focus: enva.arta32
-}
-agent agenta33: agentB.asl{ 
- join: enva
-focus: enva.arta33
-}
-agent agenta34: agentB.asl{ 
- join: enva
-focus: enva.arta34
-}
+//
+////------------------------------------------------------------------------------------------------------------------//
+////time b
+//agent agenta1: agentB.asl{ 
+// join: enva
+//focus: enva.arta1
+//}
+//agent agenta2: agentB.asl{ 
+// join: enva
+//focus: enva.arta2
+//}
+//agent agenta3: agentB.asl{ 
+// join: enva
+//focus: enva.arta3
+//}
+//agent agenta4: agentB.asl{ 
+// join: enva
+//focus: enva.arta4
+//}
+//agent agenta5: agentB.asl{ 
+// join: enva
+//focus: enva.arta5
+//}
+//agent agenta6: agentB.asl{ 
+// join: enva
+//focus: enva.arta6
+//}
+//agent agenta7: agentB.asl{ 
+// join: enva
+//focus: enva.arta7
+//}
+//agent agenta8: agentB.asl{ 
+// join: enva
+//focus: enva.arta8
+//}
+//agent agenta9: agentB.asl{ 
+// join: enva
+//focus: enva.arta9
+//}
+//agent agenta10: agentB.asl{ 
+// join: enva
+//focus: enva.arta10
+//}
+//agent agenta11: agentB.asl{ 
+// join: enva
+//focus: enva.arta11
+//}
+//agent agenta12: agentB.asl{ 
+// join: enva
+//focus: enva.arta12
+//}
+//agent agenta13: agentB.asl{ 
+// join: enva
+//focus: enva.arta13
+//}
+//agent agenta14: agentB.asl{ 
+// join: enva
+//focus: enva.arta14
+//}
+//agent agenta15: agentB.asl{ 
+// join: enva
+//focus: enva.arta15
+//}
+//agent agenta16: agentB.asl{ 
+// join: enva
+//focus: enva.arta16
+//}
+//agent agenta17: agentB.asl{ 
+// join: enva
+//focus: enva.arta17
+//}
+//agent agenta18: agentB.asl{ 
+// join: enva
+//focus: enva.arta18
+//}
+//agent agenta19: agentB.asl{ 
+// join: enva
+//focus: enva.arta19
+//}
+//agent agenta20: agentB.asl{ 
+// join: enva
+//focus: enva.arta20
+//}
+//agent agenta21: agentB.asl{ 
+// join: enva
+//focus: enva.arta21
+//}
+//agent agenta22: agentB.asl{ 
+// join: enva
+//focus: enva.arta22
+//}
+//agent agenta23: agentB.asl{ 
+// join: enva
+//focus: enva.arta23
+//}
+//agent agenta24: agentB.asl{ 
+// join: enva
+//focus: enva.arta24
+//}
+//agent agenta25: agentB.asl{ 
+// join: enva
+//focus: enva.arta25
+//}
+//agent agenta26: agentB.asl{ 
+// join: enva
+//focus: enva.arta26
+//}
+//agent agenta27: agentB.asl{ 
+// join: enva
+//focus: enva.arta27
+//}
+//agent agenta28: agentB.asl{ 
+// join: enva
+//focus: enva.arta28
+//}
+//agent agenta29: agentB.asl{ 
+// join: enva
+//focus: enva.arta29
+//}
+//agent agenta30: agentB.asl{ 
+// join: enva
+//focus: enva.arta30
+//}
+//agent agenta31: agentB.asl{ 
+// join: enva
+//focus: enva.arta31
+//}
+//agent agenta32: agentB.asl{ 
+// join: enva
+//focus: enva.arta32
+//}
+//agent agenta33: agentB.asl{ 
+// join: enva
+//focus: enva.arta33
+//}
+//agent agenta34: agentB.asl{ 
+// join: enva
+//focus: enva.arta34
+//}
 
 
 //----------------------------------------------------------------------------------------------------------------//
-//workspace time A
-workspace enva {
-artifact arta1: EISAccess("conf/eis0.json")
-artifact arta2: EISAccess("conf/eis1.json")
-artifact arta3: EISAccess("conf/eis2.json")
-artifact arta4: EISAccess("conf/eis3.json")
-artifact arta5: EISAccess("conf/eis4.json")
-artifact arta6: EISAccess("conf/eis5.json")
-artifact arta7: EISAccess("conf/eis6.json")
-artifact arta8: EISAccess("conf/eis7.json")
-artifact arta9: EISAccess("conf/eis8.json")
-artifact arta10: EISAccess("conf/eis9.json")
-artifact arta11: EISAccess("conf/eis10.json")
-artifact arta12: EISAccess("conf/eis11.json")
-artifact arta13: EISAccess("conf/eis12.json")
-artifact arta14: EISAccess("conf/eis13.json")
-artifact arta15: EISAccess("conf/eis14.json")
-artifact arta16: EISAccess("conf/eis15.json")
-artifact arta17: EISAccess("conf/eis16.json")
-artifact arta18: EISAccess("conf/eis17.json")
-artifact arta19: EISAccess("conf/eis18.json")
-artifact arta20: EISAccess("conf/eis19.json")
-artifact arta21: EISAccess("conf/eis20.json")
-artifact arta22: EISAccess("conf/eis21.json")
-artifact arta23: EISAccess("conf/eis22.json")
-artifact arta24: EISAccess("conf/eis23.json")
-artifact arta25: EISAccess("conf/eis24.json")
-artifact arta26: EISAccess("conf/eis25.json")
-artifact arta27: EISAccess("conf/eis26.json")
-artifact arta28: EISAccess("conf/eis27.json")
-artifact arta29: EISAccess("conf/eis28.json")
-artifact arta30: EISAccess("conf/eis29.json")
-artifact arta31: EISAccess("conf/eis30.json")
-artifact arta32: EISAccess("conf/eis31.json")
-artifact arta33: EISAccess("conf/eis32.json")
-artifact arta34: EISAccess("conf/eis33.json")
-}
+////workspace time A
+//workspace enva {
+//artifact arta1: EISAccess("conf/eis0.json")
+//artifact arta2: EISAccess("conf/eis1.json")
+//artifact arta3: EISAccess("conf/eis2.json")
+//artifact arta4: EISAccess("conf/eis3.json")
+//artifact arta5: EISAccess("conf/eis4.json")
+//artifact arta6: EISAccess("conf/eis5.json")
+//artifact arta7: EISAccess("conf/eis6.json")
+//artifact arta8: EISAccess("conf/eis7.json")
+//artifact arta9: EISAccess("conf/eis8.json")
+//artifact arta10: EISAccess("conf/eis9.json")
+//artifact arta11: EISAccess("conf/eis10.json")
+//artifact arta12: EISAccess("conf/eis11.json")
+//artifact arta13: EISAccess("conf/eis12.json")
+//artifact arta14: EISAccess("conf/eis13.json")
+//artifact arta15: EISAccess("conf/eis14.json")
+//artifact arta16: EISAccess("conf/eis15.json")
+//artifact arta17: EISAccess("conf/eis16.json")
+//artifact arta18: EISAccess("conf/eis17.json")
+//artifact arta19: EISAccess("conf/eis18.json")
+//artifact arta20: EISAccess("conf/eis19.json")
+//artifact arta21: EISAccess("conf/eis20.json")
+//artifact arta22: EISAccess("conf/eis21.json")
+//artifact arta23: EISAccess("conf/eis22.json")
+//artifact arta24: EISAccess("conf/eis23.json")
+//artifact arta25: EISAccess("conf/eis24.json")
+//artifact arta26: EISAccess("conf/eis25.json")
+//artifact arta27: EISAccess("conf/eis26.json")
+//artifact arta28: EISAccess("conf/eis27.json")
+//artifact arta29: EISAccess("conf/eis28.json")
+//artifact arta30: EISAccess("conf/eis29.json")
+//artifact arta31: EISAccess("conf/eis30.json")
+//artifact arta32: EISAccess("conf/eis31.json")
+//artifact arta33: EISAccess("conf/eis32.json")
+//artifact arta34: EISAccess("conf/eis33.json")
+//}
 
 //workspace time B
 workspace envb {

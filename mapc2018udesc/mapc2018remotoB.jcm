@@ -172,8 +172,11 @@ artifact artb31: EISAccess("conf/remoto/eisb30.json")
 artifact artb32: EISAccess("conf/remoto/eisb31.json")
 artifact artb33: EISAccess("conf/remoto/eisb32.json")
 artifact artb34: EISAccess("conf/remoto/eisb33.json")
+artifact artpolygon: calculos.ARTGreyZone
+artifact coogather: CoordinationArtifact
 }
 
  asl-path: src/agt
 src/agt/inc
+platform: centralised(pool,1,1)
  }
