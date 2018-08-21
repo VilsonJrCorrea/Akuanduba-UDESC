@@ -19,7 +19,7 @@
 	<-
 		!!callcraftSemParts;
 	.	
-@craft[atomic]
+//@craft[atomic]
 +!craftSemParts	:	name(NAMEAGENT)						  & 
 					gatherCommitment(NAMEAGENT,ITEM)
 				

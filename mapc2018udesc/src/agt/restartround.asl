@@ -11,12 +11,11 @@ roundnumber(0).
 				.broadcast(tell,partners(VEHICLE,AGENT));		
 
 				!agentnumber;
-				!!callcraftSemParts;
-				!!callCraftComPartsWithDelay;										
 				!!buildPoligon;
 				!!sendcentrals;
 				!!exploration;
-			
+				!!callcraftSemParts;
+				!!callCraftComPartsWithDelay;													
 		.
 
 
@@ -46,7 +45,7 @@ roundnumber(0).
 +!sendcentrals : not agentid("20")
 	<- true.
 
-@end[atomic]
+//@end[atomic]
 +simEnd: not simEnded & roundnumber(RN)
 	<-
 		+simEnded;	

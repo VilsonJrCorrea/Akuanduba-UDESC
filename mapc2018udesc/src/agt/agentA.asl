@@ -9,7 +9,6 @@
 { include("job.asl") }
 { include("construcao_pocos.asl")}
 { include("restartround.asl")}
-laststep(-99).
 
 @consume_steps[atomic]
 +!consumestep: 
@@ -150,8 +149,7 @@ laststep(-99).
 		action( noAction );
 	.
 
-
-@s18[atomic]
+@dogenerico[atomic]
 +!do: 	
 		doing(DOING) 	& 
 		task(DOING,_,[ACT|T],_)
@@ -160,20 +158,17 @@ laststep(-99).
 		action( ACT );
 	.
 	
+@donothing[atomic]
 +!do: true
 	<-
 		action( noAction );
 	.
-	
+
+@step[atomic]	
 +step( S ): true
 	<-
-		!!testarTrabalho;
-		!cycle;
-	.
-@cycle[atomic]
-+!cycle: true
-	<-
+		!testarTrabalho;
 		!consumestep;
 		!whattodo;
-		!do;		
+		!do;
 	.

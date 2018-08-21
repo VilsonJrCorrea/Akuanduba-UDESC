@@ -42,7 +42,7 @@ highlevel(ITEM,LEVEL):- item(ITEM,_,_,_)&
 
 +!callCraftComPartsWithDelay: not agentid("15")
 	<- true.
-@initccp[atomic]	
+//@initccp[atomic]	
 +numberAgRequired(_,_)[source(S)]: not S=self &
 				.count(item(_,_,_,parts(P)) & not P=[]) = 
 			  	.count(numberAgRequired(_,_))
@@ -105,7 +105,7 @@ highlevel(ITEM,LEVEL):- item(ITEM,_,_,_)&
 -!callCraftComParts: true
 		<- !!callCraftComParts;	.	
 			
-@craftComPart[atomic]
+//@craftComPart[atomic]
 +!craftComParts:	
 		role(ROLE,_,_,LOAD,_,_,_,_,_,_,_)  										&
 		name(NAMEAGENT) 														&

@@ -25,14 +25,14 @@ invert(I,O):- (I=true & O=false)|(I=false & O=true).
 		informDronePositionAndConers(LAT, LON, MINLAT, MINLON, MAXLAT, MAXLON , VR );
 	.
 
-@exp[atomic]
+//@exp[atomic]
 +corner(CLAT,CLON,F):true
 	<-
 		-+rightdirection(true);
 		!buildexplorationsteps(CLAT, CLON,lat, F, [goto(CLAT, CLON)], R);
 //		+steps( exploration, R);
 //		+todo(exploration,9);		
-		+task(recharge,10,[goto(Facility)|R],[]);
+		+task(exploration,9,R,[]);
 	.
 
 +resourceNode(A,B,C,D)[source(percept)]:

@@ -32,12 +32,12 @@ passosRetrieve( [required(ITEM, QTD)|T], LISTA, RETORNO ):-
     	!!realizarJob( NOMEJOB );
 	.
 
-@realizarJob[atomic]
+//@realizarJob[atomic]
 +!realizarJob( NOMEJOB )
 	:
 	true
 	<-	
-		.wait(centerStorage(STORAGE)&	job(NOMEJOB,LOCALENTREGA,REWARD,STEPINICIAL,STEPFINAL,ITENS));
+		.wait(centerStorage(STORAGE)& job(NOMEJOB,LOCALENTREGA,REWARD,STEPINICIAL,STEPFINAL,ITENS));
 		PASSOS_1 = [ goto( STORAGE ) ];
 		?passosRetrieve( ITENS, [], RETORNO );
 		.concat( PASSOS_1, RETORNO, PASSOS_2);
@@ -61,13 +61,13 @@ passosRetrieve( [required(ITEM, QTD)|T], LISTA, RETORNO ):-
 		.print( STEP, "-Acabou o tempo para eu fazer o job ", JOB );
 		!rollBackJob;
 		removeIntentionToDoJob( NAME, JOB );
-		!removetodo(job);
+		-task(job,_,_,_);
 	.
 
 
 +!testarTrabalho<-true.
 
-@job[atomic]
+//@job[atomic]
 +!rollBackJob
 	:
 		hasItem( _, _)
