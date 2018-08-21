@@ -4,8 +4,8 @@ passosRetrieve( [required(ITEM, QTD)|T], LISTA, RETORNO ):-
 		.concat(LISTA, RR, N_LISTA) &
 		passosRetrieve( T, N_LISTA, RETORNO).
 
-@job[atomic]
-+job( NOMEJOB,LOCALENTREGA,REWARD,STEPINICIAL,STEPFINAL,ITENS )
+@mission[atomic]
++mission(NOMEMISSION,LOCALENTREGA,RECOMPENSA,STEPINICIAL,STEPFINAL,DESCONHECIDO1,DESCONHECIDO2,_,ITENS)
 	:
 		name( NAME )
 	&	not jobCommitment(NAME,_)
@@ -21,35 +21,35 @@ passosRetrieve( [required(ITEM, QTD)|T], LISTA, RETORNO ):-
 	&	possuoTempoParaRealizarJob( NOMEJOB, TEMPONECESSARIO )
 	&	TEMPONECESSARIO <= ( STEPFINAL - STEPATUAL )
     <- 
-    	addIntentionToDoJob(NAME, NOMEJOB);
+    	addIntentionToDoMission(NAME, NOMEMISSION);
   .
  
-+dojob(NOMEJOB)
++domission( NOMEMISSION )
 	:
 		role(ROLE,_,_,_,_,_,_,_,_,_,_)
     <-
-//    	.print( "Eu, um(a) ", ROLE, " vou fazer o job ", NOMEJOB );
-    	!!realizarJob( NOMEJOB );
+    	.print( "Eu, um(a) ", ROLE, " vou fazer a mission ", NOMEMISSION );
+    	!!realizarMission( NOMEMISSION );
 	.
 
-@realizarJob[atomic]
-+!realizarJob( NOMEJOB )
+@realizarMission[atomic]
++!realizarMission( NOMEMISSION )
 	:
 		true
 
 	<-	
 		.wait(centerStorage(STORAGE)
-	&	job(NOMEJOB,LOCALENTREGA,REWARD,STEPINICIAL,STEPFINAL,ITENS));
+	&	mission(NOMEMISSION,LOCALENTREGA,RECOMPENSA,STEPINICIAL,STEPFINAL,DESCONHECIDO1,DESCONHECIDO2,_,ITENS));
 		PASSOS_1 = [ goto( STORAGE ) ];
 		?passosRetrieve( ITENS, [], RETORNO );
 		.concat( PASSOS_1, RETORNO, PASSOS_2);
-		.concat( PASSOS_2, [ goto( LOCALENTREGA ), deliver_job( NOMEJOB )], PASSOS_3);
+		.concat( PASSOS_2, [ goto( LOCALENTREGA ), deliver_job( NOMEMISSION )], PASSOS_3);
 
-		-steps( job, _ );
-		+steps( job, PASSOS_3 );
-		-expectedplan( job, _);
-		+expectedplan( job, PASSOS_3 );
-		+todo( job, 9 );
+		-steps( mission, _ );
+		+steps( mission, PASSOS_3 );
+		-expectedplan( mission, _);
+		+expectedplan( mission, PASSOS_3 );
+		+todo( mission, 5 );
 	.
 
 
@@ -67,53 +67,52 @@ passosRetrieve( [required(ITEM, QTD)|T], LISTA, RETORNO ):-
 //	.
 
 
-+!testarTrabalho
++!testarMission
 	:
 		name( NAME )
-	&	jobCommitment( NAME,JOB )
-	&	not job( JOB,_,_,_,_,_ )
+	&	missionCommitment( NAME,MISSION )
+	&	not mission(MISSION,_,_,_,_,_,_,_,_)
 	&	step( STEP )
 	<-
-//		.print( STEP, "-Acabou o tempo para eu fazer o job ", JOB );
-		!rollBackJob;
-		removeIntentionToDoJob( NAME, JOB );
-		!removetodo(job);
+		.print( STEP, "-Acabou o tempo para eu fazer a mission ", MISSION);
+		!rollBackMission;
+		removeIntentionToDoMission( NAME, MISSION );
+		!removetodo(mission);
 	.
 
 
-+!testarTrabalho<-true.
++!testarMission<-true.
 
-+!rollBackJob
++!rollBackMission
 	:
 		hasItem( _, _)
 	&	centerStorage( STORAGE )
 	<-
 		?buildStore( [], LISTAFINAL );
-//		.print( LISTAFINAL );
+		.print( LISTAFINAL );
 		
 		.concat( [goto(STORAGE)], LISTAFINAL, PASSOS );
 		
-		-steps( rollBackJob, _ );
-		+steps( rollBackJob, PASSOS );
-		-expectedplan( rollBackJob, _);
-		+expectedplan( rollBackJob, PASSOS_3 );
-		+todo( rollBackJob, 8.8 );
+		-steps( rollBackMission, _ );
+		+steps( rollBackMission, PASSOS );
+		-expectedplan( rollBackMission, _);
+		+expectedplan( rollBackMission, PASSOS_3 );
+		+todo( rollBackMission, 8.8 );
 		
-//		.print( "Adicionei plano para devolver os itens no job" );
+		.print( "Adicionei plano para devolver os itens na mission" );
 	.
 
-+!rollBackJob
++!rollBackMission
 	:
 		true
 	<-
-//		.print( "Nada para devolver" );
-		true;
+		.print( "Nada para devolver" );
 	.
 
--todo(job,_)
-	: 	jobCommitment(NAME,NOMEJOB) &
+-todo(mission,_)
+	: 	jobCommitment(NAME,NOMEMISSION) &
 		name( NAME )				&
 		role(ROLE,_,_,_,_,_,_,_,_,_,_)
 	<-
-		removeIntentionToDoJob(NAME, NOMEJOB);
+		removeIntentionToDoMission(NAME, NOMEMISSION);
 	.

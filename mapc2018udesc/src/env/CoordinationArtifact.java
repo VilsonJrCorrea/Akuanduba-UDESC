@@ -18,6 +18,7 @@ public class CoordinationArtifact extends Artifact {
 	private ArrayList<CraftTask> craftTask = new ArrayList<CraftTask>();
 	private HashMap<AgentId, double[]> positions = new HashMap<>();
 	private HashMap<String, ObsProperty> job = new HashMap<>();
+	private HashMap<String, ObsProperty> mission = new HashMap<>();
 	int round = -1;
 
 	@OPERATION
@@ -79,6 +80,36 @@ public class CoordinationArtifact extends Artifact {
 		}
 	}
 	
+	// -----------------------------------------------
+	@OPERATION
+	void addIntentionToDoMission(String agent, String mission) {
+		if (!this.mission.containsKey(mission)) {
+			try {
+				signal(this.getCurrentOpAgentId(), "domission", ASSyntax.parseLiteral(mission));
+				this.mission.put(mission, defineObsProperty("missionCommitment",  
+													ASSyntax.parseLiteral(agent),
+													ASSyntax.parseLiteral(mission)));
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	@OPERATION
+	void removeIntentionToDoMission(String agent, String mission) {
+		if (this.mission.containsKey(mission)) {
+			try {
+				removeObsPropertyByTemplate("missionCommitment",
+						ASSyntax.parseLiteral(agent),
+						ASSyntax.parseLiteral(mission));
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			this.mission.remove(mission);
+		}
+	}
+	
+	// -----------------------------------------------
 	@OPERATION
 	void addGatherCommitment(String agent, String item) {
 		if (!tarefas.containsKey(item)) {
