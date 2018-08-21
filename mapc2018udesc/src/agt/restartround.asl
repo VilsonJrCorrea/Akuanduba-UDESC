@@ -68,8 +68,8 @@ roundnumber(0).
 		.abolish(demanded_assist(_));
 		.abolish(lockhelp);
 		.abolish(dependencelevel(_,_));
-		.abolish(todo(_,_));
-		.abolish(steps(_,_));
+		.abolish(task(_,_,_,_));
+//		.abolish(steps(_,_));
 		
 		-+roundnumber(RN+1);
 		resetBlackboard(RN+1);		

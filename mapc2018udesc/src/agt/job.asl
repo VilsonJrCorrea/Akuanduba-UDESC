@@ -43,27 +43,13 @@ passosRetrieve( [required(ITEM, QTD)|T], LISTA, RETORNO ):-
 		.concat( PASSOS_1, RETORNO, PASSOS_2);
 		.concat( PASSOS_2, [ goto( LOCALENTREGA ), deliver_job( NOMEJOB )], PASSOS_3);
 
-		-steps( job, _ );
-		+steps( job, PASSOS_3 );
-		-expectedplan( job, _);
-		+expectedplan( job, PASSOS_3 );
-		+todo( job, 5 );
+//		-steps( job, _ );
+//		+steps( job, PASSOS_3 );
+//		-expectedplan( job, _);
+//		+expectedplan( job, PASSOS_3 );
+//		+todo( job, 5 );
+		+task(job,5,PASSOS_3,[]);
 	.
-
-
-//+storage(STORAGE,_,_,_,_,ITENSTORAGE)
-//	:
-//		centerStorage( STORAGE )
-//	&	name( NAME )
-//	&	jobCommitment( NAME, JOB )
-//	&	job( JOB,_,_,_,_,ITENSJOB)
-//	&	temTodosItens( ITENSJOB, ITENSTORAGE )
-//	<-
-//		.print( "Chegou a hora de fazer o job ", STORAGE, ": ", LISTITENS );
-//		-todo( job, _ );
-//		+todo( job, 9 );
-//	.
-
 
 +!testarTrabalho
 	:
@@ -92,11 +78,12 @@ passosRetrieve( [required(ITEM, QTD)|T], LISTA, RETORNO ):-
 		
 		.concat( [goto(STORAGE)], LISTAFINAL, PASSOS );
 		
-		-steps( rollBackJob, _ );
-		+steps( rollBackJob, PASSOS );
-		-expectedplan( rollBackJob, _);
-		+expectedplan( rollBackJob, PASSOS_3 );
-		+todo( rollBackJob, 8.8 );
+//		-steps( rollBackJob, _ );
+//		+steps( rollBackJob, PASSOS );
+//		-expectedplan( rollBackJob, _);
+//		+expectedplan( rollBackJob, PASSOS_3 );
+//		+todo( rollBackJob, 8.8 );
+		+task(rollBackJob,8.8,PASSOS,[]);
 		
 		.print( "Adicionei plano para devolver os itens" );
 	.
