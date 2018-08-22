@@ -12,6 +12,6 @@
 !start.
 
 +!start : true <-
-	?buildStore( [], R );
-	.print( R );
+	?buscarItensDependentes( [], LISTA, RETORNO );
+	.print( RETORNO );
 .

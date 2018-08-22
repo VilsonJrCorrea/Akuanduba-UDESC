@@ -150,6 +150,22 @@ possuoTempoParaRealizarJob( NOMEJOB, TEMPONECESSARIO )
 	&	TEMPONECESSARIO = ( NUMEROITENS + STEPSDESTINO + STEPSSTORAGE + 10)
 	.
 
+possuoTempoParaRealizarMISSION( NOMEMISSION, TEMPONECESSARIO )
+	:-
+		mission(NOMEMISSION,LOCALENTREGA,_,STEPINICIAL,STEPFINAL,_,_,_,ITENS)
+	&	centerStorage( STORAGE )
+	&	storage( STORAGE, STORAGELAT, STORAGELON, _, _, _)
+	&	storage( LOCALENTREGA, DESTINOLAT, DESTINOLON, _, _, _)
+	&	lat( MEULAT )
+	&	lon( MEULON )
+	&	calculatedistance( MEULAT, MEULON, STORAGELAT, STORAGELON, DISTANCIASTORAGE )
+	&	distanciasemsteps( DISTANCIASTORAGE, STEPSSTORAGE )
+	&	calculatedistance( STORAGELAT, STORAGELON, DESTINOLAT, DESTINOLON, DISTANCIADESTINO )
+	&	distanciasemsteps( DISTANCIADESTINO, STEPSDESTINO )
+	&	qtdItens( ITENS, 0, NUMEROITENS )
+	&	TEMPONECESSARIO = ( NUMEROITENS + STEPSDESTINO + STEPSSTORAGE + 10)
+	.
+
 qtdItens( [], QTDATUAL, QTDTOTAL )
 	:-
 		QTDTOTAL=QTDATUAL
@@ -160,11 +176,11 @@ qtdItens( [required(_,QTD)|T], QTDATUAL, QTDTOTAL )
 	&	qtdItens( T, NQTD, QTDTOTAL)
 	.
 
-temTodosItens( ITENSJOB, ITENSSTORAGE )
+temTodosItens( ITENS, ITENSSTORAGE )
 	:-
-		buscarNomesItensJOB( ITENSJOB, [], NOMESJOB )
+		buscarNomesItensJOB( ITENS, [], NOMES )
 	&	buscarNomesItensSTORAGE( ITENSSTORAGE, [], NOMESSTORAGE )
-	&	.difference( NOMESJOB, NOMESSTORAGE, DIFF )
+	&	.difference( NOMES, NOMESSTORAGE, DIFF )
 	&	DIFF==[]
 	.
 
@@ -203,4 +219,26 @@ buildStore( L, R )
 //		.print( "2-I: ", I, ", Q: ", Q, ", L: ", L ) &
 //		.member( store( I, Q ), L ) &
 		R = L.
+
+buscarItensDependentes( [], LISTA, RETORNO )
+	:-
+		.print( "[], LISTA: ", LISTA, ", RETORNO: ", RETORNO ) &
+		RETORNO=LISTA
+	.
+
+buscarItensDependentes( [item(ITEM, _, _, parts( [] ) ) | RESTOS_DOS_ITENS ], LISTA, RETORNO )
+	:-
+		.print( "[], LISTA: ", LISTA, ", RETORNO: ", RETORNO ) &
+		.concat( LISTA, [ retrieve( ITEM, 1) ], NLISTA ) &
+		buscarItensDependentes( RESTOS_DOS_ITENS, LISTA, RETORNO )
+		
+	.
+
+buscarItensDependentes( [item(ITEM, _, _, parts( SUBITENS ) ) | RESTOS_DOS_ITENS ], LISTA, RETORNO )
+	:-
+		buscarItensDependentes( SUBITENS, [], SUBRETORNO ) &
+		buscarItensDependentes( RESTOS_DOS_ITENS, LISTA, RETORNO )
+		
+	.
+
 

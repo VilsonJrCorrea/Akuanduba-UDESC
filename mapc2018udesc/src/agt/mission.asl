@@ -18,7 +18,7 @@ passosRetrieve( [required(ITEM, QTD)|T], LISTA, RETORNO ):-
 	&	centerStorage(STORAGE)
 	&	sumvolruleJOB( ITENS, VOLUMETOTAL )
 	&	CAPACIDADE >= VOLUMETOTAL
-	&	possuoTempoParaRealizarJob( NOMEJOB, TEMPONECESSARIO )
+	&	possuoTempoParaRealizarMISSION( NOMEMISSION, TEMPONECESSARIO )
 	&	TEMPONECESSARIO <= ( STEPFINAL - STEPATUAL )
     <- 
     	addIntentionToDoMission(NAME, NOMEMISSION);
@@ -31,6 +31,28 @@ passosRetrieve( [required(ITEM, QTD)|T], LISTA, RETORNO ):-
     	.print( "Eu, um(a) ", ROLE, " vou fazer a mission ", NOMEMISSION );
     	!!realizarMission( NOMEMISSION );
 	.
+//temTodosItens( ITENSJOB, ITENSSTORAGE )
+
+@realizarMissionSimples[atomic]
++!realizarMission( NOMEMISSION )
+	:
+		temTodosItens( ITENSJOB, ITENSSTORAGE )
+
+	<-	
+		.print( "Como tem todos os itens no storage, vou diretamente fazer a missão." );
+		.wait(centerStorage(STORAGE)
+	&	mission(NOMEMISSION,LOCALENTREGA,RECOMPENSA,STEPINICIAL,STEPFINAL,DESCONHECIDO1,DESCONHECIDO2,_,ITENS));
+		PASSOS_1 = [ goto( STORAGE ) ];
+		?passosRetrieve( ITENS, [], RETORNO );
+		.concat( PASSOS_1, RETORNO, PASSOS_2);
+		.concat( PASSOS_2, [ goto( LOCALENTREGA ), deliver_job( NOMEMISSION )], PASSOS_3);
+
+//		-steps( mission, _ );
+//		+steps( mission, PASSOS_3 );
+//		-expectedplan( mission, _);
+//		+expectedplan( mission, PASSOS_3 );
+//		+todo( mission, 5 );
+	.
 
 @realizarMission[atomic]
 +!realizarMission( NOMEMISSION )
@@ -38,6 +60,8 @@ passosRetrieve( [required(ITEM, QTD)|T], LISTA, RETORNO ):-
 		true
 
 	<-	
+		.print( "Como não tem todos os itens no storage, vou ter que buscar os itens primários");
+		
 		.wait(centerStorage(STORAGE)
 	&	mission(NOMEMISSION,LOCALENTREGA,RECOMPENSA,STEPINICIAL,STEPFINAL,DESCONHECIDO1,DESCONHECIDO2,_,ITENS));
 		PASSOS_1 = [ goto( STORAGE ) ];
