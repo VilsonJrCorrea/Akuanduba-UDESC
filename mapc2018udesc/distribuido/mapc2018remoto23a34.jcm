@@ -65,4 +65,6 @@ artifact arta34: EISAccess("conf/remoto/eisa33.json")
 }
  asl-path: src/agt
 src/agt/inc
+
+platform:jade("-container -host 10.60.185.11 -port 8080 -container-name c2")
  }
