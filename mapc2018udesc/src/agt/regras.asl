@@ -132,6 +132,7 @@ distanciasemsteps(DISTANCIA, NSTEPS ):-
 calculatehowmanystepsrecharge(Facility,STEPSRECHARGE):-
 						role(_,_,_,BAT,_,_,_,_,_,_,_)&
 						chargingStation(Facility,_,_,CAP)&
+<<<<<<< HEAD
 						STEPSRECHARGE = math.ceil(BAT/CAP).
 						
 possuoTempoParaRealizarJob( NOMEJOB, TEMPONECESSARIO )
@@ -153,12 +154,22 @@ possuoTempoParaRealizarJob( NOMEJOB, TEMPONECESSARIO )
 possuoTempoParaRealizarMISSION( NOMEMISSION, TEMPONECESSARIO )
 	:-
 		mission(NOMEMISSION,LOCALENTREGA,_,STEPINICIAL,STEPFINAL,_,_,_,ITENS)
+=======
+						STEPSRECHARGE = math.ceil(BAT/CAP)
+						.
+
+possuoTempoParaRealizarJob( NOMEJOB, TAMANHOLISTAPASSOS )
+	:-
+//		true
+		job(NOMEJOB,LOCALENTREGA,REWARD,STEPINICIAL,STEPFINAL,ITENS)
+>>>>>>> master
 	&	centerStorage( STORAGE )
 	&	storage( STORAGE, STORAGELAT, STORAGELON, _, _, _)
 	&	storage( LOCALENTREGA, DESTINOLAT, DESTINOLON, _, _, _)
 	&	lat( MEULAT )
 	&	lon( MEULON )
 	&	calculatedistance( MEULAT, MEULON, STORAGELAT, STORAGELON, DISTANCIASTORAGE )
+<<<<<<< HEAD
 	&	distanciasemsteps( DISTANCIASTORAGE, STEPSSTORAGE )
 	&	calculatedistance( STORAGELAT, STORAGELON, DESTINOLAT, DESTINOLON, DISTANCIADESTINO )
 	&	distanciasemsteps( DISTANCIADESTINO, STEPSDESTINO )
@@ -242,3 +253,16 @@ buscarItensDependentes( [item(ITEM, _, _, parts( SUBITENS ) ) | RESTOS_DOS_ITENS
 	.
 
 
+=======
+	&	calculatedistance( MEULAT, MEULON, DESTINOLAT, DESTINOLON, DISTANCIADESTINO )
+	&	distanciasemsteps( DISTANCIASTORAGE, STEPSSTORAGE )
+	&	distanciasemsteps( DISTANCIADESTINO, STEPSDESTINO )
+	&	( STEPFINAL - STEPINICIAL ) > ( TAMANHOLISTAPASSOS + STEPSDESTINO + STEPSSTORAGE + 10)
+	.
+
+possoCarregarTudo( CAPACIDADE, VOLUMETOTAL )
+	:-
+		CAPACIDADE > VOLUMETOTAL
+	.
+
+>>>>>>> master

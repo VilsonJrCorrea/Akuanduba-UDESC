@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Error that can not be printed in the MAS Console!
 java.lang.InterruptedException
 java.lang.InterruptedException
@@ -20,3 +21,5 @@ java.lang.InterruptedException
 	at jason.infra.centralised.CentralisedAgArch.reasoningCycle(CentralisedAgArch.java:212)
 	at jason.infra.centralised.CentralisedAgArch.run(CentralisedAgArch.java:231)
 	at java.lang.Thread.run(Thread.java:748)
+=======
+>>>>>>> master

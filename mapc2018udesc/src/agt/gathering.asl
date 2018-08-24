@@ -6,7 +6,18 @@
 	<-
 		?gogather(ITEM);
 		addGatherCommitment(NAMEAGENT, ITEM);
+<<<<<<< HEAD
 		!craftSemParts;
+=======
+		.wait(resourceNode(_,LATRESOUR,LONRESOUR,ITEM));
+		?item(ITEM,TAM,_,_);
+		QTD = math.floor( (LOAD / TAM) ) ;		
+		?repeat( gather, QTD, [], GATHERS );
+		.wait(centerStorage(FS));
+		.concat([goto(LATRESOUR, LONRESOUR)],GATHERS,[goto(FS),store(ITEM,QTD)],PLAN);
+		+steps( craftSemParts, PLAN);
+		+todo(craftSemParts,8);
+>>>>>>> master
 	.
 	
 +!callcraftSemParts	:(role(ROLE,_,_,_,_,_,_,_,_,_,_) & ROLE \== truck )|

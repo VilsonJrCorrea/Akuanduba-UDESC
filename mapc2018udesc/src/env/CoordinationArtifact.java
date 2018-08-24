@@ -94,6 +94,7 @@ public class CoordinationArtifact extends Artifact {
 		}
 	}
 	
+<<<<<<< HEAD
 	@OPERATION
 	void removeIntentionToDoMission(String agent, String mission) {
 		if (this.mission.containsKey(mission)) {
@@ -109,6 +110,24 @@ public class CoordinationArtifact extends Artifact {
 	}
 	
 	// -----------------------------------------------
+=======
+	private HashMap<String, ObsProperty> tarefas = new HashMap<>();
+	private HashMap<AgentId, double[]> positions = new HashMap<>();	
+	private HashMap<String, ObsProperty> job = new HashMap<>(); 
+	   
+	  @OPERATION 
+	  void addIntentionToDoJob(String job) { 
+	    if( !this.job.containsKey(job) ) { 
+	      try { 
+	        signal( this.getCurrentOpAgentId(), "dojob",ASSyntax.parseLiteral(job)); 
+	        this.job.put(job, defineObsProperty("jobCommitment", ASSyntax.parseLiteral(job))); 
+	      } catch (ParseException e) { 
+	        e.printStackTrace(); 
+	      } 
+	    } 
+	  } 
+	   
+>>>>>>> master
 	@OPERATION
 	void addGatherCommitment(String agent, String item) {
 		if (!tarefas.containsKey(item)) {
@@ -119,7 +138,6 @@ public class CoordinationArtifact extends Artifact {
 						ASSyntax.parseLiteral(item)));
 				// System.out.println(" ------------> "+agent+" - "+item);
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else {
@@ -137,7 +155,6 @@ public class CoordinationArtifact extends Artifact {
 				this.craftTask.add(new CraftTask(item, defineObsProperty("craftCommitment",
 						ASSyntax.parseLiteral(agent), ASSyntax.parseLiteral(item))));
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else {
