@@ -76,6 +76,7 @@
 				  assemble(ITEM), goto(STORAGE),
 	   			  store(ITEM,1) ],
 				PLAN);
+
 		.print("Esperando ",ITEM);
 		.wait(	storage(STORAGE,_,_,_,_,LSTORAGE) &
 				minimumqtd(LPARTS,LSTORAGE) );

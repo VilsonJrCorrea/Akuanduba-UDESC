@@ -4,7 +4,6 @@ passosRetrieve( [required(ITEM, QTD)|T], LISTA, RETORNO ):-
 		.concat(LISTA, RR, N_LISTA) &
 		passosRetrieve( T, N_LISTA, RETORNO).
 
-
 //@job[atomic]
 +job( NOMEJOB,LOCALENTREGA,REWARD,STEPINICIAL,STEPFINAL,ITENS )
 	:
@@ -12,6 +11,7 @@ passosRetrieve( [required(ITEM, QTD)|T], LISTA, RETORNO ):-
 	&	not jobCommitment(NAME,_)
 	&	not gatherCommitment( NAME, _ )
 	&	not craftCommitment( NAME, _ )
+	&	not missionCommitment( NAME, _ )
 	&	not doing(_)    
     &	role(ROLE,_,_,CAPACIDADE,_,_,_,_,_,_,_)
 	&	step( STEPATUAL )
@@ -28,16 +28,18 @@ passosRetrieve( [required(ITEM, QTD)|T], LISTA, RETORNO ):-
 	:
 		role(ROLE,_,_,_,_,_,_,_,_,_,_)
     <-
-    	.print( "Eu, um(a) ", ROLE, " vou fazer o job ", NOMEJOB );
+//    	.print( "Eu, um(a) ", ROLE, " vou fazer o job ", NOMEJOB );
     	!!realizarJob( NOMEJOB );
 	.
 
 //@realizarJob[atomic]
 +!realizarJob( NOMEJOB )
 	:
-	true
+		true
+
 	<-	
-		.wait(centerStorage(STORAGE)& job(NOMEJOB,LOCALENTREGA,REWARD,STEPINICIAL,STEPFINAL,ITENS));
+		.wait(centerStorage(STORAGE)
+	&	job(NOMEJOB,LOCALENTREGA,REWARD,STEPINICIAL,STEPFINAL,ITENS));
 		PASSOS_1 = [ goto( STORAGE ) ];
 		?passosRetrieve( ITENS, [], RETORNO );
 		.concat( PASSOS_1, RETORNO, PASSOS_2);
@@ -58,7 +60,7 @@ passosRetrieve( [required(ITEM, QTD)|T], LISTA, RETORNO ):-
 	&	not job( JOB,_,_,_,_,_ )
 	&	step( STEP )
 	<-
-		.print( STEP, "-Acabou o tempo para eu fazer o job ", JOB );
+//		.print( STEP, "-Acabou o tempo para eu fazer o job ", JOB );
 		!rollBackJob;
 		removeIntentionToDoJob( NAME, JOB );
 		-task(job,_,_,_);
@@ -74,7 +76,7 @@ passosRetrieve( [required(ITEM, QTD)|T], LISTA, RETORNO ):-
 	&	centerStorage( STORAGE )
 	<-
 		?buildStore( [], LISTAFINAL );
-		.print( LISTAFINAL );
+//		.print( LISTAFINAL );
 		
 		.concat( [goto(STORAGE)], LISTAFINAL, PASSOS );
 		
@@ -85,14 +87,15 @@ passosRetrieve( [required(ITEM, QTD)|T], LISTA, RETORNO ):-
 //		+todo( rollBackJob, 8.8 );
 		+task(rollBackJob,8.8,PASSOS,[]);
 		
-		.print( "Adicionei plano para devolver os itens" );
+//		.print( "Adicionei plano para devolver os itens no job" );
 	.
 
 +!rollBackJob
 	:
 		true
 	<-
-		.print( "Nada para devolver" );
+//		.print( "Nada para devolver" );
+		true;
 	.
 
 -todo(job,_)

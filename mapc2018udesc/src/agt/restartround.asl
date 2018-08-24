@@ -1,6 +1,6 @@
 roundnumber(0).
 
-	
+
 //@start[atomic]
 +simStart: not started 
 		<-
@@ -17,7 +17,6 @@ roundnumber(0).
 				!!callcraftSemParts;
 				!!callCraftComPartsWithDelay;													
 		.
-
 
 +!agentnumber: true
 	<-

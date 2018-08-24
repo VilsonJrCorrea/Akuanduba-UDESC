@@ -7,6 +7,7 @@
 { include("charging.asl") }		
 { include("regras.asl") }
 { include("job.asl") }
+{ include("mission.asl") }
 { include("construcao_pocos.asl")}
 { include("restartround.asl")}
 
@@ -168,6 +169,7 @@
 +step( S ): true
 	<-
 		!testarTrabalho;
+		!testarMission;
 		!consumestep;
 		!whattodo;
 		!do;
