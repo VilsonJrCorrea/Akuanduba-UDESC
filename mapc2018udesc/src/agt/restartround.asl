@@ -1,8 +1,8 @@
 roundnumber(0).
 
-	
-@start[atomic]
-+simStart: not started
+
+//@start[atomic]
++simStart: not started 
 		<-
 				+started;				
 
@@ -11,12 +11,11 @@ roundnumber(0).
 				.broadcast(tell,partners(VEHICLE,AGENT));		
 
 				!agentnumber;
-				!!callcraftSemParts;
-				!!callCraftComPartsWithDelay;										
 				!!buildPoligon;
 				!!sendcentrals;
 				!!exploration;
-			
+				!!callcraftSemParts;
+				!!callCraftComPartsWithDelay;													
 		.
 
 +!agentnumber: true
@@ -45,7 +44,7 @@ roundnumber(0).
 +!sendcentrals : not agentid("20")
 	<- true.
 
-@end[atomic]
+//@end[atomic]
 +simEnd: not simEnded & roundnumber(RN)
 	<-
 		+simEnded;	
@@ -67,8 +66,8 @@ roundnumber(0).
 		.abolish(demanded_assist(_));
 		.abolish(lockhelp);
 		.abolish(dependencelevel(_,_));
-		.abolish(todo(_,_));
-		.abolish(steps(_,_));
+		.abolish(task(_,_,_,_));
+//		.abolish(steps(_,_));
 		
 		-+roundnumber(RN+1);
 		resetBlackboard(RN+1);		

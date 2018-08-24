@@ -11,75 +11,61 @@
 { include("construcao_pocos.asl")}
 { include("restartround.asl")}
 
-
 @consume_steps[atomic]
 +!consumestep: 
 				lastActionResult( successful )			& 
 				doing(LD)								& 
-				steps(LD,[ACT|T])						&
+				task(LD,P,[ACT|T],EXECUTEDPLAN)			&
+				//steps(LD,[ACT|T])						&
 				lastAction(RLA)							&
 				route(ROUTE)							&
-				RLA\==noAction							  						
+				RLA\==noAction							&
+				(((RLA=continue | RLA=goto) & ROUTE==[]) |
+				  (RLA\==continue & RLA\==goto))
+				  						
 	<-	
-		if (RLA=continue | RLA=goto){
-			if ( ROUTE==[]) {
-				!refreshlastdoing(LD,T);
-			}		
-		}
-		else {
-			!refreshlastdoing(LD,T);
-		} 
+			if (T=[]) {
+				-task(LD,P,[ACT|T],EXECUTEDPLAN);	
+			}
+			else {
+				-task(LD,P,[ACT|T],EXECUTEDPLAN)	
+				+task(LD,P,T,[ACT|EXECUTEDPLAN])	
+			}
 	.
 +!consumestep: true
 	<-true.
 	
-@at[atomic]
-+!refreshlastdoing(LD,T) : true
-	<-
-			if (T=[]) {
-				!removetodo(LD);
-			}
-			else {
-				-steps(LD,_);
-				+steps(LD,T);
-			}
-	.
 
-@remove_todo_doing_steps[atomic]
-+!removetodo(LD):true
-<-
-	-todo(LD,_);
-	-doing(LD);
-	-steps(LD,_);
-.
 
 +!whattodo
-	:	.count((todo(TD,_) & not waiting(TD,_)) , 0)
+	:	.count((task(TD,_,_,_) & not waiting(TD,_)) , 0)
 	<-	
 		-doing(_);
 	.
 	
 +!whattodo
-	:	.count((todo(TD,_) & not waiting(TD,_)), QUANTIDADE) &
-			QUANTIDADE > 0
+	:	.count((task(TD,_,_,_) & not waiting(TD,_)), QTD) &
+			QTD > 0
 	<-			
 		
-		?priotodo(ACTION2);
-		-+doing(ACTION2);
+		?priotodo(TASK);
+		-+doing(TASK);
 		!checkRollback;
 	.
 
-+!checkRollback:not route([]) 		&
-				lastDoing(LD) 		& 
-				doing(D) 			& 
-				LD\==D 				& 
-				steps(LD,L)			&
++!checkRollback:not route([]) 				&
+				lastDoing(LD) 				& 
+				doing(D) 					& 
+				LD\==D 						& 
+				//steps(LD,L)		&
+				task(LD,P,PLAN,EXECUTEDPLAN)&
 				LD=exploration	
 	<-
 			?lat(LAT);
 			?lon(LON);
-			-steps(LD, _ );
-			+steps(LD, [goto(LAT,LON)| L]);
+			-task(LD,P,PLAN,EXECUTEDPLAN);
+			+task(LD,P,[goto(LAT,LON)|PLAN],EXECUTEDPLAN);		
+			//+steps(LD, [goto(LAT,LON)|L]);
 	.
 	
 +!checkRollback:lastDoing(LD) 	& 
@@ -90,23 +76,24 @@
 	<-
 		true.	
 
-+!checkRollback:lastDoing(LD) 		& 
-				doing(D) 			& 
-				LD\==D 				& 
-				steps(LD,L)			&
-				LD\==exploration	&
-				L=[HL|TL]			&
++!checkRollback:lastDoing(LD) 				& 
+				doing(D) 					& 
+				LD\==D 						& 
+				//steps(LD,L)			&
+				task(LD,P,PLAN,EXECUTEDPLAN)&
+				LD\==exploration			&
+				PLAN=[HL|_]					&
 				not (HL=goto(_) |HL=goto(_,_)) 	
 	<-
-			?expectedplan( LD, EXPP);
-			.length(EXPP,QTDEXPP);
-			.length(L,QTDL);
-			?rollbackcutexpectedrule(EXPP, QTDEXPP-QTDL, LDONED);
-			.reverse(LDONED,RLDONED);
-			?rollbackrule([goto(_),goto(_,_)], RLDONED, RACTION);			
+			//?expectedplan( LD, EXPP);
+			//.length(EXPP,QTDEXPP);
+			//.length(L,QTDL);
+			//?rollbackcutexpectedrule(EXPP, QTDEXPP-QTDL, LDONED);
+			//.reverse(LDONED,RLDONED);
+			?rollbackrule([goto(_),goto(_,_)], EXECUTEDPLAN, RACTION);			
 			//.print("rollback ",LD,": ",[RACTION| L]);									
-			-steps(LD, _ );
-			+steps(LD, [RACTION| L]);
+			-task(LD,P,PLAN,EXECUTEDPLAN);
+			+task(LD,P,[RACTION|PLAN],EXECUTEDPLAN);
 	.
 
 +!checkRollback :true
@@ -122,51 +109,63 @@
 +!do: 			not route([]) 		&
 				lastDoing(Y) 		& 
 				doing(X) 			& 
-				Y\==X 				& 
-				steps(X,[ACT|T])	& 
-				steps(Y,L)			&
+				Y\==X 				&
+				task(X,_,[ACT|T],_) &
+				task(Y,_,_,_) 		& 
+				//steps(X,[ACT|T])	& 
+				//steps(Y,L)		&
 				Y=exploration	
 	<-
-			
 			-+lastDoing(X);
-    		action( ACT);
+    		action(ACT);
 	. 
 
 @docrafthelp[atomic]
-+!do: doing(craftComParts) & steps( craftComParts, [help(OTHERROLES)|T]) 			
++!do: 
+	doing(craftComParts) & 
+	//steps( craftComParts, [help(OTHERROLES)|T])
+	 task(craftComParts,P,[help(OTHERROLES)|T],EXECUTEDPLAN) 			
 	<-
 		.length(OTHERROLES,BARRIER);
 		+waiting(craftComParts,BARRIER);
 		!!supportCraft(OTHERROLES);
-		-steps( craftComParts, _);
-		+steps( craftComParts, T);
+		-task(craftComParts,P,[help(OTHERROLES)|T],EXECUTEDPLAN);
+		+task(craftComParts,P,T,EXECUTEDPLAN);
+//		-steps( craftComParts, _);
+//		+steps( craftComParts, T);
 		action(noAction);
 	.
 
 @docrafthelp1[atomic]
-+!do: doing(help) & steps( help, [ready_to_assist(WHONEED)|T]) 			
++!do: 
+	doing(help)		& 
+	//steps( help, [ready_to_assist(WHONEED)|T])
+	task(help,P,[ready_to_assist(WHONEED)|T],EXECUTEDPLAN) 			
 	<-
 		.send(WHONEED, achieve, ready_to_assist);
-		-steps( help, _);
-		+steps( help, T);
+		-task(help,P,[ready_to_assist(WHONEED)|T],EXECUTEDPLAN);
+		+task(help,P,T,EXECUTEDPLAN);
+//		-steps( help, _);
+//		+steps( help, T);
 		action( noAction );
 	.
 
-
-@s18[atomic]
-+!do: 	step(S) &
-		doing(DOING) & steps( DOING, [ACT|T])			
+@dogenerico[atomic]
++!do: 	
+		doing(DOING) 	& 
+		task(DOING,_,[ACT|T],_)
 	<-		
 		-+lastDoing(DOING);
 		action( ACT );
 	.
 	
+@donothing[atomic]
 +!do: true
 	<-
 		action( noAction );
 	.
-	
-@s19[atomic]
+
+@step[atomic]	
 +step( S ): true
 	<-
 		!testarTrabalho;

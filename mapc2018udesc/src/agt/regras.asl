@@ -1,13 +1,12 @@
 repeat(TERM , QTD , L ,RR ) :- QTD> 0 & repeat(TERM , QTD-1 , [TERM|L] , RR). 						
 repeat(TERM , QTD , L ,L ).
 
-rollbackcutexpectedrule([HEXPECTED|TEXPECTED], QTD, DONNED) :- 
-	QTD>0 & DONNED=[HEXPECTED|DON] & rollbackcutexpectedrule(TEXPECTED, QTD-1, DON).
-	
-rollbackcutexpectedrule(_, QTD, DONNED) :- 
-	QTD=0 & DONNED=[].
-
-
+//rollbackcutexpectedrule([HEXPECTED|TEXPECTED], QTD, DONNED) :- 
+//	QTD>0 & DONNED=[HEXPECTED|DON] & rollbackcutexpectedrule(TEXPECTED, QTD-1, DON).
+//	
+//rollbackcutexpectedrule(_, QTD, DONNED) :- 
+//	QTD=0 & DONNED=[].
+//
 rollbackrule(LISTWHATSEARCH, [HLISTSOURCE|TLISTSOURCE], ACTION) :-
 	.member(HLISTSOURCE,LISTWHATSEARCH) & ACTION=HLISTSOURCE.
 
@@ -41,9 +40,15 @@ splitBy(item(NH,VH,RH,PH), [item(NU,VU,RU,PU)|T], LS, [item(NU,VU,RU,PU)|RS] )
 :- VU  > VH & splitBy(item(NH,VH,RH,PH), T, LS, RS).		
 
 
-priotodo(ACTION):- 	todo(ACTION,PRIO1) & not waiting(ACTION,_) & 
-						not (todo(ACT2,PRIO2) & not waiting(ACT2,_) & PRIO2 > PRIO1).
-					
+priotodo(TASK):- 	task(TASK,PRIO1,_,_)			&	 
+					not waiting(TASK,_) 			& 					
+					not  ( 	task(TASK2,PRIO2,_,_) 	& 
+							not waiting(TASK2,_) 	& 
+							PRIO2 > PRIO1).
+							
+//priotodo(ACTION):-   todo(ACTION,PRIO1) & not waiting(ACTION,_) & 
+//            not (todo(ACT2,PRIO2) & not waiting(ACT2,_) & PRIO2 > PRIO1).
+
 gogather(ITEM):-item(ITEM,_,roles([]),_) & not gatherCommitment(AGENT,ITEM).
 
 gocraft(ITEM,ROLE,QTD) :-	item(ITEM,_,roles(R),_) 			&
@@ -58,11 +63,11 @@ sumvolrule([ITEM|T],VOL):-	item(ITEM,V,_,_) 			&
 							(	T=[]					&
 								VOL=V)).			
 
-sumvolruleJOB([required(ITEM,QTD)|T],VOL):-	item(ITEM,V,_,_) 			& 
-							((  T\==[] 					&
-							  	sumvolruleJOB(T,VA)   		&
-							  	VOL=V*QTD+VA)				|
-							(	T=[]					&
+sumvolruleJOB([required(ITEM,QTD)|T],VOL):-	item(ITEM,V,_,_) 	& 
+							((  T\==[] 							&
+							  	sumvolruleJOB(T,VA)   			&
+							  	VOL=V*QTD+VA)					|
+							(	T=[]							&
 								VOL=QTD*V)).
 
 lesscost(PID, AGENT):-

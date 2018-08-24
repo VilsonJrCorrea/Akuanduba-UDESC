@@ -178,4 +178,5 @@ artifact coogather: CoordinationArtifact
 
  asl-path: src/agt
 src/agt/inc
+platform: centralised(pool,1,1)
  }

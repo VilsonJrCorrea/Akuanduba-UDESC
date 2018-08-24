@@ -12,7 +12,7 @@
          basedir=".."
          default="run">
 
-    <property name="jacamo.project.file" value="mapc2018teste.jcm"/>
+    <property name="jacamo.project.file" value="mapc2018remotoB.jcm"/>
     <property name="debug" value=""/> <!-- use "-debug" to run in debug mode -->
     <property name="build.dir" value="${basedir}/bin/classes" />
 
@@ -66,9 +66,9 @@
     <target name="jar" depends="compile">
         <mkdir dir="${basedir}/lib" />
         <delete file="${ant.project.name}.jar" />
-        <copy file="${jasonJar}" tofile="mapc2018teste.jar" />
+        <copy file="${jasonJar}" tofile="mapc2018remotoB.jar" />
         <copy file="${jacamo.project.file}" tofile="default.jcm" />
-        <jar update="yes" jarfile="mapc2018teste.jar" >
+        <jar update="yes" jarfile="mapc2018remotoB.jar" >
             <fileset dir="${basedir}">
                 <include name="**/*.asl" />
                 <include name="**/*.jcm" />
@@ -89,7 +89,7 @@
         <delete file="default.jcm" />
         <echo>-----------------------</echo>
         <echo/>
-        <echo>To run your MAS, just type "java -jar mapc2018teste.jar"</echo>
+        <echo>To run your MAS, just type "java -jar mapc2018remotoB.jar"</echo>
     </target>
 
     <target name="clean" >

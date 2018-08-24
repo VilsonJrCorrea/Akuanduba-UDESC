@@ -19,7 +19,7 @@
 	<-
 		!!callcraftSemParts;
 	.	
-
+//@craft[atomic]
 +!craftSemParts	:	name(NAMEAGENT)						  & 
 					gatherCommitment(NAMEAGENT,ITEM)
 				
@@ -31,10 +31,11 @@
 		?repeat( gather, QTD, [], GATHERS );
 		.wait(centerStorage(FS));
 		.concat([goto(LATRESOUR, LONRESOUR)],GATHERS,[goto(FS),store(ITEM,QTD)],PLAN);
-		+steps( craftSemParts, PLAN);
-		-expectedplan( craftSemParts, _);
-		+expectedplan( craftSemParts, PLAN);
-		+todo(craftSemParts,8);
+//		+steps( craftSemParts, PLAN);
+//		-expectedplan( craftSemParts, _);
+//		+expectedplan( craftSemParts, PLAN);
+//		+todo(craftSemParts,8);
+		+task(craftSemParts,8,PLAN,[]);
 	.
 
 -todo(craftSemParts,8): true

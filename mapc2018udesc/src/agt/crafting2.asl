@@ -42,7 +42,7 @@ highlevel(ITEM,LEVEL):- item(ITEM,_,_,_)&
 
 +!callCraftComPartsWithDelay: not agentid("15")
 	<- true.
-@initccp[atomic]	
+//@initccp[atomic]	
 +numberAgRequired(_,_)[source(S)]: not S=self &
 				.count(item(_,_,_,parts(P)) & not P=[]) = 
 			  	.count(numberAgRequired(_,_))
@@ -87,10 +87,11 @@ highlevel(ITEM,LEVEL):- item(ITEM,_,_,_)&
 		QTDUPGRADE = math.ceil((VOL-LOAD)/SIZE);
 		?repeat(upgrade(load) , QTDUPGRADE , [] , RUPGRADE );
 		SETUPLOAD = [goto(SHOP)|RUPGRADE ];
-		+steps( upgradecapacity, SETUPLOAD);
-		-expectedplan( upgradecapacity, _);
-		+expectedplan( upgradecapacity, SETUPLOAD);
-		+todo(upgradecapacity,8.5);
+//		+steps( upgradecapacity, SETUPLOAD);
+//		-expectedplan( upgradecapacity, _);
+//		+expectedplan( upgradecapacity, SETUPLOAD);
+//		+todo(upgradecapacity,8.5);
+		+task(upgradecapacity,8.5,SETUPLOAD,[]);	
 	.
 
 +!upgradecapacity:true
@@ -102,8 +103,9 @@ highlevel(ITEM,LEVEL):- item(ITEM,_,_,_)&
 		<- true; .
 
 -!callCraftComParts: true
-		<- !!callCraftComParts;	.		
-
+		<- !!callCraftComParts;	.	
+			
+//@craftComPart[atomic]
 +!craftComParts:	
 		role(ROLE,_,_,LOAD,_,_,_,_,_,_,_)  										&
 		name(NAMEAGENT) 														&
@@ -121,10 +123,11 @@ highlevel(ITEM,LEVEL):- item(ITEM,_,_,_)&
 				PLAN);
 //		.wait(	storage(storage5,_,_,_,_,LSTORAGE) &
 //				minimumqtd(LPARTS,LSTORAGE) );
-		+steps( craftComParts, PLAN);
-		-expectedplan( craftComParts, _);
-		+expectedplan( craftComParts, PLAN);
-		+todo(craftComParts,8);	
+//		+steps( craftComParts, PLAN);
+//		-expectedplan( craftComParts, _);
+//		+expectedplan( craftComParts, PLAN);
+//		+todo(craftComParts,8);
+		+task(craftComParts,8,PLAN,[]);		
 	.
 
 +!supportCraft(OTHERROLES):
@@ -144,7 +147,7 @@ highlevel(ITEM,LEVEL):- item(ITEM,_,_,_)&
 				 {
 				.send (A, achieve, help(WORKSHOP, PID));
 			}
-			.wait(100);
+			.wait(50);
 			!!selectiveBroadcast(OTHERROLES,PID,WORKSHOP)
 		.		
 
@@ -187,9 +190,9 @@ highlevel(ITEM,LEVEL):- item(ITEM,_,_,_)&
 	<-	
 		//.print("INTERESSADO NO TRAMPO DO AGENTE ",AGENT);	
 		+lockhelp;
-		.wait(lat(XA));
-		.wait(lon(YA));
-		.wait(workshop(WORKSHOP,XB,YB));
+		?lat(XA);
+		?lon(YA);
+		?workshop(WORKSHOP,XB,YB);
 		?calculatedistance( XA, YA, XB, YB, COST );
 		.send(AGENT, tell, helper(PID, COST));
 	.
@@ -208,10 +211,13 @@ highlevel(ITEM,LEVEL):- item(ITEM,_,_,_)&
 		-lockhelp;
 		?role(ROLE,_,_,_,_,_,_,_,_,_,_);
 		//.print("Vou ajudar ",QUEMPRECISA, " e sou um ", ROLE );		
-		+steps(help, [goto(WORKSHOP), ready_to_assist(QUEMPRECISA), assist_assemble(QUEMPRECISA) ]);
-		-expectedplan( help, _);
-		+expectedplan( help, [goto(WORKSHOP), ready_to_assist(QUEMPRECISA), assist_assemble(QUEMPRECISA) ]);
-		+todo(help, 8.2);//6
+//		+steps(help, [goto(WORKSHOP), ready_to_assist(QUEMPRECISA), assist_assemble(QUEMPRECISA) ]);
+//		-expectedplan( help, _);
+//		+expectedplan( help, [goto(WORKSHOP), ready_to_assist(QUEMPRECISA), assist_assemble(QUEMPRECISA) ]);
+//		+todo(help, 8.2);//6
+		+task(help,8.2,[goto(WORKSHOP), 
+						ready_to_assist(QUEMPRECISA), 
+						assist_assemble(QUEMPRECISA)],[]);		
 	.
 
 @help4[atomic]
@@ -233,7 +239,7 @@ highlevel(ITEM,LEVEL):- item(ITEM,_,_,_)&
 		-waiting(craftComParts,0);
 	.
 
--todo(craftComParts,8):
+-task(craftComParts,8,_,_):
 	name(NAMEAGENT) 				& 
 	craftCommitment(NAMEAGENT,ITEM)
 <-

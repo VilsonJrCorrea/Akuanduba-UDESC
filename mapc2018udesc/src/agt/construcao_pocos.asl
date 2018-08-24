@@ -26,7 +26,7 @@
 		}
 		buildPolygon;
 		//.print("Poligono pronto !!");
-		!buildWell( wellType0, AG, 3, 9 );
+		!buildWell( wellType0, AG, 1, 9 );
 	.
 
 
@@ -80,10 +80,11 @@
 		!getCoordenadasPonto( P, PLAT, PLON );
 		!qtdStep( WELLTYPE, AGENT, QTD );
 		!buildWellSteps( [goto(PLAT, PLON), build(WELLTYPE)], QTD, R );
-		+steps( buildWell, R );
-		-expectedplan( buildWell, _);
-		+expectedplan( buildWell, R);
-		+todo(buildWell, PRIORITY);
+//		+steps( buildWell, R );
+//		-expectedplan( buildWell, _);
+//		+expectedplan( buildWell, R);
+//		+todo(buildWell, PRIORITY);
+		+task(buildWell,PRIORITY,R,[]);
 		//.print( "buildWell pronto!!" );
 	.
 /**

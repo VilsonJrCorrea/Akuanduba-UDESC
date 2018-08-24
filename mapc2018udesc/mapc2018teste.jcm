@@ -274,7 +274,7 @@ agent agentB34: agentB.asl{
  join: envb
 focus: envb.artb34
 }
-
+//
 workspace env {
 artifact art1: EISAccess("conf/eis0.json")
 artifact art2: EISAccess("conf/eis1.json")
@@ -314,7 +314,7 @@ artifact artpolygon: calculos.ARTGreyZone
 artifact coogather: CoordinationArtifact
 }
 
-
+//
 workspace envb {
 artifact artb1: EISAccess("conf/eisb0.json")
 artifact artb2: EISAccess("conf/eisb1.json")
@@ -354,4 +354,7 @@ artifact artb34: EISAccess("conf/eisb33.json")
 
  asl-path: src/agt
 src/agt/inc
+
+//platform: centralised(pool,4,100)
+//platform: centralised(synch_scheduled,4)
  }

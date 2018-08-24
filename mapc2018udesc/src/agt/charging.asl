@@ -15,8 +15,9 @@
 		?calculatehowmanystepsrecharge(Facility,STEPSRECHARGE);
 		//regra para repeticao
 		?repeat( charge, STEPSRECHARGE, [], R );
-		+steps(recharge,[goto(Facility)|R]);
-		+todo(recharge,10);
+//		+steps(recharge,[goto(Facility)|R]);
+//		+todo(recharge,10);
+		+task(recharge,10,[goto(Facility)|R],[]);
 	.	
 
 +charge(BAT):BAT==0
