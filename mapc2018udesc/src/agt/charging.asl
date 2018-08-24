@@ -8,7 +8,7 @@
 	<-
 		!!recharge (CURRENTLAT,CURRENTLON);
 	.
-	
+@inicia_todo_recharge[atomic]	
 +!recharge (LAT,LON)
 	: calculatenearchargingstation(Facility,LAT,LON,X1,Y1,DISTANCE) 
 	<-
@@ -18,13 +18,10 @@
 		+steps(recharge,[goto(Facility)|R]);
 		+todo(recharge,10);
 	.	
-+steps(recharge,[]):true
-	<-
-		-todo(recharge,_);
-	.
 
 +charge(BAT):BAT==0
 	<-
-		.print("No battery.")
+		//.print("No battery.")
+		true
 	.	
 { include("regras.asl") }

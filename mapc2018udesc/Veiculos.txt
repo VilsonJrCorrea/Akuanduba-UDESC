@@ -1,4 +1,0 @@
-Drones:		01-04    -4
-Motos:		05-12    -8
-Carros:		13-22    -10
-Caminhoes:	23-34    -12

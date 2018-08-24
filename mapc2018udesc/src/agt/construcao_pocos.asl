@@ -3,10 +3,10 @@
 		-todo( buildWell, _ );
 	.
 
-+!buildPoligon : name(A) & A\== agentA10 & A\== agentB10   	
++!buildPoligon :  not agentid("10") & name(AG)	
 	<- true.
 
-+!buildPoligon: name(agentA10) | name(agentB10) 
++!buildPoligon:  agentid("10") & name(AG) 
 	<-
 		.wait(step(1));
 		for(chargingStation(_,X,Y,_)) {
@@ -26,7 +26,7 @@
 		}
 		buildPolygon;
 		//.print("Poligono pronto !!");
-		!buildWell( wellType0, agentA10, 3, 9 );
+		!buildWell( wellType0, AG, 3, 9 );
 	.
 
 
@@ -81,7 +81,8 @@
 		!qtdStep( WELLTYPE, AGENT, QTD );
 		!buildWellSteps( [goto(PLAT, PLON), build(WELLTYPE)], QTD, R );
 		+steps( buildWell, R );
-		//.print(R);
+		-expectedplan( buildWell, _);
+		+expectedplan( buildWell, R);
 		+todo(buildWell, PRIORITY);
 		//.print( "buildWell pronto!!" );
 	.

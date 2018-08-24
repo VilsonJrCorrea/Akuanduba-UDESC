@@ -1,56 +1,45 @@
 { include("$jacamoJar/templates/common-cartago.asl") }
 { include("$jacamoJar/templates/common-moise.asl") }
-{ include("posicaoinicial.asl") }
+{ include("exploration.asl") }
 { include("gathering.asl") }
+//{ include("crafting2.asl") }
+{ include("crafting.asl") }
 { include("charging.asl") }		
 { include("regras.asl") }
 { include("job.asl") }
+<<<<<<< HEAD
+{ include("mission.asl") }
+=======
+>>>>>>> master
 { include("construcao_pocos.asl")}
+{ include("restartround.asl")}
 
-//+doing(X): step(S)
-//	<-
-//		.print( "step",S,": doing: ",X);
-//	.
-//-doing(X): step(S)
-//	<-
-//		.print( "step",S,": stop doing: ",X);
-//	.
 
-//depuracao das falhas
-//+lastActionResult( X ) :
-//	lastAction(ACTION)		&
-//	lastActionParams(PA)	&
-//	step(S) 				&
-//	ACTION=assist_assemble
-//	//acaoValida( ACTION )
-//	<-	
-//			.print( "Depuracao step",S,": ",X, " acao ", ACTION,PA );
-//	.
-
-//depuracao das falhas
-+lastAction(ACTION):
-	lastActionResult( X )	&
-	lastActionParams(PA)	&
-	step(S) 				&
-	ACTION=assist_assemble
+@consume_steps[atomic]
++!consumestep: 
+				lastActionResult( successful )			& 
+				doing(LD)								& 
+				steps(LD,[ACT|T])						&
+				lastAction(RLA)							&
+				route(ROUTE)							&
+				RLA\==noAction							  						
 	<-	
-			.print( "Depuracao step",S,": ",X, " acao ", ACTION,PA );
+		if (RLA=continue | RLA=goto){
+			if ( ROUTE==[]) {
+				!refreshlastdoing(LD,T);
+			}		
+		}
+		else {
+			!refreshlastdoing(LD,T);
+		} 
 	.
-
-
-+lastActionResult( failed_capacity ) :
-		lastdoing(LD)
-	<-
-		.print (LD, " failed_capacity")
-	. 	
-
-+resourceNode(A,B,C,D)[source(percept)]:
-			not (resourceNode(A,B,C,D)[source(SCR)] &
-			SCR\==percept)
-	<-
-		+resourceNode(A,B,C,D);
-		.broadcast(tell,resourceNode(A,B,C,D));
-	.
+<<<<<<< HEAD
++!consumestep: true
+	<-true.
+	
+@at[atomic]
++!refreshlastdoing(LD,T) : true
+=======
 
 +simStart: not started
 					<-
@@ -69,17 +58,29 @@
 					.
 
 +todo(ACTION,PRIORITY): true
+>>>>>>> master
 	<-
-		!buscarTarefa;
+			if (T=[]) {
+				!removetodo(LD);
+			}
+			else {
+				-steps(LD,_);
+				+steps(LD,T);
+			}
 	.
 
--todo(ACTION,_):true
+@remove_todo_doing_steps[atomic]
++!removetodo(LD):true
 <-
-	-doing(ACTION);
-	-steps(ACTION,_);
-	!buscarTarefa;
+	-todo(LD,_);
+	-doing(LD);
+	-steps(LD,_);
 .
 
+<<<<<<< HEAD
++!whattodo
+	:	.count((todo(TD,_) & not waiting(TD,_)) , 0)
+=======
 +!buscarTarefa
 	:	.count((todo(_,_)) , QUANTIDADE) 	&
 			QUANTIDADE == 0 & charge(BAT1) 	& 
@@ -96,19 +97,62 @@
 			QUANTIDADE == 0 & charge(BAT1) 	& 
 			role(_,_,_,BAT2,_,_,_,_,_,_,_)	&
 			BAT1>=BAT2*0.9
+>>>>>>> master
 	<-	
-		.print("nada para fazer");
+		-doing(_);
 	.
-
 	
-+!buscarTarefa
-	:	.count((todo(_,_)) , QUANTIDADE) &
++!whattodo
+	:	.count((todo(TD,_) & not waiting(TD,_)), QUANTIDADE) &
 			QUANTIDADE > 0
-	<-	
+	<-			
+		
 		?priotodo(ACTION2);
 		-+doing(ACTION2);
+		!checkRollback;
 	.
 
+<<<<<<< HEAD
++!checkRollback:not route([]) 		&
+				lastDoing(LD) 		& 
+				doing(D) 			& 
+				LD\==D 				& 
+				steps(LD,L)			&
+				LD=exploration	
+	<-
+			?lat(LAT);
+			?lon(LON);
+			-steps(LD, _ );
+			+steps(LD, [goto(LAT,LON)| L]);
+	.
+	
++!checkRollback:lastDoing(LD) 	& 
+				doing(D) 		& 
+				LD\==D 			& 
+				steps(LD,L)		&
+				not job( JOB,_,_,_,_,_ ) 
+	<-
+		true.	
+
++!checkRollback:lastDoing(LD) 		& 
+				doing(D) 			& 
+				LD\==D 				& 
+				steps(LD,L)			&
+				LD\==exploration	&
+				L=[HL|TL]			&
+				not (HL=goto(_) |HL=goto(_,_)) 	
+	<-
+			?expectedplan( LD, EXPP);
+			.length(EXPP,QTDEXPP);
+			.length(L,QTDL);
+			?rollbackcutexpectedrule(EXPP, QTDEXPP-QTDL, LDONED);
+			.reverse(LDONED,RLDONED);
+			?rollbackrule([goto(_),goto(_,_)], RLDONED, RACTION);			
+			//.print("rollback ",LD,": ",[RACTION| L]);									
+			-steps(LD, _ );
+			+steps(LD, [RACTION| L]);
+	.
+=======
 +!sendcentrals
 	:	name(agentA20)
 	<-	
@@ -126,9 +170,39 @@
 		name(A)
 	&	A\== agentA20	
 	<- true.
+>>>>>>> master
 
++!checkRollback :true
+	<- true .
 
 @s1[atomic]
+<<<<<<< HEAD
++!do: route(R) &lastDoing(X) & doing(X) & not R=[]
+	<-	
+		action(continue );
+.
+
+@s2[atomic]
++!do: 			not route([]) 		&
+				lastDoing(Y) 		& 
+				doing(X) 			& 
+				Y\==X 				& 
+				steps(X,[ACT|T])	& 
+				steps(Y,L)			&
+				Y=exploration	
+	<-
+			
+			-+lastDoing(X);
+    		action( ACT);
+	. 
+
+@docrafthelp[atomic]
++!do: doing(craftComParts) & steps( craftComParts, [help(OTHERROLES)|T]) 			
+	<-
+		.length(OTHERROLES,BARRIER);
+		+waiting(craftComParts,BARRIER);
+		!!supportCraft(OTHERROLES);
+=======
 +step( _ )
 	:	not route([])
 	&	lastDoing(Y)
@@ -242,41 +316,55 @@
 	<-
 //		.print( "Fazendo retrieve em craftComParts" );
 		action( retrieve( ITEM, 1 ) );
+>>>>>>> master
 		-steps( craftComParts, _);
 		+steps( craftComParts, T);
-		-+lastDoing(craftComParts);
-		-+acaoValida( retrieve( ITEM, 1) );
+		action(noAction);
 	.
 
-@s16[atomic]
-+step( _ ):
-		doing(craftComParts)
-		& steps( craftComParts, [retrieve( ITEM, 1)|T])
-		& not storagePossueItem( STORAGE, ITEM )
+@docrafthelp1[atomic]
++!do: doing(help) & steps( help, [ready_to_assist(WHONEED)|T]) 			
 	<-
+<<<<<<< HEAD
+		.send(WHONEED, achieve, ready_to_assist);
+		-steps( help, _);
+		+steps( help, T);
+=======
 //		.print("aguardando item em craftComParts ",ITEM);
+>>>>>>> master
 		action( noAction );
-		-+lastDoing(craftComParts);
-		-+acaoValida( noAction );
 	.
 
-//Doing generico
+
 @s18[atomic]
-+step( _ ):
++!do: 	step(S) &
 		doing(DOING) & steps( DOING, [ACT|T])			
+<<<<<<< HEAD
+	<-		
+=======
 	<-
 //		.print( "Doing generico ", ACT, " ", DOING );
 		action( ACT );
 		-steps( DOING, _);
 		+steps( DOING, T);
 		-+acaoValida( ACT );
+>>>>>>> master
 		-+lastDoing(DOING);
+		action( ACT );
 	.
-
-
-@s19[atomic]
-+step( _ ): true
+	
++!do: true
 	<-
 //		.print( "noAction" );
 		action( noAction  );
+	.
+	
+@s19[atomic]
++step( S ): true
+	<-
+		!testarTrabalho;
+		!testarMission;
+		!consumestep;
+		!whattodo;
+		!do;
 	.

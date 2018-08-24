@@ -4,31 +4,26 @@
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.ArrayList;
-import java.util.logging.Logger;
+
 
 import cartago.*;
 import eis.AgentListener;
-import eis.EnvironmentListener;
-import eis.exceptions.ActException;
 import eis.exceptions.AgentException;
 import eis.exceptions.ManagementException;
 import eis.exceptions.RelationException;
 import eis.iilang.Action;
-import eis.iilang.EnvironmentState;
 import eis.iilang.Identifier;
 import eis.iilang.Parameter;
 import eis.iilang.Percept;
-import jason.NoValueException;
 import jason.asSyntax.Literal;
 import massim.eismassim.EnvironmentInterface;
 
 public class EISAccess extends Artifact implements AgentListener {
 	
-    private Logger logger = Logger.getLogger("EISAccess." + EISAccess.class.getName());
     private EnvironmentInterface ei;
     private String Agname="";
     private Boolean receiving=false;
-    private int awaitTime = 50;
+    private int awaitTime = 100;
     private String lastStep = "-1";
     private ArrayList<ObsProperty> lastRoundPropeties = new ArrayList<ObsProperty>();
 
@@ -40,15 +35,6 @@ public class EISAccess extends Artifact implements AgentListener {
 	        } catch (ManagementException e) {
 	            e.printStackTrace();
 	        }
-
-	        ei.attachEnvironmentListener(new EnvironmentListener() {
-	                public void handleNewEntity(String entity) {}
-	                public void handleStateChange(EnvironmentState s) {
-	                    logger.info("new state "+s);
-	                }
-	                public void handleDeletedEntity(String arg0, Collection<String> arg1) {}
-	                public void handleFreeEntity(String arg0, Collection<String> arg1) {}
-	        });
 
             try {
                 ei.registerAgent(this.Agname);
@@ -70,15 +56,17 @@ public class EISAccess extends Artifact implements AgentListener {
 	}
 	
 	
-	@INTERNAL_OPERATION void updatepercept() {
+	@INTERNAL_OPERATION void updatepercept() {		
 		while (!ei.isEntityConnected(this.Agname)) {
 			await_time(this.awaitTime);
 		}
+		
 		while (this.receiving) {
 			if (ei != null) {
+				
 				try {
 					Collection<Percept> lp = 
-							ei.getAllPercepts(this.Agname).values().iterator().next();
+							ei.getAllPercepts(this.Agname).get(this.Agname);	
 					boolean newstep=true;
 					for (Percept pe:lp) {
 						if (pe.getName().equals("step")) {
@@ -128,7 +116,7 @@ public class EISAccess extends Artifact implements AgentListener {
 							}
 						}
 					}
-				} catch (Exception e) {				
+				} catch (Exception e) {		
 					e.printStackTrace();
 				}
 			}
@@ -143,19 +131,15 @@ public class EISAccess extends Artifact implements AgentListener {
 	}
 	
 	@OPERATION
-	void action(String action) throws NoValueException {
+	void action(String action) {
 		Literal literal = Literal.parseLiteral(action);
-//		while (!ei.isEntityConnected(this.Agname)) {
-//			await_time(this.awaitTime);
-//		}
 		Action a = null;
 		try {
 			if (ei != null) {
 				a = Translator.literalToAction(literal);
 				ei.performAction(this.Agname, a);
 			}
-		} catch (ActException e) {
-			System.out.println(a.toProlog());
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
