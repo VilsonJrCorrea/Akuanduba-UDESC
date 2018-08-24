@@ -1,0 +1,14 @@
+mas mapc2018udesc {
+//time b
+agent agentA1: teste.asl{ 
+ join: envb
+focus: envb.artb1
+}
+
+workspace envb {
+artifact artb1: EISAccess("conf/eisb0.json")
+}
+
+ asl-path: src/agt
+src/agt/inc
+ }

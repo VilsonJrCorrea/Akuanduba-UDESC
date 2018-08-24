@@ -1,0 +1,351 @@
+mas mapc2018udesc {
+agent agentA1: agentA.asl{ 
+ join: env
+focus: env.arta1,coogather
+}
+agent agentA2: agentA.asl{ 
+ join: env
+focus: env.arta2,coogather
+}
+agent agentA3: agentA.asl{ 
+ join: env
+focus: env.arta3,coogather
+}
+agent agentA4: agentA.asl{ 
+ join: env
+focus: env.arta4,coogather
+}
+agent agentA5: agentA.asl{ 
+ join: env
+focus: env.arta5,coogather
+}
+agent agentA6: agentA.asl{ 
+ join: env
+focus: env.arta6,coogather
+}
+agent agentA7: agentA.asl{ 
+ join: env
+focus: env.arta7,coogather
+}
+agent agentA8: agentA.asl{ 
+ join: env
+focus: env.arta8,coogather
+}
+agent agentA9: agentA.asl{ 
+ join: env
+focus: env.arta9,coogather
+}
+agent agentA10: agentA.asl{ 
+ join: env
+focus: env.arta10,coogather
+}
+agent agentA11: agentA.asl{ 
+ join: env
+focus: env.arta11,coogather
+}
+agent agentA12: agentA.asl{ 
+ join: env
+focus: env.arta12,coogather
+}
+agent agentA13: agentA.asl{ 
+ join: env
+focus: env.arta13,coogather
+}
+agent agentA14: agentA.asl{ 
+ join: env
+focus: env.arta14,coogather
+}
+agent agentA15: agentA.asl{ 
+ join: env
+focus: env.arta15,coogather
+}
+agent agentA16: agentA.asl{ 
+ join: env
+focus: env.arta16,coogather
+}
+agent agentA17: agentA.asl{ 
+ join: env
+focus: env.arta17,coogather
+}
+agent agentA18: agentA.asl{ 
+ join: env
+focus: env.arta18,coogather
+}
+agent agentA19: agentA.asl{ 
+ join: env
+focus: env.arta19,coogather
+}
+agent agentA20: agentA.asl{ 
+ join: env
+focus: env.arta20,coogather
+}
+agent agentA21: agentA.asl{ 
+ join: env
+focus: env.arta21,coogather
+}
+agent agentA22: agentA.asl{ 
+ join: env
+focus: env.arta22,coogather
+}
+agent agentA23: agentA.asl{ 
+ join: env
+focus: env.arta23,coogather
+}
+agent agentA24: agentA.asl{ 
+ join: env
+focus: env.arta24,coogather
+}
+agent agentA25: agentA.asl{ 
+ join: env
+focus: env.arta25,coogather
+}
+agent agentA26: agentA.asl{ 
+ join: env
+focus: env.arta26,coogather
+}
+agent agentA27: agentA.asl{ 
+ join: env
+focus: env.arta27,coogather
+}
+agent agentA28: agentA.asl{ 
+ join: env
+focus: env.arta28,coogather
+}
+agent agentA29: agentA.asl{ 
+ join: env
+focus: env.arta29,coogather
+}
+agent agentA30: agentA.asl{ 
+ join: env
+focus: env.arta30,coogather
+}
+agent agentA31: agentA.asl{ 
+ join: env
+focus: env.arta31,coogather
+}
+agent agentA32: agentA.asl{ 
+ join: env
+focus: env.arta32,coogather
+}
+agent agentA33: agentA.asl{ 
+ join: env
+focus: env.arta33,coogather
+}
+agent agentA34: agentA.asl{ 
+ join: env
+focus: env.arta34,coogather
+}
+//agent agentB1: agentB.asl{ 
+// join: envb
+//focus: envb.artb1
+//}
+//agent agentB2: agentB.asl{ 
+// join: envb
+//focus: envb.artb2
+//}
+//agent agentB3: agentB.asl{ 
+// join: envb
+//focus: envb.artb3
+//}
+//agent agentB4: agentB.asl{ 
+// join: envb
+//focus: envb.artb4
+//}
+//agent agentB5: agentB.asl{ 
+// join: envb
+//focus: envb.artb5
+//}
+//agent agentB6: agentB.asl{ 
+// join: envb
+//focus: envb.artb6
+//}
+//agent agentB7: agentB.asl{ 
+// join: envb
+//focus: envb.artb7
+//}
+//agent agentB8: agentB.asl{ 
+// join: envb
+//focus: envb.artb8
+//}
+//agent agentB9: agentB.asl{ 
+// join: envb
+//focus: envb.artb9
+//}
+//agent agentB10: agentB.asl{ 
+// join: envb
+//focus: envb.artb10
+//}
+//agent agentB11: agentB.asl{ 
+// join: envb
+//focus: envb.artb11
+//}
+//agent agentB12: agentB.asl{ 
+// join: envb
+//focus: envb.artb12
+//}
+//agent agentB13: agentB.asl{ 
+// join: envb
+//focus: envb.artb13
+//}
+//agent agentB14: agentB.asl{ 
+// join: envb
+//focus: envb.artb14
+//}
+//agent agentB15: agentB.asl{ 
+// join: envb
+//focus: envb.artb15
+//}
+//agent agentB16: agentB.asl{ 
+// join: envb
+//focus: envb.artb16
+//}
+//agent agentB17: agentB.asl{ 
+// join: envb
+//focus: envb.artb17
+//}
+//agent agentB18: agentB.asl{ 
+// join: envb
+//focus: envb.artb18
+//}
+//agent agentB19: agentB.asl{ 
+// join: envb
+//focus: envb.artb19
+//}
+//agent agentB20: agentB.asl{ 
+// join: envb
+//focus: envb.artb20
+//}
+//agent agentB21: agentB.asl{ 
+// join: envb
+//focus: envb.artb21
+//}
+//agent agentB22: agentB.asl{ 
+// join: envb
+//focus: envb.artb22
+//}
+//agent agentB23: agentB.asl{ 
+// join: envb
+//focus: envb.artb23
+//}
+//agent agentB24: agentB.asl{ 
+// join: envb
+//focus: envb.artb24
+//}
+//agent agentB25: agentB.asl{ 
+// join: envb
+//focus: envb.artb25
+//}
+//agent agentB26: agentB.asl{ 
+// join: envb
+//focus: envb.artb26
+//}
+//agent agentB27: agentB.asl{ 
+// join: envb
+//focus: envb.artb27
+//}
+//agent agentB28: agentB.asl{ 
+// join: envb
+//focus: envb.artb28
+//}
+//agent agentB29: agentB.asl{ 
+// join: envb
+//focus: envb.artb29
+//}
+//agent agentB30: agentB.asl{ 
+// join: envb
+//focus: envb.artb30
+//}
+//agent agentB31: agentB.asl{ 
+// join: envb
+//focus: envb.artb31
+//}
+//agent agentB32: agentB.asl{ 
+// join: envb
+//focus: envb.artb32
+//}
+//agent agentB33: agentB.asl{ 
+// join: envb
+//focus: envb.artb33
+//}
+//agent agentB34: agentB.asl{ 
+// join: envb
+//focus: envb.artb34
+//}
+
+workspace env {
+artifact arta1: EISAccess("conf/remoto/eisa0.json")
+artifact arta2: EISAccess("conf/remoto/eisa1.json")
+artifact arta3: EISAccess("conf/remoto/eisa2.json")
+artifact arta4: EISAccess("conf/remoto/eisa3.json")
+artifact arta5: EISAccess("conf/remoto/eisa4.json")
+artifact arta6: EISAccess("conf/remoto/eisa5.json")
+artifact arta7: EISAccess("conf/remoto/eisa6.json")
+artifact arta8: EISAccess("conf/remoto/eisa7.json")
+artifact arta9: EISAccess("conf/remoto/eisa8.json")
+artifact arta10: EISAccess("conf/remoto/eisa9.json")
+artifact arta11: EISAccess("conf/remoto/eisa10.json")
+artifact arta12: EISAccess("conf/remoto/eisa11.json")
+artifact arta13: EISAccess("conf/remoto/eisa12.json")
+artifact arta14: EISAccess("conf/remoto/eisa13.json")
+artifact arta15: EISAccess("conf/remoto/eisa14.json")
+artifact arta16: EISAccess("conf/remoto/eisa15.json")
+artifact arta17: EISAccess("conf/remoto/eisa16.json")
+artifact arta18: EISAccess("conf/remoto/eisa17.json")
+artifact arta19: EISAccess("conf/remoto/eisa18.json")
+artifact arta20: EISAccess("conf/remoto/eisa19.json")
+artifact arta21: EISAccess("conf/remoto/eisa20.json")
+artifact arta22: EISAccess("conf/remoto/eisa21.json")
+artifact arta23: EISAccess("conf/remoto/eisa22.json")
+artifact arta24: EISAccess("conf/remoto/eisa23.json")
+artifact arta25: EISAccess("conf/remoto/eisa24.json")
+artifact arta26: EISAccess("conf/remoto/eisa25.json")
+artifact arta27: EISAccess("conf/remoto/eisa26.json")
+artifact arta28: EISAccess("conf/remoto/eisa27.json")
+artifact arta29: EISAccess("conf/remoto/eisa28.json")
+artifact arta30: EISAccess("conf/remoto/eisa29.json")
+artifact arta31: EISAccess("conf/remoto/eisa30.json")
+artifact arta32: EISAccess("conf/remoto/eisa31.json")
+artifact arta33: EISAccess("conf/remoto/eisa32.json")
+artifact arta34: EISAccess("conf/remoto/eisa33.json")
+artifact artpolygon: calculos.ARTGreyZone
+artifact coogather: CoordinationArtifact
+}
+//workspace envb {
+//artifact artb1: EISAccess("conf/remoto/eisb0.json")
+//artifact artb2: EISAccess("conf/remoto/eisb1.json")
+//artifact artb3: EISAccess("conf/remoto/eisb2.json")
+//artifact artb4: EISAccess("conf/remoto/eisb3.json")
+//artifact artb5: EISAccess("conf/remoto/eisb4.json")
+//artifact artb6: EISAccess("conf/remoto/eisb5.json")
+//artifact artb7: EISAccess("conf/remoto/eisb6.json")
+//artifact artb8: EISAccess("conf/remoto/eisb7.json")
+//artifact artb9: EISAccess("conf/remoto/eisb8.json")
+//artifact artb10: EISAccess("conf/remoto/eisb9.json")
+//artifact artb11: EISAccess("conf/remoto/eisb10.json")
+//artifact artb12: EISAccess("conf/remoto/eisb11.json")
+//artifact artb13: EISAccess("conf/remoto/eisb12.json")
+//artifact artb14: EISAccess("conf/remoto/eisb13.json")
+//artifact artb15: EISAccess("conf/remoto/eisb14.json")
+//artifact artb16: EISAccess("conf/remoto/eisb15.json")
+//artifact artb17: EISAccess("conf/remoto/eisb16.json")
+//artifact artb18: EISAccess("conf/remoto/eisb17.json")
+//artifact artb19: EISAccess("conf/remoto/eisb18.json")
+//artifact artb20: EISAccess("conf/remoto/eisb19.json")
+//artifact artb21: EISAccess("conf/remoto/eisb20.json")
+//artifact artb22: EISAccess("conf/remoto/eisb21.json")
+//artifact artb23: EISAccess("conf/remoto/eisb22.json")
+//artifact artb24: EISAccess("conf/remoto/eisb23.json")
+//artifact artb25: EISAccess("conf/remoto/eisb24.json")
+//artifact artb26: EISAccess("conf/remoto/eisb25.json")
+//artifact artb27: EISAccess("conf/remoto/eisb26.json")
+//artifact artb28: EISAccess("conf/remoto/eisb27.json")
+//artifact artb29: EISAccess("conf/remoto/eisb28.json")
+//artifact artb30: EISAccess("conf/remoto/eisb29.json")
+//artifact artb31: EISAccess("conf/remoto/eisb30.json")
+//artifact artb32: EISAccess("conf/remoto/eisb31.json")
+//artifact artb33: EISAccess("conf/remoto/eisb32.json")
+//artifact artb34: EISAccess("conf/remoto/eisb33.json")
+//}
+ asl-path: src/agt
+src/agt/inc
+ }

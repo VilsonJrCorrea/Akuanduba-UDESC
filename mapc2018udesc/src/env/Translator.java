@@ -6,8 +6,9 @@ import jason.asSyntax.ListTermImpl;
 import jason.asSyntax.Literal;
 import jason.asSyntax.NumberTerm;
 import jason.asSyntax.StringTerm;
-import jason.asSyntax.Structure;
+
 import jason.asSyntax.Term;
+import jason.asSyntax.parser.ParseException;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -92,27 +93,33 @@ public class Translator {
 		throw new JasonException("The type of parameter " + par + " is unknown!");
 	}
 	
-	public static Structure filter(Percept per, Parameter par) throws JasonException{
-		Function f = (Function) par;
-		String name = f.getName();
-		Structure l = ASSyntax.createStructure(name);
-		if(name.equals("availableItem")){
-			l = ASSyntax.createStructure("item");
-		}
-		for (Parameter p : f.getParameters())
-			l.addTerm(parameterToTerm(p));
-		if(per.getName().equals("shop") && name.equals("item")){
-			l.addTerm(ASSyntax.createNumber(0));
-			l.addTerm(ASSyntax.createNumber(0));
-			l.addTerm(ASSyntax.createNumber(0));
-		}
-		return l;		
-	}
 	
-	public static Converter[] parametersToTerms(LinkedList<Parameter> pe) {
-		Converter [] ret = new Converter[pe.size()];
+	
+	public static Term[] parametersToTerms(LinkedList<Parameter> pe) {
+		Term [] ret = new Term[pe.size()];
 		for (int i=0; i<pe.size();i++) {
-			ret[i]=new Converter(pe.get(i).toProlog());
+			Term aux=null;
+			if (pe.get(i) instanceof Numeral) {
+				aux = ASSyntax.createNumber(((Numeral) pe.get(i)).getValue().doubleValue());
+			} //else if (pe.get(i) instanceof Identifier) {
+//				try {
+//					Identifier id = (Identifier) pe.get(i);
+//					String a = id.getValue().toLowerCase();
+//					if (!Character.isUpperCase(a.charAt(0)))
+//						aux =  ASSyntax.parseTerm(a);
+//				} catch (Exception e) {
+//				}
+			else {
+				try {
+					aux = ASSyntax.parseTerm(pe.get(i).toProlog());
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+//				aux = ASSyntax.createAtom(((Identifier) pe.get(i)).getValue());
+				
+			ret[i]=aux;
 		}
 		return ret;
 	}
