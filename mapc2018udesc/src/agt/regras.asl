@@ -247,3 +247,33 @@ buscarItensDependentes( [item(ITEM, _, _, parts( SUBITENS ) ) | RESTOS_DOS_ITENS
 	.
 
 
+//******************************************************************************************
+
+dependencia( [ required( ITEM, QTD ) | RESTO ], LISTA, RETORNO )
+	:-
+		item( ITEM, _, _, parts( PARTS ) )			&
+		PARTS \== []								&
+		.concat( LISTA, [ item( ITEM, QTD ) ], NR )	&
+		dependencia( RESTO, LISTA, NR )
+	.
+
+dependencia( [], LISTA, RETORNO )
+	:-
+		RETORNO = LISTA
+	.
+
+separaritens( [ item( ITEM, QTD ) | RESTO ], LISTA, RETORNO )
+	:-
+		adicionariten( ITEM, QTD, LISTA, N_LISTA )	&
+		separaritens( RESTO, LISTA, RETORNO )
+	.
+
+separaritens( [], LISTA, RETORNO )
+	:-
+		RETORNO = LISTA
+	.
+
+adicionariten( ITEM, QTD, [ item( ITEM, QTD2 ) | RESTO ], N_LISTA )
+	:-
+		true
+	.
