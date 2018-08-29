@@ -1,0 +1,70 @@
+mas mapc2018udesc {
+//TIME A - Remoto	
+agent agentA23: agentA.asl{ 
+ join: enva
+focus: enva.arta23, coogather
+}
+agent agentA24: agentA.asl{ 
+ join: enva
+focus: enva.arta24, coogather
+}
+agent agentA25: agentA.asl{ 
+ join: enva
+focus: enva.arta25, coogather
+}
+agent agentA26: agentA.asl{ 
+ join: enva
+focus: enva.arta26, coogather
+}
+agent agentA27: agentA.asl{ 
+ join: enva
+focus: enva.arta27, coogather
+}
+agent agentA28: agentA.asl{ 
+ join: enva
+focus: enva.arta28, coogather
+}
+agent agentA29: agentA.asl{ 
+ join: enva
+focus: enva.arta29, coogather
+}
+agent agentA30: agentA.asl{ 
+ join: enva
+focus: enva.arta30, coogather
+}
+agent agentA31: agentA.asl{ 
+ join: enva
+focus: enva.arta31, coogather
+}
+agent agentA32: agentA.asl{ 
+ join: enva
+focus: enva.arta32, coogather
+}
+agent agentA33: agentA.asl{ 
+ join: enva
+focus: enva.arta33, coogather
+}
+agent agentA34: agentA.asl{ 
+ join: enva
+focus: enva.arta34, coogather
+}
+
+workspace enva {
+artifact arta23: EISAccess("conf/remoto/eisa22.json")
+artifact arta24: EISAccess("conf/remoto/eisa23.json")
+artifact arta25: EISAccess("conf/remoto/eisa24.json")
+artifact arta26: EISAccess("conf/remoto/eisa25.json")
+artifact arta27: EISAccess("conf/remoto/eisa26.json")
+artifact arta28: EISAccess("conf/remoto/eisa27.json")
+artifact arta29: EISAccess("conf/remoto/eisa28.json")
+artifact arta30: EISAccess("conf/remoto/eisa29.json")
+artifact arta31: EISAccess("conf/remoto/eisa30.json")
+artifact arta32: EISAccess("conf/remoto/eisa31.json")
+artifact arta33: EISAccess("conf/remoto/eisa32.json")
+artifact arta34: EISAccess("conf/remoto/eisa33.json")
+}
+ asl-path: src/agt
+src/agt/inc
+
+platform:jade("-container -host 10.60.185.11 -port 8080 -container-name c2")
+ }

@@ -29,7 +29,7 @@ public class RunLaPlata {
 		}).start();
 
 		try {
-			JaCaMoLauncher.main(new String[] {"mapc2018teste.jcm"});
+			JaCaMoLauncher.main(new String[] {"jcm/local/mapc2018teste.jcm"});
 		} catch (JasonException e) {
 			System.out.println("Exception: "+e.getMessage());
 			e.printStackTrace();
