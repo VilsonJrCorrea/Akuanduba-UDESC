@@ -177,6 +177,6 @@ artifact arta34: EISAccess("conf/remotoGermany/eisa33.json")
 artifact artpolygon: calculos.ARTGreyZone
 artifact coogather: CoordinationArtifact
 }
- asl-path: src/agt
-src/agt/inc
+ asl-path: 	../src/agt
+			../src/agt/inc
  }

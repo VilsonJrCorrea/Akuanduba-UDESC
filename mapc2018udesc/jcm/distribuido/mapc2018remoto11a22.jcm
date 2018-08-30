@@ -1,67 +1,69 @@
 mas mapc2018udesc {
 //TIME A - Remoto	
-agent agentA11: agentA.asl{ 
- join: enva
-focus: enva.arta11, coogather
+agent akuanduba_udesc11: agentA.asl{ 
+ join: env
+focus: env.art11,coogather
 }
-agent agentA12: agentA.asl{ 
- join: enva
-focus: enva.arta12, coogather
+agent akuanduba_udesc12: agentA.asl{ 
+ join: env
+focus: env.art12,coogather
 }
-agent agentA13: agentA.asl{ 
- join: enva
-focus: enva.arta13, coogather
+agent akuanduba_udesc13: agentA.asl{ 
+ join: env
+focus: env.art13,coogather
 }
-agent agentA14: agentA.asl{ 
- join: enva
-focus: enva.arta14, coogather
+agent akuanduba_udesc14: agentA.asl{ 
+ join: env
+focus: env.art14,coogather
 }
-agent agentA15: agentA.asl{ 
- join: enva
-focus: enva.arta15, coogather
+agent akuanduba_udesc15: agentA.asl{ 
+ join: env
+focus: env.art15,coogather
 }
-agent agentA16: agentA.asl{ 
- join: enva
-focus: enva.arta16, coogather
+agent akuanduba_udesc16: agentA.asl{ 
+ join: env
+focus: env.art16,coogather
 }
-agent agentA17: agentA.asl{ 
- join: enva
-focus: enva.arta17, coogather
+agent akuanduba_udesc17: agentA.asl{ 
+ join: env
+focus: env.art17,coogather
 }
-agent agentA18: agentA.asl{ 
- join: enva
-focus: enva.arta18, coogather
+agent akuanduba_udesc18: agentA.asl{ 
+ join: env
+focus: env.art18,coogather
 }
-agent agentA19: agentA.asl{ 
- join: enva
-focus: enva.arta19, coogather
+agent akuanduba_udesc19: agentA.asl{ 
+ join: env
+focus: env.art19,coogather
 }
-agent agentA20: agentA.asl{ 
- join: enva
-focus: enva.arta20, coogather
+agent akuanduba_udesc20: agentA.asl{ 
+ join: env
+focus: env.art20,coogather
 }
-agent agentA21: agentA.asl{ 
- join: enva
-focus: enva.arta21, coogather
+agent akuanduba_udesc21: agentA.asl{ 
+ join: env
+focus: env.art21,coogather
 }
-agent agentA22: agentA.asl{ 
- join: enva
-focus: enva.arta22, coogather
+agent akuanduba_udesc22: agentA.asl{ 
+ join: env
+focus: env.art22,coogather
 }
 
-workspace enva {
-artifact arta11: EISAccess("conf/remoto/eisa10.json")
-artifact arta12: EISAccess("conf/remoto/eisa11.json")
-artifact arta13: EISAccess("conf/remoto/eisa12.json")
-artifact arta14: EISAccess("conf/remoto/eisa13.json")
-artifact arta15: EISAccess("conf/remoto/eisa14.json")
-artifact arta16: EISAccess("conf/remoto/eisa15.json")
-artifact arta17: EISAccess("conf/remoto/eisa16.json")
-artifact arta18: EISAccess("conf/remoto/eisa17.json")
-artifact arta19: EISAccess("conf/remoto/eisa18.json")
-artifact arta20: EISAccess("conf/remoto/eisa19.json")
-artifact arta21: EISAccess("conf/remoto/eisa20.json")
-artifact arta22: EISAccess("conf/remoto/eisa21.json")
+workspace env {
+artifact art11: EISAccess("conf/local/eis10.json")
+artifact art12: EISAccess("conf/local/eis11.json")
+artifact art13: EISAccess("conf/local/eis12.json")
+artifact art14: EISAccess("conf/local/eis13.json")
+artifact art15: EISAccess("conf/local/eis14.json")
+artifact art16: EISAccess("conf/local/eis15.json")
+artifact art17: EISAccess("conf/local/eis16.json")
+artifact art18: EISAccess("conf/local/eis17.json")
+artifact art19: EISAccess("conf/local/eis18.json")
+artifact art20: EISAccess("conf/local/eis19.json")
+artifact art21: EISAccess("conf/local/eis20.json")
+artifact art22: EISAccess("conf/local/eis21.json")
+//artifact artpolygon: calculos.ARTGreyZone
+//artifact coogather: CoordinationArtifact
 }
  asl-path: src/agt
 src/agt/inc

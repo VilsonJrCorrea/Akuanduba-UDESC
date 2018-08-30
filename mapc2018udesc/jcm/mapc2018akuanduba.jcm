@@ -38,7 +38,7 @@ focus: env.art9,coogather
 }
 agent akuanduba_udesc10: agentA.asl{ 
  join: env
-focus: env.art10,coogather
+focus: env.art10,env.artpolygon, coogather
 }
 agent akuanduba_udesc11: agentA.asl{ 
  join: env
@@ -352,9 +352,6 @@ artifact coogather: CoordinationArtifact
 //artifact artb34: EISAccess("conf/local/eisb33.json")
 //}
 
- asl-path: src/agt
-src/agt/inc
-
-//platform: centralised(pool,4,100)
-//platform: centralised(synch_scheduled,4)
+ asl-path: 	../src/agt
+			../src/agt/inc
  }
