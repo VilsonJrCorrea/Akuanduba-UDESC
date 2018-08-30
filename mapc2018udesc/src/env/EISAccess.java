@@ -3,6 +3,7 @@
 
 import java.util.Collection;
 import java.util.LinkedList;
+import java.io.File;
 import java.util.ArrayList;
 
 
@@ -33,12 +34,14 @@ public class EISAccess extends Artifact implements AgentListener {
 	        try {
 	            ei.start();
 	        } catch (ManagementException e) {
+	        	System.out.println("--- 1 ---");
 	            e.printStackTrace();
 	        }
 
             try {
                 ei.registerAgent(this.Agname);
             } catch (AgentException e1) {
+            	System.out.println("--- 2 ---");
             	e1.printStackTrace();
             }
 
@@ -47,6 +50,7 @@ public class EISAccess extends Artifact implements AgentListener {
             try {
                 ei.associateEntity(this.Agname, this.Agname);
             } catch (RelationException e1) {
+            	System.out.println("--- 3 ---");
                 e1.printStackTrace();
             }
 	        if (ei != null) {
