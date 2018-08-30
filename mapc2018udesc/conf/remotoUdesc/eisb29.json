@@ -1,0 +1,13 @@
+{
+"scenario":"city2018",
+"host":"10.60.185.35",
+"port":12300,
+"scheduling":false,
+"timeout":40000,
+"times":false,
+"notifications":false,
+"queued":false,
+"entities": [
+{"name":"connectionB30", "username": "agentB30", "password": "kF5pLs", "iilang":false, "xml":false}
+  ]
+}

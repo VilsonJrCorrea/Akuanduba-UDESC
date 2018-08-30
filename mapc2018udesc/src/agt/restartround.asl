@@ -21,10 +21,10 @@ roundnumber(0).
 +!agentnumber: true
 	<-
 		?name(N);
-		?team(T);
-		jia.upper(T,BIGT);		
-		.concat("agent",BIGT,D);
-		.delete(D,N,R);
+//		?team(T);
+//		jia.upper(T,BIGT);		
+//		.concat("agent",BIGT,D);
+		.delete("akuanduba_udesc",N,R);
 		//.print(R);
 		+agentid(R);
 	.

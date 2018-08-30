@@ -1,0 +1,182 @@
+mas mapc2018udesc {
+//TIME A - Remoto	
+agent akuanduba_udesc1: agentA.asl{ 
+ join: enva
+focus: enva.arta1, coogather
+}
+agent akuanduba_udesc2: agentA.asl{ 
+ join: enva
+focus: enva.arta2, coogather
+}
+agent akuanduba_udesc3: agentA.asl{ 
+ join: enva
+focus: enva.arta3, coogather
+}
+agent akuanduba_udesc4: agentA.asl{ 
+ join: enva
+focus: enva.arta4, coogather
+}
+agent akuanduba_udesc5: agentA.asl{ 
+ join: enva
+focus: enva.arta5, coogather
+}
+agent akuanduba_udesc6: agentA.asl{ 
+ join: enva
+focus: enva.arta6, coogather
+}
+agent akuanduba_udesc7: agentA.asl{ 
+ join: enva
+focus: enva.arta7, coogather
+}
+agent akuanduba_udesc8: agentA.asl{ 
+ join: enva
+focus: enva.arta8, coogather
+}
+agent akuanduba_udesc9: agentA.asl{ 
+ join: enva
+focus: enva.arta9, coogather
+}
+agent akuanduba_udesc10: agentA.asl{ 
+ join: enva
+focus: enva.arta10,enva.artpolygon, coogather
+}
+agent akuanduba_udesc11: agentA.asl{ 
+ join: enva
+focus: enva.arta11, coogather
+}
+agent akuanduba_udesc12: agentA.asl{ 
+ join: enva
+focus: enva.arta12, coogather
+}
+agent akuanduba_udesc13: agentA.asl{ 
+ join: enva
+focus: enva.arta13, coogather
+}
+agent akuanduba_udesc14: agentA.asl{ 
+ join: enva
+focus: enva.arta14, coogather
+}
+agent akuanduba_udesc15: agentA.asl{ 
+ join: enva
+focus: enva.arta15, coogather
+}
+agent akuanduba_udesc16: agentA.asl{ 
+ join: enva
+focus: enva.arta16, coogather
+}
+agent akuanduba_udesc17: agentA.asl{ 
+ join: enva
+focus: enva.arta17, coogather
+}
+agent akuanduba_udesc18: agentA.asl{ 
+ join: enva
+focus: enva.arta18, coogather
+}
+agent akuanduba_udesc19: agentA.asl{ 
+ join: enva
+focus: enva.arta19, coogather
+}
+agent akuanduba_udesc20: agentA.asl{ 
+ join: enva
+focus: enva.arta20, coogather
+}
+agent akuanduba_udesc21: agentA.asl{ 
+ join: enva
+focus: enva.arta21, coogather
+}
+agent akuanduba_udesc22: agentA.asl{ 
+ join: enva
+focus: enva.arta22, coogather
+}
+agent akuanduba_udesc23: agentA.asl{ 
+ join: enva
+focus: enva.arta23, coogather
+}
+agent akuanduba_udesc24: agentA.asl{ 
+ join: enva
+focus: enva.arta24, coogather
+}
+agent akuanduba_udesc25: agentA.asl{ 
+ join: enva
+focus: enva.arta25, coogather
+}
+agent akuanduba_udesc26: agentA.asl{ 
+ join: enva
+focus: enva.arta26, coogather
+}
+agent akuanduba_udesc27: agentA.asl{ 
+ join: enva
+focus: enva.arta27, coogather
+}
+agent akuanduba_udesc28: agentA.asl{ 
+ join: enva
+focus: enva.arta28, coogather
+}
+agent akuanduba_udesc29: agentA.asl{ 
+ join: enva
+focus: enva.arta29, coogather
+}
+agent akuanduba_udesc30: agentA.asl{ 
+ join: enva
+focus: enva.arta30, coogather
+}
+agent akuanduba_udesc31: agentA.asl{ 
+ join: enva
+focus: enva.arta31, coogather
+}
+agent akuanduba_udesc32: agentA.asl{ 
+ join: enva
+focus: enva.arta32, coogather
+}
+agent akuanduba_udesc33: agentA.asl{ 
+ join: enva
+focus: enva.arta33, coogather
+}
+agent akuanduba_udesc34: agentA.asl{ 
+ join: enva
+focus: enva.arta34, coogather
+}
+
+
+
+workspace enva {
+artifact arta1: EISAccess("conf/remotoGermany/eisa0.json")
+artifact arta2: EISAccess("conf/remotoGermany/eisa1.json")
+artifact arta3: EISAccess("conf/remotoGermany/eisa2.json")
+artifact arta4: EISAccess("conf/remotoGermany/eisa3.json")
+artifact arta5: EISAccess("conf/remotoGermany/eisa4.json")
+artifact arta6: EISAccess("conf/remotoGermany/eisa5.json")
+artifact arta7: EISAccess("conf/remotoGermany/eisa6.json")
+artifact arta8: EISAccess("conf/remotoGermany/eisa7.json")
+artifact arta9: EISAccess("conf/remotoGermany/eisa8.json")
+artifact arta10: EISAccess("conf/remotoGermany/eisa9.json")
+artifact arta11: EISAccess("conf/remotoGermany/eisa10.json")
+artifact arta12: EISAccess("conf/remotoGermany/eisa11.json")
+artifact arta13: EISAccess("conf/remotoGermany/eisa12.json")
+artifact arta14: EISAccess("conf/remotoGermany/eisa13.json")
+artifact arta15: EISAccess("conf/remotoGermany/eisa14.json")
+artifact arta16: EISAccess("conf/remotoGermany/eisa15.json")
+artifact arta17: EISAccess("conf/remotoGermany/eisa16.json")
+artifact arta18: EISAccess("conf/remotoGermany/eisa17.json")
+artifact arta19: EISAccess("conf/remotoGermany/eisa18.json")
+artifact arta20: EISAccess("conf/remotoGermany/eisa19.json")
+artifact arta21: EISAccess("conf/remotoGermany/eisa20.json")
+artifact arta22: EISAccess("conf/remotoGermany/eisa21.json")
+artifact arta23: EISAccess("conf/remotoGermany/eisa22.json")
+artifact arta24: EISAccess("conf/remotoGermany/eisa23.json")
+artifact arta25: EISAccess("conf/remotoGermany/eisa24.json")
+artifact arta26: EISAccess("conf/remotoGermany/eisa25.json")
+artifact arta27: EISAccess("conf/remotoGermany/eisa26.json")
+artifact arta28: EISAccess("conf/remotoGermany/eisa27.json")
+artifact arta29: EISAccess("conf/remotoGermany/eisa28.json")
+artifact arta30: EISAccess("conf/remotoGermany/eisa29.json")
+artifact arta31: EISAccess("conf/remotoGermany/eisa30.json")
+artifact arta32: EISAccess("conf/remotoGermany/eisa31.json")
+artifact arta33: EISAccess("conf/remotoGermany/eisa32.json")
+artifact arta34: EISAccess("conf/remotoGermany/eisa33.json")
+artifact artpolygon: calculos.ARTGreyZone
+artifact coogather: CoordinationArtifact
+}
+ asl-path: 	../src/agt
+			../src/agt/inc
+ }
