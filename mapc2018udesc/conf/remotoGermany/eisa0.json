@@ -8,6 +8,6 @@
 "notifications":false,
 "queued":false,
 "entities": [
-{"name":"Akuanduba-UDESC1", "username": "agentA1", "password": "kF5pLs", "iilang":false, "xml":false}
+{"name":"connectionA1",  "username": "akuanduba_udesc1", "password": "kF5pLs", "iilang":false, "xml":false}
   ]
 }

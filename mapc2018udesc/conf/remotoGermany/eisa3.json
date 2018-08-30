@@ -1,6 +1,6 @@
 {
 "scenario":"city2018",
-"host":"10.60.185.35",
+"host":"agentcontest2.in.tu-clausthal.de",
 "port":12300,
 "scheduling":false,
 "timeout":40000,
@@ -8,6 +8,6 @@
 "notifications":false,
 "queued":false,
 "entities": [
-{"name":"connectionA4", "username": "agentA4", "password": "kF5pLs", "iilang":false, "xml":false}
+{"name":"connectionA4",  "username": "akuanduba_udesc4", "password": "kF5pLs", "iilang":false, "xml":false}
   ]
 }
