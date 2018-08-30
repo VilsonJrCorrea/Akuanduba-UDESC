@@ -1,7 +1,7 @@
 mas mapc2018udesc {
 //TIME A - Remoto	
 agent akuanduba_udesc11: agentA.asl{ 
- join: env
+ join: env, 
 focus: env.art11, env.coogather @ remoto
 }
 agent akuanduba_udesc12: agentA.asl{ 
