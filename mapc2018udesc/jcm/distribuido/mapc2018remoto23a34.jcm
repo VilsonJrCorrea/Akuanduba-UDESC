@@ -2,51 +2,51 @@ mas mapc2018udesc {
 //TIME A - Remoto	
 agent akuanduba_udesc23: agentA.asl{ 
  join: env
-focus: env.art23,coogather
+focus: env.art23, env.coogather @ remoto
 }
 agent akuanduba_udesc24: agentA.asl{ 
  join: env
-focus: env.art24,coogather
+focus: env.art24, env.coogather @ remoto
 }
 agent akuanduba_udesc25: agentA.asl{ 
  join: env
-focus: env.art25,coogather
+focus: env.art25, env.coogather @ remoto
 }
 agent akuanduba_udesc26: agentA.asl{ 
  join: env
-focus: env.art26,coogather
+focus: env.art26, env.coogather @ remoto
 }
 agent akuanduba_udesc27: agentA.asl{ 
  join: env
-focus: env.art27,coogather
+focus: env.art27, env.coogather @ remoto
 }
 agent akuanduba_udesc28: agentA.asl{ 
  join: env
-focus: env.art28,coogather
+focus: env.art28, env.coogather @ remoto
 }
 agent akuanduba_udesc29: agentA.asl{ 
  join: env
-focus: env.art29,coogather
+focus: env.art29, env.coogather @ remoto
 }
 agent akuanduba_udesc30: agentA.asl{ 
  join: env
-focus: env.art30,coogather
+focus: env.art30, env.coogather @ remoto
 }
 agent akuanduba_udesc31: agentA.asl{ 
  join: env
-focus: env.art31,coogather
+focus: env.art31, env.coogather @ remoto
 }
 agent akuanduba_udesc32: agentA.asl{ 
  join: env
-focus: env.art32,coogather
+focus: env.art32, env.coogather @ remoto
 }
 agent akuanduba_udesc33: agentA.asl{ 
  join: env
-focus: env.art33,coogather
+focus: env.art33, env.coogather @ remoto
 }
 agent akuanduba_udesc34: agentA.asl{ 
  join: env
-focus: env.art34,coogather
+focus: env.art34, env.coogather @ remoto
 }
 
 workspace env {
@@ -68,5 +68,7 @@ artifact art34: EISAccess("conf/local/eis33.json")
  asl-path: src/agt
 src/agt/inc
 
-platform:jade("-container -host 10.60.185.11 -port 8080 -container-name c2")
+platform:	jade("-container -host 10.60.185.11 -port 8080 -container-name c2")
+			cartago()
+node remoto running @ 127.0.0.1 
  }
