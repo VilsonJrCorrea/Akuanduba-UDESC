@@ -65,8 +65,8 @@ artifact art34: EISAccess("conf/local/eis33.json")
 //artifact artpolygon: calculos.ARTGreyZone
 //artifact coogather: CoordinationArtifact
 }
- asl-path: src/agt
-src/agt/inc
+ asl-path: 	../../src/agt
+			../../src/agt/inc
 
 platform:	jade("-container -host 10.60.185.11 -port 8080 -container-name c2")
 			cartago()
