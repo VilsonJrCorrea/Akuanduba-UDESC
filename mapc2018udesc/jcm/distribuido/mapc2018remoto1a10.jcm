@@ -44,23 +44,23 @@ focus: env.art10,env.artpolygon, coogather
 
 
 workspace env {
-artifact art1: EISAccess("conf/local/eis0.json")
-artifact art2: EISAccess("conf/local/eis1.json")
-artifact art3: EISAccess("conf/local/eis2.json")
-artifact art4: EISAccess("conf/local/eis3.json")
-artifact art5: EISAccess("conf/local/eis4.json")
-artifact art6: EISAccess("conf/local/eis5.json")
-artifact art7: EISAccess("conf/local/eis6.json")
-artifact art8: EISAccess("conf/local/eis7.json")
-artifact art9: EISAccess("conf/local/eis8.json")
-artifact art10: EISAccess("conf/local/eis9.json")
+artifact art1: EISAccess("../../conf/remotoUdesc/eis0.json")
+artifact art2: EISAccess("../../conf/remotoUdesc/eis1.json")
+artifact art3: EISAccess("../../conf/remotoUdesc/eis2.json")
+artifact art4: EISAccess("../../conf/remotoUdesc/eis3.json")
+artifact art5: EISAccess("../../conf/remotoUdesc/eis4.json")
+artifact art6: EISAccess("../../conf/remotoUdesc/eis5.json")
+artifact art7: EISAccess("../../conf/remotoUdesc/eis6.json")
+artifact art8: EISAccess("../../conf/remotoUdesc/eis7.json")
+artifact art9: EISAccess("../../conf/remotoUdesc/eis8.json")
+artifact art10: EISAccess("../../conf/remotoUdesc/eis9.json")
 artifact artpolygon: calculos.ARTGreyZone
 artifact coogather: CoordinationArtifact
 }
  asl-path: 	../../src/agt
 			../../src/agt/inc
 
-platform:jade("-container -host 10.60.185.11 -port 8080 -container-name c2")
+platform:jade("-container -host 10.60.185.16 -port 8080 -container-name c2")
 		 cartago(infrastructure)
 
  }

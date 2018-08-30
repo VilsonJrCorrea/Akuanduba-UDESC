@@ -50,25 +50,25 @@ focus: env.art34, env.coogather @ remoto
 }
 
 workspace env {
-artifact art23: EISAccess("conf/local/eis22.json")
-artifact art24: EISAccess("conf/local/eis23.json")
-artifact art25: EISAccess("conf/local/eis24.json")
-artifact art26: EISAccess("conf/local/eis25.json")
-artifact art27: EISAccess("conf/local/eis26.json")
-artifact art28: EISAccess("conf/local/eis27.json")
-artifact art29: EISAccess("conf/local/eis28.json")
-artifact art30: EISAccess("conf/local/eis29.json")
-artifact art31: EISAccess("conf/local/eis30.json")
-artifact art32: EISAccess("conf/local/eis31.json")
-artifact art33: EISAccess("conf/local/eis32.json")
-artifact art34: EISAccess("conf/local/eis33.json")
+artifact art23: EISAccess("../../conf/remotoUdesc/eis22.json")
+artifact art24: EISAccess("../../conf/remotoUdesc/eis23.json")
+artifact art25: EISAccess("../../conf/remotoUdesc/eis24.json")
+artifact art26: EISAccess("../../conf/remotoUdesc/eis25.json")
+artifact art27: EISAccess("../../conf/remotoUdesc/eis26.json")
+artifact art28: EISAccess("../../conf/remotoUdesc/eis27.json")
+artifact art29: EISAccess("../../conf/remotoUdesc/eis28.json")
+artifact art30: EISAccess("../../conf/remotoUdesc/eis29.json")
+artifact art31: EISAccess("../../conf/remotoUdesc/eis30.json")
+artifact art32: EISAccess("../../conf/remotoUdesc/eis31.json")
+artifact art33: EISAccess("../../conf/remotoUdesc/eis32.json")
+artifact art34: EISAccess("../../conf/remotoUdesc/eis33.json")
 //artifact artpolygon: calculos.ARTGreyZone
 //artifact coogather: CoordinationArtifact
 }
  asl-path: 	../../src/agt
 			../../src/agt/inc
 
-platform:	jade("-container -host 10.60.185.11 -port 8080 -container-name c2")
+platform:	jade("-container -host 10.60.185.16 -port 8080 -container-name c2")
 			cartago()
-node remoto running @ 127.0.0.1 
+node remoto running @ 10.60.185.16 
  }
