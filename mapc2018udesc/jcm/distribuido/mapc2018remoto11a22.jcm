@@ -50,18 +50,18 @@ focus: env.art22, env.coogather @ remoto
 }
 
 workspace env {
-artifact art11: EISAccess("conf/remotoUdesc/eis10.json")
-artifact art12: EISAccess("conf/remotoUdesc/eis11.json")
-artifact art13: EISAccess("conf/remotoUdesc/eis12.json")
-artifact art14: EISAccess("conf/remotoUdesc/eis13.json")
-artifact art15: EISAccess("conf/remotoUdesc/eis14.json")
-artifact art16: EISAccess("conf/remotoUdesc/eis15.json")
-artifact art17: EISAccess("conf/remotoUdesc/eis16.json")
-artifact art18: EISAccess("conf/remotoUdesc/eis17.json")
-artifact art19: EISAccess("conf/remotoUdesc/eis18.json")
-artifact art20: EISAccess("conf/remotoUdesc/eis19.json")
-artifact art21: EISAccess("conf/remotoUdesc/eis20.json")
-artifact art22: EISAccess("conf/remotoUdesc/eis21.json")
+artifact art11: EISAccess("../../conf/remotoUdesc/eis10.json")
+artifact art12: EISAccess("../../conf/remotoUdesc/eis11.json")
+artifact art13: EISAccess("../../conf/remotoUdesc/eis12.json")
+artifact art14: EISAccess("../../conf/remotoUdesc/eis13.json")
+artifact art15: EISAccess("../../conf/remotoUdesc/eis14.json")
+artifact art16: EISAccess("../../conf/remotoUdesc/eis15.json")
+artifact art17: EISAccess("../../conf/remotoUdesc/eis16.json")
+artifact art18: EISAccess("../../conf/remotoUdesc/eis17.json")
+artifact art19: EISAccess("../../conf/remotoUdesc/eis18.json")
+artifact art20: EISAccess("../../conf/remotoUdesc/eis19.json")
+artifact art21: EISAccess("../../conf/remotoUdesc/eis20.json")
+artifact art22: EISAccess("../../conf/remotoUdesc/eis21.json")
 //artifact artpolygon: calculos.ARTGreyZone
 //artifact coogather: CoordinationArtifact
 }
