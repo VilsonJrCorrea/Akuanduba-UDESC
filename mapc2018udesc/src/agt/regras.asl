@@ -286,6 +286,14 @@ adicionariten( ITEM, QTD, [ item( ITEM, QTD2 ) | RESTO ], N_LISTA )
 		true
 	.
 
+
+betterWell(WELL)
+	:-
+		wellType(WELL,CUSTO1,EFIC1,_,_) & 
+		not (wellType(_,CUSTO2,EFIC2,_,_) &
+		(CUSTO1/EFIC1)<(CUSTO2/EFIC2))
+	.
+
 /************************************************************************** */
 lessqtt( LISTA, LABEL1 )
 	:-
@@ -308,3 +316,4 @@ lessqtt( LISTA, LABEL1 )
 //	:-
 //		LISTA=[] & item( LABEL1, _, roles( [] ), parts( [] ) )	&
 //		resourceNode( _,_,_,LABEL1).
+

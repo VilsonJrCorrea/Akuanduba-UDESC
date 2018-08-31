@@ -25,29 +25,38 @@
 			addPoint(X,Y);
 		}
 		buildPolygon;
-		//.print("Poligono pronto !!");
-		!buildWell( wellType0, AG, 1, 9 );
+//		.print("Poligono pronto !!");
+		?betterWell(WELL);
+		.send(akuanduba_udesc12,achieve,buildWell( WELL, AG, 1, 9 ));
+		!buildWell( WELL, AG, 2, 9 );
 	.
 
-
+	
++!test:true<-
+ 	.print("Recebi uma mensagem");
+ .
+		
 /**
  * Plano que deve ser chamado quando ser quer
- * construir o poï¿½o no canto superior esquerdo.
+ * construir o poco no canto superior esquerdo.
  */
+ 
 +!buildWell( WELLTYPE, AGENT, 1, PRIORITY )
 	:	maxLat( MLAT )
 	&	maxLon( MLON )
-	<-	!buildWell( WELLTYPE, AGENT, MLAT, MLON, PRIORITY );
+	<-	
+		!buildWell( WELLTYPE, AGENT, MLAT, MLON, PRIORITY );
 	.
 
 /**
  * Plano que deve ser chamado quando ser quer
- * construir o poï¿½o no canto superior direita.
+ * construir o poco no canto superior direita.
  */
 +!buildWell( WELLTYPE, AGENT, 2, PRIORITY )
 	:	maxLat( MLAT )
 	&	minLon( MLON )
-	<-	!buildWell( WELLTYPE, AGENT, MLAT, MLON, PRIORITY );
+	<-	
+		!buildWell( WELLTYPE, AGENT, MLAT, MLON, PRIORITY );
 	.
 
 /**
@@ -62,7 +71,7 @@
 
 /**
  * Plano que deve ser chamado quando ser quer
- * construir o poï¿½o no canto inferior esquerdo.
+ * construir o poco no canto inferior esquerdo.
  */
 +!buildWell( WELLTYPE, AGENT, 4, PRIORITY )
 	:	minLat( MLAT )
@@ -71,7 +80,7 @@
 	.
 
 /**
- * Plano que constroi a lista de passos para a construï¿½ï¿½o dos poï¿½os
+ * Plano que constroi a lista de passos para a construcao de pocos
  */
 +!buildWell( WELLTYPE, AGENT, LAT, LON, PRIORITY )
 	:	true
@@ -80,15 +89,13 @@
 		!getCoordenadasPonto( P, PLAT, PLON );
 		!qtdStep( WELLTYPE, AGENT, QTD );
 		!buildWellSteps( [goto(PLAT, PLON), build(WELLTYPE)], QTD, R );
-//		+steps( buildWell, R );
-//		-expectedplan( buildWell, _);
-//		+expectedplan( buildWell, R);
-//		+todo(buildWell, PRIORITY);
+		
 		+task(buildWell,PRIORITY,R,[]);
-		//.print( "buildWell pronto!!" );
+		!buildCareWell(WELLTYPE);
+//		.print( "buildWell pronto!!" );
 	.
 /**
- * Plano que pega a crenï¿½a point(lat,lon) fornecida pelo
+ * Plano que pega a crenca point(lat,lon) fornecida pelo
  * artefato ARTGreyZone e retorna os valores de suas coordenadas.
  */
 +!getCoordenadasPonto( point( PLAT, PLON ), LAT, LON )
@@ -98,8 +105,8 @@
 	.
 
 /**
- * Calcula quantos steps ï¿½ necessï¿½rio para construir um poï¿½o
- * levando em conta o skill do agente e o tipo de poï¿½o.
+ * Calcula quantos steps sao necessarios para construir um poco
+ * levando em conta o skill do agente e o tipo de pocos
  */
 +!qtdStep( WELLTYPE, AGENT, QTD )
 	:	wellType(WELLTYPE,_,_,MIN,MAX)
@@ -129,3 +136,20 @@
 	<-	R = LS;
 	.
 
+
++!buildCareWell (WELL): true
+	<-
+		+task(cuidaPoco,8.9,[noAction],[]);
+	.
+	
++entity(_,TEAMADV,_,_,_)[source(percept)]:
+			team(TEAM) &
+			TEAMADV \==TEAM &
+			task(cuidaPoco,_,_,_)&
+			doing(cuidaPoco)
+	<-
+		.print("Chegou alguem que não é do meu time");
+		
+		?repeat( dismantle, 1, [], R );
+		+task(desmantelar,9.1,R,[]);
+	.
