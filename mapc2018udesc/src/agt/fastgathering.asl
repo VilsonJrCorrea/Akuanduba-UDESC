@@ -5,7 +5,9 @@
  * 		.
  */
 
-!start.
-
-
-+!start : true <- .print("hello world.").
++!fastgathering
+	:
+		true
+	<-
+		true
+	.
