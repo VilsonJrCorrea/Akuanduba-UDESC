@@ -16,7 +16,6 @@
 				lastActionResult( successful )			& 
 				doing(LD)								& 
 				task(LD,P,[ACT|T],EXECUTEDPLAN)			&
-				//steps(LD,[ACT|T])						&
 				lastAction(RLA)							&
 				route(ROUTE)							&
 				RLA\==noAction							&
@@ -57,7 +56,6 @@
 				lastDoing(LD) 				& 
 				doing(D) 					& 
 				LD\==D 						& 
-				//steps(LD,L)		&
 				task(LD,P,PLAN,EXECUTEDPLAN)&
 				LD=exploration	
 	<-
@@ -65,7 +63,6 @@
 			?lon(LON);
 			-task(LD,P,PLAN,EXECUTEDPLAN);
 			+task(LD,P,[goto(LAT,LON)|PLAN],EXECUTEDPLAN);		
-			//+steps(LD, [goto(LAT,LON)|L]);
 	.
 	
 +!checkRollback:lastDoing(LD) 	& 
@@ -79,19 +76,12 @@
 +!checkRollback:lastDoing(LD) 				& 
 				doing(D) 					& 
 				LD\==D 						& 
-				//steps(LD,L)			&
 				task(LD,P,PLAN,EXECUTEDPLAN)&
 				LD\==exploration			&
 				PLAN=[HL|_]					&
 				not (HL=goto(_) |HL=goto(_,_)) 	
 	<-
-			//?expectedplan( LD, EXPP);
-			//.length(EXPP,QTDEXPP);
-			//.length(L,QTDL);
-			//?rollbackcutexpectedrule(EXPP, QTDEXPP-QTDL, LDONED);
-			//.reverse(LDONED,RLDONED);
 			?rollbackrule([goto(_),goto(_,_)], EXECUTEDPLAN, RACTION);			
-			//.print("rollback ",LD,": ",[RACTION| L]);									
 			-task(LD,P,PLAN,EXECUTEDPLAN);
 			+task(LD,P,[RACTION|PLAN],EXECUTEDPLAN);
 	.
@@ -112,8 +102,6 @@
 				Y\==X 				&
 				task(X,_,[ACT|T],_) &
 				task(Y,_,_,_) 		& 
-				//steps(X,[ACT|T])	& 
-				//steps(Y,L)		&
 				Y=exploration	
 	<-
 			-+lastDoing(X);
@@ -123,7 +111,6 @@
 @docrafthelp[atomic]
 +!do: 
 	doing(craftComParts) & 
-	//steps( craftComParts, [help(OTHERROLES)|T])
 	 task(craftComParts,P,[help(OTHERROLES)|T],EXECUTEDPLAN) 			
 	<-
 		.length(OTHERROLES,BARRIER);
@@ -131,22 +118,17 @@
 		!!supportCraft(OTHERROLES);
 		-task(craftComParts,P,[help(OTHERROLES)|T],EXECUTEDPLAN);
 		+task(craftComParts,P,T,EXECUTEDPLAN);
-//		-steps( craftComParts, _);
-//		+steps( craftComParts, T);
 		action(noAction);
 	.
 
 @docrafthelp1[atomic]
 +!do: 
 	doing(help)		& 
-	//steps( help, [ready_to_assist(WHONEED)|T])
 	task(help,P,[ready_to_assist(WHONEED)|T],EXECUTEDPLAN) 			
 	<-
 		.send(WHONEED, achieve, ready_to_assist);
 		-task(help,P,[ready_to_assist(WHONEED)|T],EXECUTEDPLAN);
 		+task(help,P,T,EXECUTEDPLAN);
-//		-steps( help, _);
-//		+steps( help, T);
 		action( noAction );
 	.
 
