@@ -91,6 +91,14 @@ nearstorage(Facility, X0, Y0):-
 					& math.sqrt((X1-X0)*(X1-X0)+(Y1-Y0)*(Y1-Y0)) > 
 					 math.sqrt((X2-X0)*(X2-X0)+(Y2-Y0)*(Y2-Y0))).
 
+//resourceNode(node6,48.8576,2.37992,item0)
+nearResourceNodeWithItem( X1,Y1, X0, Y0, ITEM ):- 	
+					resourceNode(RESOURCENODE,X1,Y1,ITEM) & not (resourceNode(_, X2, Y2, ITEM)
+					& math.sqrt((X1-X0)*(X1-X0)+(Y1-Y0)*(Y1-Y0)) > 
+					 math.sqrt((X2-X0)*(X2-X0)+(Y2-Y0)*(Y2-Y0))).
+
+					 
+					 
 centerWorkshopRule(WORKSHOP)
 	:-
 		centerStorage(STORAGE)
@@ -277,3 +285,26 @@ adicionariten( ITEM, QTD, [ item( ITEM, QTD2 ) | RESTO ], N_LISTA )
 	:-
 		true
 	.
+
+/************************************************************************** */
+lessqtt( LISTA, LABEL1 )
+	:-
+		item( LABEL1, _, roles( [] ), parts( [] ) )	&
+		resourceNode( _,_,_,LABEL1)					&
+		not .member( item( LABEL1, _, _ ), LISTA ).
+
+
+lessqtt( LISTA, LABEL1 )
+	:-
+	item( LABEL1, _, roles( [] ), parts( [] ) )				&
+	resourceNode( _,_,_,LABEL1)								&
+	.member( item( LABEL1, QTD1, _ ), LISTA )				&
+		not ( item( LABEL2, _, roles( [] ), parts( [] ) )	&
+			resourceNode( _,_,_,LABEL2)						&
+			.member( item( LABEL2, QTD2, _ ), LISTA ) 		&
+			QTD2 < QTD1).
+					
+//lessqtt( LISTA, LABEL1 )
+//	:-
+//		LISTA=[] & item( LABEL1, _, roles( [] ), parts( [] ) )	&
+//		resourceNode( _,_,_,LABEL1).
