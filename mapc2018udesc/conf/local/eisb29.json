@@ -8,6 +8,6 @@
 "notifications":false,
 "queued":false,
 "entities": [
-{"name":"connectionB30", "username": "agentB30", "password": "kF5pLs", "iilang":false, "xml":false}
+{"name":"connectionB30", "username": "agentB30", "password": "1", "iilang":false, "xml":false}
   ]
 }
