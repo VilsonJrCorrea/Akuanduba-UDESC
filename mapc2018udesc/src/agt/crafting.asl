@@ -16,6 +16,8 @@
 +!callCraftComParts :	role(ROLE,_,_,LOAD,_,_,_,_,_,_,_)  										&
 						ROLE\==drone 															& 
 						name(NAMEAGENT) 														&
+						not agentid("10")														&
+						not agentid("12")														&
 						numberTotalCraft(NTC)													&
 						.count(craftCommitment(_,_))<NTC	 									&
 						centerStorage(STORAGE) 													&	
@@ -30,6 +32,15 @@
 			!!craftComParts;
 		.
 
+-!callCraftComParts: true
+		<- !!callCraftComParts;	.		
+
++!callCraftComParts	:role(drone,_,_,_,_,_,_,_,_,_,_)		|
+				 	 (numberTotalCraft(NTC)					&			
+				 	 .count(craftCommitment(_,_))<NTC)	  
+		<- true; .
+
+
 +!upgradecapacity:	
 		role(ROLE,_,_,LOAD,_,_,_,_,_,_,_) 		&
 		name(NAMEAGENT) 			     		&
@@ -43,23 +54,11 @@
 		QTDUPGRADE = math.ceil((VOL-LOAD)/SIZE);
 		?repeat(upgrade(load) , QTDUPGRADE , [] , RUPGRADE );
 		SETUPLOAD = [goto(SHOP)|RUPGRADE ];
-//		+steps( upgradecapacity, SETUPLOAD);
-//		-expectedplan( upgradecapacity, _);
-//		+expectedplan( upgradecapacity, SETUPLOAD);
-//		+todo(upgradecapacity,8.5);
 		+task(upgradecapacity,8.5,SETUPLOAD,[]);	
 	.
 
 +!upgradecapacity:true
 	<- true.
-
-+!callCraftComParts	:role(drone,_,_,_,_,_,_,_,_,_,_)|
-				 	 (numberTotalCraft(NTC)					&			
-				 	 .count(craftCommitment(_,_))<NTC)	  
-		<- true; .
-
--!callCraftComParts: true
-		<- !!callCraftComParts;	.		
 
 +!craftComParts:	
 		role(ROLE,_,_,LOAD,_,_,_,_,_,_,_)  										&
@@ -77,13 +76,9 @@
 	   			  store(ITEM,1) ],
 				PLAN);
 
-		.print("Esperando ",ITEM);
-		.wait(	storage(STORAGE,_,_,_,_,LSTORAGE) &
-				minimumqtd(LPARTS,LSTORAGE) );
-//		+steps( craftComParts, PLAN);
-//		-expectedplan( craftComParts, _);
-//		+expectedplan( craftComParts, PLAN);
-//		+todo(craftComParts,8);	
+//		.print("Esperando ",ITEM);
+//		.wait(	storage(STORAGE,_,_,_,_,LSTORAGE) &
+//				minimumqtd(LPARTS,LSTORAGE) );
 		+task(craftComParts,8,PLAN,[]);
 	.
 
@@ -199,7 +194,7 @@
 
 
 //-todo(craftComParts,8):
--task(craftComParts,8,_,_):
+-task(craftComParts,8,[_|[]],_):
 	name(NAMEAGENT) 				& 
 	craftCommitment(NAMEAGENT,ITEM)
 <-

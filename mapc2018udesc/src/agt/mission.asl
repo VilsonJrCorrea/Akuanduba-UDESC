@@ -1,6 +1,6 @@
-              passosRetrieve( [], LISTA, RETORNO ) :- RETORNO = LISTA.
+passosRetrieve( [], LISTA, RETORNO ) :- RETORNO = LISTA.
 passosRetrieve( [required(ITEM, QTD)|T], LISTA, RETORNO ):-
-		repeat( retrieve(ITEM,1) , QTD , [] ,RR ) &
+repeat( retrieve(ITEM,1) , QTD , [] ,RR ) &
 		.concat(LISTA, RR, N_LISTA) &
 		passosRetrieve( T, N_LISTA, RETORNO).
 
@@ -13,6 +13,7 @@ passosRetrieve( [required(ITEM, QTD)|T], LISTA, RETORNO ):-
 	&	not craftCommitment( NAME, _ )
 	&	not missionCommitment( NAME, _ )
 	&	not doing(_)    
+	&	step(STP) & STP>5 
     &	role(ROLE,_,_,CAPACIDADE,_,_,_,_,_,_,_)
 	&	step( STEPATUAL )
 	&	centerStorage(STORAGE)
@@ -37,7 +38,6 @@ passosRetrieve( [required(ITEM, QTD)|T], LISTA, RETORNO ):-
 +!realizarMission( NOMEMISSION )
 	:
 		temTodosItens( ITENSJOB, ITENSSTORAGE )
-
 	<-	
 		.print( "Como tem todos os itens no storage, vou diretamente fazer a missão." );
 		.wait(centerStorage(STORAGE)
@@ -46,12 +46,6 @@ passosRetrieve( [required(ITEM, QTD)|T], LISTA, RETORNO ):-
 		?passosRetrieve( ITENS, [], RETORNO );
 		.concat( PASSOS_1, RETORNO, PASSOS_2);
 		.concat( PASSOS_2, [ goto( LOCALENTREGA ), deliver_job( NOMEMISSION )], PASSOS_3);
-
-//		-steps( mission, _ );
-//		+steps( mission, PASSOS_3 );
-//		-expectedplan( mission, _);
-//		+expectedplan( mission, PASSOS_3 );
-//		+todo( mission, 5 );
 	.
 
 @realizarMission[atomic]
@@ -77,20 +71,6 @@ passosRetrieve( [required(ITEM, QTD)|T], LISTA, RETORNO ):-
 	.
 
 
-//+storage(STORAGE,_,_,_,_,ITENSTORAGE)
-//	:
-//		centerStorage( STORAGE )
-//	&	name( NAME )
-//	&	jobCommitment( NAME, JOB )
-//	&	job( JOB,_,_,_,_,ITENSJOB)
-//	&	temTodosItens( ITENSJOB, ITENSTORAGE )
-//	<-
-//		.print( "Chegou a hora de fazer o job ", STORAGE, ": ", LISTITENS );
-//		-todo( job, _ );
-//		+todo( job, 9 );
-//	.
-
-
 +!testarMission
 	:
 		name( NAME )
@@ -113,16 +93,9 @@ passosRetrieve( [required(ITEM, QTD)|T], LISTA, RETORNO ):-
 	&	centerStorage( STORAGE )
 	<-
 		?buildStore( [], LISTAFINAL );
-		.print( LISTAFINAL );
-		
+//		.print( LISTAFINAL );
 		.concat( [goto(STORAGE)], LISTAFINAL, PASSOS );
-		
-		-steps( rollBackMission, _ );
-		+steps( rollBackMission, PASSOS );
-		-expectedplan( rollBackMission, _);
-		+expectedplan( rollBackMission, PASSOS_3 );
-		+todo( rollBackMission, 8.8 );
-		
+		+task(rollBackMission,8.8,PASSOS_3,[]);
 		.print( "Adicionei plano para devolver os itens na mission" );
 	.
 
@@ -133,7 +106,8 @@ passosRetrieve( [required(ITEM, QTD)|T], LISTA, RETORNO ):-
 		.print( "Nada para devolver" );
 	.
 
--todo(mission,_)
+//-task(job,_,[_|[]],_)
+-task(mission,_,[_|[]],_)
 	: 	jobCommitment(NAME,NOMEMISSION) &
 		name( NAME )				&
 		role(ROLE,_,_,_,_,_,_,_,_,_,_)
