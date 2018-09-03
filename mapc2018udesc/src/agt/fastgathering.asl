@@ -6,7 +6,7 @@
 		.wait( centerStorage( STORAGECENTRAL ));
 		.wait( storage( STORAGECENTRAL, _, _, _, _, LISTA));
 		.wait( name( NAME ));
-		.wait( role( _,_,_,CAPACIDADE,_,_,_,_,_,_,_) );
+		.wait( role( NAME,_,_,CAPACIDADE,_,_,_,_,_,_,_) );
 		.wait( resourceNode( _,_,_,_) );
 	
 		?lessqtt( LISTA, ITEM );
@@ -33,8 +33,7 @@
 
 -task( _,_,_,_ ) : not task( _,_,_,_ )
  		<-
-  			!fastgathering
-  			;
+  			!fastgathering;
  		.
  
  @teste[atomic]
