@@ -15,8 +15,8 @@ roundnumber(0).
 				!!sendcentrals;
 				!!exploration;
 				!!callcraftSemParts;
-				!!callCraftComPartsWithDelay;
-				!!fastgathering;												
+				!callCraftComPartsWithDelay;
+				!fastgathering;												
 		.
 
 +!agentnumber: true

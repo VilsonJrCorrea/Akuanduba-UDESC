@@ -38,7 +38,8 @@
 		+task(craftSemParts,8,PLAN,[]);
 	.
 
--todo(craftSemParts,8): true
+-task(craftSemParts,8,[_|[]],_): true
+//-todo(craftSemParts,8): true
 	<-
 		!!craftSemParts;
 	.	

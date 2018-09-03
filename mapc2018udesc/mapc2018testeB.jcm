@@ -1,139 +1,139 @@
 mas mapc2018udesc {
 
 //TIME B	
-agent agentb1: agentA.asl{ 
+agent agentb1: agentB.asl{ 
  join: envb
 focus: envb.artb1, coogather
 }
-agent agentb2: agentA.asl{ 
+agent agentb2: agentB.asl{ 
  join: envb
 focus: envb.artb2, coogather
 }
-agent agentb3: agentA.asl{ 
+agent agentb3: agentB.asl{ 
  join: envb
 focus: envb.artb3, coogather
 }
-agent agentb4: agentA.asl{ 
+agent agentb4: agentB.asl{ 
  join: envb
 focus: envb.artb4, coogather
 }
-agent agentb5: agentA.asl{ 
+agent agentb5: agentB.asl{ 
  join: envb
 focus: envb.artb5, coogather
 }
-agent agentb6: agentA.asl{ 
+agent agentb6: agentB.asl{ 
  join: envb
 focus: envb.artb6, coogather
 }
-agent agentb7: agentA.asl{ 
+agent agentb7: agentB.asl{ 
  join: envb
 focus: envb.artb7, coogather
 }
-agent agentb8: agentA.asl{ 
+agent agentb8: agentB.asl{ 
  join: envb
 focus: envb.artb8, coogather
 }
-agent agentb9: agentA.asl{ 
+agent agentb9: agentB.asl{ 
  join: envb
 focus: envb.artb9, coogather
 }
-agent agentb10: agentA.asl{ 
+agent agentb10: agentB.asl{ 
  join: envb
 focus: envb.artb10,envb.artpolygon, coogather
 }
-agent agentb11: agentA.asl{ 
+agent agentb11: agentB.asl{ 
  join: envb
 focus: envb.artb11, coogather
 }
-agent agentb12: agentA.asl{ 
+agent agentb12: agentB.asl{ 
  join: envb
 focus: envb.artb12, coogather
 }
-agent agentb13: agentA.asl{ 
+agent agentb13: agentB.asl{ 
  join: envb
 focus: envb.artb13, coogather
 }
-agent agentb14: agentA.asl{ 
+agent agentb14: agentB.asl{ 
  join: envb
 focus: envb.artb14, coogather
 }
-agent agentb15: agentA.asl{ 
+agent agentb15: agentB.asl{ 
  join: envb
 focus: envb.artb15, coogather
 }
-agent agentb16: agentA.asl{ 
+agent agentb16: agentB.asl{ 
  join: envb
 focus: envb.artb16, coogather
 }
-agent agentb17: agentA.asl{ 
+agent agentb17: agentB.asl{ 
  join: envb
 focus: envb.artb17, coogather
 }
-agent agentb18: agentA.asl{ 
+agent agentb18: agentB.asl{ 
  join: envb
 focus: envb.artb18, coogather
 }
-agent agentb19: agentA.asl{ 
+agent agentb19: agentB.asl{ 
  join: envb
 focus: envb.artb19, coogather
 }
-agent agentb20: agentA.asl{ 
+agent agentb20: agentB.asl{ 
  join: envb
 focus: envb.artb20, coogather
 }
-agent agentb21: agentA.asl{ 
+agent agentb21: agentB.asl{ 
  join: envb
 focus: envb.artb21, coogather
 }
-agent agentb22: agentA.asl{ 
+agent agentb22: agentB.asl{ 
  join: envb
 focus: envb.artb22, coogather
 }
-agent agentb23: agentA.asl{ 
+agent agentb23: agentB.asl{ 
  join: envb
 focus: envb.artb23, coogather
 }
-agent agentb24: agentA.asl{ 
+agent agentb24: agentB.asl{ 
  join: envb
 focus: envb.artb24, coogather
 }
-agent agentb25: agentA.asl{ 
+agent agentb25: agentB.asl{ 
  join: envb
 focus: envb.artb25, coogather
 }
-agent agentb26: agentA.asl{ 
+agent agentb26: agentB.asl{ 
  join: envb
 focus: envb.artb26, coogather
 }
-agent agentb27: agentA.asl{ 
+agent agentb27: agentB.asl{ 
  join: envb
 focus: envb.artb27, coogather
 }
-agent agentb28: agentA.asl{ 
+agent agentb28: agentB.asl{ 
  join: envb
 focus: envb.artb28, coogather
 }
-agent agentb29: agentA.asl{ 
+agent agentb29: agentB.asl{ 
  join: envb
 focus: envb.artb29, coogather
 }
-agent agentb30: agentA.asl{ 
+agent agentb30: agentB.asl{ 
  join: envb
 focus: envb.artb30, coogather
 }
-agent agentb31: agentA.asl{ 
+agent agentb31: agentB.asl{ 
  join: envb
 focus: envb.artb31, coogather
 }
-agent agentb32: agentA.asl{ 
+agent agentb32: agentB.asl{ 
  join: envb
 focus: envb.artb32, coogather
 }
-agent agentb33: agentA.asl{ 
+agent agentb33: agentB.asl{ 
  join: envb
 focus: envb.artb33, coogather
 }
-agent agentb34: agentA.asl{ 
+agent agentb34: agentB.asl{ 
  join: envb
 focus: envb.artb34, coogather
 }
@@ -141,40 +141,40 @@ focus: envb.artb34, coogather
 
 //workspace time B
 workspace envb {
-artifact artb1: EISAccess("conf/local/eisb0.json")
-artifact artb2: EISAccess("conf/local/eisb1.json")
-artifact artb3: EISAccess("conf/local/eisb2.json")
-artifact artb4: EISAccess("conf/local/eisb3.json")
-artifact artb5: EISAccess("conf/local/eisb4.json")
-artifact artb6: EISAccess("conf/local/eisb5.json")
-artifact artb7: EISAccess("conf/local/eisb6.json")
-artifact artb8: EISAccess("conf/local/eisb7.json")
-artifact artb9: EISAccess("conf/local/eisb8.json")
-artifact artb10: EISAccess("conf/local/eisb9.json")
-artifact artb11: EISAccess("conf/local/eisb10.json")
-artifact artb12: EISAccess("conf/local/eisb11.json")
-artifact artb13: EISAccess("conf/local/eisb12.json")
-artifact artb14: EISAccess("conf/local/eisb13.json")
-artifact artb15: EISAccess("conf/local/eisb14.json")
-artifact artb16: EISAccess("conf/local/eisb15.json")
-artifact artb17: EISAccess("conf/local/eisb16.json")
-artifact artb18: EISAccess("conf/local/eisb17.json")
-artifact artb19: EISAccess("conf/local/eisb18.json")
-artifact artb20: EISAccess("conf/local/eisb19.json")
-artifact artb21: EISAccess("conf/local/eisb20.json")
-artifact artb22: EISAccess("conf/local/eisb21.json")
-artifact artb23: EISAccess("conf/local/eisb22.json")
-artifact artb24: EISAccess("conf/local/eisb23.json")
-artifact artb25: EISAccess("conf/local/eisb24.json")
-artifact artb26: EISAccess("conf/local/eisb25.json")
-artifact artb27: EISAccess("conf/local/eisb26.json")
-artifact artb28: EISAccess("conf/local/eisb27.json")
-artifact artb29: EISAccess("conf/local/eisb28.json")
-artifact artb30: EISAccess("conf/local/eisb29.json")
-artifact artb31: EISAccess("conf/local/eisb30.json")
-artifact artb32: EISAccess("conf/local/eisb31.json")
-artifact artb33: EISAccess("conf/local/eisb32.json")
-artifact artb34: EISAccess("conf/local/eisb33.json")
+artifact artb1: EISAccess("conf/remotoUdesc/eisb0.json")
+artifact artb2: EISAccess("conf/remotoUdesc/eisb1.json")
+artifact artb3: EISAccess("conf/remotoUdesc/eisb2.json")
+artifact artb4: EISAccess("conf/remotoUdesc/eisb3.json")
+artifact artb5: EISAccess("conf/remotoUdesc/eisb4.json")
+artifact artb6: EISAccess("conf/remotoUdesc/eisb5.json")
+artifact artb7: EISAccess("conf/remotoUdesc/eisb6.json")
+artifact artb8: EISAccess("conf/remotoUdesc/eisb7.json")
+artifact artb9: EISAccess("conf/remotoUdesc/eisb8.json")
+artifact artb10: EISAccess("conf/remotoUdesc/eisb9.json")
+artifact artb11: EISAccess("conf/remotoUdesc/eisb10.json")
+artifact artb12: EISAccess("conf/remotoUdesc/eisb11.json")
+artifact artb13: EISAccess("conf/remotoUdesc/eisb12.json")
+artifact artb14: EISAccess("conf/remotoUdesc/eisb13.json")
+artifact artb15: EISAccess("conf/remotoUdesc/eisb14.json")
+artifact artb16: EISAccess("conf/remotoUdesc/eisb15.json")
+artifact artb17: EISAccess("conf/remotoUdesc/eisb16.json")
+artifact artb18: EISAccess("conf/remotoUdesc/eisb17.json")
+artifact artb19: EISAccess("conf/remotoUdesc/eisb18.json")
+artifact artb20: EISAccess("conf/remotoUdesc/eisb19.json")
+artifact artb21: EISAccess("conf/remotoUdesc/eisb20.json")
+artifact artb22: EISAccess("conf/remotoUdesc/eisb21.json")
+artifact artb23: EISAccess("conf/remotoUdesc/eisb22.json")
+artifact artb24: EISAccess("conf/remotoUdesc/eisb23.json")
+artifact artb25: EISAccess("conf/remotoUdesc/eisb24.json")
+artifact artb26: EISAccess("conf/remotoUdesc/eisb25.json")
+artifact artb27: EISAccess("conf/remotoUdesc/eisb26.json")
+artifact artb28: EISAccess("conf/remotoUdesc/eisb27.json")
+artifact artb29: EISAccess("conf/remotoUdesc/eisb28.json")
+artifact artb30: EISAccess("conf/remotoUdesc/eisb29.json")
+artifact artb31: EISAccess("conf/remotoUdesc/eisb30.json")
+artifact artb32: EISAccess("conf/remotoUdesc/eisb31.json")
+artifact artb33: EISAccess("conf/remotoUdesc/eisb32.json")
+artifact artb34: EISAccess("conf/remotoUdesc/eisb33.json")
 artifact artpolygon: calculos.ARTGreyZone
 artifact coogather: CoordinationArtifact
 }

@@ -1,7 +1,10 @@
-
 +!fastgathering
 	:
-		true	
+	name( NAME )
+	&	not jobCommitment(NAME,_)
+	&	not gatherCommitment( NAME, _ )
+	&	not craftCommitment( NAME, _ )
+	&	not missionCommitment( NAME, _ )	
 	<-
 		.wait( centerStorage( STORAGECENTRAL ));
 		.wait( storage( STORAGECENTRAL, _, _, _, _, LISTA));
@@ -25,20 +28,10 @@
 		+task(fastgathering,4,MAIS_PASSOS,[]);
 	.
 
-//-!fastgathering : true
-//	<- 
-//		.wait(100);
-//		!!fastgathering;
-//	.
++!fastgathering <- true.
 
--task( _,_,_,_ ) : not task( _,_,_,_ )
+-task( _,_,[_|[]],_ ) : not task( _,_,_,_ )
  		<-
   			!fastgathering;
  		.
  
- @teste[atomic]
- -doing(fastgathering): 
- 	true
-	<-
-		!rollBackJob;		
-	.
