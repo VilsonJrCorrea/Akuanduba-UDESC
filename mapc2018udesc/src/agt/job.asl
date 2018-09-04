@@ -12,6 +12,7 @@ passosRetrieve( [required(ITEM, QTD)|T], LISTA, RETORNO ):-
 	&	not gatherCommitment( NAME, _ )
 	&	not craftCommitment( NAME, _ )
 	&	not missionCommitment( NAME, _ )
+	& 	not (agentid("10") | agentid("12"))
 	&	step(STP) & STP>5   
     &	role(ROLE,_,_,CAPACIDADE,_,_,_,_,_,_,_)
 	&	step( STEPATUAL )
@@ -26,9 +27,10 @@ passosRetrieve( [required(ITEM, QTD)|T], LISTA, RETORNO ):-
  
 +dojob(NOMEJOB)
 	:
-		role(ROLE,_,_,_,_,_,_,_,_,_,_)
+		role(ROLE,_,_,_,_,_,_,_,_,_,_) 
     <-
-    	.print( "Eu, um(a) ", ROLE, " vou fazer o job ", NOMEJOB );
+    	?agentid(ID);
+    	.print( "Eu, um(a) ", " id ",ID ," ", ROLE, " vou fazer o job ", NOMEJOB );
     	!!realizarJob( NOMEJOB );
 	.
 

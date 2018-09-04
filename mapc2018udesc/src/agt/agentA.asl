@@ -7,7 +7,7 @@
 { include("crafting.asl") }
 { include("charging.asl") }		
 { include("regras.asl") }
-//{ include("job.asl") }
+{ include("job.asl") }
 //{ include("mission.asl") }
 { include("construcao_pocos.asl")}
 { include("restartround.asl")}
@@ -152,7 +152,7 @@
 @step[atomic]	
 +step( S ): true
 	<-
-//		!testarTrabalho;
+		!testarTrabalho;
 //		!testarMission;
 		!consumestep;
 		!whattodo;
