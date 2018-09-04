@@ -31,11 +31,6 @@
 		!buildWell( WELL, AG, 2, 9 );
 	.
 
-	
-+!test:true<-
- 	.print("Recebi uma mensagem");
- .
-		
 /**
  * Plano que deve ser chamado quando ser quer
  * construir o poco no canto superior esquerdo.
@@ -110,14 +105,15 @@
  */
 +!qtdStep( WELLTYPE, AGENT, QTD )
 	:	wellType(WELLTYPE,_,_,MIN,MAX)
-	&	role(_,_,_,_,_,MINSKILL,MAXSKILL,_,_,_,_)
-	<-	QTD = math.round( ( MAX-MIN )/MINSKILL )+1;
+	&	role(_,_,CURRENTSKILL,_,_,_,_,_,_,_,_)
+	<-	
+		QTD = math.ceil(( MAX-MIN )/CURRENTSKILL );
 		//.print("WellType: ", WELLTYPE, ", MIN: ", MIN, ", MAX: ", MAX, ", QTD:", QTD, ", MINSKILL: ", MINSKILL);
 	.
 
 /**
- * Constroi uma lista com a instruï¿½ï¿½o build.
- * o tamanho dessa lista ï¿½ o nï¿½mero de vezes que o agente
+ * Constroi uma lista com a instrucao build.
+ * o tamanho dessa lista com o numero de vezes que o agente
  * tem que dar o build com construir o poï¿½o.
  * Esse plano utiliza a recursividade. Ver plano abaixo.
  */
@@ -133,7 +129,8 @@
  */
 +!buildWellSteps( LS, 0, R )
 	:	true
-	<-	R = LS;
+	<-
+		R = LS;
 	.
 
 
@@ -142,14 +139,22 @@
 		+task(cuidaPoco,8.9,[noAction],[]);
 	.
 	
+//Quando o inimigo chegar perto destruir o poco
 +entity(_,TEAMADV,_,_,_)[source(percept)]:
-			team(TEAM) &
-			TEAMADV \==TEAM &
-			task(cuidaPoco,_,_,_)&
-			doing(cuidaPoco)
+			team(TEAM) 						&
+			TEAMADV \==TEAM 				&
+			(agentid("10")|agentid("12"))	&
+			task(cuidaPoco,_,_,_)			&
+			doing(cuidaPoco) 				&
+			not task(desmantelar,_,_,_)		&
+			name(AGENT)						&			
+			betterWell(WELLTYPE) 			&
+			wellType(WELLTYPE,_,_,_,INTEGRIDADE)   & 
+			role(_,_,CURRENTKILL,_,_,_,_,_,_,_,_)
 	<-
-		.print("Chegou alguem que não é do meu time");
-		
-		?repeat( dismantle, 1, [], R );
+		QTD = math.ceil( INTEGRIDADE/CURRENTKILL );
+		?repeat( dismantle, QTD, [], R );
+//		.print("Montou lista");
+		-task(cuidaPoco,_,_,_);
 		+task(desmantelar,9.1,R,[]);
 	.
