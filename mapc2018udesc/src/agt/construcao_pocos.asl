@@ -32,10 +32,6 @@
 	.
 
 	
-+!test:true<-
- 	.print("Recebi uma mensagem");
- .
-		
 /**
  * Plano que deve ser chamado quando ser quer
  * construir o poco no canto superior esquerdo.
@@ -141,15 +137,15 @@
 	<-
 		+task(cuidaPoco,8.9,[noAction],[]);
 	.
-	
-+entity(_,TEAMADV,_,_,_)[source(percept)]:
-			team(TEAM) &
-			TEAMADV \==TEAM &
-			task(cuidaPoco,_,_,_)&
-			doing(cuidaPoco)
-	<-
-		.print("Chegou alguem que não é do meu time");
-		
-		?repeat( dismantle, 1, [], R );
-		+task(desmantelar,9.1,R,[]);
-	.
+//	
+//+entity(_,TEAMADV,_,_,_)[source(percept)]:
+//			team(TEAM) &
+//			TEAMADV \==TEAM &
+//			task(cuidaPoco,_,_,_)&
+//			doing(cuidaPoco)
+//	<-
+//		.print("Chegou alguem que não é do meu time");
+//		
+//		?repeat( dismantle, 1, [], R );
+//		+task(desmantelar,9.1,R,[]);
+//	.
