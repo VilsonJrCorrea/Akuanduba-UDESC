@@ -155,7 +155,19 @@
 	<-
 		QTD = math.ceil( INTEGRIDADE/CURRENTKILL );
 		?repeat( dismantle, QTD, [], R );
-//		.print("Montou lista");
 		-task(cuidaPoco,_,_,_);
 		+task(desmantelar,9.1,R,[]);
 	.
+
++!testDismantle :   task(desmantelar,_,_,_) & 
+					(agentid("10")|agentid("12")) &
+					betterWell(WELLTYPE) &
+					(wellType(WELLTYPE,_,_,_,_)[source(percept)])
+	<- 
+		true;
+	.	
+
+-!testDismantle : true  
+	<- 	
+		-task(desmantelar,_,_,_);
+	.	
