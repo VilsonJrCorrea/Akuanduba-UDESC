@@ -12,7 +12,9 @@
 		.wait( name( NAME ));
 		.wait( role( NAME,_,_,CAPACIDADE,_,_,_,_,_,_,_) );
 		.wait( resourceNode( _,_,_,_) );
-	
+		
+		!!dropAll;
+		
 		?lessqtt( LISTA, ITEM );
 		?item( ITEM, VOL_ITEM, _, _ );
 		?lat(Y0);

@@ -9,8 +9,9 @@ roundnumber(0).
 				.wait(role(VEHICLE,_,_,_,_,_,_,_,_,_,_) &
 					name(AGENT));					
 				.broadcast(tell,partners(VEHICLE,AGENT));		
-
+			
 				!agentnumber;
+				//!huntwell;
 				!!buildPoligon;
 				!!sendcentrals;
 				!!exploration;

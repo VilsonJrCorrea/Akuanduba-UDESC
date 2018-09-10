@@ -31,6 +31,7 @@ passosRetrieve( [required(ITEM, QTD)|T], LISTA, RETORNO ):-
     <-
     	?agentid(ID);
     	.print( "Eu, um(a) ", " id ",ID ," ", ROLE, " vou fazer o job ", NOMEJOB );
+    	!!dropAll;
     	!!realizarJob( NOMEJOB );
 	.
 
@@ -40,8 +41,8 @@ passosRetrieve( [required(ITEM, QTD)|T], LISTA, RETORNO ):-
 		true
 
 	<-	
-		.wait(centerStorage(STORAGE)
-	&	job(NOMEJOB,LOCALENTREGA,REWARD,STEPINICIAL,STEPFINAL,ITENS));
+		?centerStorage(STORAGE);
+		?job(NOMEJOB,LOCALENTREGA,REWARD,STEPINICIAL,STEPFINAL,ITENS);
 		PASSOS_1 = [ goto( STORAGE ) ];
 		?passosRetrieve( ITENS, [], RETORNO );
 		.concat( PASSOS_1, RETORNO, PASSOS_2);
@@ -59,27 +60,12 @@ passosRetrieve( [required(ITEM, QTD)|T], LISTA, RETORNO ):-
 	&	step( STEP )
 	<-
 		.print( STEP, "-Acabou o tempo para eu fazer o job ", JOB );
-		!rollBackJob;
+		//!rollBackJob;
 		removeIntentionToDoJob( NAME, JOB );
 		-task(job,_,_,_);
 	.
 
-
 +!testarTrabalho<-true.
-
-//@job[atomic]
-+!rollBackJob
-	:
-		hasItem( _, _)
-	&	centerStorage( STORAGE )
-	<-
-		?buildStore( [], LISTAFINAL );
-		.concat( [goto(STORAGE)], LISTAFINAL, PASSOS );
-		+task(rollBackJob,8.8,PASSOS,[]);
-		.print( "Adicionei plano para devolver os itens no job" );
-	.
-
-+!rollBackJob <-true.
 
 -task(job,_,[_|[]],_)
 	: 	jobCommitment(NAME,NOMEJOB) &

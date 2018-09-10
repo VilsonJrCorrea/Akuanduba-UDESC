@@ -31,8 +31,8 @@ highlevel(ITEM,LEVEL):- item(ITEM,_,_,_)&
 		?highlevel(_,HL);
 		for (item(ITEM,_,_,parts(P)) & not P=[]) {
 			?dependencelevel(ITEM,LEVEL);
-			+numberAgRequired(ITEM,HL-LEVEL+1);
-			.broadcast(tell,numberAgRequired(ITEM,HL-LEVEL+1));
+			+numberAgRequired(ITEM,(HL-LEVEL+1)*(HL-LEVEL+1));
+			.broadcast(tell,numberAgRequired(ITEM,(HL-LEVEL+1)*(HL-LEVEL+1)));
 		}
 		.findall(X,numberAgRequired(_,X),LTMP);
 		+numberTotalCraft(math.sum(LTMP));

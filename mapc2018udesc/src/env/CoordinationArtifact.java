@@ -16,6 +16,7 @@ public class CoordinationArtifact extends Artifact {
 	private HashMap<String, ObsProperty> tarefas = new HashMap<>();
 	private ArrayList<CraftTask> craftTask = new ArrayList<CraftTask>();
 	private HashMap<AgentId, double[]> positions = new HashMap<>();
+	private HashMap<String, String> agentjob = new HashMap<>();
 	private HashMap<String, ObsProperty> job = new HashMap<>();
 	private HashMap<String, ObsProperty> mission = new HashMap<>();
 	int round = -1;
@@ -53,12 +54,14 @@ public class CoordinationArtifact extends Artifact {
 	// -----------------
 	@OPERATION
 	void addIntentionToDoJob(String agent, String job) {
-		if (!this.job.containsKey(job)) {
+		
+		if (!this.job.containsKey(job) && !this.agentjob.containsKey(agent) ) {
 			try {
 				signal(this.getCurrentOpAgentId(), "dojob", ASSyntax.parseLiteral(job));
 				this.job.put(job, defineObsProperty("jobCommitment",  
 													ASSyntax.parseLiteral(agent),
 													ASSyntax.parseLiteral(job)));
+				this.agentjob.put(agent,agent);
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
@@ -76,6 +79,7 @@ public class CoordinationArtifact extends Artifact {
 				e.printStackTrace();
 			}
 			this.job.remove(job);
+			this.agentjob.remove(agent);
 		}
 	}
 	
