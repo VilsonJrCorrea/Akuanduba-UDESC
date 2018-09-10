@@ -7,13 +7,12 @@
 	&	not missionCommitment( NAME, _ )	
 	&	not (agentid("10") | agentid("12")) 
 	<-
-		.wait( centerStorage( STORAGECENTRAL ));
-		.wait( storage( STORAGECENTRAL, _, _, _, _, LISTA));
-		.wait( name( NAME ));
-		.wait( role( NAME,_,_,CAPACIDADE,_,_,_,_,_,_,_) );
-		.wait( resourceNode( _,_,_,_) );
+		?centerStorage( STORAGECENTRAL );
+		?storage( STORAGECENTRAL, _, _, _, _, LISTA);
+		?role( _,_,_,CAPACIDADE,_,_,_,_,_,_,_) ;
+		?resourceNode( _,_,_,_) ;
 		
-		!!dropAll;
+		//!!dropAll;
 		
 		?lessqtt( LISTA, ITEM );
 		?item( ITEM, VOL_ITEM, _, _ );
@@ -32,6 +31,8 @@
 	.
 
 +!fastgathering <- true.
+
+//-!fastgathering <- true.
 
 -task( _,_,[_|[]],_ ) : not task( _,_,_,_ )
  		<-

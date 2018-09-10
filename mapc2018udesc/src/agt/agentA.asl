@@ -3,8 +3,8 @@
 { include("exploration.asl") }
 { include("gathering.asl") }
 { include("fastgathering.asl") }
-{ include("crafting2.asl") }
-//{ include("crafting.asl") }
+//{ include("crafting2.asl") }
+{ include("crafting.asl") }
 { include("charging.asl") }		
 { include("regras.asl") }
 //{ include("job.asl") }
