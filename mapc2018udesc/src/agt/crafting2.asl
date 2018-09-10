@@ -238,8 +238,9 @@ highlevel(ITEM,LEVEL):- item(ITEM,_,_,_)&
 		//.print("removeu o waiting");
 		-waiting(craftComParts,0);
 	.
-
--task(craftComParts,8,_,_):
+	
+//-task(job,_,[_|[]],_)
+-task(craftComParts,_,[_|[]],_):
 	name(NAMEAGENT) 				& 
 	craftCommitment(NAMEAGENT,ITEM)
 <-
