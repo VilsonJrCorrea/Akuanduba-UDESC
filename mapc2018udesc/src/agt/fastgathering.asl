@@ -5,6 +5,7 @@
 	&	not gatherCommitment( NAME, _ )
 	&	not craftCommitment( NAME, _ )
 	&	not missionCommitment( NAME, _ )	
+	&	not (agentid("10") | agentid("12")) 
 	<-
 		.wait( centerStorage( STORAGECENTRAL ));
 		.wait( storage( STORAGECENTRAL, _, _, _, _, LISTA));

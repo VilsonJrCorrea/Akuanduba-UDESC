@@ -152,7 +152,8 @@
 @step[atomic]	
 +step( S ): true
 	<-
-		!testarTrabalho;
+		!testDismantle;
+//		!testarTrabalho;
 //		!testarMission;
 		!consumestep;
 		!whattodo;

@@ -13,16 +13,15 @@
 		!!callCraftComParts;
 	.
 
-+!callCraftComParts :	role(ROLE,_,_,LOAD,_,_,_,_,_,_,_)  										&
-						ROLE\==drone 															& 
-						name(NAMEAGENT) 														&
-						not agentid("10")														&
-						not agentid("12")														&
-						numberTotalCraft(NTC)													&
-						.count(craftCommitment(_,_))<NTC	 									&
-						centerStorage(STORAGE) 													&	
-						centerWorkshop(WORKSHOP) 												&
-						not craftCommitment(NAMEAGENT,_) 										&
++!callCraftComParts :	role(ROLE,_,_,LOAD,_,_,_,_,_,_,_)  	&
+						ROLE\==drone 						& 
+						name(NAMEAGENT)						&
+						not (agentid("10") | agentid("12")) &
+						numberTotalCraft(NTC)				&
+						.count(craftCommitment(_,_))<NTC	&
+						centerStorage(STORAGE) 				&	
+						centerWorkshop(WORKSHOP) 			&
+						not craftCommitment(NAMEAGENT,_) 	&
 						not gatherCommitment(NAMEAGENT,_)
 		<-
 			?gocraft(ITEM,ROLE,QTD);
