@@ -12,6 +12,7 @@
 { include("construcao_pocos.asl")}
 { include("restartround.asl")}
 //{ include("huntWells.asl") }
+{ include("dropall.asl") }
 
 @consume_steps[atomic]
 +!consumestep: 
