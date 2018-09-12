@@ -33,12 +33,12 @@ repeat( retrieve(ITEM,1) , QTD , [] ,RR ) &
     	.print( "Eu, um(a) ", ROLE, " vou fazer a mission ", NOMEMISSION );
     	!!realizarMission( NOMEMISSION );
 	.
-//temTodosItens( ITENSJOB, ITENSSTORAGE )
 
 @realizarMissionSimples[atomic]
 +!realizarMission( NOMEMISSION )
 	:
-		temTodosItens( ITENSJOB, ITENSSTORAGE )
+//		mission(job3,storage2,407,21,99,407,407,0,[required(item12,1),required(item13,1),required(item6,1),required(item9,1)])
+		procurarTodosItens( ITENSJOB, ITENSSTORAGE )
 	<-	
 		.print( "Como tem todos os itens no storage, vou diretamente fazer a missão." );
 		.wait(centerStorage(STORAGE)
