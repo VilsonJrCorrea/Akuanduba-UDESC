@@ -21,7 +21,7 @@ highlevel(ITEM,LEVEL):- item(ITEM,_,_,_)&
      			 dependencelevel(IT,YL)	&
      			 YL>LEVEL).
 
-+!callCraftComPartsWithDelay: agentid("15") 
++!callCraftComPartsWithDelay: agentid("15")
 	<-
 		.wait(step(1));
 		for (item(ITEM,_,_,parts(P)) & not P=[]) {
@@ -29,20 +29,19 @@ highlevel(ITEM,LEVEL):- item(ITEM,_,_,_)&
 			+dependencelevel(ITEM,LEVEL);
 		}
 		?highlevel(_,HL);
-		for (item(ITEM,_,_,parts(P)) & not P=[]) {
+		for (item(ITEM,_,_,parts(P)) & P\==[]) {
 			?dependencelevel(ITEM,LEVEL);
-			+numberAgRequired(ITEM,HL-LEVEL+1);
-			.broadcast(tell,numberAgRequired(ITEM,HL-LEVEL+1));
-		}
-		.findall(X,numberAgRequired(_,X),LTMP);
-		+numberTotalCraft(math.sum(LTMP));
-		
-		!!callCraftComParts;
+			.count(item(_,_,_,parts(PARTS)) & .member(ITEM,PARTS),QTD);
+			+numberAgRequired(ITEM,QTD+1+math.ceil( (HL-LEVEL)/ (HL/2) ) );
+			.broadcast(tell,numberAgRequired(ITEM,QTD+1+math.ceil( (HL-LEVEL)/ (HL/2) )));
+		}			
+		!!initCraftComParts;
 	.
 
 +!callCraftComPartsWithDelay: not agentid("15")
 	<- true.
 //@initccp[atomic]	
+
 +numberAgRequired(_,_)[source(S)]: not S=self &
 				.count(item(_,_,_,parts(P)) & not P=[]) = 
 			  	.count(numberAgRequired(_,_))
@@ -56,15 +55,17 @@ highlevel(ITEM,LEVEL):- item(ITEM,_,_,_)&
 		+numberTotalCraft(math.sum(LTMP));		
 		!!callCraftComParts;
 	.
+	
 
-+!callCraftComParts :	role(ROLE,_,_,LOAD,_,_,_,_,_,_,_)  										&
-						ROLE\==drone 															& 
-						name(NAMEAGENT) 														&
-						numberTotalCraft(NTC)													&
-						.count(craftCommitment(_,_))<NTC	 									&
-						centerStorage(STORAGE) 													&	
-						centerWorkshop(WORKSHOP) 												&
-						not craftCommitment(NAMEAGENT,_) 										&
++!callCraftComParts :	role(ROLE,_,_,LOAD,_,_,_,_,_,_,_)  	&
+						ROLE\==drone 						& 
+						name(NAMEAGENT)						&
+						not (agentid("10") | agentid("12")) &
+						numberTotalCraft(NTC)				&
+						.count(craftCommitment(_,_))<NTC	&
+						centerStorage(STORAGE) 				&	
+						centerWorkshop(WORKSHOP) 			&
+						not craftCommitment(NAMEAGENT,_) 	&
 						not gatherCommitment(NAMEAGENT,_)
 		<-
 			?gocraft(ITEM,ROLE,QTD);
@@ -73,6 +74,15 @@ highlevel(ITEM,LEVEL):- item(ITEM,_,_,_)&
 			!!upgradecapacity;
 			!!craftComParts;
 		.
+
+-!callCraftComParts: true
+		<- !!callCraftComParts;	.		
+
++!callCraftComParts	:role(drone,_,_,_,_,_,_,_,_,_,_)		|
+				 	 (numberTotalCraft(NTC)					&			
+				 	 .count(craftCommitment(_,_))<NTC)	  
+		<- true; .
+
 
 +!upgradecapacity:	
 		role(ROLE,_,_,LOAD,_,_,_,_,_,_,_) 		&
@@ -87,25 +97,13 @@ highlevel(ITEM,LEVEL):- item(ITEM,_,_,_)&
 		QTDUPGRADE = math.ceil((VOL-LOAD)/SIZE);
 		?repeat(upgrade(load) , QTDUPGRADE , [] , RUPGRADE );
 		SETUPLOAD = [goto(SHOP)|RUPGRADE ];
-//		+steps( upgradecapacity, SETUPLOAD);
-//		-expectedplan( upgradecapacity, _);
-//		+expectedplan( upgradecapacity, SETUPLOAD);
-//		+todo(upgradecapacity,8.5);
 		+task(upgradecapacity,8.5,SETUPLOAD,[]);	
 	.
 
 +!upgradecapacity:true
 	<- true.
 
-+!callCraftComParts	:role(drone,_,_,_,_,_,_,_,_,_,_)|
-				 	 (numberTotalCraft(NTC)					&			
-				 	 .count(craftCommitment(_,_))<NTC)	  
-		<- true; .
-
--!callCraftComParts: true
-		<- !!callCraftComParts;	.	
-			
-//@craftComPart[atomic]
+@craftComparts[atomic]
 +!craftComParts:	
 		role(ROLE,_,_,LOAD,_,_,_,_,_,_,_)  										&
 		name(NAMEAGENT) 														&
@@ -121,13 +119,11 @@ highlevel(ITEM,LEVEL):- item(ITEM,_,_,_)&
 				  assemble(ITEM), goto(STORAGE),
 	   			  store(ITEM,1) ],
 				PLAN);
-//		.wait(	storage(storage5,_,_,_,_,LSTORAGE) &
+
+//		.print("Esperando ",ITEM);
+//		.wait(	storage(STORAGE,_,_,_,_,LSTORAGE) &
 //				minimumqtd(LPARTS,LSTORAGE) );
-//		+steps( craftComParts, PLAN);
-//		-expectedplan( craftComParts, _);
-//		+expectedplan( craftComParts, PLAN);
-//		+todo(craftComParts,8);
-		+task(craftComParts,8,PLAN,[]);		
+		+task(craftComParts,8,PLAN,[]);
 	.
 
 +!supportCraft(OTHERROLES):
@@ -153,6 +149,7 @@ highlevel(ITEM,LEVEL):- item(ITEM,_,_,_)&
 
 -!selectiveBroadcast(OTHERROLES,PID,WORKSHOP): true
 	<-
+		//.print("PAREI DE PEDIR ->",help(WORKSHOP, PID));
 		true;
 	.
 		
@@ -217,7 +214,7 @@ highlevel(ITEM,LEVEL):- item(ITEM,_,_,_)&
 //		+todo(help, 8.2);//6
 		+task(help,8.2,[goto(WORKSHOP), 
 						ready_to_assist(QUEMPRECISA), 
-						assist_assemble(QUEMPRECISA)],[]);		
+						assist_assemble(QUEMPRECISA)],[]);
 	.
 
 @help4[atomic]
@@ -238,9 +235,10 @@ highlevel(ITEM,LEVEL):- item(ITEM,_,_,_)&
 		//.print("removeu o waiting");
 		-waiting(craftComParts,0);
 	.
-	
-//-task(job,_,[_|[]],_)
--task(craftComParts,_,[_|[]],_):
+
+
+//-todo(craftComParts,8):
+-task(craftComParts,8,[_|[]],_):
 	name(NAMEAGENT) 				& 
 	craftCommitment(NAMEAGENT,ITEM)
 <-
