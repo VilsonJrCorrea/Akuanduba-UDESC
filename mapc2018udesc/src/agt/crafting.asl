@@ -16,7 +16,7 @@
 +!callCraftComParts :	role(ROLE,_,_,LOAD,_,_,_,_,_,_,_)  	&
 						ROLE\==drone 						& 
 						name(NAMEAGENT)						&
-						not (agentid("10") | agentid("12")) &
+						not (agentid("10") | agentid("11")| agentid("12")) &
 						numberTotalCraft(NTC)				&
 						.count(craftCommitment(_,_))<NTC	&
 						centerStorage(STORAGE) 				&	

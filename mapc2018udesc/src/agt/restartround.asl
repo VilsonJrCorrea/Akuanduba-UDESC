@@ -11,7 +11,6 @@ roundnumber(0).
 				.broadcast(tell,partners(VEHICLE,AGENT));		
 			
 				!agentnumber;
-				//!huntwell;
 				!!buildPoligon;
 				!!sendcentrals;
 				!!exploration;

@@ -12,7 +12,7 @@ passosRetrieve( [required(ITEM, QTD)|T], LISTA, RETORNO ):-
 	&	not gatherCommitment( NAME, _ )
 	&	not craftCommitment( NAME, _ )
 	&	not missionCommitment( NAME, _ )
-	& 	not (agentid("10") | agentid("12"))
+	& 	not (agentid("10") | agentid("11")| agentid("12"))
 	&	step(STP) & STP>5   
     &	role(ROLE,_,_,CAPACIDADE,_,_,_,_,_,_,_)
 	&	step( STEPATUAL )
