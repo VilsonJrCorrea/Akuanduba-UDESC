@@ -3,9 +3,9 @@
 { include("exploration.asl") }
 { include("gathering.asl") }
 { include("fastgathering.asl") }
-//{ include("crafting.asl") }
+{ include("crafting1.asl") }
 //{ include("crafting2.asl") }
-{ include("crafting3.asl") }
+//{ include("crafting3.asl") }
 { include("charging.asl") }		
 { include("regras.asl") }
 //{ include("job.asl") }
@@ -14,6 +14,7 @@
 { include("restartround.asl")}
 { include("huntWell.asl") }
 { include("dropall.asl") }
+{ include("areacritica.asl") }
 
 @consume_steps[atomic]
 +!consumestep: 

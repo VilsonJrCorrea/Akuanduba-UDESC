@@ -97,7 +97,7 @@ highlevel(ITEM,LEVEL):- item(ITEM,_,_,_)&
 		QTDUPGRADE = math.ceil((VOL-LOAD)/SIZE);
 		?repeat(upgrade(load) , QTDUPGRADE , [] , RUPGRADE );
 		SETUPLOAD = [goto(SHOP)|RUPGRADE ];
-		+task(upgradecapacity,8.5,SETUPLOAD,[]);	
+		!addtask(upgradecapacity,8.5,SETUPLOAD,[]);	
 	.
 
 +!upgradecapacity:true
@@ -123,7 +123,7 @@ highlevel(ITEM,LEVEL):- item(ITEM,_,_,_)&
 //		.print("Esperando ",ITEM);
 //		.wait(	storage(STORAGE,_,_,_,_,LSTORAGE) &
 //				minimumqtd(LPARTS,LSTORAGE) );
-		+task(craftComParts,8,PLAN,[]);
+		!addtask(craftComParts,8,PLAN,[]);
 	.
 
 +!supportCraft(OTHERROLES):
@@ -212,7 +212,7 @@ highlevel(ITEM,LEVEL):- item(ITEM,_,_,_)&
 //		-expectedplan( help, _);
 //		+expectedplan( help, [goto(WORKSHOP), ready_to_assist(QUEMPRECISA), assist_assemble(QUEMPRECISA) ]);
 //		+todo(help, 8.2);//6
-		+task(help,8.2,[goto(WORKSHOP), 
+		!addtask(help,8.2,[goto(WORKSHOP), 
 						ready_to_assist(QUEMPRECISA), 
 						assist_assemble(QUEMPRECISA)],[]);
 	.

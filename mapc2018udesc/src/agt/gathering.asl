@@ -35,7 +35,7 @@
 //		-expectedplan( craftSemParts, _);
 //		+expectedplan( craftSemParts, PLAN);
 //		+todo(craftSemParts,8);
-		+task(craftSemParts,8,PLAN,[]);
+		!addtask(craftSemParts,8,PLAN,[]);
 	.
 
 -task(craftSemParts,8,[_|[]],_): true

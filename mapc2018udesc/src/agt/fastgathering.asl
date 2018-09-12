@@ -27,7 +27,7 @@
 		PASSOS = [ goto( X, Y ) | VARIOS_GATHER ];
 		.concat( PASSOS, [ goto( STORAGECENTRAL ), store( ITEM, VEZES ) ], MAIS_PASSOS );
 		
-		+task(fastgathering,4,MAIS_PASSOS,[]);
+		!addtask(fastgathering,4,MAIS_PASSOS,[]);
 	.
 
 +!fastgathering <- true.

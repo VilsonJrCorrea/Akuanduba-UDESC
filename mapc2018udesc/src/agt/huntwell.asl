@@ -21,16 +21,16 @@
 		QTD = math.ceil( INTEGRIDADE/CURRENTSKILL );
 		?repeat( dismantle, QTD, [], R );
 		.concat([goto(LAT,LON)],R,LIST);
-		+task(desmantelarPocoInimigo(WELLID),6,LIST,[]);
+		!addtask(desmantelarPocoInimigo(WELLID),9.7,LIST,[]);
 		+pocosInimigos(WELLID,LAT,LON,WELLTYPE);
 	.
 	
-@frustated[atomic]
+@frustrated[atomic]
 +!testDismantleWellOfEnemy :   task(desmantelarPocoInimigo(WELLID),_,[dismantle|_],_) & 
 							   agentid("11") &
 							   not (well(WELLID,_,_,_,_,_)[source(percept)])						   
 	<- 
-		-task(desmantelarPocoInimigo(WELLID),_,_,_);
+		!removetask(desmantelarPocoInimigo(WELLID),_,_,_);
 	.	
 	
 +!testDismantleWellOfEnemy <- true.	

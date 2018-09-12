@@ -60,7 +60,7 @@
 	<-
 //		action( noAction );
 		action( continue );
-
+.
 	
 	
 { include("$jacamoJar/templates/common-cartago.asl") }
