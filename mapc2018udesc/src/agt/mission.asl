@@ -1,4 +1,5 @@
 passosRetrieve( [], LISTA, RETORNO ) :- RETORNO = LISTA.
+
 passosRetrieve( [required(ITEM, QTD)|T], LISTA, RETORNO ):-
 repeat( retrieve(ITEM,1) , QTD , [] ,RR ) &
 		.concat(LISTA, RR, N_LISTA) &

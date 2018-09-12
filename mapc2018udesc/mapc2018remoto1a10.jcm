@@ -44,16 +44,16 @@ focus: env.art10,enva.artpolygon, enva.coogather
 
 
 workspace env {
-artifact art1: EISAccess("conf/remotoGermany/eisa0.json")
-artifact art2: EISAccess("conf/remotoGermany/eisa1.json")
-artifact art3: EISAccess("conf/remotoGermany/eisa2.json")
-artifact art4: EISAccess("conf/remotoGermany/eisa3.json")
-artifact art5: EISAccess("conf/remotoGermany/eisa4.json")
-artifact art6: EISAccess("conf/remotoGermany/eisa5.json")
-artifact art7: EISAccess("conf/remotoGermany/eisa6.json")
-artifact art8: EISAccess("conf/remotoGermany/eisa7.json")
-artifact art9: EISAccess("conf/remotoGermany/eisa8.json")
-artifact art10: EISAccess("conf/remotoGermany/eisa9.json")
+artifact art1: EISAccess("conf/remotoUdesc/eisa0.json")
+artifact art2: EISAccess("conf/remotoUdesc/eisa1.json")
+artifact art3: EISAccess("conf/remotoUdesc/eisa2.json")
+artifact art4: EISAccess("conf/remotoUdesc/eisa3.json")
+artifact art5: EISAccess("conf/remotoUdesc/eisa4.json")
+artifact art6: EISAccess("conf/remotoUdesc/eisa5.json")
+artifact art7: EISAccess("conf/remotoUdesc/eisa6.json")
+artifact art8: EISAccess("conf/remotoUdesc/eisa7.json")
+artifact art9: EISAccess("conf/remotoUdesc/eisa8.json")
+artifact art10: EISAccess("conf/remotoUdesc/eisa9.json")
 }
 workspace enva {
 artifact artpolygon: calculos.ARTGreyZone

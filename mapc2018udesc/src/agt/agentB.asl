@@ -1,6 +1,7 @@
 +!help(VEHICLE, WORKSHOP, PID):true
 	<-true.
 
+
 +step(1): name(agentB10)
 	<-
 		action(goto(48.8424,2.3209));
@@ -55,12 +56,11 @@
 		action( build(wellType0));
 	.	
 
-	
 +step( S): true
 	<-
 //		action( noAction );
 		action( continue );
-	.	
+
 	
 	
 { include("$jacamoJar/templates/common-cartago.asl") }

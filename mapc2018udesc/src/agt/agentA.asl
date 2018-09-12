@@ -11,6 +11,8 @@
 //{ include("mission.asl") }
 { include("construcao_pocos.asl")}
 { include("restartround.asl")}
+//{ include("huntWells.asl") }
+{ include("dropall.asl") }
 
 @consume_steps[atomic]
 +!consumestep: 
@@ -152,6 +154,7 @@
 @step[atomic]	
 +step( S ): true
 	<-
+		!testDismantle;
 //		!testarTrabalho;
 //		!testarMission;
 		!consumestep;
