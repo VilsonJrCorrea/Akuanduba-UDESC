@@ -51,8 +51,8 @@ passosRetrieve( [required(ITEM, QTD)|T], LISTA, RETORNO ):-
 		.concat( PASSOS_1, RETORNO, PASSOS_2);
 		?buildStore( [], DEVOLVERITEMS);
 		.concat( [goto(STORAGE)],DEVOLVERITEMS, PASSOS_2, [ goto( LOCALENTREGA ), deliver_job( NOMEJOB )], PASSOS_3);
-		-task(fastgathering,_,_,_);
-		+task(job,5,PASSOS_3,[]);
+		!removetask(fastgathering,_,_,_);
+		!addtask(job,5,PASSOS_3,[]);
 	.
 
 +!testarTrabalho
@@ -65,7 +65,7 @@ passosRetrieve( [required(ITEM, QTD)|T], LISTA, RETORNO ):-
 		.print( STEP, "-Acabou o tempo para eu fazer o job ", JOB );
     	!!dropAll;
 		removeIntentionToDoJob( NAME, JOB );
-		-task(job,_,_,_);
+		!removetask(job,_,_,_);
 	.
 
 +!testarTrabalho<-true.

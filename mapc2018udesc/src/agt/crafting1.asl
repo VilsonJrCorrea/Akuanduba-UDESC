@@ -18,27 +18,33 @@
 						name(NAMEAGENT)						&
 						not (agentid("10") | agentid("12")) &
 						numberTotalCraft(NTC)				&
-						.count(craftCommitment(_,_))<NTC	&
-						centerStorage(STORAGE) 				&	
-						centerWorkshop(WORKSHOP) 			&
+						.count(craftCommitment(_,_))<=NTC	&
 						not craftCommitment(NAMEAGENT,_) 	&
 						not gatherCommitment(NAMEAGENT,_)
 		<-
 			.wait(step(X) & X>79);
 			?gocraft(ITEM,ROLE,QTD);
+			
 			addCraftCommitment(NAMEAGENT, ITEM,QTD);
 			.print("commited with ",ITEM);
 			!!upgradecapacity;
 			!!craftComParts;
 		.
 
--!callCraftComParts: true
-		<- !!callCraftComParts;	.		
++!callCraftComParts	:role(drone,_,_,_,_,_,_,_,_,_,_)
+	<- true.
 
-+!callCraftComParts	:role(drone,_,_,_,_,_,_,_,_,_,_)		|
-				 	 (numberTotalCraft(NTC)					&			
-				 	 .count(craftCommitment(_,_))<NTC)	  
-		<- true; .
++!callCraftComParts	
+	:numberTotalCraft(NTC)					&			
+	 .count(craftCommitment(_,_))==NTC	  
+		<- 
+			true;
+			//.print(NTC," - ",.count(craftCommitment(_,_)));
+		 .
+
+-!callCraftComParts: true
+		<- //.wait (25); .print("TENTE OUTRA VEZ");
+			!!callCraftComParts;	.		
 
 
 +!upgradecapacity:	
@@ -54,7 +60,8 @@
 		QTDUPGRADE = math.ceil((VOL-LOAD)/SIZE);
 		?repeat(upgrade(load) , QTDUPGRADE , [] , RUPGRADE );
 		SETUPLOAD = [goto(SHOP)|RUPGRADE ];
-		+task(upgradecapacity,8.5,SETUPLOAD,[]);	
+		!addtask(upgradecapacity,8.5,SETUPLOAD,[]);	
+		
 	.
 
 +!upgradecapacity:true
@@ -79,7 +86,7 @@
 //		.print("Esperando ",ITEM);
 //		.wait(	storage(STORAGE,_,_,_,_,LSTORAGE) &
 //				minimumqtd(LPARTS,LSTORAGE) );
-		+task(craftComParts,8,PLAN,[]);
+		!addtask(craftComParts,8,PLAN,[]);
 	.
 
 +!supportCraft(OTHERROLES):
@@ -168,7 +175,7 @@
 //		-expectedplan( help, _);
 //		+expectedplan( help, [goto(WORKSHOP), ready_to_assist(QUEMPRECISA), assist_assemble(QUEMPRECISA) ]);
 //		+todo(help, 8.2);//6
-		+task(help,8.2,[goto(WORKSHOP), 
+		!addtask(help,8.2,[goto(WORKSHOP), 
 						ready_to_assist(QUEMPRECISA), 
 						assist_assemble(QUEMPRECISA)],[]);
 	.

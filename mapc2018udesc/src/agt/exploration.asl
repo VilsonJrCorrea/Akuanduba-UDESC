@@ -32,7 +32,7 @@ invert(I,O):- (I=true & O=false)|(I=false & O=true).
 		!buildexplorationsteps(CLAT, CLON,lat, F, [goto(CLAT, CLON)], R);
 //		+steps( exploration, R);
 //		+todo(exploration,9);		
-		+task(exploration,9,R,[]);
+		!addtask(exploration,9,R,[]);
 	.
 
 +resourceNode(A,B,C,D)[source(percept)]:

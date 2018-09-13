@@ -1,8 +1,3 @@
-+steps( buildWell, [] ) : true
-	<-	
-		-todo( buildWell, _ );
-	.
-
 +!buildPoligon :  not agentid("10") & name(AG)	
 	<- true.
 
@@ -86,7 +81,7 @@
 		!qtdStep( WELLTYPE, AGENT, QTD );
 		!buildWellSteps( [goto(PLAT, PLON), build(WELLTYPE)], QTD, R );
 		
-		+task(buildWell,PRIORITY,R,[]);
+		!addtask(buildWell,PRIORITY,R,[]);
 		!buildCareWell(WELLTYPE);
 //		.print( "buildWell pronto!!" );
 	.
@@ -155,8 +150,8 @@
 	<-
 		QTD = math.ceil( INTEGRIDADE/CURRENTKILL );
 		?repeat( dismantle, QTD, [], R );
-		-task(cuidaPoco,_,_,_);
-		+task(desmantelar,9.1,R,[]);
+		!removetask(cuidaPoco,_,_,_);
+		!addtask(desmantelar,9.1,R,[]);
 	.
 
 +!testDismantle :   task(desmantelar,_,_,_) & 
@@ -169,5 +164,5 @@
 
 -!testDismantle : true  
 	<- 	
-		-task(desmantelar,_,_,_);
+		!removetask(desmantelar,_,_,_);
 	.	
