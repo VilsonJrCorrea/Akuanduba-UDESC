@@ -73,7 +73,9 @@
 		centerStorage(STORAGE) 													&	
 		centerWorkshop(WORKSHOP) 												&
 		craftCommitment(NAMEAGENT,ITEM) 										
-	<-					
+	<-			
+		!removetask(fastgathering,_,_,_);		
+		!!dropAll;
 		?item(ITEM,_,roles(LROLES),parts(LPARTS));			
 		.difference(LROLES,[ROLE],OTHERROLES);
 		?retrieveitensrule(LPARTS, [], RETRIEVELIST);				

@@ -8,7 +8,8 @@
 	&	not (agentid("10") | agentid("12")) 
 	<-
 //		.print("Entrou no fastgathering.");
-		?centerStorage( STORAGECENTRAL );
+//		?centerStorage( STORAGECENTRAL );
+		.wait(centerStorage( STORAGECENTRAL ));
 		?storage( STORAGECENTRAL, _, _, _, _, LISTA);
 		?role( _,_,_,CAPACIDADE,_,_,_,_,_,_,_) ;
 		?resourceNode( _,_,_,_) ;

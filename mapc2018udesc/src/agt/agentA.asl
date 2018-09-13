@@ -3,9 +3,9 @@
 { include("exploration.asl") }
 { include("gathering.asl") }
 { include("fastgathering.asl") }
-{ include("crafting1.asl") }
+//{ include("crafting1.asl") }
 //{ include("crafting2.asl") }
-//{ include("crafting3.asl") }
+{ include("crafting3.asl") }
 { include("charging.asl") }		
 { include("regras.asl") }
 { include("job.asl") }
@@ -16,7 +16,6 @@
 { include("dropall.asl") }
 { include("areacritica.asl") }
 
-@consume_steps[atomic]
 +!consumestep: 
 				lastActionResult( successful )			& 
 				doing(LD)								& 
@@ -28,11 +27,8 @@
 				  (RLA\==continue & RLA\==goto))
 				  						
 	<-	
-			if (T=[]) {
-				-task(LD,P,[ACT|T],EXECUTEDPLAN);	
-			}
-			else {
-				-task(LD,P,[ACT|T],EXECUTEDPLAN)	
+			-task(LD,P,[ACT|T],EXECUTEDPLAN);
+			if (not T=[]) {
 				+task(LD,P,T,[ACT|EXECUTEDPLAN])	
 			}
 	.
@@ -44,6 +40,7 @@
 +!whattodo
 	:	.count((task(TD,_,_,_) & not waiting(TD,_)) , 0)
 	<-	
+		.print("SEM TASK PARA EXECUTAR");
 		-doing(_);
 	.
 	
@@ -70,13 +67,13 @@
 			+task(LD,P,[goto(LAT,LON)|PLAN],EXECUTEDPLAN);		
 	.
 	
-+!checkRollback:lastDoing(LD) 	& 
-				doing(D) 		& 
-				LD\==D 			& 
-				steps(LD,L)		&
-				not job( JOB,_,_,_,_,_ ) 
-	<-
-		true.	
+//+!checkRollback:lastDoing(LD) 	& 
+//				doing(D) 		& 
+//				LD\==D 			& 
+//				steps(LD,L)		&
+//				not job( JOB,_,_,_,_,_ ) 
+//	<-
+//		true.	
 
 +!checkRollback:lastDoing(LD) 				& 
 				doing(D) 					& 
@@ -97,7 +94,7 @@
 @s1[atomic]
 +!do: route(R) &lastDoing(X) & doing(X) & not R=[]
 	<-	
-		action(continue );
+		action(continue);
 .
 
 @s2[atomic]
@@ -162,6 +159,4 @@
 		!consumestep;
 		!whattodo;
 		!do;
-	.
-
-	
+	.	
