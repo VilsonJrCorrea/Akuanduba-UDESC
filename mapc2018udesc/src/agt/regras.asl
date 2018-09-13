@@ -193,22 +193,18 @@ qtdItens( [required(_,QTD)|T], QTDATUAL, QTDTOTAL )
  * Início da procura de todos os itens do job pra saber se estão no depósito.
  */
 
-procurarItemSTORAGE( ITEM1, QTD1, [] )
-	:-
-		false
-	.
-	
-procurarItemSTORAGE( ITEM1, QTD1, [item(ITEM2, QTD2, _)|T] )
-	:-
-		ITEM1 == ITEM2	&
-		QTD2 >= QTD1
-	.
-	
-procurarItemSTORAGE( ITEM1, QTD1, [item(ITEM2, QTD2, _)|T] )
-	:-
-		ITEM1 \== ITEM2	&
-		procurarItemSTORAGE( ITEM1, QTD1, T )
-	.
+//procurarItemSTORAGE( ITEM1, QTD1, [] )
+//	:-
+//		false
+//	.
+procurarItemSTORAGE( ITEM, QTD1, STORAGE )
+	:- .member(item(ITEM, QTD2,_), STORAGE) & QTD1<=QTD2.
+//	
+//procurarItemSTORAGE( ITEM1, QTD1, [item(ITEM2, QTD2, _)|T] )
+//	:-
+//		ITEM1 \== ITEM2	&
+//		procurarItemSTORAGE( ITEM1, QTD1, T )
+//	.
 	
 procurarTodosItens( [], ITENSSTORAGE)
 	:-
