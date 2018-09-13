@@ -5,19 +5,22 @@ passosRetrieve( [required(ITEM, QTD)|T], LISTA, RETORNO ):-
 		passosRetrieve( T, N_LISTA, RETORNO).
 
 //@job[atomic]
-+job( NOMEJOB,LOCALENTREGA,REWARD,STEPINICIAL,STEPFINAL,ITENS )
++job( NOMEJOB,LOCALENTREGA,REWARD,STEPINICIAL,STEPFINAL,ITENSJOB )
 	:
 		name( NAME )
 	&	not jobCommitment(NAME,_)
 	&	not gatherCommitment( NAME, _ )
 	&	not craftCommitment( NAME, _ )
 	&	not missionCommitment( NAME, _ )
-	& 	not (agentid("10") | agentid("11")| agentid("12"))
-	&	step(STP) & STP>5   
-    &	role(ROLE,_,_,CAPACIDADE,_,_,_,_,_,_,_)
-	&	step( STEPATUAL )
+	& 	not (agentid("10") | agentid("12"))
+//	&	step(STEPATUAL) & STEPATUAL>119
+	&	step(STEPATUAL)
 	&	centerStorage(STORAGE)
-	&	sumvolruleJOB( ITENS, VOLUMETOTAL )
+	&	storage(STORAGE,_,_,_,_,ITENSSTORAGE)
+	&	procurarTodosItens( ITENSJOB, ITENSSTORAGE )
+    &	role(ROLE,_,_,CAPACIDADE,_,_,_,_,_,_,_)
+	
+	&	sumvolruleJOB( ITENSJOB, VOLUMETOTAL )
 	&	CAPACIDADE >= VOLUMETOTAL
 	&	possuoTempoParaRealizarJob( NOMEJOB, TEMPONECESSARIO )
 	&	TEMPONECESSARIO <= ( STEPFINAL - STEPATUAL )
@@ -60,7 +63,7 @@ passosRetrieve( [required(ITEM, QTD)|T], LISTA, RETORNO ):-
 	&	step( STEP )
 	<-
 		.print( STEP, "-Acabou o tempo para eu fazer o job ", JOB );
-		//!rollBackJob;
+    	!!dropAll;
 		removeIntentionToDoJob( NAME, JOB );
 		!removetask(job,_,_,_);
 	.

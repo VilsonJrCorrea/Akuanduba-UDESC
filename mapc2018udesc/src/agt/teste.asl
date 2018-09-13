@@ -3,27 +3,17 @@
 	
 { include("regras.asl") }
 
-item(item0,5,roles([]),parts([])).
-item(item1,9,roles([]),parts([])).
-item(item2,6,roles([]),parts([])).
-item(item3,5,roles([]),parts([])).
-item(item4,10,roles([motorcycle,car]),parts([item2,item0,item3])).
-item(item5,9,roles([car,drone]),parts([item1,item2,item0,item3])).
-item(item6,7,roles([motorcycle,drone]),parts([item1,item4,item2,item5,item0,item3])).
-item(item7,10,roles([motorcycle,drone]),parts([item4,item1,item2,item5,item6,item0,item3])).
-item(item8,5,roles([car,truck]),parts([item2,item6,item0,item3])).
+job(job7,storage2,425,23,120,[required(item4,1),required(item6,1),required(item7,1),required(item8,1)]).
+storage(storage5,48.87113,2.33853,11454,398,[item(item0,20,0),item(item1,22,0),item(item3,20,0)]).
 
 !start.
 
 +!start
 	:
-		true
+		job(_,_,_,_,ITENSJOB) &
+		storage(_,_,_,_,_,ITENSSTORAGE)
 	<-
-//		.random( N );
-//		NN = N * .length( item(_,_,_,_) );
-
-		.print( "abc" );
-		.count( item( _,_,_,parts( [] ) ), N );
-		.print( N );
+		?procurarItemSTORAGE( item0, 2, ITENSSTORAGE );
+		.print("Funcionou")
 	.
 

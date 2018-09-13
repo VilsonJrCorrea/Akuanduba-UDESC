@@ -7,7 +7,8 @@
 	&	not missionCommitment( NAME, _ )	
 	&	not (agentid("10") | agentid("12")) 
 	<-
-		.wait( centerStorage( STORAGECENTRAL ) );
+//		.print("Entrou no fastgathering.");
+		?centerStorage( STORAGECENTRAL );
 		?storage( STORAGECENTRAL, _, _, _, _, LISTA);
 		?role( _,_,_,CAPACIDADE,_,_,_,_,_,_,_) ;
 		?resourceNode( _,_,_,_) ;

@@ -1,4 +1,4 @@
-+!callCraftComPartsWithDelay: true
++!callCraftComPartsWithDelay:true
 	<-
 		.wait(step(1));
 		for (item(ITEM,_,_,parts(P)) & P\==[]) {
@@ -22,9 +22,7 @@
 						not craftCommitment(NAMEAGENT,_) 	&
 						not gatherCommitment(NAMEAGENT,_)
 		<-
-			.wait(centerStorage(STORAGE));
-			.wait(centerWorkshop(WORKSHOP)); 		
-			
+			.wait(step(X) & X>79);
 			?gocraft(ITEM,ROLE,QTD);
 			
 			addCraftCommitment(NAMEAGENT, ITEM,QTD);

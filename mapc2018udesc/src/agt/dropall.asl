@@ -2,6 +2,7 @@
 	:
 		hasItem( _, _)
 	&	centerStorage( STORAGE )
+	&	step(STEP)
 	<-
 		?buildStore( [], LISTAFINAL );
 		.concat( [goto(STORAGE)], LISTAFINAL, PASSOS );

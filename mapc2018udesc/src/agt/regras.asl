@@ -189,35 +189,37 @@ qtdItens( [required(_,QTD)|T], QTDATUAL, QTDTOTAL )
 	&	qtdItens( T, NQTD, QTDTOTAL)
 	.
 
-temTodosItens( ITENS, ITENSSTORAGE )
-	:-
-		buscarNomesItensJOB( ITENS, [], NOMES )
-	&	buscarNomesItensSTORAGE( ITENSSTORAGE, [], NOMESSTORAGE )
-	&	.difference( NOMES, NOMESSTORAGE, DIFF )
-	&	DIFF==[]
-	.
+/**
+ * Início da procura de todos os itens do job pra saber se estão no depósito.
+ */
 
-buscarNomesItensJOB( [], LISTA, RETORNO )
+//procurarItemSTORAGE( ITEM1, QTD1, [] )
+//	:-
+//		false
+//	.
+procurarItemSTORAGE( ITEM, QTD1, STORAGE )
+	:- .member(item(ITEM, QTD2,_), STORAGE) & QTD1<=QTD2.
+//	
+//procurarItemSTORAGE( ITEM1, QTD1, [item(ITEM2, QTD2, _)|T] )
+//	:-
+//		ITEM1 \== ITEM2	&
+//		procurarItemSTORAGE( ITEM1, QTD1, T )
+//	.
+	
+procurarTodosItens( [], ITENSSTORAGE)
 	:-
-		RETORNO=LISTA
+		true
 	.
+	
+procurarTodosItens( [required(ITEM1,QTD1)|T], ITENSSTORAGE )
+:-
+	procurarItemSTORAGE( ITEM1, QTD1, ITENSSTORAGE )	&
+	procurarTodosItens(T, ITENSSTORAGE)
+.	
 
-buscarNomesItensJOB( [required(ITEM,_)|T], LISTA, RETORNO )
-	:-
-		.concat( [ITEM], LISTA, N_LISTA )
-	&	buscarNomesItensJOB( T, N_LISTA, RETORNO)
-	.
-
-buscarNomesItensSTORAGE( [], LISTA, RETORNO )
-	:-
-		RETORNO=LISTA
-	.
-
-buscarNomesItensSTORAGE( [item(ITEM,_,_)|T], LISTA, RETORNO )
-	:-
-		.concat( [ITEM], LISTA, N_LISTA )
-	&	buscarNomesItensSTORAGE( T, N_LISTA, RETORNO)
-	.
+/**
+ * Fim da procura dos itens do Job no depósito.
+ */
 
 buildStore( L, R )
 	:-

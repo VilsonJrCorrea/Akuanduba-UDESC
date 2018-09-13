@@ -8,8 +8,8 @@
 //{ include("crafting3.asl") }
 { include("charging.asl") }		
 { include("regras.asl") }
-//{ include("job.asl") }
-//{ include("mission.asl") }
+{ include("job.asl") }
+{ include("mission.asl") }
 { include("construcao_pocos.asl")}
 { include("restartround.asl")}
 { include("huntWell.asl") }
@@ -157,9 +157,8 @@
 +step( S ): true
 	<-
 		!testDismantle;
-		!testDismantleWellOfEnemy;
-//		!testarTrabalho;
-//		!testarMission;
+		!testarTrabalho;
+		!testarMission;
 		!consumestep;
 		!whattodo;
 		!do;
