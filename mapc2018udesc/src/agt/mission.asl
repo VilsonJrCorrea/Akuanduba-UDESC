@@ -79,7 +79,7 @@ repeat( retrieve(ITEM,1) , QTD , [] ,RR ) &
 		.print( STEP, "-Acabou o tempo para eu fazer a mission ", MISSION);
 		!dropAll;
 		removeIntentionToDoMission( NAME, MISSION );
-		!removetodo(mission);
+		!removetask(mission,_,_,_);
 	.
 
 
