@@ -41,9 +41,9 @@ splitBy(item(NH,VH,RH,PH), [item(NU,VU,RU,PU)|T], LS, [item(NU,VU,RU,PU)|RS] )
 
 
 priotodo(TASK):- 	task(TASK,PRIO1,_,_)			&	 
-					not waiting(TASK,_) 			& 					
+					//not waiting(TASK,_) 			& 					
 					not  ( 	task(TASK2,PRIO2,_,_) 	& 
-							not waiting(TASK2,_) 	& 
+					//		not waiting(TASK2,_) 	& 
 							PRIO2 > PRIO1).
 							
 //priotodo(ACTION):-   todo(ACTION,PRIO1) & not waiting(ACTION,_) & 

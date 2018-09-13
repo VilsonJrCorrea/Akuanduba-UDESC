@@ -15,6 +15,7 @@
 { include("huntWell.asl") }
 { include("dropall.asl") }
 { include("areacritica.asl") }
+{ include("exceptions.asl") }
 
 +!consumestep: 
 				lastActionResult( successful )			& 
@@ -32,20 +33,28 @@
 				+task(LD,P,T,[ACT|EXECUTEDPLAN])	
 			}
 	.
+
++!consumestep: 				
+				lastActionResult( successful )			& 
+				doing(LD)								& 
+				not task(LD,_,_,_)			
+
+	<-.print("acabou ===> ", LD).
+
+	
 +!consumestep: true
 	<-true.
 	
 
 
 +!whattodo
-	:	.count((task(TD,_,_,_) & not waiting(TD,_)) , 0)
+	:	.count(task(TD,_,_,_), 0)
 	<-	
-		.print("SEM TASK PARA EXECUTAR");
 		-doing(_);
 	.
 	
 +!whattodo
-	:	.count((task(TD,_,_,_) & not waiting(TD,_)), QTD) &
+	:	.count(task(TD,_,_,_), QTD) &
 			QTD > 0
 	<-			
 		
@@ -66,14 +75,6 @@
 			-task(LD,P,PLAN,EXECUTEDPLAN);
 			+task(LD,P,[goto(LAT,LON)|PLAN],EXECUTEDPLAN);		
 	.
-	
-//+!checkRollback:lastDoing(LD) 	& 
-//				doing(D) 		& 
-//				LD\==D 			& 
-//				steps(LD,L)		&
-//				not job( JOB,_,_,_,_,_ ) 
-//	<-
-//		true.	
 
 +!checkRollback:lastDoing(LD) 				& 
 				doing(D) 					& 
@@ -116,23 +117,13 @@
 	 task(craftComParts,P,[help(OTHERROLES)|T],EXECUTEDPLAN) 			
 	<-
 		.length(OTHERROLES,BARRIER);
-		+waiting(craftComParts,BARRIER);
 		!!supportCraft(OTHERROLES);
 		-task(craftComParts,P,[help(OTHERROLES)|T],EXECUTEDPLAN);
-		+task(craftComParts,P,T,EXECUTEDPLAN);
+		+task(craftComParts,P,T,[help(OTHERROLES)|EXECUTEDPLAN]);
+//		+task(craftComParts,P,T,[EXECUTEDPLAN]);
 		action(noAction);
 	.
 
-@docrafthelp1[atomic]
-+!do: 
-	doing(help)		& 
-	task(help,P,[ready_to_assist(WHONEED)|T],EXECUTEDPLAN) 			
-	<-
-		.send(WHONEED, achieve, ready_to_assist);
-		-task(help,P,[ready_to_assist(WHONEED)|T],EXECUTEDPLAN);
-		+task(help,P,T,EXECUTEDPLAN);
-		action( noAction );
-	.
 
 @dogenerico[atomic]
 +!do: 	
@@ -153,6 +144,7 @@
 @step[atomic]	
 +step( S ): true
 	<-
+		!testDismantleWellOfEnemy;
 		!testDismantle;
 		!testarTrabalho;
 		!testarMission;

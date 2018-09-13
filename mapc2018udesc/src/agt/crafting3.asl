@@ -40,7 +40,6 @@ highlevel(ITEM,LEVEL):- item(ITEM,_,_,_)&
 
 +!callCraftComPartsWithDelay: not agentid("15")
 	<- true.
-//@initccp[atomic]	
 
 +numberAgRequired(_,_)[source(S)]: not S=self &
 				.count(item(_,_,_,parts(P)) & not P=[]) = 
@@ -62,12 +61,13 @@ highlevel(ITEM,LEVEL):- item(ITEM,_,_,_)&
 						name(NAMEAGENT)						&
 						not (agentid("10") | agentid("11")| agentid("12")) &
 						numberTotalCraft(NTC)				&
-						.count(craftCommitment(_,_))<NTC	&
+						.count(craftCommitment(_,_))<=NTC	&
 						centerStorage(STORAGE) 				&	
 						centerWorkshop(WORKSHOP) 			&
 						not craftCommitment(NAMEAGENT,_) 	&
 						not gatherCommitment(NAMEAGENT,_)
 		<-
+			.wait(step(X) & X>79);
 			?gocraft(ITEM,ROLE,QTD);
 			addCraftCommitment(NAMEAGENT, ITEM,QTD);
 			.print("commited with ",ITEM);
@@ -80,7 +80,7 @@ highlevel(ITEM,LEVEL):- item(ITEM,_,_,_)&
 
 +!callCraftComParts	:role(drone,_,_,_,_,_,_,_,_,_,_)		|
 				 	 (numberTotalCraft(NTC)					&			
-				 	 .count(craftCommitment(_,_))<NTC)	  
+				 	 .count(craftCommitment(_,_))==NTC)	  
 		<- true; .
 
 
@@ -91,26 +91,27 @@ highlevel(ITEM,LEVEL):- item(ITEM,_,_,_)&
 		item(ITEM,_,_,parts(LPARTS))			&
 		sumvolrule(LPARTS,VOL)					&
 		LOAD<VOL	 										
-	<-					
+	<-						
 		?nearshop(SHOP);
 		?upgrade(load,_,SIZE);
 		QTDUPGRADE = math.ceil((VOL-LOAD)/SIZE);
 		?repeat(upgrade(load) , QTDUPGRADE , [] , RUPGRADE );
 		SETUPLOAD = [goto(SHOP)|RUPGRADE ];
-		!addtask(upgradecapacity,8.5,SETUPLOAD,[]);	
+		!addtask(upgradecapacity,8.5,SETUPLOAD,[]);		
 	.
 
 +!upgradecapacity:true
 	<- true.
 
-@craftComparts[atomic]
+//@craftComparts[atomic]
 +!craftComParts:	
 		role(ROLE,_,_,LOAD,_,_,_,_,_,_,_)  										&
 		name(NAMEAGENT) 														&
 		centerStorage(STORAGE) 													&	
 		centerWorkshop(WORKSHOP) 												&
 		craftCommitment(NAMEAGENT,ITEM) 										
-	<-					
+	<-							
+		.wait(not task(fastgathering,_,_,_));
 		?item(ITEM,_,roles(LROLES),parts(LPARTS));			
 		.difference(LROLES,[ROLE],OTHERROLES);
 		?retrieveitensrule(LPARTS, [], RETRIEVELIST);				
@@ -120,9 +121,7 @@ highlevel(ITEM,LEVEL):- item(ITEM,_,_,_)&
 	   			  store(ITEM,1) ],
 				PLAN);
 
-//		.print("Esperando ",ITEM);
-//		.wait(	storage(STORAGE,_,_,_,_,LSTORAGE) &
-//				minimumqtd(LPARTS,LSTORAGE) );
+		.print("ADICIONANDO CRAFTCOMPARTS ",ITEM);
 		!addtask(craftComParts,8,PLAN,[]);
 	.
 
@@ -185,7 +184,6 @@ highlevel(ITEM,LEVEL):- item(ITEM,_,_,_)&
 @help1[atomic]
 +!help(WORKSHOP, PID)[source(AGENT)] : not todo(help, _)  & not lockhelp
 	<-	
-		//.print("INTERESSADO NO TRAMPO DO AGENTE ",AGENT);	
 		+lockhelp;
 		?lat(XA);
 		?lon(YA);
@@ -197,7 +195,6 @@ highlevel(ITEM,LEVEL):- item(ITEM,_,_,_)&
 @help2[atomic]	
 +!help( WORKSHOP, PID): todo(help, _) | lockhelp
 	<-	
-	//.print("JA ESTOU COMPROMETIDO");
 	true;	
 	.
 
@@ -207,14 +204,7 @@ highlevel(ITEM,LEVEL):- item(ITEM,_,_,_)&
 	<-
 		-lockhelp;
 		?role(ROLE,_,_,_,_,_,_,_,_,_,_);
-		//.print("Vou ajudar ",QUEMPRECISA, " e sou um ", ROLE );		
-//		+steps(help, [goto(WORKSHOP), ready_to_assist(QUEMPRECISA), assist_assemble(QUEMPRECISA) ]);
-//		-expectedplan( help, _);
-//		+expectedplan( help, [goto(WORKSHOP), ready_to_assist(QUEMPRECISA), assist_assemble(QUEMPRECISA) ]);
-//		+todo(help, 8.2);//6
-		!addtask(help,8.2,[goto(WORKSHOP), 
-						ready_to_assist(QUEMPRECISA), 
-						assist_assemble(QUEMPRECISA)],[]);
+		!addtask(help,8.2,[goto(WORKSHOP), assist_assemble(QUEMPRECISA)],[]);
 	.
 
 @help4[atomic]
@@ -223,21 +213,7 @@ highlevel(ITEM,LEVEL):- item(ITEM,_,_,_)&
 	<-
 		-lockhelp;
 	.
-	
-@readytoassist
-+!ready_to_assist:waiting(craftComParts,BARRIER)
-	<- 
-		-+waiting(craftComParts,BARRIER-1);
-	.
-	
-+waiting(craftComParts,0): true
-	<-
-		//.print("removeu o waiting");
-		-waiting(craftComParts,0);
-	.
 
-
-//-todo(craftComParts,8):
 -task(craftComParts,8,[_|[]],_):
 	name(NAMEAGENT) 				& 
 	craftCommitment(NAMEAGENT,ITEM)
