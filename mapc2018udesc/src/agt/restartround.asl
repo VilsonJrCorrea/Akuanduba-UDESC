@@ -11,6 +11,11 @@ roundnumber(0).
 				.broadcast(tell,partners(VEHICLE,AGENT));		
 			
 				!agentnumber;
+				.wait(.count(partners(_,_),33));
+				
+				!lastcar;
+				!lastmotorcycle;
+				
 				!!buildPoligon;
 				!!sendcentrals;
 				!!exploration;
@@ -19,6 +24,19 @@ roundnumber(0).
 				!fastgathering;												
 		.
 
++!lastcar:  whoislastcar(ME)& name(ME)
+	<-
+		+isMeTheLastCar;
+	.
++!lastcar <- true.
+		
++!lastmotorcycle : whoislastmotorcycle(ME) & name(ME)
+	<-
+		+isMeTheLastMotorcycle;
+	.
+	
++!lastmotorcycle <-true.
+		
 +!agentnumber: true
 	<-
 		?name(N);

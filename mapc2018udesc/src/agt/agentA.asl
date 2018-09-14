@@ -3,6 +3,8 @@
 { include("exploration.asl") }
 { include("gathering.asl") }
 { include("fastgathering.asl") }
+//{ include("fastgatheringDoCrafting4.asl") }
+//{ include("crafting4.asl") }
 //{ include("crafting1.asl") }
 //{ include("crafting2.asl") }
 { include("crafting3.asl") }
@@ -143,7 +145,7 @@
 @step[atomic]	
 +step( S ): true
 	<-
-		!testDismantle;
+//		!testDismantle;
 		!testDismantleWellOfEnemy;
 //		!testarTrabalho;
 //		!testarMission;

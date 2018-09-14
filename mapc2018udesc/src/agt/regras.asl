@@ -319,8 +319,30 @@ lessqtt( LISTA, LABEL1 )
 //		LISTA=[] & item( LABEL1, _, roles( [] ), parts( [] ) )	&
 //		resourceNode( _,_,_,LABEL1).
 
-whoislastcar:- role(car,_,_,_,_,_,_,_,_,_,_) & name(ME) & not (partners (car,AGENT) & ME<AGENT).
-whoislastcar:- partners (car,AGENT1) & not (partners (car,AGENT2) & AGENT1<AGENT2).
+whoislastcar(ME)
+	:- 
+	   role(car,_,_,_,_,_,_,_,_,_,_) & 
+	   name(ME) & 
+	   not (partners (car,AGENT) &
+	   ME<AGENT)
+	.
+whoislastcar(AGENT1)
+	:- 
+		partners (car,AGENT1) & 
+		not (partners (car,AGENT2) & 
+		AGENT1<AGENT2)
+	.
 
-whoislastmotorcycle(ME):- role(motorcycle,_,_,_,_,_,_,_,_,_,_) & name(ME) & not (partners (motorcycle,AGENT) & ME<AGENT).
-whoislastmotorcycle(AGENT1):- partners (motorcycle,AGENT1) & not (partners (motorcycle,AGENT2) & AGENT1<AGENT2).
+whoislastmotorcycle(ME)
+	:-
+		role(motorcycle,_,_,_,_,_,_,_,_,_,_) &
+		name(ME) & 
+		not (partners (motorcycle,AGENT) & ME<AGENT)
+	.
+
+whoislastmotorcycle(AGENT1)
+	:- 
+		partners (motorcycle,AGENT1) &
+		not (partners (motorcycle,AGENT2) &
+		AGENT1<AGENT2)
+	.
