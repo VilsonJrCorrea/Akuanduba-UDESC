@@ -7,5 +7,6 @@
 	
 -task(craftComParts,X,Y,Z):true 
 	<-
-	 .print(task(craftComParts,X,Y,Z))
+//	 .print(task(craftComParts,X,Y,Z))
+		true
 	.	

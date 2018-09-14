@@ -13,10 +13,7 @@ passosRetrieve( [required(ITEM, QTD)|T], LISTA, RETORNO ):-
 	&	not craftCommitment( NAME, _ )
 	&	not missionCommitment( NAME, _ )
 	& 	not (agentid("10") | agentid("12"))
-	&	step(STEPATUAL)
-	&	centerStorage(STORAGE)
-	&	storage(STORAGE,_,_,_,_,ITENSSTORAGE)
-	&	procurarTodosItens( ITENSJOB, ITENSSTORAGE )
+	&	step(STEPATUAL) & STEPATUAL>119
     &	role(ROLE,_,_,CAPACIDADE,_,_,_,_,_,_,_)
 	
 	&	sumvolruleJOB( ITENSJOB, VOLUMETOTAL )
