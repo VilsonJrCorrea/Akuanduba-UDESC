@@ -157,12 +157,10 @@
 +!testDismantle :   task(desmantelar,_,_,_) & 
 					(agentid("10")|agentid("12")) &
 					betterWell(WELLTYPE) &
-					(wellType(WELLTYPE,_,_,_,_)[source(percept)])
+					(not wellType(WELLTYPE,_,_,_,_)[source(percept)])
 	<- 
-		true;
-	.	
-
--!testDismantle : true  
-	<- 	
 		!removetask(desmantelar,_,_,_);
 	.	
+
+
++!testDismantle <- true.	

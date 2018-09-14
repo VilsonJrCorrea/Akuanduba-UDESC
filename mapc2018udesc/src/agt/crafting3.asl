@@ -103,15 +103,15 @@ highlevel(ITEM,LEVEL):- item(ITEM,_,_,_)&
 +!upgradecapacity:true
 	<- true.
 
-//@craftComparts[atomic]
 +!craftComParts:	
 		role(ROLE,_,_,LOAD,_,_,_,_,_,_,_)  										&
 		name(NAMEAGENT) 														&
 		centerStorage(STORAGE) 													&	
 		centerWorkshop(WORKSHOP) 												&
 		craftCommitment(NAMEAGENT,ITEM) 										
-	<-							
+	<-				
 		.wait(not task(fastgathering,_,_,_));
+		!dropAll;
 		?item(ITEM,_,roles(LROLES),parts(LPARTS));			
 		.difference(LROLES,[ROLE],OTHERROLES);
 		?retrieveitensrule(LPARTS, [], RETRIEVELIST);				
@@ -121,7 +121,6 @@ highlevel(ITEM,LEVEL):- item(ITEM,_,_,_)&
 	   			  store(ITEM,1) ],
 				PLAN);
 
-		.print("ADICIONANDO CRAFTCOMPARTS ",ITEM);
 		!addtask(craftComParts,8,PLAN,[]);
 	.
 
@@ -214,10 +213,15 @@ highlevel(ITEM,LEVEL):- item(ITEM,_,_,_)&
 		-lockhelp;
 	.
 
--task(craftComParts,8,[_|[]],_):
-	name(NAMEAGENT) 				& 
-	craftCommitment(NAMEAGENT,ITEM)
+-task(craftComParts,_,[_|[]],_):
+	true
 <-
-	.print("produziu ",ITEM)
+	.print("produziu item");
 	!!craftComParts;
 .	
+
+//-task(craftComParts,P,PL,EPL):
+//	true
+//	<-
+//		.print("==============> ",task(craftComParts,P,PL,EPL));
+//	.

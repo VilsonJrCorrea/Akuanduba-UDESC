@@ -36,8 +36,16 @@
 
 //-!fastgathering <- true.
 
--task( _,_,[_|[]],_ ) : not task( _,_,_,_ )
+-task( TASK,_,[_|[]],_ ) 
+	:	name(NAME)							&
+		not jobCommitment(NAME,_)			&
+		not gatherCommitment( NAME, _ )		&
+		not craftCommitment( NAME, _ )		&
+		not missionCommitment( NAME, _ ) 	&
+		not task( _,_,_,_ )
+		
  		<-
+  			//.print("fim da task ",TASK," disparou o FASTGATHERING")
   			!fastgathering;
  		.
  
