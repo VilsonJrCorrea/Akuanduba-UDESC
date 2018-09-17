@@ -1,10 +1,10 @@
-
 +charge(BAT):not task(recharge,_,_,_) &
 	 		 lat(CURRENTLAT) & 
 	 		 lon(CURRENTLON) &
 	 		 calculatenearchargingstation(Facility,CURRENTLAT,CURRENTLON,X1,Y1,DISTANCE) &
 			 distanciasemsteps(DISTANCE, NSTEPS ) &
-			 BAT - 2*NSTEPS < 8
+			 ((role(drone,_,_,_,_,_,_,_,_,_,_) & BAT - 2*NSTEPS < 8)|
+			 (not role(drone,_,_,_,_,_,_,_,_,_,_) & BAT - 2*NSTEPS < 9))
 	<-
 		!!recharge (CURRENTLAT,CURRENTLON);
 	.
