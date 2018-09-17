@@ -27,6 +27,7 @@ roundnumber(0).
 +!lastcar:  whoislastcar(ME)& name(ME)
 	<-
 		+lastCar(ME)
+		.print("LAST CAR: ",ME);
 		.broadcast(tell,lastCar(ME));
 	.
 +!lastcar <- true.
@@ -34,6 +35,7 @@ roundnumber(0).
 +!lastmotorcycle : whoislastmotorcycle(ME) & name(ME)
 	<-
 		+lastMotorcycle(ME);
+		.print("LAST MOTORCYCLE: ",ME);
 		.broadcast(tell,lastMotorcycle(ME));
 	.
 	

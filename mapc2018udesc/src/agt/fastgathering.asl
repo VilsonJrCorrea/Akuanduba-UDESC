@@ -5,7 +5,7 @@
 	&	not gatherCommitment( NAME, _ )
 	&	not craftCommitment( NAME, _ )
 	&	not missionCommitment( NAME, _ )	
-	&	not (agentid("10") | agentid("12")) 
+	&	not (lastMotorcycle(NAMEAGENT)|lastCar(NAMEAGENT)) 
 	<-
 //		.print("Entrou no fastgathering.");
 //		?centerStorage( STORAGECENTRAL );
