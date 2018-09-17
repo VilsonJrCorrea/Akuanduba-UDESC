@@ -3,7 +3,6 @@
 									      not pocosInimigos(WELLID,_,_,_)
 	<-
 		.send(akuanduba_udesc11,tell,wellToDestroy( WELLID, LAT, LON, WELLTYPE ));
-		
 	.
 
 @hungryfordestruction[atomic]

@@ -3,20 +3,22 @@
 { include("exploration.asl") }
 { include("gathering.asl") }
 { include("fastgathering.asl") }
+//{ include("fastgatheringDoCrafting4.asl") }
+//{ include("crafting4.asl") }
 //{ include("crafting1.asl") }
 //{ include("crafting2.asl") }
 { include("crafting3.asl") }
 { include("charging.asl") }		
 { include("regras.asl") }
-{ include("job.asl") }
-{ include("mission.asl") }
+//{ include("job.asl") }
+//{ include("mission.asl") }
 { include("construcao_pocos.asl")}
 { include("restartround.asl")}
 { include("huntWell.asl") }
 { include("dropall.asl") }
 { include("areacritica.asl") }
 { include("exceptions.asl") }
-
+@x1[atomic]
 +!consumestep: 
 				lastActionResult( successful )			& 
 				doing(LD)								& 
@@ -28,12 +30,13 @@
 				  (RLA\==continue & RLA\==goto))
 				  						
 	<-	
-			-task(LD,P,[ACT|T],EXECUTEDPLAN);
+			!removetask(LD,P,[ACT|T],EXECUTEDPLAN);
 			if (not T=[]) {
-				+task(LD,P,T,[ACT|EXECUTEDPLAN])	
+				!addtask(LD,P,T,[ACT|EXECUTEDPLAN])	
 			}
 	.
 
+@x2[atomic]
 +!consumestep: 				
 				lastActionResult( successful )			& 
 				doing(LD)								& 
@@ -41,18 +44,18 @@
 
 	<-.print("acabou ===> ", LD).
 
-	
+@x3[atomic]
 +!consumestep: true
 	<-true.
 	
 
-
+@x4[atomic]
 +!whattodo
 	:	.count(task(TD,_,_,_), 0)
 	<-	
 		-doing(_);
 	.
-	
+@x5[atomic]	
 +!whattodo
 	:	.count(task(TD,_,_,_), QTD) &
 			QTD > 0
@@ -63,6 +66,7 @@
 		!checkRollback;
 	.
 
+@x6[atomic]
 +!checkRollback:not route([]) 				&
 				lastDoing(LD) 				& 
 				doing(D) 					& 
@@ -72,10 +76,10 @@
 	<-
 			?lat(LAT);
 			?lon(LON);
-			-task(LD,P,PLAN,EXECUTEDPLAN);
-			+task(LD,P,[goto(LAT,LON)|PLAN],EXECUTEDPLAN);		
+			
+			!updatetask(LD,P,[goto(LAT,LON)|PLAN],EXECUTEDPLAN);	
 	.
-
+@x7[atomic]
 +!checkRollback:lastDoing(LD) 				& 
 				doing(D) 					& 
 				LD\==D 						& 
@@ -85,10 +89,9 @@
 				not (HL=goto(_) |HL=goto(_,_)) 	
 	<-
 			?rollbackrule([goto(_),goto(_,_)], EXECUTEDPLAN, RACTION);			
-			-task(LD,P,PLAN,EXECUTEDPLAN);
-			+task(LD,P,[RACTION|PLAN],EXECUTEDPLAN);
+			!updatetask(LD,P,[RACTION|PLAN],EXECUTEDPLAN);
 	.
-
+@x8[atomic]
 +!checkRollback :true
 	<- true .
 
@@ -118,9 +121,7 @@
 	<-
 		.length(OTHERROLES,BARRIER);
 		!!supportCraft(OTHERROLES);
-		-task(craftComParts,P,[help(OTHERROLES)|T],EXECUTEDPLAN);
-		+task(craftComParts,P,T,[help(OTHERROLES)|EXECUTEDPLAN]);
-//		+task(craftComParts,P,T,[EXECUTEDPLAN]);
+		!updatetask(craftComParts,P,T,EXECUTEDPLAN);
 		action(noAction);
 	.
 
@@ -144,10 +145,10 @@
 @step[atomic]	
 +step( S ): true
 	<-
+//		!testDismantle;
 		!testDismantleWellOfEnemy;
-		!testDismantle;
-		!testarTrabalho;
-		!testarMission;
+//		!testarTrabalho;
+//		!testarMission;
 		!consumestep;
 		!whattodo;
 		!do;
