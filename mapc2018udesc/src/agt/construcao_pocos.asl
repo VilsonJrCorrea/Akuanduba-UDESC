@@ -1,7 +1,7 @@
-+!buildPoligon :  not agentid("10") & name(AG)	
++!buildPoligon :  not isMeTheLastMotorcycle & name(AG)	
 	<- true.
 
-+!buildPoligon:  agentid("10") & name(AG) 
++!buildPoligon:  isMeTheLastMotorcycle & name(AG) 
 	<-
 		.wait(step(1));
 		for(chargingStation(_,X,Y,_)) {
@@ -155,14 +155,12 @@
 	.
 
 +!testDismantle :   task(desmantelar,_,_,_) & 
-					(agentid("10")|agentid("12")) &
+					(isMeTheLastMotorcycle|isMeTheLastCar) &
 					betterWell(WELLTYPE) &
-					(wellType(WELLTYPE,_,_,_,_)[source(percept)])
+					(not wellType(WELLTYPE,_,_,_,_)[source(percept)])
 	<- 
-		true;
-	.	
-
--!testDismantle : true  
-	<- 	
 		!removetask(desmantelar,_,_,_);
 	.	
+
+
++!testDismantle <- true.	

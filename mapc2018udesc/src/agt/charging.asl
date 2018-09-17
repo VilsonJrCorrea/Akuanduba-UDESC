@@ -1,5 +1,5 @@
 
-+charge(BAT): not todo(recharge,_) &
++charge(BAT):not task(recharge,_,_,_) &
 	 		 lat(CURRENTLAT) & 
 	 		 lon(CURRENTLON) &
 	 		 calculatenearchargingstation(Facility,CURRENTLAT,CURRENTLON,X1,Y1,DISTANCE) &

@@ -67,10 +67,12 @@ highlevel(ITEM,LEVEL):- item(ITEM,_,_,_)&
 						not craftCommitment(NAMEAGENT,_) 	&
 						not gatherCommitment(NAMEAGENT,_)
 		<-
-			.wait(step(X) & X>79);
 			?gocraft(ITEM,ROLE,QTD);
 			addCraftCommitment(NAMEAGENT, ITEM,QTD);
 			.print("commited with ",ITEM);
+			?dependencelevel(ITEM,LEVEL);
+			.wait(step(X) & X>40+20*LEVEL);
+			.print("iniciando trabalhos do item ",ITEM);
 			!!upgradecapacity;
 			!!craftComParts;
 		.
