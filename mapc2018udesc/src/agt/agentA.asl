@@ -7,7 +7,7 @@
 //{ include("crafting4.asl") }
 //{ include("crafting1.asl") }
 //{ include("crafting2.asl") }
-{ include("crafting3.asl") }
+//{ include("crafting3.asl") }
 { include("charging.asl") }		
 { include("regras.asl") }
 //{ include("job.asl") }

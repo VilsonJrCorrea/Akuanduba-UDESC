@@ -38,12 +38,12 @@ repeat( retrieve(ITEM,1) , QTD , [] ,RR ) &
 //@realizarMissionSimples[atomic]
 +!realizarMission( NOMEMISSION )
 	:
-//		mission(job3,storage2,407,21,99,407,407,0,[required(item12,1),required(item13,1),required(item6,1),required(item9,1)])
-		procurarTodosItens( ITENSJOB, ITENSSTORAGE )
+		centerStorage(STORAGE)
+	&	mission(NOMEMISSION,LOCALENTREGA,RECOMPENSA,STEPINICIAL,STEPFINAL,DESCONHECIDO1,DESCONHECIDO2,_,ITENSMISSION)
+	&	storage(STORAGE,_,_,_,_,ITENSSTORAGE)
+	&	procurarTodosItens( ITENSMISSION, ITENSSTORAGE )
 	<-	
 		.print( "Como tem todos os itens no storage, vou diretamente fazer a missão." );
-		.wait(centerStorage(STORAGE)
-	&	mission(NOMEMISSION,LOCALENTREGA,RECOMPENSA,STEPINICIAL,STEPFINAL,DESCONHECIDO1,DESCONHECIDO2,_,ITENS));
 		PASSOS_1 = [ goto( STORAGE ) ];
 		?passosRetrieve( ITENS, [], RETORNO );
 		.concat( PASSOS_1, RETORNO, PASSOS_2);
