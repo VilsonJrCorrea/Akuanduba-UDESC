@@ -26,13 +26,15 @@ roundnumber(0).
 
 +!lastcar:  whoislastcar(ME)& name(ME)
 	<-
-		+isMeTheLastCar;
+		+lastCar(ME)
+		.broadcast(tell,lastCar(ME));
 	.
 +!lastcar <- true.
 		
 +!lastmotorcycle : whoislastmotorcycle(ME) & name(ME)
 	<-
-		+isMeTheLastMotorcycle;
+		+lastMotorcycle(ME);
+		.broadcast(tell,lastMotorcycle(ME));
 	.
 	
 +!lastmotorcycle <-true.

@@ -1,9 +1,12 @@
-+!buildPoligon :  not isMeTheLastMotorcycle & name(AG)	
++!buildPoligon :    name(AG) & 
+					not lastMotorcycle(AG)
 	<- true.
 
-+!buildPoligon:  isMeTheLastMotorcycle & name(AG) 
++!buildPoligon:  	name(AG) &
+					lastMotorcycle(AG)  
 	<-
 		.wait(step(1));
+	
 		for(chargingStation(_,X,Y,_)) {
 			addPoint(X,Y);
 		}
@@ -22,7 +25,8 @@
 		buildPolygon;
 //		.print("Poligono pronto !!");
 		?betterWell(WELL);
-		.send(akuanduba_udesc12,achieve,buildWell( WELL, AG, 1, 9 ));
+		?lastCar(LASTCAR);
+		.send(LASTCAR,achieve,buildWell( WELL, AG, 1, 9 ));
 		!buildWell( WELL, AG, 2, 9 );
 	.
 
@@ -137,15 +141,15 @@
 	
 //Quando o inimigo chegar perto destruir o poco
 +entity(_,TEAMADV,_,_,_)[source(percept)]:
-			team(TEAM) 						&
-			TEAMADV \==TEAM 				&
-			(agentid("10")|agentid("12"))	&
-			task(cuidaPoco,_,_,_)			&
-			doing(cuidaPoco) 				&
-			not task(desmantelar,_,_,_)		&
-			name(AGENT)						&			
-			betterWell(WELLTYPE) 			&
-			wellType(WELLTYPE,_,_,_,INTEGRIDADE)   & 
+			team(TEAM) 												&
+			TEAMADV \==TEAM 										&
+			name(AGENT)												&	
+			(lastMotorcycle(AGENT)|lastCar(AGENT))					&
+			task(cuidaPoco,_,_,_)									&
+			doing(cuidaPoco) 										&
+			not task(desmantelar,_,_,_)								&			
+			betterWell(WELLTYPE) 									&
+			wellType(WELLTYPE,_,_,_,INTEGRIDADE)   					& 
 			role(_,_,CURRENTKILL,_,_,_,_,_,_,_,_)
 	<-
 		QTD = math.ceil( INTEGRIDADE/CURRENTKILL );
@@ -154,9 +158,10 @@
 		!addtask(desmantelar,9.1,R,[]);
 	.
 
-+!testDismantle :   task(desmantelar,_,_,_) & 
-					(isMeTheLastMotorcycle|isMeTheLastCar) &
-					betterWell(WELLTYPE) &
++!testDismantle :   task(desmantelar,_,_,_) 								& 
+					name(AGENT)												&	
+					(lastMotorcycle(AGENT)|lastCar(AGENT))     				&
+					betterWell(WELLTYPE) 									&
 					(not wellType(WELLTYPE,_,_,_,_)[source(percept)])
 	<- 
 		!removetask(desmantelar,_,_,_);

@@ -59,7 +59,7 @@ highlevel(ITEM,LEVEL):- item(ITEM,_,_,_)&
 +!callCraftComParts :	role(ROLE,_,_,LOAD,_,_,_,_,_,_,_)  	&
 						ROLE\==drone 						& 
 						name(NAMEAGENT)						&
-						not (agentid("10") | agentid("11")| agentid("12")) &
+						not (lastMotorcycle(NAMEAGENT)|lastCar(NAMEAGENT)) &
 						numberTotalCraft(NTC)				&
 						.count(craftCommitment(_,_))<=NTC	&
 						centerStorage(STORAGE) 				&	
