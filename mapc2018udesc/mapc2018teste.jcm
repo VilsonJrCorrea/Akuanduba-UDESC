@@ -137,143 +137,143 @@ agent akuanduba_udesc34: agentA.asl{
 focus: env.art34, coogather
 }
 //time b
-agent agentB1: agentB.asl{ 
+agent agentB1: agentWithDelay.asl{ 
  join: envb
 focus: envb.artb1
 }
-agent agentB2: agentB.asl{ 
+agent agentB2: agentWithDelay.asl{ 
  join: envb
 focus: envb.artb2
 }
-agent agentB3: agentB.asl{ 
+agent agentB3: agentWithDelay.asl{ 
  join: envb
 focus: envb.artb3
 }
-agent agentB4: agentB.asl{ 
+agent agentB4: agentWithDelay.asl{ 
  join: envb
 focus: envb.artb4
 }
-agent agentB5: agentB.asl{ 
+agent agentB5: agentWithDelay.asl{ 
  join: envb
 focus: envb.artb5
 }
-agent agentB6: agentB.asl{ 
+agent agentB6: agentWithDelay.asl{ 
  join: envb
 focus: envb.artb6
 }
-agent agentB7: agentB.asl{ 
+agent agentB7: agentWithDelay.asl{ 
  join: envb
 focus: envb.artb7
 }
-agent agentB8: agentB.asl{ 
+agent agentB8: agentWithDelay.asl{ 
  join: envb
 focus: envb.artb8
 }
-agent agentB9: agentB.asl{ 
+agent agentB9: agentWithDelay.asl{ 
  join: envb
 focus: envb.artb9
 }
-agent agentB10: agentB.asl{ 
+agent agentB10: agentWithDelay.asl{ 
  join: envb
 focus: envb.artb10
 }
-agent agentB11: agentB.asl{ 
+agent agentB11: agentWithDelay.asl{ 
  join: envb
 focus: envb.artb11
 }
-agent agentB12: agentB.asl{ 
+agent agentB12: agentWithDelay.asl{ 
  join: envb
 focus: envb.artb12
 }
-agent agentB13: agentB.asl{ 
+agent agentB13: agentWithDelay.asl{ 
  join: envb
 focus: envb.artb13
 }
-agent agentB14: agentB.asl{ 
+agent agentB14: agentWithDelay.asl{ 
  join: envb
 focus: envb.artb14
 }
-agent agentB15: agentB.asl{ 
+agent agentB15: agentWithDelay.asl{ 
  join: envb
 focus: envb.artb15
 }
-agent agentB16: agentB.asl{ 
+agent agentB16: agentWithDelay.asl{ 
  join: envb
 focus: envb.artb16
 }
-agent agentB17: agentB.asl{ 
+agent agentB17: agentWithDelay.asl{ 
  join: envb
 focus: envb.artb17
 }
-agent agentB18: agentB.asl{ 
+agent agentB18: agentWithDelay.asl{ 
  join: envb
 focus: envb.artb18
 }
-agent agentB19: agentB.asl{ 
+agent agentB19: agentWithDelay.asl{ 
  join: envb
 focus: envb.artb19
 }
-agent agentB20: agentB.asl{ 
+agent agentB20: agentWithDelay.asl{ 
  join: envb
 focus: envb.artb20
 }
-agent agentB21: agentB.asl{ 
+agent agentB21: agentWithDelay.asl{ 
  join: envb
 focus: envb.artb21
 }
-agent agentB22: agentB.asl{ 
+agent agentB22: agentWithDelay.asl{ 
  join: envb
 focus: envb.artb22
 }
-agent agentB23: agentB.asl{ 
+agent agentB23: agentWithDelay.asl{ 
  join: envb
 focus: envb.artb23
 }
-agent agentB24: agentB.asl{ 
+agent agentB24: agentWithDelay.asl{ 
  join: envb
 focus: envb.artb24
 }
-agent agentB25: agentB.asl{ 
+agent agentB25: agentWithDelay.asl{ 
  join: envb
 focus: envb.artb25
 }
-agent agentB26: agentB.asl{ 
+agent agentB26: agentWithDelay.asl{ 
  join: envb
 focus: envb.artb26
 }
-agent agentB27: agentB.asl{ 
+agent agentB27: agentWithDelay.asl{ 
  join: envb
 focus: envb.artb27
 }
-agent agentB28: agentB.asl{ 
+agent agentB28: agentWithDelay.asl{ 
  join: envb
 focus: envb.artb28
 }
-agent agentB29: agentB.asl{ 
+agent agentB29: agentWithDelay.asl{ 
  join: envb
 focus: envb.artb29
 }
-agent agentB30: agentB.asl{ 
+agent agentB30: agentWithDelay.asl{ 
  join: envb
 focus: envb.artb30
 }
-agent agentB31: agentB.asl{ 
+agent agentB31: agentWithDelay.asl{ 
  join: envb
 focus: envb.artb31
 }
-agent agentB32: agentB.asl{ 
+agent agentB32: agentWithDelay.asl{ 
  join: envb
 focus: envb.artb32
 }
-agent agentB33: agentB.asl{ 
+agent agentB33: agentWithDelay.asl{ 
  join: envb
 focus: envb.artb33
 }
-agent agentB34: agentB.asl{ 
+agent agentB34: agentWithDelay.asl{ 
  join: envb
 focus: envb.artb34
 }
-//
+
 workspace env {
 artifact art1: EISAccess("conf/local/eis0.json")
 artifact art2: EISAccess("conf/local/eis1.json")
@@ -312,8 +312,8 @@ artifact art34: EISAccess("conf/local/eis33.json")
 artifact artpolygon: calculos.ARTGreyZone
 artifact coogather: CoordinationArtifact
 }
+
 //
-////
 workspace envb {
 artifact artb1: EISAccess("conf/local/eisb0.json")
 artifact artb2: EISAccess("conf/local/eisb1.json")

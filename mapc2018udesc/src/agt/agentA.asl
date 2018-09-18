@@ -22,7 +22,7 @@
 @x1[atomic]
 +!consumestep: 
 				lastActionResult( successful )			& 
-				doing(LD)								& 
+				lastDoing(LD)								& 
 				task(LD,P,[ACT|T],EXECUTEDPLAN)			&
 				lastAction(RLA)							&
 				route(ROUTE)							&
@@ -102,18 +102,19 @@
 		action(continue);
 .
 
-@s2[atomic]
-+!do: 			not route([]) 		&
-				lastDoing(Y) 		& 
-				doing(X) 			& 
-				Y\==X 				&
-				task(X,_,[ACT|T],_) &
-				task(Y,_,_,_) 		& 
-				Y=exploration	
-	<-
-			-+lastDoing(X);
-    		action(ACT);
-	. 
+
+//@s2[atomic]
+//+!do: 			not route([]) 		&
+//				lastDoing(Y) 		& 
+//				doing(X) 			& 
+//				Y\==X 				&
+//				task(X,_,[ACT|T],_) &
+//				task(Y,_,_,_) 		& 
+//				Y=exploration	
+//	<-
+//			-+lastDoing(X);
+//    		action(ACT);
+//	. 
 
 @docrafthelp[atomic]
 +!do: 
@@ -148,7 +149,7 @@
 	<-
 //		!testDismantle;
 		!testDismantleWellOfEnemy;
-//		!testarTrabalho;
+		!testarTrabalho;
 //		!testarMission;
 		!consumestep;
 		!whattodo;

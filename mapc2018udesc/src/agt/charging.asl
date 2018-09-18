@@ -4,7 +4,7 @@
 	 		 calculatenearchargingstation(Facility,CURRENTLAT,CURRENTLON,X1,Y1,DISTANCE) &
 			 distanciasemsteps(DISTANCE, NSTEPS ) &
 			 ((role(drone,_,_,_,_,_,_,_,_,_,_) & BAT - 2*NSTEPS < 8)|
-			 (not role(drone,_,_,_,_,_,_,_,_,_,_) & BAT - 2*NSTEPS < 9))
+			 (not role(drone,_,_,_,_,_,_,_,_,_,_) & BAT - 2*NSTEPS < 11))
 	<-
 		!!recharge (CURRENTLAT,CURRENTLON);
 	.
