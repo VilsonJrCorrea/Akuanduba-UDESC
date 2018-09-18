@@ -8,7 +8,7 @@ import jacamo.infra.JaCaMoLauncher;
 import org.junit.Test;
 import massim.Server;
 import jason.JasonException;
-public class RunLaPlata {
+public class RunFarroupilha {
 
 	@Before
 	public void setUp() {
@@ -20,7 +20,7 @@ public class RunLaPlata {
 					if (Desktop.isDesktopSupported()) {
 					    Desktop.getDesktop().browse(new URI("http://127.0.0.1:8000"));
 					}
-					Server.main(new String[] {"-conf", "conf/laplata.json", "--monitor"});
+					Server.main(new String[] {"-conf", "conf/farroupilha.json", "--monitor"});
 					
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -29,7 +29,7 @@ public class RunLaPlata {
 		}).start();
 
 		try {
-			JaCaMoLauncher.main(new String[] {"mapc2018teste.jcm"});
+			JaCaMoLauncher.main(new String[] {"mapc2018testeSEPEX.jcm"});
 		} catch (JasonException e) {
 			System.out.println("Exception: "+e.getMessage());
 			e.printStackTrace();
