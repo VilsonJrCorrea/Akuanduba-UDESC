@@ -8,7 +8,7 @@ import jacamo.infra.JaCaMoLauncher;
 import org.junit.Test;
 import massim.Server;
 import jason.JasonException;
-public class RunLaPlata {
+public class RunChandigarh {
 
 	@Before
 	public void setUp() {
@@ -20,7 +20,7 @@ public class RunLaPlata {
 					if (Desktop.isDesktopSupported()) {
 					    Desktop.getDesktop().browse(new URI("http://127.0.0.1:8000"));
 					}
-					Server.main(new String[] {"-conf", "conf/laplata.json", "--monitor"});
+					Server.main(new String[] {"-conf", "conf/chandigarh.json", "--monitor"});
 					
 				} catch (Exception e) {
 					e.printStackTrace();
