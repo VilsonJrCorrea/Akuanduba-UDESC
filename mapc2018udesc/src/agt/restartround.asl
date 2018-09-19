@@ -5,23 +5,22 @@ roundnumber(0).
 +simStart: not started 
 		<-
 				+started;				
-
+				
 				.wait(role(VEHICLE,_,_,_,_,_,_,_,_,_,_) &
 					name(AGENT));					
 				.broadcast(tell,partners(VEHICLE,AGENT));		
 			
 				!agentnumber;
 				.wait(.count(partners(_,_),33));
-				
+				//.wait(step(2));
 				!lastcar;
 				!lastmotorcycle;
-				
 				!!buildPoligon;
 				!!sendcentrals;
 				!!exploration;
 				!!callcraftSemParts;
 				!callCraftComPartsWithDelay;
-				!fastgathering;												
+				!fastgathering;	
 		.
 
 +!lastcar:  whoislastcar(ME)& name(ME)
@@ -55,7 +54,7 @@ roundnumber(0).
 +!sendcentrals
 	:	agentid("20")
 	<-	
-		.wait(step(1));
+		.wait(step(X) & X>0);
 		?centerStorageRule(STORAGE); 
 		+centerStorage(STORAGE);
 		?centerWorkshopRule(WORKSHOP);
