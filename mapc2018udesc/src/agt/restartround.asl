@@ -15,12 +15,16 @@ roundnumber(0).
 				//.wait(step(2));
 				!lastcar;
 				!lastmotorcycle;
+				
 				!!buildPoligon;
 				!!sendcentrals;
 				!!exploration;
 				!!callcraftSemParts;
+					
 				!callCraftComPartsWithDelay;
+			
 				!fastgathering;	
+				
 		.
 
 +!lastcar:  whoislastcar(ME)& name(ME)
@@ -54,7 +58,7 @@ roundnumber(0).
 +!sendcentrals
 	:	agentid("20")
 	<-	
-		.wait(step(X) & X>0);
+		.wait(step(X) & X>0 & X<998);
 		?centerStorageRule(STORAGE); 
 		+centerStorage(STORAGE);
 		?centerWorkshopRule(WORKSHOP);

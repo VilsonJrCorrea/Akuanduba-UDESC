@@ -23,7 +23,7 @@ highlevel(ITEM,LEVEL):- item(ITEM,_,_,_)&
 
 +!callCraftComPartsWithDelay: agentid("15")
 	<-
-		.wait(step(1));
+		.wait(step(X)&X>1&X<998);
 		for (item(ITEM,_,_,parts(P)) & not P=[]) {
 			?dependencelevel(ITEM,LEVEL);
 			+dependencelevel(ITEM,LEVEL);
