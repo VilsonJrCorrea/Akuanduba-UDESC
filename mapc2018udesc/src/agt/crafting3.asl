@@ -67,7 +67,7 @@ highlevel(ITEM,LEVEL):- item(ITEM,_,_,_)&
 						not craftCommitment(NAMEAGENT,_) 	&
 						not gatherCommitment(NAMEAGENT,_)
 		<-
-			.wait(step(X) & X>79);
+			.wait(step(X) & X>79 & X<998);
 			?gocraft(ITEM,ROLE,QTD);
 			addCraftCommitment(NAMEAGENT, ITEM,QTD);
 			.print("commited with ",ITEM);
