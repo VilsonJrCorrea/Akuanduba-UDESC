@@ -14,9 +14,8 @@ repeat( retrieve(ITEM,1) , QTD , [] ,RR ) &
 	&	not craftCommitment( NAME, _ )
 	&	not missionCommitment( NAME, _ )
 	&	not doing(_)    
-	&	step(STP) & STP>5 
+	&	step(STEPATUAL) & STEPATUAL>5 
     &	role(ROLE,_,_,CAPACIDADE,_,_,_,_,_,_,_)
-	&	step( STEPATUAL )
 	&	centerStorage(STORAGE)
 	&	sumvolruleJOB( ITENS, VOLUMETOTAL )
 	&	CAPACIDADE >= VOLUMETOTAL
@@ -39,34 +38,43 @@ repeat( retrieve(ITEM,1) , QTD , [] ,RR ) &
 +!realizarMission( NOMEMISSION )
 	:
 		centerStorage(STORAGE)
+	&	.print( "TESTE: centerStorage" )
 	&	mission(NOMEMISSION,LOCALENTREGA,RECOMPENSA,STEPINICIAL,STEPFINAL,DESCONHECIDO1,DESCONHECIDO2,_,ITENSMISSION)
-	&	storage(STORAGE,_,_,_,_,ITENSSTORAGE)
-	&	procurarTodosItens( ITENSMISSION, ITENSSTORAGE )
+	&	.print( "TESTE: mission" )
 	<-	
-		.print( "Como tem todos os itens no storage, vou diretamente fazer a missão." );
 		PASSOS_1 = [ goto( STORAGE ) ];
-		?passosRetrieve( ITENS, [], RETORNO );
+		?passosRetrieve( ITENSMISSION, [], RETORNO );
 		.concat( PASSOS_1, RETORNO, PASSOS_2);
 		.concat( PASSOS_2, [ goto( LOCALENTREGA ), deliver_job( NOMEMISSION )], PASSOS_3);
+		.print( "TESTE: ", PASSOS_3 );
+		
+		!addtask(mission,9,PASSOS_3,[]);
 	.
 
-//@realizarMission[atomic]
 +!realizarMission( NOMEMISSION )
 	:
-		true
-
+	true
 	<-	
-		.print( "Como não tem todos os itens no storage, vou ter que buscar os itens primários");
-		
-		.wait(centerStorage(STORAGE)
-	&	mission(NOMEMISSION,LOCALENTREGA,RECOMPENSA,STEPINICIAL,STEPFINAL,DESCONHECIDO1,DESCONHECIDO2,_,ITENS));
-		PASSOS_1 = [ goto( STORAGE ) ];
-		?passosRetrieve( ITENS, [], RETORNO );
-		.concat( PASSOS_1, RETORNO, PASSOS_2);
-		.concat( PASSOS_2, [ goto( LOCALENTREGA ), deliver_job( NOMEMISSION )], PASSOS_3);
-
-		!addtask(mission,5,PASSOS_3,[]);
+		.print( "Alguma coisa deu errado com o realizarMission e caiu aqui." );
 	.
+
+////@realizarMission[atomic]
+//+!realizarMission( NOMEMISSION )
+//	:
+//		true
+//
+//	<-	
+//		.print( "Como não tem todos os itens no storage, vou ter que buscar os itens primários");
+//		
+//		.wait(centerStorage(STORAGE)
+//	&	mission(NOMEMISSION,LOCALENTREGA,RECOMPENSA,STEPINICIAL,STEPFINAL,DESCONHECIDO1,DESCONHECIDO2,_,ITENS));
+//		PASSOS_1 = [ goto( STORAGE ) ];
+//		?passosRetrieve( ITENS, [], RETORNO );
+//		.concat( PASSOS_1, RETORNO, PASSOS_2);
+//		.concat( PASSOS_2, [ goto( LOCALENTREGA ), deliver_job( NOMEMISSION )], PASSOS_3);
+//
+//		!addtask(mission,5,PASSOS_3,[]);
+//	.
 
 
 +!testarMission

@@ -12,7 +12,7 @@
 { include("regras.asl") }
 { include("job.asl") }
 //{ include("job2.asl")}
-//{ include("mission.asl") }
+{ include("mission.asl") }
 { include("construcao_pocos.asl")}
 { include("restartround.asl")}
 { include("huntWell.asl") }
@@ -150,7 +150,7 @@
 		!testDismantle;
 		!testDismantleWellOfEnemy;
 		!testarTrabalho;
-//		!testarMission;
+		!testarMission;
 		!consumestep;
 		!whattodo;
 		!do;
