@@ -1,6 +1,6 @@
 +!callCraftComPartsWithDelay:true
 	<-
-		.wait(step(1));
+		.wait(step(X)&X>1&X<998);
 		for (item(ITEM,_,_,parts(P)) & P\==[]) {
 			.count(item(_,_,_,parts(PARTS)) & .member(ITEM,PARTS),QTD);
 			+numberAgRequired(ITEM,QTD+1);
@@ -9,7 +9,7 @@
 		.findall(X,numberAgRequired(_,X),LTMP);
 		+numberTotalCraft(math.sum(LTMP));
 			
-		.wait(step(3));
+		.wait(step(X)>3&X<998);
 		!!callCraftComParts;
 	.
 
@@ -21,10 +21,9 @@
 						.count(craftCommitment(_,_))<=NTC	&
 						not craftCommitment(NAMEAGENT,_) 	&
 						not gatherCommitment(NAMEAGENT,_)
-		<-
+		<-	
 			.wait(step(X) & X>79 & X<998);
 			?gocraft(ITEM,ROLE,QTD);
-			
 			addCraftCommitment(NAMEAGENT, ITEM,QTD);
 			.print("commited with ",ITEM);
 			!!upgradecapacity;

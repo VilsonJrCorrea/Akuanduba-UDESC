@@ -11,3 +11,8 @@
 	<-
 		!removetask(desmantelar,_,_,_);
 	.
+
++lastActionResult(failed_resources) : lastAction(upgradecapacity) & doing(upgradecapacity)
+	<-
+		!removetask(upgradecapacity,_,_,_);
+	.
