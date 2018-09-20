@@ -140,7 +140,8 @@ calculatedistance( XA, YA, XB, YB, DISTANCIA )
 
 distanciasemsteps(DISTANCIA, NSTEPS ):-
 					role(_,VELOCIDADE,_,_,_,_,_,_,_,_,_) &
-					NSTEPS=math.ceil((DISTANCIA*120)/VELOCIDADE).
+					NSTEPS=math.ceil((DISTANCIA*150)/VELOCIDADE). //120
+					
 
 calculatehowmanystepsrecharge(Facility,STEPSRECHARGE):-
 						role(_,_,_,BAT,_,_,_,_,_,_,_)&
@@ -190,7 +191,7 @@ qtdItens( [required(_,QTD)|T], QTDATUAL, QTDTOTAL )
 	.
 
 /**
- * Início da procura de todos os itens do job pra saber se estão no depósito.
+ * Inï¿½cio da procura de todos os itens do job pra saber se estï¿½o no depï¿½sito.
  */
 
 //procurarItemSTORAGE( ITEM1, QTD1, [] )
@@ -218,7 +219,7 @@ procurarTodosItens( [required(ITEM1,QTD1)|T], ITENSSTORAGE )
 .	
 
 /**
- * Fim da procura dos itens do Job no depósito.
+ * Fim da procura dos itens do Job no depï¿½sito.
  */
 
 buildStore( L, R )
@@ -346,3 +347,15 @@ whoislastmotorcycle(AGENT1)
 		not (partners (motorcycle,AGENT2) &
 		AGENT1<AGENT2)
 	.
+	
+amilastfreetruck(ME)
+	:-
+		role(truck,_,_,_,_,_,_,_,_,_,_) &
+		name(ME) 						&
+		not gatherCommitment( ME, _ )	&
+		not craftCommitment( ME , _ )	&  
+		not ( partners (truck,AGENT) 	& 
+			  not gatherCommitment( AGENT, _ )	&
+			  not craftCommitment ( AGENT, _ )	&
+			  ME<AGENT
+			).							

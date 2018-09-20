@@ -19,10 +19,11 @@ roundnumber(0).
 				!!buildPoligon;
 				!!sendcentrals;
 				!!exploration;
-				!!callcraftSemParts;
-					
+				
+				!!callcraftSemParts;							
 				!callCraftComPartsWithDelay;
-			
+				//!upgradelasttruck;
+					
 				!fastgathering;	
 				
 		.
@@ -33,6 +34,7 @@ roundnumber(0).
 		.print("LAST CAR: ",ME);
 		.broadcast(tell,lastCar(ME));
 	.
+
 +!lastcar <- true.
 		
 +!lastmotorcycle : whoislastmotorcycle(ME) & name(ME)
@@ -100,6 +102,22 @@ roundnumber(0).
 		
 		.abolish(started);			
 	.
+	
+//+!upgradelasttruck 
+//	: amilastfreetruck(ME)
+//	<-
+//		.print("upgrading capacity");
+//		?nearshop(SHOP);
+//		?upgrade(load,_,SIZE);
+//		?role(_,_,_,BASELOAD,_,_,_,_,_,_,_);
+//		QTDUPGRADE = math.floor((150-BASELOAD)/SIZE);
+//		?repeat(upgrade(load) , QTDUPGRADE , [] , RUPGRADE );
+//		SETUPLOAD = [goto(SHOP)|RUPGRADE ];
+//		!addtask(upgradecapacity,9.1,SETUPLOAD,[]);		
+//	.
+//
+//+!upgradelasttruck
+//	<- true.
 	
 +steps(S): step(S-1)
 <-

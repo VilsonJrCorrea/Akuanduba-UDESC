@@ -16,3 +16,9 @@
 	<-
 		!removetask(upgradecapacity,_,_,_);
 	.
+ 
++lastActionResult(failed_wrong_facility) : lastAction(charge) & doing(recharge)
+	<-
+		.print("tratando treta do recharge");
+		!removetask(recharge,_,_,_);
+	.

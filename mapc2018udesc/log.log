@@ -1,0 +1,592 @@
+[ NORMAL  ]  ##   Choose a number:
+[ NORMAL  ]  ##   0 conf/paris.json
+[ NORMAL  ]  ##   1 conf/ibirama.json
+[ NORMAL  ]  ##   2 conf/paris2.json
+[ NORMAL  ]  ##   3 conf/QuickTest.json
+[ NORMAL  ]  ##   4 conf/SampleConfig.json
+[ NORMAL  ]  ##   5 conf/farroupilha.json
+[ NORMAL  ]  ##   6 conf/laplata.json
+[ NORMAL  ]  ##   7 conf/RioDoSul.json
+[ NORMAL  ]  ##   8 conf/belo.json
+[ NORMAL  ]  ##   9 conf/eismassimconfig.json
+[ NORMAL  ]  ##   10 conf/chandigarh.json
+[ NORMAL  ]  ##   Configuring launch type: key
+[ NORMAL  ]  ##   Configuring tournament mode: round-robin
+[ NORMAL  ]  ##   Configuring team size: 34
+[ NORMAL  ]  ##   Configuring teams per match: 2
+[ NORMAL  ]  ##   Configuring port: 12300
+[ NORMAL  ]  ##   Configuring backlog: 10000
+[ NORMAL  ]  ##   Configuring agent timeout: 4000
+[ NORMAL  ]  ##   Configuring log path: logs
+[ NORMAL  ]  ##   Configuring log level: normal
+[ NORMAL  ]  ##   Configuring result path: results
+[ NORMAL  ]  ##   Configuring max packet length: 65536
+[ NORMAL  ]  ##   Configuring replay path: replays
+[ MONITOR ] Webmonitor listening on http://127.0.0.1:8000/
+[ NORMAL  ]  ##   Please press ENTER to start the tournament.
+[ MONITOR ] 1 viewer(s) connected
+[ NORMAL  ]  ##   got authentication: username=agentB24 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=agentB28 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=agentB18 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=agentB22 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=agentB34 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=agentB20 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=agentB27 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=agentB26 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=agentB8 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=agentB7 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=agentB13 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=agentB16 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=agentB17 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=agentB12 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=agentB29 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=agentB15 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=agentB14 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=agentB25 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=agentB9 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=agentB19 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=agentB21 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=agentB23 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=agentB5 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=agentB4 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=agentB6 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=agentB3 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=agentB10 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=agentB32 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=agentB11 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=agentB33 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=agentB1 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=agentB14 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=agentB12 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=agentB30 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=agentB18 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=agentB31 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=agentB2 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=akuanduba_udesc1 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=akuanduba_udesc2 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=akuanduba_udesc16 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=akuanduba_udesc17 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=akuanduba_udesc18 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=akuanduba_udesc19 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=akuanduba_udesc12 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=akuanduba_udesc34 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=akuanduba_udesc13 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=akuanduba_udesc14 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=akuanduba_udesc15 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=akuanduba_udesc30 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=akuanduba_udesc31 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=akuanduba_udesc10 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=akuanduba_udesc32 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=akuanduba_udesc11 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=akuanduba_udesc33 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=akuanduba_udesc8 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=akuanduba_udesc7 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=akuanduba_udesc9 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=akuanduba_udesc4 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=akuanduba_udesc3 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=akuanduba_udesc6 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=akuanduba_udesc5 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=akuanduba_udesc28 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=akuanduba_udesc27 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=akuanduba_udesc29 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=akuanduba_udesc23 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=akuanduba_udesc24 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=akuanduba_udesc25 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=akuanduba_udesc20 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=akuanduba_udesc26 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=akuanduba_udesc21 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=akuanduba_udesc22 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   Configuring random seed: 50
+[ NORMAL  ]  ##   Configuring facilities quadSize: 0.04
+[ NORMAL  ]  ##   Configuring facilities charging station density: 0.9
+[ NORMAL  ]  ##   Configuring facilities charging station rateMin: 20
+[ NORMAL  ]  ##   Configuring facilities charging station rateMax: 40
+[ NORMAL  ]  ##   Configuring facilities shop density: 0.8
+[ NORMAL  ]  ##   Config: tradeModMin set to 1
+[ NORMAL  ]  ##   Config: tradeModMax set to 4
+[ NORMAL  ]  ##   Configuring facilities dump density: 0.6
+[ NORMAL  ]  ##   Configuring facilities workshops density: 0.6
+[ NORMAL  ]  ##   Configuring facilities storage density: 0.8
+[ NORMAL  ]  ##   Configuring facilities storage capacityMin: 7500
+[ NORMAL  ]  ##   Configuring facilities storage capacityMax: 15000
+[ NORMAL  ]  ##   Configuring facilities resource node density: 0.7
+[ NORMAL  ]  ##   Config: thresholdMin set to 10
+[ NORMAL  ]  ##   Config: thresholdMax set to 20
+[ NORMAL  ]  ##   Config: wellTypesMin set to 2
+[ NORMAL  ]  ##   Config: wellTypesMax set to 5
+[ NORMAL  ]  ##   Config: baseEfficiencyMin set to 1
+[ NORMAL  ]  ##   Config: baseEfficiencyMax set to 5
+[ NORMAL  ]  ##   Config: efficiencyIncreaseMin set to 1
+[ NORMAL  ]  ##   Config: efficiencyIncreaseMax set to 5
+[ NORMAL  ]  ##   Config: baseIntegrityMin set to 50
+[ NORMAL  ]  ##   Config: baseIntegrityMax set to 100
+[ NORMAL  ]  ##   Config: costFactor set to 100
+[ NORMAL  ]  ##   Configuring items levelDecreaseMin: 1
+[ NORMAL  ]  ##   Configuring items levelDecreaseMax: 2
+[ NORMAL  ]  ##   Configuring items graphDepthMin: 3
+[ NORMAL  ]  ##   Configuring items graphDepthMax: 4
+[ NORMAL  ]  ##   Configuring items resourcesMin: 4
+[ NORMAL  ]  ##   Configuring items resourcesMax: 6
+[ NORMAL  ]  ##   Config: volMin set to 5
+[ NORMAL  ]  ##   Config: volMax set to 10
+[ NORMAL  ]  ##   Config: partsMin set to 2
+[ NORMAL  ]  ##   Config: partsMax set to 8
+[ NORMAL  ]  ##   Config: jobProbability set to 0.2
+[ NORMAL  ]  ##   Config: auctionProbability set to 0.1
+[ NORMAL  ]  ##   Config: missionProbability set to 0.01
+[ NORMAL  ]  ##   Config: jobDurationMin set to 50
+[ NORMAL  ]  ##   Config: jobDurationMax set to 100
+[ NORMAL  ]  ##   Config: rewardModMin set to 100
+[ NORMAL  ]  ##   Config: rewardModMax set to 200
+[ NORMAL  ]  ##   Config: rewardScale set to 5
+[ NORMAL  ]  ##   Config: itemCountMin set to 2
+[ NORMAL  ]  ##   Config: itemCountMax set to 10
+[ NORMAL  ]  ##   Config: auctionTime set to 5
+[ NORMAL  ]  ##   Configuring simulation id: paris
+[ NORMAL  ]  ##   Configuring scenario map: paris
+[ NORMAL  ]  ##   Configuring scenario seedCapital: 5000
+[ NORMAL  ]  ##   Configuring scenario minLon: 2.26
+[ NORMAL  ]  ##   Configuring scenario maxLon: 2.41
+[ NORMAL  ]  ##   Configuring scenario minLat: 48.82
+[ NORMAL  ]  ##   Configuring scenario maxLat: 48.9
+[ NORMAL  ]  ##   Configuring scenario proximity: 5
+[ NORMAL  ]  ##   Configuring scenario cellSize: 200
+[ NORMAL  ]  ##   Configuring scenario centerLat: 48.8424
+[ NORMAL  ]  ##   Configuring scenario centerLon: 2.3209
+[ NORMAL  ]  ##   Configuring random fail probability: 1
+[ NORMAL  ]  ##   Configuring cost for goto: 1
+[ NORMAL  ]  ##   Configuring recharge rate: 0.3
+[ NORMAL  ]  ##   got authentication: username=agentB12 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   got authentication: username=agentB14 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   item0: vol(5), val(0)
+[ NORMAL  ]  ##   item1: vol(9), val(0)
+[ NORMAL  ]  ##   item2: vol(6), val(0)
+[ NORMAL  ]  ##   item3: vol(5), val(0)
+[ NORMAL  ]  ##   item4: vol(10), val(3)
+[ NORMAL  ]  ##   item5: vol(9), val(4)
+[ NORMAL  ]  ##   item6: vol(7), val(11)
+[ NORMAL  ]  ##   item7: vol(10), val(22)
+[ NORMAL  ]  ##   item8: vol(5), val(14)
+[ NORMAL  ]  ##   got authentication: username=agentB18 password=kF5pLs address=127.0.0.1
+[ NORMAL  ]  ##   Created facility: chargingStation0 loc(2.26543,48.84937) rate(40)
+[ NORMAL  ]  ##   Created facility: chargingStation1 loc(2.33623,48.84928) rate(34)
+[ NORMAL  ]  ##   Created facility: chargingStation2 loc(2.39536,48.84526) rate(23)
+[ NORMAL  ]  ##   Created facility: chargingStation3 loc(2.26265,48.87951) rate(38)
+[ NORMAL  ]  ##   Created facility: chargingStation4 loc(2.30548,48.89724) rate(36)
+[ NORMAL  ]  ##   Created facility: chargingStation5 loc(2.35543,48.87246) rate(21)
+[ NORMAL  ]  ##   Created facility: chargingStation6 loc(2.40367,48.88474) rate(37)
+[ NORMAL  ]  ##   Created facility: shop0 loc(2.32036,48.84688) tradeMod(4)
+[ NORMAL  ]  ##   Created facility: shop1 loc(2.38349,48.82567) tradeMod(2)
+[ NORMAL  ]  ##   Created facility: shop2 loc(2.26824,48.87787) tradeMod(2)
+[ NORMAL  ]  ##   Created facility: shop3 loc(2.367,48.89927) tradeMod(3)
+[ NORMAL  ]  ##   Created facility: shop4 loc(2.38417,48.88411) tradeMod(4)
+[ NORMAL  ]  ##   Created facility: dump0 loc(2.32596,48.84929)
+[ NORMAL  ]  ##   Created facility: dump1 loc(2.27301,48.86291)
+[ NORMAL  ]  ##   Created facility: dump2 loc(2.33569,48.89826)
+[ NORMAL  ]  ##   Created facility: workshop0 loc(2.28629,48.85247)
+[ NORMAL  ]  ##   Created facility: workshop1 loc(2.30354,48.83279)
+[ NORMAL  ]  ##   Created facility: workshop2 loc(2.39812,48.84198)
+[ NORMAL  ]  ##   Created facility: workshop3 loc(2.27265,48.8858)
+[ NORMAL  ]  ##   Created facility: workshop4 loc(2.30934,48.88958)
+[ NORMAL  ]  ##   Created facility: workshop5 loc(2.34195,48.87405)
+[ NORMAL  ]  ##   Created facility: workshop6 loc(2.39389,48.89504)
+[ NORMAL  ]  ##   Created facility: storage0 loc(2.27773,48.85842) capacity(13946)
+[ NORMAL  ]  ##   Created facility: storage1 loc(2.32677,48.82957) capacity(8221)
+[ NORMAL  ]  ##   Created facility: storage2 loc(2.37935,48.83586) capacity(14671)
+[ NORMAL  ]  ##   Created facility: storage3 loc(2.38402,48.84834) capacity(13718)
+[ NORMAL  ]  ##   Created facility: storage4 loc(2.27002,48.88148) capacity(9235)
+[ NORMAL  ]  ##   Created facility: storage5 loc(2.33853,48.87113) capacity(11454)
+[ NORMAL  ]  ##   Created facility: storage6 loc(2.36804,48.86509) capacity(7571)
+[ NORMAL  ]  ##   Created facility: storage7 loc(2.40376,48.88509) capacity(7946)
+[ NORMAL  ]  ##   Created facility: node0 loc(2.33678,48.87789)
+[ NORMAL  ]  ##   Created facility: node1 loc(2.26387,48.89629)
+[ NORMAL  ]  ##   Created facility: node2 loc(2.37056,48.87839)
+[ NORMAL  ]  ##   Created facility: node3 loc(2.38195,48.8742)
+[ NORMAL  ]  ##   Created facility: node4 loc(2.29744,48.83691)
+[ NORMAL  ]  ##   Created facility: node5 loc(2.33109,48.8294)
+[ NORMAL  ]  ##   Created facility: node6 loc(2.37992,48.8576)
+[ NORMAL  ]  ##   Created facility: node7 loc(2.4025,48.84601)
+[ NORMAL  ]  ##   Created facility: node8 loc(2.36465,48.8629)
+[ NORMAL  ]  ##   wellType0: eff(6), int(57), cost(844)
+[ NORMAL  ]  ##   wellType1: eff(7), int(56), cost(964)
+[ NORMAL  ]  ##   Simulation at step 0
+[ NORMAL  ]  ##   New Job: resources(17), reward(284), 1-79, storage4, 1x item6, 2x item4
+[ NORMAL  ]  ##   Simulation at step 1
+[ NORMAL  ]  ##   Simulation at step 2
+[ NORMAL  ]  ##   Simulation at step 3
+[ NORMAL  ]  ##   Simulation at step 4
+[ NORMAL  ]  ##   Simulation at step 5
+[ NORMAL  ]  ##   Simulation at step 6
+[ NORMAL  ]  ##   Simulation at step 7
+[ NORMAL  ]  ##   Simulation at step 8
+[ NORMAL  ]  ##   Simulation at step 9
+[ NORMAL  ]  ##   Simulation at step 10
+[ NORMAL  ]  ##   Simulation at step 11
+[ NORMAL  ]  ##   Simulation at step 12
+[ NORMAL  ]  ##   Simulation at step 13
+[ NORMAL  ]  ##   Simulation at step 14
+[ NORMAL  ]  ##   New Job: resources(26), reward(317), 15-67, storage0, 1x item7, 1x item5
+[ NORMAL  ]  ##   Simulation at step 15
+[ NORMAL  ]  ##   Simulation at step 16
+[ NORMAL  ]  ##   New Job: resources(50), reward(365), 17-72, storage4, 1x item7, 2x item6, 2x item4
+[ NORMAL  ]  ##   Simulation at step 17
+[ NORMAL  ]  ##   Simulation at step 18
+[ NORMAL  ]  ##   Simulation at step 19
+[ NORMAL  ]  ##   Simulation at step 20
+[ NORMAL  ]  ##   New AuctionJob: resources(29), reward(270), 21-91, storage4, 1x item7, 1x item5, 1x item4
+[ NORMAL  ]  ##   New Job: resources(25), reward(235), 21-72, storage5, 1x item7, 1x item4
+[ NORMAL  ]  ##   Simulation at step 21
+[ NORMAL  ]  ##   New Job: resources(66), reward(456), 22-88, storage3, 1x item7, 2x item5, 3x item6, 1x item4
+[ NORMAL  ]  ##   Simulation at step 22
+[ NORMAL  ]  ##   New Job: resources(46), reward(360), 23-92, storage0, 1x item5, 2x item6, 1x item8, 2x item4
+[ NORMAL  ]  ##   Simulation at step 23
+[ NORMAL  ]  ##   Simulation at step 24
+[ NORMAL  ]  ##   Simulation at step 25
+[ NORMAL  ]  ##   New Job: resources(132), reward(788), 26-76, storage6, 3x item7, 2x item5, 4x item6, 1x item8
+[ NORMAL  ]  ##   Simulation at step 26
+[ NORMAL  ]  ##   Simulation at step 27
+[ NORMAL  ]  ##   Simulation at step 28
+[ NORMAL  ]  ##   Simulation at step 29
+[ NORMAL  ]  ##   Simulation at step 30
+[ NORMAL  ]  ##   Simulation at step 31
+[ NORMAL  ]  ##   Simulation at step 32
+[ NORMAL  ]  ##   New Job: resources(55), reward(376), 33-119, storage3, 1x item7, 1x item5, 1x item6, 6x item4
+[ NORMAL  ]  ##   Simulation at step 33
+[ NORMAL  ]  ##   Simulation at step 34
+[ NORMAL  ]  ##   New AuctionJob: resources(117), reward(734), 35-89, storage6, 2x item7, 3x item5, 3x item6, 2x item8
+[ NORMAL  ]  ##   New Job: resources(92), reward(653), 35-128, storage3, 2x item7, 3x item5, 2x item6, 1x item8
+[ NORMAL  ]  ##   Simulation at step 35
+[ NORMAL  ]  ##   New Job: resources(52), reward(453), 36-125, storage4, 6x item5, 1x item6, 1x item8, 1x item4
+[ NORMAL  ]  ##   New AuctionJob: resources(79), reward(529), 36-117, storage7, 2x item7, 1x item5, 1x item6, 1x item8, 2x item4
+[ NORMAL  ]  ##   Simulation at step 36
+[ NORMAL  ]  ##   Simulation at step 37
+[ NORMAL  ]  ##   Simulation at step 38
+[ NORMAL  ]  ##   Simulation at step 39
+[ NORMAL  ]  ##   Simulation at step 40
+[ NORMAL  ]  ##   Simulation at step 41
+[ NORMAL  ]  ##   Simulation at step 42
+[ NORMAL  ]  ##   Simulation at step 43
+[ NORMAL  ]  ##   Simulation at step 44
+[ NORMAL  ]  ##   Simulation at step 45
+[ NORMAL  ]  ##   Simulation at step 46
+[ NORMAL  ]  ##   Simulation at step 47
+[ NORMAL  ]  ##   New Job: resources(54), reward(449), 48-143, storage7, 1x item7, 1x item8, 6x item4
+[ NORMAL  ]  ##   Simulation at step 48
+[ NORMAL  ]  ##   Simulation at step 49
+[ NORMAL  ]  ##   New AuctionJob: resources(53), reward(373), 50-115, storage3, 2x item6, 2x item8, 1x item4
+[ NORMAL  ]  ##   Simulation at step 50
+[ NORMAL  ]  ##   New Job: resources(93), reward(615), 51-109, storage3, 2x item7, 1x item5, 1x item6, 2x item8, 2x item4
+[ NORMAL  ]  ##   Simulation at step 51
+[ NORMAL  ]  ##   Simulation at step 52
+[ NORMAL  ]  ##   Simulation at step 53
+[ NORMAL  ]  ##   Simulation at step 54
+[ NORMAL  ]  ##   Simulation at step 55
+[ NORMAL  ]  ##   Simulation at step 56
+[ NORMAL  ]  ##   Simulation at step 57
+[ NORMAL  ]  ##   Simulation at step 58
+[ NORMAL  ]  ##   Simulation at step 59
+[ NORMAL  ]  ##   Simulation at step 60
+[ NORMAL  ]  ##   New AuctionJob: resources(83), reward(569), 61-114, storage0, 2x item7, 2x item5, 1x item6, 1x item8, 2x item4
+[ NORMAL  ]  ##   Simulation at step 61
+[ NORMAL  ]  ##   New Job: resources(126), reward(779), 62-144, storage4, 4x item7, 4x item5, 2x item6
+[ NORMAL  ]  ##   Simulation at step 62
+[ NORMAL  ]  ##   Simulation at step 63
+[ NORMAL  ]  ##   Simulation at step 64
+[ NORMAL  ]  ##   Simulation at step 65
+[ NORMAL  ]  ##   Simulation at step 66
+[ NORMAL  ]  ##   Simulation at step 67
+[ NORMAL  ]  ##   Simulation at step 68
+[ NORMAL  ]  ##   Simulation at step 69
+[ NORMAL  ]  ##   New Job: resources(61), reward(432), 70-168, storage2, 2x item7, 1x item6, 2x item4
+[ NORMAL  ]  ##   New AuctionJob: resources(22), reward(268), 70-148, storage5, 2x item6
+[ NORMAL  ]  ##   Simulation at step 70
+[ NORMAL  ]  ##   New Job: resources(94), reward(579), 71-139, storage6, 2x item7, 3x item6, 1x item8, 1x item4
+[ NORMAL  ]  ##   Simulation at step 71
+[ NORMAL  ]  ##   Simulation at step 72
+[ NORMAL  ]  ##   Simulation at step 73
+[ NORMAL  ]  ##   New Job: resources(103), reward(624), 74-124, storage3, 1x item7, 3x item6, 3x item8, 2x item4
+[ NORMAL  ]  ##   Simulation at step 74
+[ NORMAL  ]  ##   Simulation at step 75
+[ NORMAL  ]  ##   New Job: resources(50), reward(376), 76-171, storage5, 1x item7, 1x item6, 1x item8, 1x item4
+[ NORMAL  ]  ##   Simulation at step 76
+[ NORMAL  ]  ##   New AuctionJob: resources(22), reward(278), 77-150, storage4, 2x item5, 1x item8
+[ NORMAL  ]  ##   Simulation at step 77
+[ NORMAL  ]  ##   New Job: resources(77), reward(513), 78-149, storage6, 1x item7, 1x item5, 3x item8, 3x item4
+[ NORMAL  ]  ##   Simulation at step 78
+[ NORMAL  ]  ##   Simulation at step 79
+[ NORMAL  ]  ##   Simulation at step 80
+[ NORMAL  ]  ##   New Job: resources(75), reward(510), 81-136, storage2, 1x item7, 2x item5, 2x item6, 1x item8, 3x item4
+[ NORMAL  ]  ##   Simulation at step 81
+[ NORMAL  ]  ##   Simulation at step 82
+[ NORMAL  ]  ##   New Job: resources(76), reward(512), 83-170, storage2, 1x item7, 1x item5, 2x item6, 2x item8
+[ NORMAL  ]  ##   Simulation at step 83
+[ NORMAL  ]  ##   Simulation at step 84
+[ NORMAL  ]  ##   New Job: resources(20), reward(205), 85-173, storage6, 1x item8, 2x item4
+[ NORMAL  ]  ##   Simulation at step 85
+[ NORMAL  ]  ##   Simulation at step 86
+[ NORMAL  ]  ##   New Job: resources(84), reward(553), 87-142, storage4, 2x item7, 3x item5, 1x item6, 1x item8, 1x item4
+[ NORMAL  ]  ##   Simulation at step 87
+[ NORMAL  ]  ##   Simulation at step 88
+[ NORMAL  ]  ##   Simulation at step 89
+[ NORMAL  ]  ##   Simulation at step 90
+[ NORMAL  ]  ##   Simulation at step 91
+[ NORMAL  ]  ##   Simulation at step 92
+[ NORMAL  ]  ##   Simulation at step 93
+[ NORMAL  ]  ##   Simulation at step 94
+[ NORMAL  ]  ##   Simulation at step 95
+[ NORMAL  ]  ##   Simulation at step 96
+[ NORMAL  ]  ##   Simulation at step 97
+[ NORMAL  ]  ##   Simulation at step 98
+[ NORMAL  ]  ##   Simulation at step 99
+[ NORMAL  ]  ##   New Job: resources(53), reward(411), 100-155, storage7, 1x item7, 2x item8, 1x item4
+[ NORMAL  ]  ##   Simulation at step 100
+[ NORMAL  ]  ##   New Job: resources(51), reward(392), 101-170, storage4, 1x item7, 1x item5, 1x item6, 1x item8
+[ NORMAL  ]  ##   Simulation at step 101
+[ NORMAL  ]  ##   Simulation at step 102
+[ NORMAL  ]  ##   Simulation at step 103
+[ NORMAL  ]  ##   New Job: resources(53), reward(428), 104-171, storage2, 1x item7, 1x item6, 1x item8, 2x item4
+[ NORMAL  ]  ##   Simulation at step 104
+[ NORMAL  ]  ##   New Job: resources(55), reward(473), 105-192, storage2, 1x item7, 3x item6
+[ NORMAL  ]  ##   Simulation at step 105
+[ NORMAL  ]  ##   New Job: resources(47), reward(361), 106-195, storage3, 1x item7, 1x item6, 1x item8
+[ NORMAL  ]  ##   Simulation at step 106
+[ NORMAL  ]  ##   Simulation at step 107
+[ NORMAL  ]  ##   Simulation at step 108
+[ NORMAL  ]  ##   Simulation at step 109
+[ NORMAL  ]  ##   New Job: resources(97), reward(608), 110-208, storage5, 3x item7, 2x item5, 1x item8, 3x item4
+[ NORMAL  ]  ##   Simulation at step 110
+[ NORMAL  ]  ##   New AuctionJob: resources(79), reward(586), 111-193, storage1, 2x item7, 1x item5, 2x item8, 1x item4
+[ NORMAL  ]  ##   Simulation at step 111
+[ NORMAL  ]  ##   Simulation at step 112
+[ NORMAL  ]  ##   Simulation at step 113
+[ NORMAL  ]  ##   Simulation at step 114
+[ NORMAL  ]  ##   Simulation at step 115
+[ NORMAL  ]  ##   Simulation at step 116
+[ NORMAL  ]  ##   Simulation at step 117
+[ NORMAL  ]  ##   Simulation at step 118
+[ NORMAL  ]  ##   New AuctionJob: resources(89), reward(610), 119-170, storage1, 3x item6, 4x item8
+[ NORMAL  ]  ##   Simulation at step 119
+[ NORMAL  ]  ##   Simulation at step 120
+[ NORMAL  ]  ##   Simulation at step 121
+[ NORMAL  ]  ##   New Job: resources(32), reward(292), 122-190, storage3, 1x item5, 1x item6, 1x item8, 1x item4
+[ NORMAL  ]  ##   Simulation at step 122
+[ NORMAL  ]  ##   Simulation at step 123
+[ NORMAL  ]  ##   Simulation at step 124
+[ NORMAL  ]  ##   Simulation at step 125
+[ NORMAL  ]  ##   Simulation at step 126
+[ NORMAL  ]  ##   Simulation at step 127
+[ NORMAL  ]  ##   Simulation at step 128
+[ NORMAL  ]  ##   Simulation at step 129
+[ NORMAL  ]  ##   New Job: resources(49), reward(445), 130-226, storage1, 1x item7, 1x item5, 1x item8, 3x item4
+[ NORMAL  ]  ##   Simulation at step 130
+[ NORMAL  ]  ##   Simulation at step 131
+[ NORMAL  ]  ##   New Job: resources(58), reward(459), 132-209, storage1, 1x item7, 2x item6, 1x item8
+[ NORMAL  ]  ##   Simulation at step 132
+[ NORMAL  ]  ##   Simulation at step 133
+[ NORMAL  ]  ##   New AuctionJob: resources(89), reward(598), 134-210, storage7, 4x item6, 3x item8, 1x item4
+[ NORMAL  ]  ##   Simulation at step 134
+[ NORMAL  ]  ##   Simulation at step 135
+[ NORMAL  ]  ##   New Job: resources(65), reward(494), 136-207, storage6, 2x item7, 1x item5, 1x item8, 1x item4
+[ NORMAL  ]  ##   Simulation at step 136
+[ NORMAL  ]  ##   New AuctionJob: resources(44), reward(344), 137-234, storage5, 1x item7, 2x item6
+[ NORMAL  ]  ##   Simulation at step 137
+[ NORMAL  ]  ##   Simulation at step 138
+[ NORMAL  ]  ##   New Job: resources(47), reward(338), 139-201, storage3, 1x item7, 2x item5, 1x item8, 1x item4
+[ NORMAL  ]  ##   Simulation at step 139
+[ NORMAL  ]  ##   Simulation at step 140
+[ NORMAL  ]  ##   New Job: resources(62), reward(415), 141-240, storage6, 2x item7, 1x item5, 1x item6, 1x item4
+[ NORMAL  ]  ##   Simulation at step 141
+[ NORMAL  ]  ##   Simulation at step 142
+[ NORMAL  ]  ##   New Job: resources(108), reward(670), 143-198, storage2, 2x item7, 2x item5, 2x item6, 2x item8, 2x item4
+[ NORMAL  ]  ##   New Mission: resources(140), reward(840), 143-204, storage1, 3x item7, 1x item5, 1x item6, 4x item8, 1x item4
+[ NORMAL  ]  ##   New Mission: resources(140), reward(840), 143-204, storage1, 3x item7, 1x item5, 1x item6, 4x item8, 1x item4
+[ NORMAL  ]  ##   Simulation at step 143
+[ NORMAL  ]  ##   Simulation at step 144
+[ NORMAL  ]  ##   Simulation at step 145
+[ NORMAL  ]  ##   Simulation at step 146
+[ NORMAL  ]  ##   New AuctionJob: resources(34), reward(320), 147-219, storage4, 1x item7, 4x item4
+[ NORMAL  ]  ##   Simulation at step 147
+[ NORMAL  ]  ##   New Job: resources(67), reward(513), 148-219, storage6, 2x item6, 3x item8, 1x item4
+[ NORMAL  ]  ##   Simulation at step 148
+[ NORMAL  ]  ##   Simulation at step 149
+[ NORMAL  ]  ##   Simulation at step 150
+[ NORMAL  ]  ##   Simulation at step 151
+[ NORMAL  ]  ##   Simulation at step 152
+[ NORMAL  ]  ##   New AuctionJob: resources(46), reward(408), 153-246, storage5, 1x item5, 1x item6, 2x item8, 1x item4
+[ NORMAL  ]  ##   Simulation at step 153
+[ NORMAL  ]  ##   Simulation at step 154
+[ NORMAL  ]  ##   New AuctionJob: resources(7), reward(157), 155-255, storage3, 1x item5, 1x item4
+[ NORMAL  ]  ##   Simulation at step 155
+[ NORMAL  ]  ##   Simulation at step 156
+[ NORMAL  ]  ##   Simulation at step 157
+[ NORMAL  ]  ##   Simulation at step 158
+[ NORMAL  ]  ##   New AuctionJob: resources(84), reward(546), 159-246, storage4, 1x item7, 3x item5, 2x item6, 2x item8
+[ NORMAL  ]  ##   Simulation at step 159
+[ NORMAL  ]  ##   Simulation at step 160
+[ NORMAL  ]  ##   Simulation at step 161
+[ NORMAL  ]  ##   Simulation at step 162
+[ NORMAL  ]  ##   Simulation at step 163
+[ NORMAL  ]  ##   New AuctionJob: resources(46), reward(354), 164-232, storage5, 1x item7, 1x item5, 1x item8, 2x item4
+[ NORMAL  ]  ##   Simulation at step 164
+[ NORMAL  ]  ##   Job completed by A: type(Job) reward(205) from(system)
+[ NORMAL  ]  ##   Simulation at step 165
+[ NORMAL  ]  ##   New Job: resources(68), reward(489), 166-219, storage0, 1x item7, 1x item5, 2x item6, 1x item8, 2x item4
+[ NORMAL  ]  ##   Simulation at step 166
+[ NORMAL  ]  ##   Simulation at step 167
+[ NORMAL  ]  ##   Simulation at step 168
+[ NORMAL  ]  ##   New AuctionJob: resources(36), reward(349), 169-248, storage2, 1x item7, 1x item8
+[ NORMAL  ]  ##   New Job: resources(36), reward(306), 169-239, storage1, 1x item7, 1x item8
+[ NORMAL  ]  ##   Simulation at step 169
+[ NORMAL  ]  ##   Simulation at step 170
+[ NORMAL  ]  ##   New AuctionJob: resources(76), reward(507), 171-228, storage2, 1x item7, 3x item5, 2x item6, 1x item8, 2x item4
+[ NORMAL  ]  ##   Simulation at step 171
+[ NORMAL  ]  ##   Simulation at step 172
+[ NORMAL  ]  ##   New Job: resources(67), reward(438), 173-262, storage0, 2x item6, 3x item8, 1x item4
+[ NORMAL  ]  ##   Simulation at step 173
+[ NORMAL  ]  ##   New Job: resources(62), reward(442), 174-251, storage0, 1x item7, 1x item5, 2x item6, 1x item8
+[ NORMAL  ]  ##   Simulation at step 174
+[ NORMAL  ]  ##   Simulation at step 175
+[ NORMAL  ]  ##   New AuctionJob: resources(155), reward(956), 176-237, storage0, 4x item7, 2x item6, 3x item8, 1x item4
+[ NORMAL  ]  ##   Simulation at step 176
+[ NORMAL  ]  ##   Simulation at step 177
+[ NORMAL  ]  ##   Simulation at step 178
+[ NORMAL  ]  ##   Simulation at step 179
+[ NORMAL  ]  ##   Simulation at step 180
+[ NORMAL  ]  ##   Simulation at step 181
+[ NORMAL  ]  ##   Simulation at step 182
+[ NORMAL  ]  ##   Simulation at step 183
+[ NORMAL  ]  ##   Simulation at step 184
+[ NORMAL  ]  ##   New AuctionJob: resources(116), reward(758), 185-241, storage1, 3x item7, 2x item5, 3x item8
+[ NORMAL  ]  ##   Simulation at step 185
+[ NORMAL  ]  ##   Simulation at step 186
+[ NORMAL  ]  ##   New Job: resources(52), reward(448), 187-270, storage5, 2x item7, 2x item5
+[ NORMAL  ]  ##   Simulation at step 187
+[ NORMAL  ]  ##   New AuctionJob: resources(70), reward(502), 188-269, storage4, 1x item7, 3x item5, 2x item6, 1x item8
+[ NORMAL  ]  ##   Simulation at step 188
+[ NORMAL  ]  ##   New Job: resources(91), reward(625), 189-266, storage4, 2x item7, 2x item5, 2x item6, 1x item8, 1x item4
+[ NORMAL  ]  ##   Simulation at step 189
+[ NORMAL  ]  ##   Simulation at step 190
+[ NORMAL  ]  ##   Simulation at step 191
+[ NORMAL  ]  ##   New Job: resources(107), reward(655), 192-249, storage5, 3x item7, 1x item5, 1x item6, 1x item8, 4x item4
+[ NORMAL  ]  ##   Simulation at step 192
+[ NORMAL  ]  ##   Simulation at step 193
+[ NORMAL  ]  ##   Simulation at step 194
+[ NORMAL  ]  ##   New Job: resources(74), reward(478), 195-267, storage5, 1x item7, 4x item5, 3x item6, 1x item4
+[ NORMAL  ]  ##   Simulation at step 195
+[ NORMAL  ]  ##   New AuctionJob: resources(32), reward(295), 196-248, storage0, 1x item5, 1x item6, 1x item8, 1x item4
+[ NORMAL  ]  ##   Simulation at step 196
+[ NORMAL  ]  ##   New AuctionJob: resources(61), reward(426), 197-290, storage1, 1x item7, 1x item6, 2x item8
+[ NORMAL  ]  ##   New Mission: resources(54), reward(434), 197-288, storage4, 1x item7, 1x item5, 2x item6, 2x item4
+[ NORMAL  ]  ##   New Job: resources(79), reward(517), 197-284, storage5, 1x item7, 3x item5, 2x item6, 1x item8, 3x item4
+[ NORMAL  ]  ##   New Mission: resources(54), reward(434), 197-288, storage4, 1x item7, 1x item5, 2x item6, 2x item4
+[ NORMAL  ]  ##   Simulation at step 197
+[ NORMAL  ]  ##   Simulation at step 198
+[ NORMAL  ]  ##   Simulation at step 199
+[ NORMAL  ]  ##   Simulation at step 200
+[ NORMAL  ]  ##   Simulation at step 201
+[ NORMAL  ]  ##   New Job: resources(53), reward(377), 202-279, storage6, 1x item7, 2x item8, 1x item4
+[ NORMAL  ]  ##   Simulation at step 202
+[ NORMAL  ]  ##   New Job: resources(98), reward(675), 203-277, storage6, 1x item7, 1x item6, 4x item8, 3x item4
+[ NORMAL  ]  ##   Simulation at step 203
+[ NORMAL  ]  ##   Simulation at step 204
+[ NORMAL  ]  ##   Simulation at step 205
+[ NORMAL  ]  ##   Simulation at step 206
+[ NORMAL  ]  ##   Simulation at step 207
+[ NORMAL  ]  ##   Simulation at step 208
+[ NORMAL  ]  ##   New Job: resources(51), reward(446), 209-291, storage4, 1x item7, 3x item5, 1x item8, 1x item4
+[ NORMAL  ]  ##   Simulation at step 209
+[ NORMAL  ]  ##   Simulation at step 210
+[ NORMAL  ]  ##   Simulation at step 211
+[ NORMAL  ]  ##   New Job: resources(79), reward(561), 212-275, storage0, 3x item7, 1x item5, 3x item4
+[ NORMAL  ]  ##   Simulation at step 212
+[ NORMAL  ]  ##   Simulation at step 213
+[ NORMAL  ]  ##   Simulation at step 214
+[ NORMAL  ]  ##   Simulation at step 215
+[ NORMAL  ]  ##   Simulation at step 216
+[ NORMAL  ]  ##   Simulation at step 217
+[ NORMAL  ]  ##   Simulation at step 218
+[ NORMAL  ]  ##   Simulation at step 219
+[ NORMAL  ]  ##   Simulation at step 220
+[ NORMAL  ]  ##   Simulation at step 221
+[ NORMAL  ]  ##   Simulation at step 222
+[ NORMAL  ]  ##   Simulation at step 223
+[ NORMAL  ]  ##   New Job: resources(81), reward(515), 224-306, storage6, 1x item7, 4x item8, 1x item4
+[ NORMAL  ]  ##   Simulation at step 224
+[ NORMAL  ]  ##   Simulation at step 225
+[ NORMAL  ]  ##   Simulation at step 226
+[ NORMAL  ]  ##   Simulation at step 227
+[ NORMAL  ]  ##   Simulation at step 228
+[ NORMAL  ]  ##   Simulation at step 229
+[ NORMAL  ]  ##   Simulation at step 230
+[ NORMAL  ]  ##   Simulation at step 231
+[ NORMAL  ]  ##   Simulation at step 232
+[ NORMAL  ]  ##   Simulation at step 233
+[ NORMAL  ]  ##   Simulation at step 234
+[ NORMAL  ]  ##   New AuctionJob: resources(72), reward(485), 235-305, storage4, 1x item7, 2x item5, 2x item6, 1x item8, 2x item4
+[ NORMAL  ]  ##   Simulation at step 235
+[ NORMAL  ]  ##   New Job: resources(51), reward(359), 236-289, storage7, 1x item7, 1x item5, 1x item6, 1x item8
+[ NORMAL  ]  ##   Simulation at step 236
+[ NORMAL  ]  ##   Simulation at step 237
+[ NORMAL  ]  ##   New Job: resources(36), reward(353), 238-327, storage5, 1x item7, 1x item6, 1x item4
+[ NORMAL  ]  ##   Simulation at step 238
+[ NORMAL  ]  ##   Simulation at step 239
+[ NORMAL  ]  ##   New Job: resources(64), reward(430), 240-309, storage2, 1x item7, 2x item5, 2x item8, 2x item4
+[ NORMAL  ]  ##   Simulation at step 240
+[ NORMAL  ]  ##   New Job: resources(122), reward(722), 241-319, storage3, 1x item7, 2x item5, 2x item6, 5x item8
+[ NORMAL  ]  ##   Simulation at step 241
+[ NORMAL  ]  ##   Simulation at step 242
+[ NORMAL  ]  ##   Simulation at step 243
+[ NORMAL  ]  ##   Simulation at step 244
+[ NORMAL  ]  ##   New Job: resources(44), reward(323), 245-328, storage2, 2x item5, 3x item6, 1x item4
+[ NORMAL  ]  ##   Simulation at step 245
+[ NORMAL  ]  ##   New AuctionJob: resources(51), reward(440), 246-310, storage4, 3x item5, 2x item6, 1x item8, 1x item4
+[ NORMAL  ]  ##   Simulation at step 246
+[ NORMAL  ]  ##   Simulation at step 247
+[ NORMAL  ]  ##   Simulation at step 248
+[ NORMAL  ]  ##   Simulation at step 249
+[ NORMAL  ]  ##   Simulation at step 250
+[ NORMAL  ]  ##   New Job: resources(47), reward(409), 251-345, storage0, 1x item7, 2x item5, 1x item8, 1x item4
+[ NORMAL  ]  ##   Simulation at step 251
+[ NORMAL  ]  ##   New AuctionJob: resources(81), reward(552), 252-351, storage3, 2x item5, 2x item6, 3x item8, 3x item4
+[ NORMAL  ]  ##   Simulation at step 252
+[ NORMAL  ]  ##   Simulation at step 253
+[ NORMAL  ]  ##   Simulation at step 254
+[ NORMAL  ]  ##   Simulation at step 255
+[ NORMAL  ]  ##   New AuctionJob: resources(40), reward(318), 256-308, storage0, 1x item7, 1x item5, 1x item6, 1x item4
+[ NORMAL  ]  ##   Simulation at step 256
+[ NORMAL  ]  ##   Simulation at step 257
+[ NORMAL  ]  ##   New AuctionJob: resources(26), reward(275), 258-318, storage0, 1x item7, 1x item5
+[ NORMAL  ]  ##   Simulation at step 258
+[ NORMAL  ]  ##   Simulation at step 259
+[ NORMAL  ]  ##   New Job: resources(37), reward(356), 260-360, storage5, 3x item5, 1x item6, 1x item8
+[ NORMAL  ]  ##   Simulation at step 260
+[ NORMAL  ]  ##   New AuctionJob: resources(40), reward(324), 261-341, storage5, 1x item5, 2x item6, 1x item8
+[ NORMAL  ]  ##   Simulation at step 261
+[ NORMAL  ]  ##   New Job: resources(25), reward(232), 262-343, storage0, 1x item6, 1x item8
+[ NORMAL  ]  ##   Simulation at step 262
+[ NORMAL  ]  ##   Simulation at step 263
+[ NORMAL  ]  ##   Simulation at step 264
+[ NORMAL  ]  ##   Simulation at step 265
+[ NORMAL  ]  ##   Simulation at step 266
+[ NORMAL  ]  ##   Simulation at step 267
+[ NORMAL  ]  ##   New AuctionJob: resources(73), reward(523), 268-321, storage5, 1x item7, 1x item6, 2x item8, 4x item4
+[ NORMAL  ]  ##   Simulation at step 268
+[ NORMAL  ]  ##   Simulation at step 269
+[ NORMAL  ]  ##   New AuctionJob: resources(115), reward(721), 270-369, storage5, 2x item7, 1x item5, 3x item6, 2x item8, 2x item4
+[ NORMAL  ]  ##   Simulation at step 270
+[ NORMAL  ]  ##   Simulation at step 271
+[ NORMAL  ]  ##   Simulation at step 272
+[ NORMAL  ]  ##   Simulation at step 273
+[ NORMAL  ]  ##   New Job: resources(120), reward(797), 274-339, storage3, 2x item7, 1x item6, 4x item8, 3x item4
+[ NORMAL  ]  ##   Simulation at step 274
+[ NORMAL  ]  ##   Simulation at step 275
+[ NORMAL  ]  ##   Simulation at step 276
+[ NORMAL  ]  ##   Simulation at step 277
+[ NORMAL  ]  ##   Simulation at step 278
+[ NORMAL  ]  ##   Job completed by A: type(Job) reward(323) from(system)
+[ NORMAL  ]  ##   Simulation at step 279
+[ NORMAL  ]  ##   Simulation at step 280
+[ NORMAL  ]  ##   Simulation at step 281
+[ NORMAL  ]  ##   Simulation at step 282
+[ NORMAL  ]  ##   Simulation at step 283
+[ NORMAL  ]  ##   New Job: resources(131), reward(832), 284-342, storage6, 4x item7, 1x item5, 2x item6, 1x item8, 1x item4

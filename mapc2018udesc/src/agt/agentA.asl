@@ -8,14 +8,16 @@
 //{ include("crafting1.asl") }
 //{ include("crafting2.asl") }
 { include("crafting3.asl") }
+//{ include("crafting5.asl") }
 { include("charging.asl") }		
 { include("regras.asl") }
-{ include("job.asl") }
+//{ include("job.asl") }
 //{ include("job2.asl")}
+{ include("job3.asl") }
 { include("mission.asl") }
 { include("construcao_pocos.asl")}
 { include("restartround.asl")}
-{ include("huntWell.asl") }
+{ include("huntwell.asl") }
 { include("dropall.asl") }
 { include("areacritica.asl") }
 { include("exceptions.asl") }
@@ -43,7 +45,7 @@
 				doing(LD)								& 
 				not task(LD,_,_,_)			
 
-	<-.print("acabou ===> ", LD).
+	<-true.//.print("acabou ===> ", LD).
 
 @x3[atomic]
 +!consumestep: true
@@ -101,20 +103,6 @@
 	<-	
 		action(continue);
 .
-
-
-//@s2[atomic]
-//+!do: 			not route([]) 		&
-//				lastDoing(Y) 		& 
-//				doing(X) 			& 
-//				Y\==X 				&
-//				task(X,_,[ACT|T],_) &
-//				task(Y,_,_,_) 		& 
-//				Y=exploration	
-//	<-
-//			-+lastDoing(X);
-//    		action(ACT);
-//	. 
 
 @docrafthelp[atomic]
 +!do: 

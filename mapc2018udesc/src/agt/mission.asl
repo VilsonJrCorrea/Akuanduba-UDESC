@@ -9,11 +9,11 @@ repeat( retrieve(ITEM,1) , QTD , [] ,RR ) &
 +mission(NOMEMISSION,LOCALENTREGA,RECOMPENSA,STEPINICIAL,STEPFINAL,DESCONHECIDO1,DESCONHECIDO2,_,ITENS)
 	:
 		name( NAME )
-	&	not jobCommitment(NAME,_)
+	//&	not jobCommitment(NAME,_)
 	&	not gatherCommitment( NAME, _ )
 	&	not craftCommitment( NAME, _ )
+//	& 	amilastfreetruck(_) //teste
 	&	not missionCommitment( NAME, _ )
-	&	not doing(_)    
 	&	step(STEPATUAL) & STEPATUAL>5 
     &	role(ROLE,_,_,CAPACIDADE,_,_,_,_,_,_,_)
 	&	centerStorage(STORAGE)
@@ -31,6 +31,7 @@ repeat( retrieve(ITEM,1) , QTD , [] ,RR ) &
     <-
     	.print( "Eu, um(a) ", ROLE, " vou fazer a mission ", NOMEMISSION );
     	!dropAll;
+    	!removetask(fastgathering,_,_,_);
     	!!realizarMission( NOMEMISSION );
 	.
 
@@ -38,15 +39,12 @@ repeat( retrieve(ITEM,1) , QTD , [] ,RR ) &
 +!realizarMission( NOMEMISSION )
 	:
 		centerStorage(STORAGE)
-	&	.print( "TESTE: centerStorage" )
 	&	mission(NOMEMISSION,LOCALENTREGA,RECOMPENSA,STEPINICIAL,STEPFINAL,DESCONHECIDO1,DESCONHECIDO2,_,ITENSMISSION)
-	&	.print( "TESTE: mission" )
 	<-	
 		PASSOS_1 = [ goto( STORAGE ) ];
 		?passosRetrieve( ITENSMISSION, [], RETORNO );
 		.concat( PASSOS_1, RETORNO, PASSOS_2);
 		.concat( PASSOS_2, [ goto( LOCALENTREGA ), deliver_job( NOMEMISSION )], PASSOS_3);
-		.print( "TESTE: ", PASSOS_3 );
 		
 		!addtask(mission,9,PASSOS_3,[]);
 	.
@@ -57,24 +55,6 @@ repeat( retrieve(ITEM,1) , QTD , [] ,RR ) &
 	<-	
 		.print( "Alguma coisa deu errado com o realizarMission e caiu aqui." );
 	.
-
-////@realizarMission[atomic]
-//+!realizarMission( NOMEMISSION )
-//	:
-//		true
-//
-//	<-	
-//		.print( "Como não tem todos os itens no storage, vou ter que buscar os itens primários");
-//		
-//		.wait(centerStorage(STORAGE)
-//	&	mission(NOMEMISSION,LOCALENTREGA,RECOMPENSA,STEPINICIAL,STEPFINAL,DESCONHECIDO1,DESCONHECIDO2,_,ITENS));
-//		PASSOS_1 = [ goto( STORAGE ) ];
-//		?passosRetrieve( ITENS, [], RETORNO );
-//		.concat( PASSOS_1, RETORNO, PASSOS_2);
-//		.concat( PASSOS_2, [ goto( LOCALENTREGA ), deliver_job( NOMEMISSION )], PASSOS_3);
-//
-//		!addtask(mission,5,PASSOS_3,[]);
-//	.
 
 
 +!testarMission
@@ -98,5 +78,6 @@ repeat( retrieve(ITEM,1) , QTD , [] ,RR ) &
 		name( NAME )				&
 		role(ROLE,_,_,_,_,_,_,_,_,_,_)
 	<-
+		.print("entregou mission");
 		removeIntentionToDoMission(NAME, NOMEMISSION);
 	.

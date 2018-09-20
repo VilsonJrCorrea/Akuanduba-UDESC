@@ -4,8 +4,25 @@ passosRetrieve( [required(ITEM, QTD)|T], LISTA, RETORNO ):-
 		.concat(LISTA, RR, N_LISTA) &
 		passosRetrieve( T, N_LISTA, RETORNO).
 
+		
+lastdeadlinejobfirst(NOMEJOB,LOCALENTREGA,REWARD,STEPINICIAL,STEPFINAL,ITENSJOB ):-
+ 	job( NOMEJOB,LOCALENTREGA,REWARD,STEPINICIAL,STEPFINAL,ITENSJOB ) 	&
+ 	not jobCommitment(_,NOMEJOB)										&
+	centerStorage(STORAGE) 												&
+	storage(STORAGE,_,_,_,_,ITENSSTORAGE)								& 
+	procurarTodosItens( ITENSJOB, ITENSSTORAGE )						&
+    role(ROLE,_,_,CAPACIDADE,_,_,_,_,_,_,_)								&
+	sumvolruleJOB( ITENSJOB, VOLUMETOTAL )								&
+	CAPACIDADE >= VOLUMETOTAL											&
+	not  ( 	job( NJ,_,_,_,SF,IJ)										& 
+			not jobCommitment(_,NJ)										& 
+				procurarTodosItens( IJ, ITENSSTORAGE )					&
+				sumvolruleJOB( IJ, VT )									&
+				CAPACIDADE >= VT										&
+				SF > STEPFINAL).
+
 //@job[atomic]
-+job( NOMEJOB,LOCALENTREGA,REWARD,STEPINICIAL,STEPFINAL,ITENSJOB )
++job( _,_,_,_,_,_)
 	:
 		name( NAME )
 	&	not jobCommitment(NAME,_)
@@ -14,17 +31,7 @@ passosRetrieve( [required(ITEM, QTD)|T], LISTA, RETORNO ):-
 	&	not missionCommitment( NAME, _ )
 	& 	not (lastMotorcycle(NAME)|lastCar(NAME))
 	&   not amilastfreetruck(_) //teste
-//	&	step(STEPATUAL) & STEPATUAL>119
-	&	step(STEPATUAL)
-	&	centerStorage(STORAGE)
-	&	storage(STORAGE,_,_,_,_,ITENSSTORAGE)
-	&	procurarTodosItens( ITENSJOB, ITENSSTORAGE )
-    &	role(ROLE,_,_,CAPACIDADE,_,_,_,_,_,_,_)
-	
-	&	sumvolruleJOB( ITENSJOB, VOLUMETOTAL )
-	&	CAPACIDADE >= VOLUMETOTAL
-	&	possuoTempoParaRealizarJob( NOMEJOB, TEMPONECESSARIO )
-	&	TEMPONECESSARIO <= ( STEPFINAL - STEPATUAL )
+	&	lastdeadlinejobfirst(NOMEJOB,LOCALENTREGA,REWARD,STEPINICIAL,STEPFINAL,ITENSJOB )
     <- 
     	addIntentionToDoJob(NAME, NOMEJOB);
   .
