@@ -32,14 +32,8 @@ highlevel(ITEM,LEVEL):- item(ITEM,_,_,_)&
 		for (item(ITEM,_,_,parts(P)) & P\==[]) {
 			?dependencelevel(ITEM,LEVEL);
 			.count(item(_,_,_,parts(PARTS)) & .member(ITEM,PARTS),QTD);
-			if(QTD==0) {
-				+numberAgRequired(ITEM,2);
-				.broadcast(tell,numberAgRequired(ITEM,2));
-			}
-			else {
-				+numberAgRequired(ITEM,QTD+1+math.ceil( (HL-LEVEL)/ (HL/2) ) );
-				.broadcast(tell,numberAgRequired(ITEM,QTD+1+math.ceil( (HL-LEVEL)/ (HL/2) )));
-			}
+			+numberAgRequired(ITEM,QTD+1+math.ceil( (HL-LEVEL)/ (HL/2) ) );
+			.broadcast(tell,numberAgRequired(ITEM,QTD+1+math.ceil( (HL-LEVEL)/ (HL/2) )));
 		}			
 		!!initCraftComParts;
 	.

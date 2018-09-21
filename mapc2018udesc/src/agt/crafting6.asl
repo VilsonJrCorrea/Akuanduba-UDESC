@@ -1,10 +1,23 @@
 +!callCraftComPartsWithDelay: agentid("15")
 	<-
-		.wait(step(X)&X>1&X<998);
+		.wait(step(X)&X>79&X<998);
+		+totaldependenceAgRequired(0);
 		for (item(ITEM,_,_,parts(P)) & P\==[]) {
-			.count(item(_,_,_,parts(PARTS)) & .member(ITEM,PARTS),QTD);
-			+numberAgRequired(ITEM,QTD+1);
-		}			
+			.count(item(_,_,_,parts(PARTS)) & .member(ITEM,PARTS),QTD);			
+			+dependenceAgRequired(ITEM,QTD+1);			
+			//numberAgRequired
+			?totaldependenceAgRequired(TMP);
+			-+totaldependenceAgRequired(TMP+QTD+1);
+		}
+		?totaldependenceAgRequired(TOTAL);
+		MAXAGENT=12;
+		for (dependenceAgRequired(ITEM,QTD)) {
+				+numberAgRequired(ITEM,math.ceil( MAXAGENT*QTD/TOTAL ) );
+				.broadcast(tell,numberAgRequired(ITEM,math.ceil( MAXAGENT*QTD/TOTAL ) ));		
+		}
+		.abolish(dependenceAgRequired(_,_));
+		.abolish(totaldependenceAgRequired(_));
+					
 		!!initCraftComParts;
 	.
 
@@ -21,7 +34,10 @@
 +!initCraftComParts: true	
 	<-		
 		.findall(X,numberAgRequired(_,X),LTMP);
-		+numberTotalCraft(math.sum(LTMP));		
+		+numberTotalCraft(math.sum(LTMP));
+		if(name(akuanduba_udesc1)){
+			.print(numberTotalCraft(math.sum(LTMP)));
+		}		
 		!!callCraftComParts;
 	.
 	
@@ -37,7 +53,7 @@
 						not craftCommitment(NAMEAGENT,_) 	&
 						not gatherCommitment(NAMEAGENT,_)
 		<-
-			.wait(step(X) & X>79 & X<998);
+			.wait(step(X) & X>10 & X<998);
 			?gocraft(ITEM,ROLE,QTD);
 			addCraftCommitment(NAMEAGENT, ITEM,QTD);
 			.print("commited with ",ITEM);
