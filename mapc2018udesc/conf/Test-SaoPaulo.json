@@ -33,8 +33,35 @@
       "randomFail" : 1,
       "gotoCost" : 1,
       "rechargeRate" : 0.3,
-
-      "upgrades" : "$(upgrades/upgrades.json)",
+      
+      
+		"upgrades":[  
+            {  
+               "name":"skill",
+               "cost":1000,
+               "step":1
+            },
+            {  
+               "name":"vision",
+               "cost":1000,
+               "step":50
+            },
+            {  
+               "name":"speed",
+               "cost":1000,
+               "step":1
+            },
+            {  
+               "name":"load",
+               "cost":200,
+               "step":10
+            },
+            {  
+               "name":"battery",
+               "cost":300,
+               "step":5
+            }
+         ],
       "roles" : "$(roles/roles.json)",
       "entities" : [{"drone" : 4}, {"motorcycle" : 8}, {"car" : 10}, {"truck" : 12}],
       "generate" : "$(generate/generate.json)"
