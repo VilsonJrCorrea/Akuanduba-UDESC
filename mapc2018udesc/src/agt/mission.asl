@@ -9,10 +9,10 @@ repeat( retrieve(ITEM,1) , QTD , [] ,RR ) &
 +mission(NOMEMISSION,LOCALENTREGA,RECOMPENSA,STEPINICIAL,STEPFINAL,DESCONHECIDO1,DESCONHECIDO2,_,ITENS)
 	:
 		name( NAME )
-	//&	not jobCommitment(NAME,_)
+	&	not jobCommitment(NAME,_)
 	&	not gatherCommitment( NAME, _ )
 	&	not craftCommitment( NAME, _ )
-//	& 	amilastfreetruck(_) //teste
+	& 	not (lastMotorcycle(NAME)|lastCar(NAME))
 	&	not missionCommitment( NAME, _ )
 	&	step(STEPATUAL) & STEPATUAL>5 
     &	role(ROLE,_,_,CAPACIDADE,_,_,_,_,_,_,_)

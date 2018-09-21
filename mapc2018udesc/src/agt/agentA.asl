@@ -14,7 +14,8 @@
 //{ include("job.asl") }
 //{ include("job2.asl")}
 { include("job3.asl") }
-{ include("mission.asl") }
+//{ include("mission.asl") }
+{ include("mission2.asl") }
 { include("construcao_pocos.asl")}
 { include("restartround.asl")}
 { include("huntwell.asl") }
