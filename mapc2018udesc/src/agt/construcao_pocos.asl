@@ -31,7 +31,7 @@
 		.print("WELL: ",WELL);
 	.
 
-+massium(M):M>5000 & not pocosExtra
++massium(M):M>4000 & not pocosExtra
 				   & lastMotorcycle(AG)
 				   & not task(cuidaPoco,_,_,_)
 	<-
@@ -40,7 +40,7 @@
 		+pocosExtra;
 	.
 	
-+massium(M):M>5000 & not pocosExtra
++massium(M):M>4000 & not pocosExtra
 				   & lastCar(AG)
 				   & not task(cuidaPoco,_,_,_)
 	<-
