@@ -31,23 +31,45 @@
 		.print("WELL: ",WELL);
 	.
 
-+massium(M):M>4000 & not pocosExtra
-				   & lastMotorcycle(AG)
-				   & not task(cuidaPoco,_,_,_)
+//+massium(M):M>4000 & not pocosExtra
+//				   & lastMotorcycle(AG)
+//				   & not task(cuidaPoco,_,_,_)
+//	<-
+//		?betterWell(WELL);	
+//		!buildWell( WELL, AG, 2, 9 );
+//		+pocosExtra;
+//	.
+//	
+//+massium(M):M>4000 & not pocosExtra
+//				   & lastCar(AG)
+//				   & not task(cuidaPoco,_,_,_)
+//	<-
+//		?betterWell(WELL);
+//		!buildWell( WELL, AG, 4, 9 );
+//		+pocosExtra;
+//	.
+
++massium(M): not well(_,_,_,_,T,_) 				&
+			 team(T)							& 		
+		     (lastMotorcycle(AG) | lastCar(AG)) &
+		     step(S) & S>200 					& 
+		     not waitingMassium  				
 	<-
-		?betterWell(WELL);	
-		!buildWell( WELL, AG, 2, 9 );
-		+pocosExtra;
-	.
-	
-+massium(M):M>4000 & not pocosExtra
-				   & lastCar(AG)
-				   & not task(cuidaPoco,_,_,_)
-	<-
+		!removeTask(cuidaPoco,_,_,_);
 		?betterWell(WELL);
-		!buildWell( WELL, AG, 4, 9 );
-		+pocosExtra;
+		+waitingMassium;	
+		.wait(M>4000);
+		-waitingMassium;
+		if(lastMotorcycle(AG)) {
+			!buildWell( WELL, AG, 2, 9 );
+		}
+		else {
+			!buildWell( WELL, AG, 4, 9 );		
+		}
+	
 	.
+
+
 /**
  * Plano que deve ser chamado quando ser quer
  * construir o poco no canto superior esquerdo.
