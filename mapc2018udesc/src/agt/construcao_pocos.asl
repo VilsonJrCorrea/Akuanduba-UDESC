@@ -5,7 +5,7 @@
 +!buildPoligon:  	name(AG) &
 					lastMotorcycle(AG)  
 	<-
-		.wait(step(1));
+		.wait(step(10));
 	
 		for(chargingStation(_,X,Y,_)) {
 			addPoint(X,Y);
@@ -26,11 +26,28 @@
 //		.print("Poligono pronto !!");
 		?betterWell(WELL);
 		?lastCar(LASTCAR);
-		.send(LASTCAR,achieve,buildWell( WELL, AG, 1, 9 ));
-		!buildWell( WELL, AG, 2, 9 );
+		.send(LASTCAR,achieve,buildWell( WELL, AG, 2, 9 ));
+		!buildWell( WELL, AG, 4, 9 );
+		.print("WELL: ",WELL);
 	.
 
-
++massium(M):M>5000 & not pocosExtra
+				   & lastMotorcycle(AG)
+				   & not task(cuidaPoco,_,_,_)
+	<-
+		?betterWell(WELL);	
+		!buildWell( WELL, AG, 2, 9 );
+		+pocosExtra;
+	.
+	
++massium(M):M>5000 & not pocosExtra
+				   & lastCar(AG)
+				   & not task(cuidaPoco,_,_,_)
+	<-
+		?betterWell(WELL);
+		!buildWell( WELL, AG, 4, 9 );
+		+pocosExtra;
+	.
 /**
  * Plano que deve ser chamado quando ser quer
  * construir o poco no canto superior esquerdo.
@@ -83,6 +100,7 @@
 		getPoint( LAT, LON, P );
 		!getCoordenadasPonto( P, PLAT, PLON );
 		!qtdStep( WELLTYPE, AGENT, QTD );
+		
 		!buildWellSteps( [goto(PLAT, PLON), build(WELLTYPE)], QTD, R );
 		
 		!addtask(buildWell,PRIORITY,R,[]);
@@ -105,9 +123,11 @@
  */
 +!qtdStep( WELLTYPE, AGENT, QTD )
 	:	wellType(WELLTYPE,_,_,MIN,MAX)
-	&	role(_,_,CURRENTSKILL,_,_,_,_,_,_,_,_)
+	&	role(_,_,_,_,_,CURRENTSKILL,_,_,_,_,_)
 	<-	
+	
 		QTD = math.ceil(( MAX-MIN )/CURRENTSKILL );
+		.print("INTEGRIDADE ",(MAX-MIN)," CURRENT SKILL ",CURRENTSKILL," QTD ",QTD);
 		//.print("WellType: ", WELLTYPE, ", MIN: ", MIN, ", MAX: ", MAX, ", QTD:", QTD, ", MINSKILL: ", MINSKILL);
 	.
 
@@ -150,9 +170,11 @@
 			not task(desmantelar,_,_,_)								&			
 			betterWell(WELLTYPE) 									&
 			wellType(WELLTYPE,_,_,_,INTEGRIDADE)   					& 
-			role(_,_,CURRENTKILL,_,_,_,_,_,_,_,_)
+			role(_,_,_,_,_,CURRENTSKILL,_,_,_,_,_)
 	<-
-		QTD = math.ceil( INTEGRIDADE/CURRENTKILL );
+
+		QTD = math.ceil( INTEGRIDADE/CURRENTSKILL );
+	
 		?repeat( dismantle, QTD, [], R );
 		!removetask(cuidaPoco,_,_,_);
 		!addtask(desmantelar,9.1,R,[]);
@@ -165,6 +187,7 @@
 					(not wellType(WELLTYPE,_,_,_,_)[source(percept)])
 	<- 
 		!removetask(desmantelar,_,_,_);
+		-pocosExtra;
 	.	
 
 
