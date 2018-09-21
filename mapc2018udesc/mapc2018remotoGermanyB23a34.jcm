@@ -1,0 +1,74 @@
+mas mapc2018udesc {
+//TIME A - Remoto	
+agent akuanduba_udesc23: agentA.asl{ 
+ join: env
+focus: env.art23, enva.coogather @ remoto
+}
+agent akuanduba_udesc24: agentA.asl{ 
+ join: env
+focus: env.art24, enva.coogather @ remoto
+}
+agent akuanduba_udesc25: agentA.asl{ 
+ join: env
+focus: env.art25, enva.coogather @ remoto
+}
+agent akuanduba_udesc26: agentA.asl{ 
+ join: env
+focus: env.art26, enva.coogather @ remoto
+}
+agent akuanduba_udesc27: agentA.asl{ 
+ join: env
+focus: env.art27, enva.coogather @ remoto
+}
+agent akuanduba_udesc28: agentA.asl{ 
+ join: env
+focus: env.art28, enva.coogather @ remoto
+}
+agent akuanduba_udesc29: agentA.asl{ 
+ join: env
+focus: env.art29, enva.coogather @ remoto
+}
+agent akuanduba_udesc30: agentA.asl{ 
+ join: env
+focus: env.art30, enva.coogather @ remoto
+}
+agent akuanduba_udesc31: agentA.asl{ 
+ join: env
+focus: env.art31, enva.coogather @ remoto
+}
+agent akuanduba_udesc32: agentA.asl{ 
+ join: env
+focus: env.art32, enva.coogather @ remoto
+}
+agent akuanduba_udesc33: agentA.asl{ 
+ join: env
+focus: env.art33, enva.coogather @ remoto
+}
+agent akuanduba_udesc34: agentA.asl{ 
+ join: env
+focus: env.art34, enva.coogather @ remoto
+}
+
+workspace env {
+artifact art23: EISAccess("conf/remotoGermany2/eisa22.json")
+artifact art24: EISAccess("conf/remotoGermany2/eisa23.json")
+artifact art25: EISAccess("conf/remotoGermany2/eisa24.json")
+artifact art26: EISAccess("conf/remotoGermany2/eisa25.json")
+artifact art27: EISAccess("conf/remotoGermany2/eisa26.json")
+artifact art28: EISAccess("conf/remotoGermany2/eisa27.json")
+artifact art29: EISAccess("conf/remotoGermany2/eisa28.json")
+artifact art30: EISAccess("conf/remotoGermany2/eisa29.json")
+artifact art31: EISAccess("conf/remotoGermany2/eisa30.json")
+artifact art32: EISAccess("conf/remotoGermany2/eisa31.json")
+artifact art33: EISAccess("conf/remotoGermany2/eisa32.json")
+artifact art34: EISAccess("conf/remotoGermany2/eisa33.json")
+//artifact artpolygon: calculos.ARTGreyZone
+//artifact coogather: CoordinationArtifact
+}
+ asl-path: 	src/agt
+			src/agt/inc
+
+platform:	jade("-container -host 10.60.185.16 -port 8080 -container-name c2")
+			cartago()
+node remoto running @ 10.60.185.16 
+ }
