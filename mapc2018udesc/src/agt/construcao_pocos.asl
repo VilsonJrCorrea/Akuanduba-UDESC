@@ -49,25 +49,25 @@
 //		+pocosExtra;
 //	.
 
-+massium(M): not well(_,_,_,_,T,_) 				&
-			 team(T)							& 		
-		     (lastMotorcycle(AG) | lastCar(AG)) &
-		     step(S) & S>200 					& 
-		     not waitingMassium  				
-	<-
-		!removeTask(cuidaPoco,_,_,_);
-		?betterWell(WELL);
-		+waitingMassium;	
-		.wait(M>4000);
-		-waitingMassium;
-		if(lastMotorcycle(AG)) {
-			!buildWell( WELL, AG, 2, 9 );
-		}
-		else {
-			!buildWell( WELL, AG, 4, 9 );		
-		}
-	
-	.
+//+massium(M): not well(_,_,_,_,T,_) 				&
+//			 team(T)							& 		
+//		     (lastMotorcycle(AG) | lastCar(AG)) &
+//		     step(S) & S>200 					& 
+//		     not waitingMassium  				
+//	<-
+//		!removeTask(cuidaPoco,_,_,_);
+//		?betterWell(WELL);
+//		+waitingMassium;	
+//		.wait(M>4000);
+//		-waitingMassium;
+//		if(lastMotorcycle(AG)) {
+//			!buildWell( WELL, AG, 2, 9 );
+//		}
+//		else {
+//			!buildWell( WELL, AG, 4, 9 );		
+//		}
+//	
+//	.
 
 
 /**
