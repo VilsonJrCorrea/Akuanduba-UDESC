@@ -14,7 +14,7 @@
 	.
 	
 +!buildTaskToDestroy(WELLID,LAT,LON,WELLTYPE): 
-					role(_,_,CURRENTSKILL,_,_,_,_,_,_,_,_) &
+					role(_,_,_,_,_,CURRENTSKILL,_,_,_,_,_) &
 					wellType(WELLTYPE,_,_,_,INTEGRIDADE)   
 	<-
 		QTD = math.ceil( INTEGRIDADE/CURRENTSKILL );
