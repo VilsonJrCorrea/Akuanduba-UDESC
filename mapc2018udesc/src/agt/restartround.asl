@@ -84,6 +84,7 @@ roundnumber(0).
 		.abolish(resourceNode(_,_,_,_));
 		.abolish(centerStorage(_));
 		.abolish(centerWorkshop(_));
+		.abolish(chargingStation(_,_,_,_));
 		.abolish(doing(_));
 		.abolish(lastDoing(_));
 		.abolish(laststep(_));	
