@@ -28,7 +28,7 @@
 		?role(truck,_,_,LOAD,_,_,_,_,_,_,_); 		
 		?item(ITEM,TAM,_,_);
 		QTD = math.floor( (LOAD / TAM) ) ;		
-		?repeat( gather, QTD, [], GATHERS );
+		?repeat( gather, QTD-2, [], GATHERS );
 		.wait(centerStorage(FS));
 		.concat([goto(LATRESOUR, LONRESOUR)],GATHERS,[goto(FS),store(ITEM,QTD)],PLAN);
 //		+steps( craftSemParts, PLAN);

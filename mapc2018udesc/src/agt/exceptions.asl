@@ -22,3 +22,10 @@
 		.print("tratando treta do recharge");
 		!removetask(recharge,_,_,_);
 	.
+
++lastActionResult(failed_capacity) : lastAction(craftSemParts) & doing(craftSemParts)
+	<-
+		.print("tratando treta do craftSemParts");
+		!dropAll;
+		!removetask(craftSemParts,_,_,_);
+	.

@@ -81,7 +81,7 @@ roundnumber(0).
    		.drop_all_intentions;
    		.drop_all_desires;
 	
-		.abolish(resourcenode(_,_,_,_));
+		.abolish(resourceNode(_,_,_,_));
 		.abolish(centerStorage(_));
 		.abolish(centerWorkshop(_));
 		.abolish(doing(_));
